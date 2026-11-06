@@ -1,0 +1,5 @@
+Textos HTML de las 168 normas del corpus laboral (TP Sistemas Inteligentes, UNNOBA).
+Fuente: https://servicios.infoleg.gob.ar (texto original norma.htm; texact.htm para ids 109500 y 295462).
+Descarga: 2026-10-28 00:32-00:35 UTC. Archivos re-codificados a UTF-8 desde windows-1252/iso-8859-1.
+El manifiesto incluye URL, fecha, tamano original, charset y SHA-256 del HTML en UTF-8 de cada norma.
+No usar el gold como entrada del extractor.
