@@ -12,7 +12,9 @@ El TP extrae automáticamente las relaciones entre normas (modifica, sustituye, 
 | Textos InfoLEG del corpus v1 (168 HTML) | descargados y verificados por SHA-256 |
 | Techo de recall textual | `data/corpus_v1/cobertura_textual_gold.csv` |
 | Parser 1: reglas (regex/AST) | hecho, evaluado en dev y una vez en test |
-| Corpus v2 laboral ampliado | script listo, falta correrlo con red (`correr_pipeline.sh`) |
+| Corpus v2 laboral ampliado (340 normas, 775 pares) | generado con los scripts el 06/11/2026, 306 textos |
+| Verificación del v1 con los scripts | coincide con el congelado salvo 2 decretos nuevos de octubre |
+| Muestra de la Ley 14.250 | revisada: 0 de 30 modifican la ley |
 | Parser 2: LLM puro / Parser 3: híbrido | pendiente |
 | Grafo Neo4j + text-to-Cypher | pendiente |
 
@@ -35,7 +37,8 @@ El detalle está en [`results/reglas_v1/RESULTADOS.md`](results/reglas_v1/RESULT
 ```
 data/
   corpus_v1/            corpus y gold congelados (no se regeneran: ver SNAPSHOT.md)
-  corpus_v2/            corpus laboral ampliado (lo genera correr_pipeline.sh)
+  corpus_v2/            corpus laboral ampliado (snapshot InfoLEG del 06/11/2026)
+  verificacion/         v1 regenerado con el snapshot actual, para comparar con el congelado
   textos/infoleg/       HTML de InfoLEG en UTF-8 + manifiesto con URL, fecha y SHA-256
   raw/                  zips del portal de datos (cache local, fuera de git)
 src/grafo_legal/

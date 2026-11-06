@@ -1,0 +1,47 @@
+{
+  "version_corpus": "v1",
+  "fecha_descarga": "2026-11-06T21:53:15.034327+00:00",
+  "semillas_expansion": [
+    25552,
+    423680
+  ],
+  "semillas_sin_expandir": [
+    46379,
+    401266
+  ],
+  "fuentes": {
+    "base": {
+      "url": "https://datos.jus.gob.ar/dataset/d9a963ea-8b1d-4ca3-9dd9-07a4773e8c23/resource/bf0ec116-ad4e-4572-a476-e57167a84403/download/base-infoleg-normativa-nacional.zip",
+      "archivo": "base-infoleg-normativa-nacional.csv",
+      "sha256_csv": "c9347a2da68c43ebad5f6c68e3820361c9ae00c535dcc0b8e7da112b46030a7e",
+      "filas": 430834,
+      "sha256_zip": "2573e59f0c5aadee93131a5634f4fbe0391ccb018aef3392af34c58f64b34666"
+    },
+    "modificatorias": {
+      "url": "https://datos.jus.gob.ar/dataset/d9a963ea-8b1d-4ca3-9dd9-07a4773e8c23/resource/dea3c247-5a5d-408f-a224-39ae0f8eb371/download/base-complementaria-infoleg-normas-modificatorias.zip",
+      "archivo": "base-complementaria-infoleg-normas-modificatorias.csv",
+      "sha256_csv": "b6f92136b0a178913fd6b71a58e2758abb0ddc1331f40d120518a14d59d542bf",
+      "filas": 380481,
+      "sha256_zip": "1e7c62b7a90a654c88012996e23ec83e10e0f3bf81fb3e61d9d5e00bddfa3f35"
+    },
+    "modificadas": {
+      "url": "https://datos.jus.gob.ar/dataset/d9a963ea-8b1d-4ca3-9dd9-07a4773e8c23/resource/0c4fdafe-f4e8-4ac2-bc2e-acf50c27066d/download/base-complementaria-infoleg-normas-modificadas.zip",
+      "archivo": "base-complementaria-infoleg-normas-modificadas.csv",
+      "sha256_csv": "1e6d3e51e172477eabb104a126559d86a6810de6e30551d1433973a5a2f86a22",
+      "filas": 385118,
+      "sha256_zip": "041e56a5614220584576c18d8873b747cca6735ee617c1ac763e28d5ccf7799d"
+    }
+  },
+  "pares_unicos_base_completa": 377106,
+  "resultado": {
+    "normas": 185,
+    "normas_con_link_texto": 170,
+    "pares_gold": 406,
+    "pares_por_split": {
+      "dev": 275,
+      "test": 131
+    },
+    "sha256_corpus_normas": "58b521a0d50d8fb5a0c9dccb82781b4c5d59a000ea67ef8e8511300ef7af9b4a",
+    "sha256_gold_relaciones": "c9d4d2b23e0fa7ea3f084fa003f96f8248c216560a49a5fd3f9040cb966415a5"
+  }
+}

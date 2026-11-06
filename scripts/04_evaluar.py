@@ -19,6 +19,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from grafo_legal.archivos import abrir_para_escribir, escribir_texto  # noqa: E402
 from grafo_legal.evaluacion import cargar_gold, prf          # noqa: E402
 from grafo_legal.extractores.reglas import CONFIGS, Evidencia  # noqa: E402
 
@@ -86,8 +87,8 @@ def main(corpus: Path, res: Path, incluir_test: bool, config_final: str) -> None
     metricas["errores_por_categoria"] = {s: dict(Counter(e["categoria"] for e in errores if e["split"] == s))
                                          for s in splits}
 
-    (res / "metricas.json").write_text(json.dumps(metricas, indent=2, ensure_ascii=False), encoding="utf-8")
-    with open(res / "errores.csv", "w", encoding="utf-8", newline="") as f:
+    escribir_texto(res / "metricas.json", json.dumps(metricas, indent=2, ensure_ascii=False))
+    with abrir_para_escribir(res / "errores.csv") as f:
         w = csv.DictWriter(f, fieldnames=["split", "tipo", "id_origen", "id_destino", "categoria", "fragmento"],
                            lineterminator="\n")
         w.writeheader()
