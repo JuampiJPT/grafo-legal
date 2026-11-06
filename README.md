@@ -48,7 +48,8 @@ src/grafo_legal/
   evaluacion.py         P/R/F1 a nivel de par
 scripts/                01 corpus · 02 textos · 03 extraer · 04 evaluar · 05 cobertura · 06 muestra Ley 14.250
 results/reglas_v1/      evidencias, métricas y errores del parser de reglas
-docs/                   decisiones, revisión manual
+docs/                   estado, decisiones, revisión manual y copia de los documentos del Drive (docs/drive)
+tools/                  utilidades (conversión de Google Docs a Markdown)
 tests/                  tests sin red (pytest)
 ```
 
@@ -78,7 +79,18 @@ pytest -q
 
 ## Documentación del TP
 
-La bitácora, los informes por etapa y el roadmap están en la carpeta de Google Drive del TP. Las decisiones que afectan al código están resumidas en [`docs/decisiones.md`](docs/decisiones.md).
+Toda la documentación está en dos lugares: la carpeta de Google Drive del TP y este repositorio (bitácora, B32). El estado general está en [`docs/ESTADO.md`](docs/ESTADO.md).
+
+| Documento | Versión editable | Copia |
+|---|---|---|
+| Bitácora (decisiones, dificultades y hallazgos) | Drive: «00 - Bitácora del TP» | [`docs/drive/00_bitacora.md`](docs/drive/00_bitacora.md) |
+| Obtención y construcción del corpus | Drive: «01 - …» | [`docs/drive/01_obtencion_corpus.md`](docs/drive/01_obtencion_corpus.md) |
+| Profundidad del grafo y transferencia | Drive: «02 - …» | [`docs/drive/02_profundidad_y_transferencia.md`](docs/drive/02_profundidad_y_transferencia.md) |
+| Pipeline, decisiones, resultados y revisión manual | este repo (README, `docs/decisiones.md`, `results/`, `docs/revision_manual/`) | Drive: «03 - Pipeline oficial, parser de reglas y revisión manual» |
+| Estado del TP | este repo: [`docs/ESTADO.md`](docs/ESTADO.md) | Drive: «04 - Estado del TP» |
+| Roadmap | [artefacto de Claude](https://claude.ai/artifact/Aai3uXH2hrR92fLDmYpvfM) | [`docs/drive/roadmap.md`](docs/drive/roadmap.md) y Drive: «05 - Roadmap del TP (copia)» |
+
+Las copias de los documentos del Drive se regeneran con `tools/gdoc_a_md.py` a partir del JSON de la API de Google Docs.
 
 ## Fuentes
 
