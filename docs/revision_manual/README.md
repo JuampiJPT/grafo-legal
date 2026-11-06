@@ -29,11 +29,25 @@
   | Modificación transitiva | 1 |
   | Derogación tácita o por materia | 1 |
 
-## 2. Ley 14.250: muestra de sus «modificatorias» (pendiente de datos)
+## 2. Ley 14.250: muestra de sus «modificatorias»
 
 La Ley 14.250 figura como modificada por unas 42.600 normas, y por eso se incluyó como nodo sin expandir. La hipótesis es que casi todas son resoluciones que homologan convenios colectivos y no modifican el texto de la ley.
 
-Para verificarlo hacen falta los zips de la base complementaria. Cuando corras `correr_pipeline.sh`, el script `06_muestra_ley14250.py` genera tres archivos en esta carpeta:
+**Resultado (06/11/2026).** InfoLEG registra 42.860 modificatorias: 28.935 resoluciones, 13.882 disposiciones, 22 decretos, 11 laudos, 6 leyes y 4 de otros tipos.
+
+En la muestra de 30 normas que no son leyes ni decretos (semilla 20261106), **ninguna modifica el texto de la ley**:
+
+| Qué hace la norma | Cantidad |
+|---|---|
+| Homologa o registra un acuerdo o convenio colectivo | 19 |
+| Fija el tope indemnizatorio de un acuerdo ya homologado | 8 |
+| Aplica un convenio o no tiene relación visible | 3 |
+
+Dentro del último grupo hay una circular del BCRA sobre regímenes informativos: es ruido del propio gold. Entre los 28 decretos y leyes también aparecen dos decretos secretos de 2015, rotulados «Detención», que difícilmente modifiquen la ley.
+
+La anotación es una primera pasada de Claude y está pendiente de validación humana.
+
+`06_muestra_ley14250.py` genera tres archivos en esta carpeta:
 
 - `ley14250_modificatorias_por_tipo.csv`: cantidad por tipo de norma.
 - `ley14250_muestra_30.csv`: 30 normas que no son Ley ni Decreto, para marcar a mano si homologan un convenio.

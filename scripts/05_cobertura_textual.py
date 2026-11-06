@@ -21,6 +21,7 @@ from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from grafo_legal.archivos import abrir_para_escribir, escribir_texto  # noqa: E402
 from grafo_legal.catalogo import Catalogo                     # noqa: E402
 from grafo_legal.extractores.menciones import detectar, detectar_alias  # noqa: E402
 from grafo_legal.fuentes.infoleg import cargar                # noqa: E402
@@ -57,7 +58,7 @@ def main(corpus: Path, html_dir: Path, out: Path) -> None:
                       "id_norma_modificada": dst, "norma_modificada": g["norma_modificada"],
                       "split": g["split"], "mencion_en_texto": cat_})
 
-    with open(out, "w", encoding="utf-8", newline="") as f:
+    with abrir_para_escribir(out) as f:
         w = csv.DictWriter(f, fieldnames=list(filas[0]), lineterminator="\n")
         w.writeheader()
         w.writerows(filas)

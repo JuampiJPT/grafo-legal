@@ -13,6 +13,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from grafo_legal.archivos import abrir_para_escribir, escribir_texto  # noqa: E402
 from grafo_legal.catalogo import Catalogo                              # noqa: E402
 from grafo_legal.extractores.reglas import a_dict, extraer             # noqa: E402
 
@@ -27,7 +28,7 @@ def main(corpus: Path, html_dir: Path, out: Path) -> None:
             sin_texto.append(id_norma)
             continue
         filas += [a_dict(e) for e in ev]
-    with open(out / "evidencias.csv", "w", encoding="utf-8", newline="") as f:
+    with abrir_para_escribir(out / "evidencias.csv") as f:
         w = csv.DictWriter(f, fieldnames=list(filas[0]), lineterminator="\n")
         w.writeheader()
         w.writerows(filas)

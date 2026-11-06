@@ -26,7 +26,7 @@ python scripts/05_cobertura_textual.py --corpus data/corpus_v1
 python scripts/03_extraer_reglas.py --corpus data/corpus_v1 --out results/reglas_v1
 python scripts/04_evaluar.py --corpus data/corpus_v1 --res results/reglas_v1 --config-final C_articulado_temporal --incluir-test
 
-echo "== 6/6 Cobertura textual del corpus v2 (solo dev; el test de v2 no se mira hasta congelar el parser)"
+echo "== 6/6 Cobertura textual del corpus v2 (descriptiva, incluye test: ver B16)"
 python scripts/05_cobertura_textual.py --corpus data/corpus_v2
 
 echo "Listo. Revisa con: git status"

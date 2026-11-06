@@ -29,6 +29,7 @@ from pathlib import Path
 import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from grafo_legal.archivos import abrir_para_escribir, escribir_texto  # noqa: E402
 from grafo_legal.fuentes.infoleg import html_a_texto, segmentar  # noqa: E402
 
 HOST = "https://servicios.infoleg.gob.ar"
@@ -65,7 +66,7 @@ def main(corpus: Path, out: Path) -> None:
 
     sesion = requests.Session()
     sesion.headers.update(HEADERS)
-    nuevos, sin_link, fallidos = 0, 0, []
+    nuevos, recuperados, sin_link, fallidos = 0, 0, 0, []
     for r in normas:
         i = r["id_norma"]
         destino = html_dir / f"{i}.html"
@@ -78,18 +79,42 @@ def main(corpus: Path, out: Path) -> None:
         else:
             sin_link += 1
             continue
-        try:
+        if destino.exists():
+            # El HTML ya esta en disco pero falta en el manifiesto (por ejemplo, si una corrida
+            # anterior se corto antes de escribirlo): se arma la fila desde el archivo, sin red.
+            # fecha_descarga = fecha de modificacion del archivo; bytes_html_original = el texto
+            # re-codificado con el charset declarado en el propio HTML.
+            html_utf8 = destino.read_text(encoding="utf-8")
+            cs = charset_de(html_utf8.encode("utf-8"))
+            texto = html_a_texto(html_utf8)
+            existentes[i] = {
+                "id_norma": i, "fuente": fuente, "url": url,
+                "fecha_descarga": datetime.fromtimestamp(destino.stat().st_mtime, timezone.utc)
+                .isoformat(timespec="milliseconds").replace("+00:00", "Z"),
+                "bytes_html_original": len(html_utf8.encode(cs, errors="replace")), "charset_declarado": cs,
+                "chars_texto": len(texto), "articulos": sum(a.zona == "articulado" for a in segmentar(texto)),
+                "sha256_html_utf8": hashlib.sha256(html_utf8.encode("utf-8")).hexdigest(),
+            }
+            recuperados += 1
+            continue
+        resp, error = None, None
+        # InfoLEG sirve el mismo contenido por https y por http; si https falla (por ejemplo por
+        # la cadena de certificados), se reintenta por http y se registra la URL realmente usada.
+        for u in (url, url.replace("https://", "http://", 1)):
             for intento in range(3):
                 try:
-                    resp = sesion.get(url, timeout=60)
+                    resp = sesion.get(u, timeout=30)
                     resp.raise_for_status()
+                    url = u
                     break
-                except requests.RequestException:
-                    if intento == 2:
-                        raise
-                    time.sleep(3)
-        except requests.RequestException as e:
-            fallidos.append((i, str(e)))
+                except requests.RequestException as e:
+                    resp, error = None, e
+                    time.sleep(2)
+            if resp is not None:
+                break
+        if resp is None:
+            fallidos.append((i, f"{type(error).__name__}: {error}"))
+            print(f"  [fallo] {i}: {type(error).__name__}: {str(error)[:160]}", flush=True)
             continue
         raw = resp.content
         cs = charset_de(raw)
@@ -104,14 +129,15 @@ def main(corpus: Path, out: Path) -> None:
             "sha256_html_utf8": hashlib.sha256(html_utf8.encode("utf-8")).hexdigest(),
         }
         nuevos += 1
+        print(f"  [{nuevos}] {i} {fuente} {len(raw)} bytes", flush=True)
         time.sleep(PAUSA_SEG)
 
-    with man_p.open("w", encoding="utf-8", newline="") as f:
+    with abrir_para_escribir(man_p) as f:
         w = csv.DictWriter(f, fieldnames=CAMPOS, lineterminator="\n")
         w.writeheader()
         for k in sorted(existentes, key=int):
             w.writerow(existentes[k])
-    print(f"{nuevos} textos nuevos, {len(existentes)} en el manifiesto, {sin_link} normas sin link, "
+    print(f"{nuevos} textos nuevos, {recuperados} recuperados del disco, {len(existentes)} en el manifiesto, {sin_link} normas sin link, "
           f"{len(fallidos)} fallidos")
     for i, e in fallidos:
         print("  fallo", i, e)
