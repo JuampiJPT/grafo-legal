@@ -82,7 +82,7 @@ def test_script01_sintetico(tmp_path):
     _zip(raw / "modificatorias.zip", "m.csv", mod)
     _zip(raw / "modificadas.zip", "m2.csv", mod)
     out = tmp_path / "corpus"
-    subprocess.run([sys.executable, str(RAIZ / "scripts/01_obtener_corpus.py"), "--version", "v1",
+    subprocess.run([sys.executable, str(RAIZ / "scripts/01_obtener_corpus.py"),
                     "--out", str(out), "--raw", str(raw)], check=True, cwd=tmp_path)
     nodos = list(csv.DictReader(open(out / "corpus_normas.csv")))
     gold = list(csv.DictReader(open(out / "gold_relaciones.csv")))

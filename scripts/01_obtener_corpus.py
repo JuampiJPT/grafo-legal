@@ -9,10 +9,10 @@ Modificatorias y Modificadas desde el Portal de Datos Abiertos de la Justicia Ar
   - gold_relaciones.csv   -> pares (modificatoria -> modificada) dentro del corpus
   - procedencia.json      -> URLs, fecha de descarga, SHA-256 de cada CSV y conteos
 
-Versiones de corpus (ver docs/decisiones.md):
-  v1  semillas de expansion: Ley 20.744 (LCT) y Ley 27.802 (Modernizacion Laboral)
-  v2  v1 + Ley 24.013 (Empleo), Ley 24.557 (Riesgos del Trabajo), Ley 23.551 (Asoc. Sindicales)
-  En ambas se agregan como nodos, sin expandir, la Ley 14.250 y la Ley 27.742.
+Corpus unico del TP (decision D11, bitacora B33): dominio laboral ampliado.
+  Semillas de expansion: Ley 20.744 (LCT), Ley 27.802 (Modernizacion Laboral),
+  Ley 24.013 (Empleo), Ley 24.557 (Riesgos del Trabajo) y Ley 23.551 (Asociaciones Sindicales).
+  Se agregan como nodos, sin expandir, la Ley 14.250 y la Ley 27.742.
 
 Criterio comun:
   1. Expansion a 1 salto desde las semillas: toda norma que modifica a una semilla o es
@@ -21,13 +21,13 @@ Criterio comun:
   3. Split temporal por fecha (fecha_boletin, o fecha_sancion si falta): <= 2019-12-31 dev,
      posterior test. En el gold el split lo define la norma modificatoria.
 
-El corpus v1 oficial esta congelado en data/corpus_v1 (snapshot de InfoLEG del 30/09/2026).
-Este script NO lo sobrescribe: con datos mas nuevos produce otra carpeta para comparar.
+El corpus oficial esta congelado en data/corpus (snapshot de InfoLEG del 06/11/2026).
+Este script NO lo sobrescribe: escribe en otra carpeta y, con los mismos zips de data/raw,
+tiene que dar exactamente los mismos archivos (correr_pipeline.sh lo verifica).
 
 Uso:
     pip install -r requirements.txt
-    python scripts/01_obtener_corpus.py --version v2 --out data/corpus_v2
-    python scripts/01_obtener_corpus.py --version v1 --out data/verificacion/corpus_v1_snapshot_actual
+    python scripts/01_obtener_corpus.py --out data/verificacion/corpus_regenerado
 """
 
 import argparse
@@ -49,14 +49,11 @@ URLS = {
 }
 HEADERS = {"User-Agent": "TP-UNNOBA-SistemasInteligentes/1.0 (uso academico)"}
 
-VERSIONES = {
-    "v1": {"expansion": {25552, 423680}},
-    "v2": {"expansion": {25552, 423680, 412, 27971, 20993}},
-}
+SEMILLAS_EXPANSION = {25552, 423680, 412, 27971, 20993}  # Leyes 20.744, 27.802, 24.013, 24.557, 23.551
 SEMILLAS_SIN_EXPANDIR = {46379, 401266}  # Ley 14.250, Ley 27.742
 TIPOS = {"Ley", "Decreto", "Decreto/Ley"}
 CORTE = "2019-12-31"
-CONGELADO = Path("data/corpus_v1")
+CONGELADO = Path("data/corpus")
 
 
 def descargar(nombre: str, url: str, raw_dir: Path) -> tuple[pd.DataFrame, dict]:
@@ -76,13 +73,13 @@ def descargar(nombre: str, url: str, raw_dir: Path) -> tuple[pd.DataFrame, dict]
                 "sha256_zip": hashlib.sha256(destino.read_bytes()).hexdigest()}
 
 
-def main(version: str, out: Path, raw_dir: Path) -> None:
+def main(out: Path, raw_dir: Path) -> None:
     if out.resolve() == CONGELADO.resolve():
-        raise SystemExit("data/corpus_v1 esta congelado (snapshot 30/09/2026); usa otra carpeta de salida")
+        raise SystemExit("data/corpus esta congelado (snapshot 06/11/2026); usa otra carpeta de salida")
     raw_dir.mkdir(parents=True, exist_ok=True)
-    expansion = VERSIONES[version]["expansion"]
+    expansion = SEMILLAS_EXPANSION
 
-    procedencia = {"version_corpus": version, "fecha_descarga": datetime.now(timezone.utc).isoformat(),
+    procedencia = {"fecha_descarga": datetime.now(timezone.utc).isoformat(),
                    "semillas_expansion": sorted(expansion), "semillas_sin_expandir": sorted(SEMILLAS_SIN_EXPANDIR),
                    "fuentes": {}}
     tablas = {}
@@ -157,8 +154,7 @@ def main(version: str, out: Path, raw_dir: Path) -> None:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--version", choices=sorted(VERSIONES), default="v2")
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--raw", type=Path, default=Path("data/raw"))
     a = ap.parse_args()
-    main(a.version, a.out, a.raw)
+    main(a.out, a.raw)

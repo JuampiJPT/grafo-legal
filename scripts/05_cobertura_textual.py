@@ -11,7 +11,7 @@ menciona a la norma modificada.
 Es un analisis del dataset, no un extractor: usa el gold para elegir que pares mirar.
 
 Uso:
-    python scripts/05_cobertura_textual.py --corpus data/corpus_v1
+    python scripts/05_cobertura_textual.py --corpus data/corpus
 """
 
 import argparse
@@ -67,7 +67,7 @@ def main(corpus: Path, html_dir: Path, out: Path) -> None:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--corpus", type=Path, default=Path("data/corpus_v1"))
+    ap.add_argument("--corpus", type=Path, default=Path("data/corpus"))
     ap.add_argument("--html", type=Path, default=Path("data/textos/infoleg/html"))
     ap.add_argument("--out", type=Path)
     a = ap.parse_args()

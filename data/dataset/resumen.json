@@ -1,0 +1,50 @@
+{
+  "articulos": {
+    "filas": 8066,
+    "normas": 306,
+    "por_zona": {
+      "articulado": 7667,
+      "encabezado": 303,
+      "notas": 54,
+      "anexo": 42
+    },
+    "chars_total": 7831736,
+    "chars_por_articulo_mediana": 424.0
+  },
+  "pares_candidatos": {
+    "filas": 1091,
+    "por_split": {
+      "dev": 801,
+      "test": 290
+    },
+    "positivos_por_split": {
+      "dev": 472,
+      "test": 185
+    },
+    "recall_candidatos_dev": 0.8096,
+    "recall_candidatos_test": 0.9635
+  },
+  "columnas_pares_candidatos": {
+    "id_norma_origen": "norma que contiene la mencion (candidata a modificatoria)",
+    "id_norma_destino": "norma mencionada, resuelta contra el catalogo del corpus",
+    "split": "dev o test, segun la fecha de la norma origen (corte 31/12/2019)",
+    "n_menciones": "menciones del destino en toda la norma origen",
+    "n_menc_articulado": "menciones en el articulado",
+    "n_menc_encabezado": "menciones en el encabezado (VISTO, CONSIDERANDO)",
+    "n_menc_anexo": "menciones en anexos",
+    "n_menc_notas": "menciones en notas de InfoLEG",
+    "n_articulos": "articulos distintos que mencionan al destino",
+    "frac_articulos": "n_articulos / articulos de la norma origen",
+    "verbo_en_articulo": "1 si algun articulo con la mencion tiene un verbo modificatorio",
+    "verbo_en_oracion": "1 si alguna oracion con la mencion tiene un verbo modificatorio",
+    "solo_alias": "1 si el destino solo se menciona por nombre propio, sin numero",
+    "temporal_ok": "1 si el destino no es posterior a la norma origen",
+    "pos_primera_mencion": "offset de la primera mencion / largo del texto (0 = al principio)",
+    "largo_texto": "caracteres del texto limpio de la norma origen",
+    "dif_anios": "anios entre la norma origen y la norma destino",
+    "tipo_origen": "ley, decreto o decreto/ley",
+    "tipo_destino": "ley, decreto o decreto/ley",
+    "destino_es_semilla": "1 si el destino es una de las semillas del corpus",
+    "en_gold": "ETIQUETA: 1 si el par esta en el gold de InfoLEG"
+  }
+}

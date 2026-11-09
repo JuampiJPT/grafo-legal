@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Corre el pipeline oficial completo desde cero en tu maquina (necesita internet).
+# Corre el pipeline oficial completo en tu maquina.
 #   bash correr_pipeline.sh
-# Tarda unos minutos: baja ~3 zips del portal de datos y los textos nuevos de InfoLEG (1 s por pedido).
+# Con los zips ya guardados en data/raw y los 306 textos en el repo, no hace ningun pedido a la red.
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -9,24 +9,32 @@ python3 -m venv .venv
 . .venv/bin/activate
 pip install -q -r requirements.txt
 
-echo "== 1/6 Corpus v2 (laboral ampliado) desde el snapshot actual de InfoLEG"
-python scripts/01_obtener_corpus.py --version v2 --out data/corpus_v2
+echo "== 1/7 Verificacion del corpus: se regenera con los zips de data/raw y se compara con data/corpus"
+python scripts/01_obtener_corpus.py --out data/verificacion/corpus_regenerado
+for f in corpus_normas.csv gold_relaciones.csv; do
+  if cmp -s "data/corpus/$f" "data/verificacion/corpus_regenerado/$f"; then
+    echo "   $f identico al congelado"
+  else
+    echo "   ATENCION: $f difiere del congelado (otro snapshot de InfoLEG en data/raw)"
+  fi
+done
 
-echo "== 2/6 Verificacion: corpus v1 con el snapshot actual (no toca data/corpus_v1, que esta congelado)"
-python scripts/01_obtener_corpus.py --version v1 --out data/verificacion/corpus_v1_snapshot_actual
+echo "== 2/7 Textos de InfoLEG (solo pide los que faltan en disco)"
+python scripts/02_descargar_textos.py --corpus data/corpus/corpus_normas.csv
 
-echo "== 3/6 Textos de InfoLEG para el corpus v2 (los 168 de v1 ya estan y no se re-descargan)"
-python scripts/02_descargar_textos.py --corpus data/corpus_v2/corpus_normas.csv
-
-echo "== 4/6 Muestra de la Ley 14.250"
+echo "== 3/7 Muestra de la Ley 14.250"
 python scripts/06_muestra_ley14250.py
 
-echo "== 5/6 Parser de reglas + evaluacion sobre corpus v1 (congelado)"
-python scripts/05_cobertura_textual.py --corpus data/corpus_v1
-python scripts/03_extraer_reglas.py --corpus data/corpus_v1 --out results/reglas_v1
-python scripts/04_evaluar.py --corpus data/corpus_v1 --res results/reglas_v1 --config-final C_articulado_temporal --incluir-test
+echo "== 4/7 Cobertura textual del gold (descriptiva, incluye test: ver B16)"
+python scripts/05_cobertura_textual.py --corpus data/corpus
 
-echo "== 6/6 Cobertura textual del corpus v2 (descriptiva, incluye test: ver B16)"
-python scripts/05_cobertura_textual.py --corpus data/corpus_v2
+echo "== 5/7 Parser de reglas"
+python scripts/03_extraer_reglas.py --corpus data/corpus --out results/reglas
+
+echo "== 6/7 Evaluacion (incluye test: solo para la version congelada de las reglas)"
+python scripts/04_evaluar.py --corpus data/corpus --res results/reglas --config-final C_articulado_temporal --incluir-test
+
+echo "== 7/7 Dataset (articulos y pares candidatos)"
+python scripts/07_armar_dataset.py --corpus data/corpus --res results/reglas --out data/dataset
 
 echo "Listo. Revisa con: git status"

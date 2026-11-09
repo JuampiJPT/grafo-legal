@@ -6,8 +6,8 @@ Protocolo: se itera SOLO sobre dev. El split test se evalua una sola vez, con --
 cuando las reglas estan congeladas (queda registrado en metricas.json con la fecha).
 
 Uso:
-    python scripts/04_evaluar.py --corpus data/corpus_v1 --res results/reglas_v1
-    python scripts/04_evaluar.py --corpus data/corpus_v1 --res results/reglas_v1 --incluir-test
+    python scripts/04_evaluar.py --corpus data/corpus --res results/reglas
+    python scripts/04_evaluar.py --corpus data/corpus --res results/reglas --incluir-test
 """
 
 import argparse
@@ -48,6 +48,12 @@ def main(corpus: Path, res: Path, incluir_test: bool, config_final: str) -> None
             for r in csv.DictReader(f):
                 cobertura[(int(r["id_norma_modificatoria"]), int(r["id_norma_modificada"]))] = r["mencion_en_texto"]
 
+    vistos = set()
+    v_p = corpus / "pares_evaluados_en_v1.csv"
+    if v_p.exists():
+        with open(v_p, encoding="utf-8") as f:
+            vistos = {(int(r["id_norma_modificatoria"]), int(r["id_norma_modificada"])) for r in csv.DictReader(f)}
+
     ev = leer_evidencias(res / "evidencias.csv")
     splits = ["dev"] + (["test"] if incluir_test else [])
     metricas = {"fecha": datetime.now(timezone.utc).isoformat(), "splits": splits, "configs": {}}
@@ -62,6 +68,9 @@ def main(corpus: Path, res: Path, incluir_test: bool, config_final: str) -> None
             pred = {p for p in pares if split_de.get(p[0]) == s}
             metricas["configs"][nombre][s] = {"todo_el_gold": prf(pred, gold),
                                               "gold_con_texto": prf(pred, gold_con_texto)}
+            if vistos:
+                # pares que no se usaron cuando se diseñaron las reglas (corpus v1, decision D11)
+                metricas["configs"][nombre][s]["sin_pares_de_v1"] = prf(pred - vistos, gold - vistos)
 
     # analisis de errores de la configuracion final
     filtro = CONFIGS[config_final]
@@ -94,18 +103,20 @@ def main(corpus: Path, res: Path, incluir_test: bool, config_final: str) -> None
         w.writeheader()
         w.writerows(errores)
 
-    print(f"{'config':32s} {'split':5s} {'P':>6s} {'R':>6s} {'F1':>6s}   (R sobre gold con texto)")
+    print(f"{'config':32s} {'split':5s} {'P':>6s} {'R':>6s} {'F1':>6s}   (R gold con texto)  [F1 sin pares de v1]")
     for n, d in metricas["configs"].items():
         for s, m in d.items():
             a, b = m["todo_el_gold"], m["gold_con_texto"]
-            print(f"{n:32s} {s:5s} {a['precision']:6.3f} {a['recall']:6.3f} {a['f1']:6.3f}   ({b['recall']:.3f})")
+            c = m.get("sin_pares_de_v1")
+            extra = f"  [{c['f1']:.3f}, {c['gold']} pares]" if c else ""
+            print(f"{n:32s} {s:5s} {a['precision']:6.3f} {a['recall']:6.3f} {a['f1']:6.3f}   ({b['recall']:.3f}){extra}")
     print(json.dumps(metricas["errores_por_categoria"], indent=2, ensure_ascii=False))
 
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--corpus", type=Path, default=Path("data/corpus_v1"))
-    ap.add_argument("--res", type=Path, default=Path("results/reglas_v1"))
+    ap.add_argument("--corpus", type=Path, default=Path("data/corpus"))
+    ap.add_argument("--res", type=Path, default=Path("results/reglas"))
     ap.add_argument("--incluir-test", action="store_true")
     ap.add_argument("--config-final", default="E_C_mas_verbo_en_oracion")
     a = ap.parse_args()

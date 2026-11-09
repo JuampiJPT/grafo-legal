@@ -1,0 +1,494 @@
+split,tipo,id_origen,id_destino,categoria,fragmento
+dev,FN,93,25552,FN_sin_mencion,
+dev,FN,190,25552,FN_sin_mencion,
+dev,FN,347,46379,FN_sin_mencion,
+dev,FN,412,48853,FN_sin_mencion,
+dev,FN,472,51364,FN_sin_mencion,
+dev,FN,2261,25552,FN_sin_texto,
+dev,FN,2262,2261,FN_sin_texto,
+dev,FN,2262,25552,FN_sin_texto,
+dev,FN,7812,412,FN_filtrado_por_reglas,
+dev,FN,8435,412,FN_sin_texto,
+dev,FN,8435,7968,FN_sin_texto,
+dev,FN,8716,412,FN_sin_texto,
+dev,FN,8716,7968,FN_sin_texto,
+dev,FN,9193,412,FN_sin_texto,
+dev,FN,12170,25552,FN_sin_texto,
+dev,FN,13270,25552,FN_sin_texto,
+dev,FN,14113,412,FN_filtrado_por_reglas,
+dev,FN,19061,25552,FN_sin_mencion,
+dev,FN,20420,412,FN_filtrado_por_reglas,
+dev,FN,20421,25552,FN_filtrado_por_reglas,
+dev,FN,20993,96834,FN_sin_mencion,
+dev,FN,20993,96835,FN_sin_mencion,
+dev,FN,25379,25552,FN_sin_mencion,
+dev,FN,25379,109500,FN_sin_mencion,
+dev,FN,25493,412,FN_sin_texto,
+dev,FN,25493,639,FN_sin_texto,
+dev,FN,25493,15931,FN_sin_texto,
+dev,FN,25534,412,FN_sin_texto,
+dev,FN,25552,45628,FN_sin_mencion,
+dev,FN,25552,48991,FN_sin_mencion,
+dev,FN,25552,114766,FN_sin_mencion,
+dev,FN,25552,194552,FN_sin_mencion,
+dev,FN,25552,194561,FN_sin_mencion,
+dev,FN,25552,194572,FN_sin_mencion,
+dev,FN,25552,194576,FN_sin_mencion,
+dev,FN,25552,194587,FN_sin_mencion,
+dev,FN,25552,194603,FN_sin_mencion,
+dev,FN,25552,299148,FN_sin_mencion,
+dev,FN,28165,25552,FN_sin_mencion,
+dev,FN,29743,412,FN_sin_mencion,
+dev,FN,32393,412,FN_sin_mencion,
+dev,FN,32393,27971,FN_sin_mencion,
+dev,FN,32744,27971,FN_sin_texto,
+dev,FN,33672,25552,FN_filtrado_por_reglas,
+dev,FN,33822,27971,FN_sin_texto,
+dev,FN,34762,412,FN_sin_mencion,
+dev,FN,37152,412,FN_sin_mencion,
+dev,FN,37182,20993,FN_sin_mencion,
+dev,FN,37350,27971,FN_filtrado_por_reglas,
+dev,FN,37350,33757,FN_filtrado_por_reglas,
+dev,FN,37573,27971,FN_filtrado_por_reglas,
+dev,FN,37881,412,FN_sin_mencion,
+dev,FN,37892,412,FN_sin_mencion,
+dev,FN,37894,25552,FN_sin_mencion,
+dev,FN,38137,37882,FN_sin_mencion,
+dev,FN,38142,412,FN_sin_mencion,
+dev,FN,38379,27971,FN_filtrado_por_reglas,
+dev,FN,38568,27971,FN_filtrado_por_reglas,
+dev,FN,38621,51364,FN_sin_mencion,
+dev,FN,39194,412,FN_sin_mencion,
+dev,FN,39521,412,FN_sin_mencion,
+dev,FN,39523,412,FN_sin_mencion,
+dev,FN,39697,27971,FN_sin_texto,
+dev,FN,39713,62,FN_filtrado_por_reglas,
+dev,FN,39713,20993,FN_sin_mencion,
+dev,FN,39793,37881,FN_sin_mencion,
+dev,FN,39984,20993,FN_sin_mencion,
+dev,FN,39984,37892,FN_filtrado_por_reglas,
+dev,FN,39995,25552,FN_sin_mencion,
+dev,FN,40574,27971,FN_filtrado_por_reglas,
+dev,FN,41000,412,FN_sin_texto,
+dev,FN,41000,15932,FN_sin_texto,
+dev,FN,41004,412,FN_sin_texto,
+dev,FN,41869,39793,FN_filtrado_por_reglas,
+dev,FN,42288,412,FN_sin_texto,
+dev,FN,42288,15932,FN_sin_texto,
+dev,FN,42571,412,FN_sin_mencion,
+dev,FN,42977,412,FN_sin_texto,
+dev,FN,42980,412,FN_sin_texto,
+dev,FN,42981,412,FN_sin_texto,
+dev,FN,42985,412,FN_sin_texto,
+dev,FN,43178,412,FN_sin_mencion,
+dev,FN,44408,29273,FN_filtrado_por_reglas,
+dev,FN,44936,412,FN_sin_mencion,
+dev,FN,45171,639,FN_filtrado_por_reglas,
+dev,FN,45171,12368,FN_sin_mencion,
+dev,FN,45898,412,FN_sin_mencion,
+dev,FN,46248,412,FN_sin_mencion,
+dev,FN,48163,639,FN_sin_mencion,
+dev,FN,48163,12368,FN_sin_mencion,
+dev,FN,48163,15932,FN_sin_mencion,
+dev,FN,48890,48991,FN_filtrado_por_reglas,
+dev,FN,49613,25552,FN_sin_mencion,
+dev,FN,55534,20993,FN_sin_mencion,
+dev,FN,61876,412,FN_sin_mencion,
+dev,FN,61876,25552,FN_sin_mencion,
+dev,FN,61876,49613,FN_filtrado_por_reglas,
+dev,FN,63761,25552,FN_sin_mencion,
+dev,FN,64161,25552,FN_sin_mencion,
+dev,FN,64468,46379,FN_sin_mencion,
+dev,FN,64468,63208,FN_filtrado_por_reglas,
+dev,FN,65205,412,FN_sin_mencion,
+dev,FN,65205,639,FN_sin_mencion,
+dev,FN,66675,27971,FN_sin_mencion,
+dev,FN,67303,20993,FN_filtrado_por_reglas,
+dev,FN,69724,25552,FN_filtrado_por_reglas,
+dev,FN,70518,412,FN_filtrado_por_reglas,
+dev,FN,71477,25552,FN_sin_mencion,
+dev,FN,73048,12368,FN_sin_mencion,
+dev,FN,75992,25552,FN_sin_mencion,
+dev,FN,75992,71477,FN_filtrado_por_reglas,
+dev,FN,77254,25552,FN_sin_mencion,
+dev,FN,80732,25552,FN_sin_mencion,
+dev,FN,85275,27971,FN_filtrado_por_reglas,
+dev,FN,86823,25552,FN_sin_mencion,
+dev,FN,89825,412,FN_sin_mencion,
+dev,FN,91517,71477,FN_filtrado_por_reglas,
+dev,FN,91518,86820,FN_filtrado_por_reglas,
+dev,FN,96832,96295,FN_sin_texto,
+dev,FN,96835,96295,FN_sin_texto,
+dev,FN,96835,96834,FN_sin_texto,
+dev,FN,96836,96295,FN_sin_texto,
+dev,FN,96836,96835,FN_sin_texto,
+dev,FN,97774,86820,FN_filtrado_por_reglas,
+dev,FN,97774,91518,FN_filtrado_por_reglas,
+dev,FN,97783,639,FN_filtrado_por_reglas,
+dev,FN,97783,20965,FN_filtrado_por_reglas,
+dev,FN,97783,27971,FN_filtrado_por_reglas,
+dev,FN,101629,412,FN_sin_mencion,
+dev,FN,101629,25552,FN_sin_mencion,
+dev,FN,101629,77255,FN_sin_mencion,
+dev,FN,102666,80732,FN_sin_mencion,
+dev,FN,114315,25552,FN_filtrado_por_reglas,
+dev,FN,116783,27971,FN_filtrado_por_reglas,
+dev,FN,122396,8384,FN_filtrado_por_reglas,
+dev,FN,123332,25552,FN_filtrado_por_reglas,
+dev,FN,138939,20993,FN_sin_texto,
+dev,FN,144421,27971,FN_filtrado_por_reglas,
+dev,FN,146529,25552,FN_sin_texto,
+dev,FN,167623,412,FN_filtrado_por_reglas,
+dev,FN,167623,71477,FN_filtrado_por_reglas,
+dev,FN,169694,25552,FN_filtrado_por_reglas,
+dev,FN,194552,194070,FN_sin_texto,
+dev,FN,194561,194070,FN_sin_texto,
+dev,FN,194587,194572,FN_sin_mencion,
+dev,FN,194587,194576,FN_sin_mencion,
+dev,FN,202004,61181,FN_filtrado_por_reglas,
+dev,FN,202294,159765,FN_filtrado_por_reglas,
+dev,FN,209766,412,FN_filtrado_por_reglas,
+dev,FN,209766,8767,FN_filtrado_por_reglas,
+dev,FN,210435,412,FN_filtrado_por_reglas,
+dev,FN,210435,639,FN_filtrado_por_reglas,
+dev,FN,228207,412,FN_filtrado_por_reglas,
+dev,FN,228207,639,FN_filtrado_por_reglas,
+dev,FN,228207,210435,FN_filtrado_por_reglas,
+dev,FN,228208,412,FN_filtrado_por_reglas,
+dev,FN,228208,639,FN_filtrado_por_reglas,
+dev,FN,228208,210435,FN_filtrado_por_reglas,
+dev,FN,228750,159765,FN_filtrado_por_reglas,
+dev,FN,228927,25552,FN_filtrado_por_reglas,
+dev,FN,231910,412,FN_filtrado_por_reglas,
+dev,FN,231910,639,FN_filtrado_por_reglas,
+dev,FN,231910,210435,FN_filtrado_por_reglas,
+dev,FN,231910,228207,FN_filtrado_por_reglas,
+dev,FN,231910,228208,FN_filtrado_por_reglas,
+dev,FN,239209,412,FN_filtrado_por_reglas,
+dev,FN,239209,639,FN_filtrado_por_reglas,
+dev,FN,239209,210435,FN_filtrado_por_reglas,
+dev,FN,239209,228207,FN_filtrado_por_reglas,
+dev,FN,239209,228208,FN_filtrado_por_reglas,
+dev,FN,239209,231910,FN_filtrado_por_reglas,
+dev,FN,244051,412,FN_filtrado_por_reglas,
+dev,FN,244051,639,FN_filtrado_por_reglas,
+dev,FN,244051,210435,FN_filtrado_por_reglas,
+dev,FN,244051,228207,FN_filtrado_por_reglas,
+dev,FN,244051,228208,FN_filtrado_por_reglas,
+dev,FN,244051,231910,FN_filtrado_por_reglas,
+dev,FN,244051,239209,FN_filtrado_por_reglas,
+dev,FN,244052,412,FN_filtrado_por_reglas,
+dev,FN,244052,639,FN_filtrado_por_reglas,
+dev,FN,244052,210435,FN_filtrado_por_reglas,
+dev,FN,244052,228207,FN_filtrado_por_reglas,
+dev,FN,244052,228208,FN_filtrado_por_reglas,
+dev,FN,244052,231910,FN_filtrado_por_reglas,
+dev,FN,244052,239209,FN_filtrado_por_reglas,
+dev,FN,248204,412,FN_filtrado_por_reglas,
+dev,FN,248204,639,FN_filtrado_por_reglas,
+dev,FN,248204,210435,FN_filtrado_por_reglas,
+dev,FN,248204,228207,FN_filtrado_por_reglas,
+dev,FN,248204,228208,FN_filtrado_por_reglas,
+dev,FN,260628,7968,FN_filtrado_por_reglas,
+dev,FN,260628,97774,FN_sin_mencion,
+dev,FN,266446,412,FN_filtrado_por_reglas,
+dev,FN,266446,25552,FN_filtrado_por_reglas,
+dev,FN,274269,412,FN_filtrado_por_reglas,
+dev,FN,295462,43608,FN_filtrado_por_reglas,
+dev,FN,305057,803,FN_sin_mencion,
+dev,FN,308322,114315,FN_filtrado_por_reglas,
+dev,FN,308322,305347,FN_filtrado_por_reglas,
+dev,FN,327668,7968,FN_filtrado_por_reglas,
+dev,FN,327668,25552,FN_filtrado_por_reglas,
+dev,FN,329046,46379,FN_filtrado_por_reglas,
+dev,FN,333564,42701,FN_sin_mencion,
+dev,FN,333564,51364,FN_sin_mencion,
+dev,FP,15,16092,FP_solo_alias,"y se aplicará a los siguientes conceptos, según corresponda de acuerdo al régimen de que se trate: a) Liberación o exención, según corresponda, del Impuesto al Valor Agregado que grave las ventas de materias primas o semielaboradas destinadas a proyectos industriales promovidos. b) Liberación o exen"
+dev,FP,15,17699,FP_solo_alias,"mpuesto al Valor Agregado por el monto del débito fiscal resultante de las ventas de la empresa beneficiaria. d) Exención, deducción o reducción del Impuesto a las Ganancias, sobre los Capitales y sobre el Patrimonio Neto. e) Liberación o exención, según corresponda, del Impuesto al Valor Agregado q"
+dev,FP,160,229909,FP_mencion_con_verbo,considerará a cuenta de la licencia que por ley le corresponde. A tal efecto será de aplicación lo dispuesto por la ley 20.744 (t. o. por el Decreto 390/76).
+dev,FP,170,25552,FP_solo_alias,"l Contrato y relación de trabajo del personal que a partir de la vigencia de la presente ley ingrese al Instituto se regirá por las disposiciones del Régimen de Contrato de Trabajo (t o. 1976) y sus modificatorias, reconociéndosele a todos los efectos la antiguedad acumulada en cualquiera de los org"
+dev,FP,412,62,FP_mencion_con_verbo,"imario comenzará desde el inicio de la relación laboral, sin la exigencia del período de carencia alguna, de conformidad a lo dispuesto por las leyes 23.660 y 23.661."
+dev,FP,412,20993,FP_mencion_con_verbo,"ad de aplicación verificará el cumplimiento de las condiciones establecidas en este capítulo, con arreglo a lo dispuesto por el artículo 43 de la ley 23.551 y el artículo 26 del decreto 467/88."
+dev,FP,412,46044,FP_mencion_con_verbo,"imiento de las condiciones establecidas en este capítulo, con arreglo a lo dispuesto por el artículo 43 de la ley 23.551 y el artículo 26 del decreto 467/88."
+dev,FP,427,25552,FP_solo_alias,iones o subsidios. 4. Los acuerdos conciliatorios o transacciones sólo serán válidos cuando cumplan los requisitos previstos en el artículo 15 de la Ley de contrato de trabajo (t. o. 1976). En caso de incapacidad permanente será condición necesaria para la homologación del acuerdo la determinación d
+dev,FP,639,412,FP_mencion_con_verbo,"e jubilación o tuvieren derecho a ella de conformidad con las leyes vigentes a esa fecha, se regirá por dichas leyes. Vigencia de las leyes 21.074 y 24.013"
+dev,FP,639,16092,FP_solo_alias,"ategorías que fijarán las normas reglamentarias de acuerdo con las siguientes pautas: a) Capacidad contributiva; b) La calidad de sujeto o no en el impuesto al valor agregado y en su caso, su condición de responsable inscripto, de responsable no inscripto o no responsable en dicho impuesto. Base imp"
+dev,FP,639,17699,FP_solo_alias,"o 11, correspondientes a los trabajadores comprendidos en el SIJP, será deducible de la base imponible a considerar por los respectivos sujetos en el impuesto a las ganancias. Las contribuciones previsionales establecidas en el artículo 11, a cargo de los empleadores constituirán, para ellos, un gas"
+dev,FP,639,20965,FP_mencion_con_verbo,rar fondos de jubilaciones y pensiones y la actividad aseguradora exclusivamente inherente a este efecto dando cumplimiento en lo pertinente a la ley 20.091 sometiéndose a su organismo de control. La AFJP así constituida quedará bajo el control y supervisión directa de la Superintendencia de Adminis
+dev,FP,729,639,FP_mencion_con_verbo,"ARTICULO 1º — Modifícanse los artículos 3º, inciso 5; 21, 24, 34, 40 y 97 de la ley 24.241, los que quedarán redactados de la siguiente forma: Artículo 3º, Inciso 5: Las amas de casa que decidan incorporarse voluntariamente al Sistema Inte"
+dev,FP,729,20965,FP_mencion_con_verbo,rar fondos de jubilaciones y pensiones y la actividad aseguradora exclusivamente inherente a este efecto dando cumplimiento en lo pertinente a la ley 20.091 sometiéndose a su organismo de control. La AFJP así constituida quedará bajo el control y supervisión directa de la Superintendencia de Adminis
+dev,FP,729,229909,FP_mencion_con_verbo,"ARTICULO 6º — Sustitúyese el primer párrafo del artículo 252 del Régimen de Contrato de Trabajo (ley 20.744, t. o. Decreto 390/76), por el siguiente: Cuando el trabajador reuniere los requisitos necesarios para obtener una de las prestaciones de la ley 24.241, el empleador podr"
+dev,FP,803,45628,FP_mencion_con_verbo,"l y Comercial de la Nación, con las modificaciones introducidas por la presente ley, al procedimiento ante el fuero del trabajo instituido por la ley 18.345."
+dev,FP,4215,17699,FP_solo_alias,"ntamente con las cuotas de amortización. f) Exenciones Tributarias: Los intereses y actualizaciones provenientes de estos valores, están exentos del impuesto a las ganancias, salvo respecto de sujetos que practiquen ajustes por inflación."
+dev,FP,4215,21112,FP_mencion_con_verbo,"EGURIDAD SOCIAL deberá laudar en el término de CUARENTA Y OCHO (48) horas conforme lo dispone la Ley N° 23.126 artículo 2° de las leyes Nros. 14.250, 23.546 y normas aplicables. En el caso de inactividad por parte de la entidad gremial, se tendrá por consentida la suspensión de las cláusulas conteni"
+dev,FP,4215,46379,FP_mencion_con_verbo,"BAJO Y SEGURIDAD SOCIAL deberá laudar en el término de CUARENTA Y OCHO (48) horas conforme lo dispone la Ley N° 23.126 artículo 2° de las leyes Nros. 14.250, 23.546 y normas aplicables. En el caso de inactividad por parte de la entidad gremial, se tendrá por consentida la suspensión de las cláusulas"
+dev,FP,7968,25552,FP_solo_alias,"Artículo 1° – Los trabajadores a que se refiere el Capítulo 1 del Título II de la Ley N° 24.013 son los comprendidos en la Ley de Contrato de Trabajo (L.C.T., t. o. 1976)."
+dev,FP,8767,25552,FP_solo_alias,"Art. 9° — El empleador deberá asentar en el libro del art. 52 de la Ley de Contrato de Trabajo (t. o. 1976) respecto de cada nuevo trabajador que incorpore, la presentación de la declaración jurada del mismo en la que conste si es beneficiario"
+dev,FP,12367,62,FP_mencion_con_verbo,"O Y SEGURIDAD SOCIAL, la que no estará sujeta a embargo ni deducciones. b) Prestaciones médico-asistenciales de acuerdo a lo dispuesto por las Leyes 23.660 y 23.661."
+dev,FP,12367,25552,FP_solo_alias,"Art. 2° — Las disposiciones de este decreto serán de aplicación a todos los trabajadores cuyo contrato de trabajo se rija por la Ley de Contrato de Trabajo (t. o. 1976). No será aplicable a los trabajadores comprendidos en el Régimen Nacional de Trabajo Agrario, a los trabajadores del servicio domés"
+dev,FP,15932,8384,FP_mencion_con_verbo,"l artículo 52 del Régimen de Contrato de Trabajo (L.C.T., t.o. 1976); b) La sección especial establecida en el artículo 13, apartado 1), del decreto 342/92; c) Los libros establecidos por la ley 12.713 y su decreto reglamentario 118.755/42 de trabajadores a domicilio; d) El libro especial del artícu"
+dev,FP,15932,16092,FP_mencion_con_verbo,"ey 20.628 (t.o. 1986 y sus modificaciones) por las utilidades que generen; b) Exención en el impuesto al valor agregado, texto sustituido por la ley 23.349 y sus modificaciones, de toda la operatoria que se desarrolle con motivo de los mismos. Los aportes de capital y los aportes al fondo de riesgo "
+dev,FP,15932,17699,FP_mencion_con_verbo,"s de garantía recíproca instituidos bajo este régimen, gozarán del siguiente tratamiento impositivo: a) Exención en el impuesto a las ganancias, ley 20.628 (t.o. 1986 y sus modificaciones) por las utilidades que generen; b) Exención en el impuesto al valor agregado, texto sustituido por la ley 23.34"
+dev,FP,15932,25552,FP_mencion_con_verbo,"n unificados los libros, registros, planillas y demás elementos de contralor que se señalan a continuación: a) El libro especial del artículo 52 del Régimen de Contrato de Trabajo (L.C.T., t.o. 1976); b) La sección especial establecida en el artículo 13, apartado 1), del decreto 342/92; c) Los libro"
+dev,FP,15932,29273,FP_mencion_con_verbo,ecreto reglamentario 118.755/42 de trabajadores a domicilio; d) El libro especial del artículo 122 del Régimen Nacional de Trabajo Agrario de la ley 22.248;
+dev,FP,15932,48991,FP_mencion_con_verbo,"o (L.C.T., t.o. 1976); b) La sección especial establecida en el artículo 13, apartado 1), del decreto 342/92; c) Los libros establecidos por la ley 12.713 y su decreto reglamentario 118.755/42 de trabajadores a domicilio; d) El libro especial del artículo 122 del Régimen Nacional de Trabajo Agrario "
+dev,FP,15932,109500,FP_solo_alias,"ato será título ejecutivo por el monto de la obligación principal, sus intereses y gastos, justificado conforme al procedimiento del artículo 793 del Código de Comercio y hasta el importe de la garantía. La garantía recíproca es irrevocable."
+dev,FP,20420,48991,FP_mencion_con_verbo,"Art. 6º — (artículo 86, inciso c), Ley Nº 24.467) En el Régimen de Trabajo a Domicilio regido por la Ley Nº 12.713 se llevará un registro complementario en el que se asentarán cantidades y fechas de entregas y devoluciones de las tareas encargadas a cada obrero a"
+dev,FP,20420,63368,FP_mencion_con_verbo,"rio que cumple el trabajador, en cuyo caso no estará obligado a llevar las planillas establecidas en los artículos 197 de la L.C.T. y 6º de la Ley Nº 11.544."
+dev,FP,20421,62,FP_mencion_con_verbo,"er al grupo familiar primario de un beneficiario titular de una Obra Social del sistema nacional, según lo define el artículo 9 inciso a) de la Ley N 23.660."
+dev,FP,20421,639,FP_mencion_con_verbo,"1° - (Artículo 92 bis LCT, incisos 5 y 7) El plazo para que el trabajador dé cumplimiento a la obligación establecida en el artículo 43 de la Ley N° 24.241 comenzará a correr a partir de la continuación del contrato luego del período de prueba."
+dev,FP,20421,29273,FP_mencion_con_verbo,"dad especial de fomento del empleo debe registrarse en el libro especial previsto en el artículo 122 del REGIMEN NACIONAL DEL TRABAJO AGRARIO, Ley N° 22.248, cuando se contraten trabajadores de este sector."
+dev,FP,20965,24541,FP_mencion_con_verbo,"ntrará en vigencia a los seis (6) meses de su promulgación, y desde tal fecha quedará derogado el ""Régimen legal de superintendencia de seguros"", ley 11.672, edición 1943, artículo 150 (t.o. en 1962), así como el artículo 52 del decreto ley 14.682/46 (ley 12.921); el artículo 39 de la ley 15.021; el"
+dev,FP,20965,109500,FP_solo_alias,"pugnados según el artículo 9 después de aplicadas las multas previstas en esa disposición; d) Proceda la disolución por cualquier causa, conforme al Código de Comercio; e) La casa matriz de una sociedad extranjera se disuelva, liquide, quiebre, o se encuentre en situación equivalente, o en caso de c"
+dev,FP,21976,229909,FP_mencion_con_verbo,ARTICULO 11. - Sustitúyese el artículo 266 del Régimen de Contrato de Trabajo (LCT) (texto ordenado por decreto 390/76) por el siguiente:
+dev,FP,24541,63368,FP_mencion_con_verbo,"e la Ley número 4.349. Quedan modificadas las leyes números 4.661, 8.999, 9.104, 9.105, 9.148, 9.661, 9.688, 10.505, 11.127, 11.278, 11.317, 11.338, 11.544 y 11.640 en la forma que establece este artículo."
+dev,FP,24541,194070,FP_mencion_con_verbo,"Art. 37. — Con excepción de las multas previstas en los artículos 13 y 14 de la Ley número 11.317, al importe de las multas que se hicieren efectivas por infracciones a las leyes del trabajo en jurisdicción nacional se destinará: a) Un 10% para l"
+dev,FP,27971,17699,FP_solo_alias,ARTICULO 25. — Tratamiento impositivo. 1. Las cuotas del articulo 23 constituyen gasto deducible a los efectos del impuesto a las ganancias. 2. Los contratos de afiliación a una ART están exentos de todo impuesto o tributo nacional. 3. El contrato de renta periódica goza de las mismas e
+dev,FP,29273,25552,FP_mencion_con_verbo,"ARTICULO 3° .- Sustitúyese el texto del artículo 2º del Régimen de Contrato de Trabajo, aprobado por Ley N° 20.744 y modificado por Ley N° 21.297, por el siguiente: ""Art. 2º -- La vigencia de esta ley quedará condicionada a que la aplicación de sus disposiciones"
+dev,FP,36110,412,FP_mencion_con_verbo,"ncido el plazo antes indicado. Los trabajadores dependientes de un empleador no asegurado que no estuvieren registrados en los términos de la Ley Nº 24.013 percibirán las prestaciones con cargo al Fondo de garantía siempre que antes de ocurrida la contingencia, hubieren denunciado a la SUPERINTENDEN"
+dev,FP,36110,639,FP_mencion_con_verbo,"DEL SEGURO DE SALUD. Art 5º — (Reglamentario del artículo 15). 1. No corresponde el pago del retiro transitorio por invalidez previsto en la Ley Nº 24.241 durante el período de provisionalidad de la Incapacidad Laboral Permanente Total (IPT), quedando exclusivamente a cargo de la Aseguradora o del e"
+dev,FP,36110,16092,FP_mencion_con_verbo,"ntraprestaciones y derechos nacidos de dicho contrato. En lo que respecta a la exención dispuesta en el artículo 6º, inciso j) punto 7. de la Ley Nº 23.349, el tratamiento impositivo a dispensar a las Aseguradoras será análogo al que se le confiere a las Obras Sociales. Aclárase que las cuotas a que"
+dev,FP,36110,17699,FP_solo_alias,"idad del seguro. 2. Las reservas obligatorias de las Aseguradoras a las que alude el apartado 5 del artículo que se reglamenta, serán deducibles del Impuesto a las Ganancias."
+dev,FP,36110,20965,FP_mencion_con_verbo,"esos. En los demás casos, la obligación de pago se regirá por los mismos mecanismos establecidos para la tasa prevista en el artículo 81 de la Ley Nº 20.091. La mora por parte de la Aseguradora por un período mayor a TRES (3) meses importará la suspensión, de pleno derecho, para realizar nuevas cont"
+dev,FP,36217,62,FP_mencion_con_verbo,l del Seguro de Salud. 2) El mencionado Padrón se conformará con el registro de los beneficiarios comprendidos en los artículos 8° y 9° de la Ley N° 23.660 y los que se incorporen por aplicación de los artículos 5° y 6° de la Ley N° 23.661. 3) El S.U.R.L. se encuentra facultado para dictar disposici
+dev,FP,36739,62,FP_mencion_con_verbo,Art. 55.- Para el cobro de los aportes y contribuciones previstos en las leyes 23.660 y 23.661 serán igualmente competentes los juzgados en lo civil y comercial de la jurisdicción que corresponda.
+dev,FP,38142,27971,FP_mencion_con_verbo,"l figurará en la cobertura como ""trabajadores vinculados por relaciones no laborales"", tal forma lo prescribe el artículo 2º inciso 2 c) de la Ley N° 24.557. El Estado Nacional se hará cargo de los riesgos de trabajo en la medida en que el Sector Privado no haga uso de la opción prevista en este art"
+dev,FP,38621,16092,FP_solo_alias,"ectivo hechos al comprador por épocas de pago u otro concepto similar, b) Intereses por financiación del precio neto de venta: c) Débito fiscal del impuesto al valor agregado que corresponda al enajenante como contribuyente de derecho. La deducción de los conceptos detallados precedentemente, proced"
+dev,FP,39523,17699,FP_solo_alias,"de la publicación de la presente ley en el Boletín Oficial y hasta el 31 de diciembre de 1.998, ambas fechas inclusive, el destino del producido del impuesto a las ganancias, establecido en el primer artículo incorporado a continuación del artículo 102 de la ley de dicho tributo, texto ordenado en 1"
+dev,FP,39793,62,FP_mencion_con_verbo,virtud de tales causales el trabajador no realice la prestación laboral a su cargo. Sólo tributará las contribuciones establecidas en las Leyes Nros. 23.660 y 23.661.
+dev,FP,39793,639,FP_mencion_con_verbo,"ducibles en el futuro por la DGI; c) Los viáticos de viajantes de comercio acreditados con comprobantes en los términos del articulo 6° de la Ley N° 24.241, y los reintegros de automóvil en las mismas condiciones que las especificadas en el inciso anterior; d) El comodato de casa-habitación de propi"
+dev,FP,43608,42760,FP_mencion_con_verbo,"sposiciones relativas al despido, indemnizaciones, antigüedad y enfermedad contenidas en la presente ley tienen el alcance y retroactividad de la ley 11.729. Los casos no contemplados específicamente serán resueltos de acuerdo con las disposiciones de la misma. Accidentes y enfermedades inculpables "
+dev,FP,43703,639,FP_mencion_con_verbo,el empleador autoasegurado integrará el capital al saldo de la cuenta de capitalización individual a que hace referencia el artículo 91 de la Ley N° 24.241. El beneficiario dispondrá de los montos de ambos capitales a efectos de seleccionar la modalidad de cobro de las prestaciones. Si la modalidad 
+dev,FP,44300,40574,FP_mencion_con_verbo,"Art. 9º — La S.R.T. deberá prever que los exámenes para la detección de hipocausias, conforme a lo establecido en el artículo 9º del Decreto Nº 1338/96, se realicen en un período tal que permita el adecuado cumplimiento de los mismos y sus obligaciones correlativas."
+dev,FP,44936,24541,FP_mencion_con_verbo,"as y procedimientos contenidos en el Contrato de Préstamo cuyo modelo se aprueba por el Artículo 1º de este Decreto, y en el artículo 72 de la Ley Nº 11.672, Complementaria Permanente de Presupuesto (T.O. 1996)."
+dev,FP,45085,412,FP_mencion_con_verbo,"de 1996 e instrumentado por el Decreto Nº 1141 del 7 de octubre de 1996, que es parte del Sistema Unico de Registro Laboral establecido por la Ley Nº 24.013."
+dev,FP,45085,39713,FP_mencion_con_verbo,"el Padrón Base del Sistema Nacional del Seguro de Salud, establecido por el Decreto Nº 333 del 1º de abril de 1996 e instrumentado por el Decreto Nº 1141 del 7 de octubre de 1996, que es parte del Sistema Unico de Registro Laboral establecido por la Ley Nº 24.013."
+dev,FP,46044,25552,FP_solo_alias,"(15) días, ante el juez competente acción declarativa para que se compruebe la concurrencia de los motivos fundados que autoriza el artículo 78 de la ley de contrato de trabajo o, en su caso, requerir la exclusión de la garantía con el alcance que justifique la causa que invoque. El Ministerio de Tr"
+dev,FP,48163,62,FP_mencion_con_verbo,"LADOS Y PENSIONADOS, la SECRETARIA DE DESARROLLO SOCIAL de la PRESIDENCIA DE LA NACION y/o las obras sociales del artículo 1º del inciso al de la ley 23.660. El ejercicio de la opción deberá realizarse antes del día 30 de junio de 1998. El PODER EJECUTIVO NACIONAL deberá prever, en el proyecto de le"
+dev,FP,48163,16092,FP_solo_alias,l artículo 2º de la ley 24.813 correspondiente al Plan Nacional de Radarización en la suma necesaria para atender el pago de los derechos aduaneros e impuesto al valor agregado del equipamiento a importar.
+dev,FP,48163,39523,FP_mencion_con_verbo,"PARA EL EMPLEO, LA PRODUCCION Y EL CRECIMIENTO de fecha 12 de agosto de 1993, ratificado por el Decreto 1.807/93 y prorrogado por las leyes 24.671 y 24.699. Facúltase al JEFE DE GABINETE DE MINISTROS a disponer las ampliaciones presupuestarias necesarias para la atención de la mencionada cancelación"
+dev,FP,48890,36739,FP_mencion_con_verbo,"Artículo 1º - Apruébase el Texto Ordenado de la Ley Nº 18.345, modificada por las Leyes Nros. 19.509, 20.196, 21.625, 22.084, 22.473 y 24.635, que como Anexo I integra el presente."
+dev,FP,53159,20993,FP_mencion_con_verbo,", incluirán en su composición un representante delegado del personal, que reúna las condiciones establecidas en el artículo 40 y siguientes de la Ley 23.551, nominado por la asociación sindical."
+dev,FP,57246,27971,FP_mencion_con_verbo,"ista en el inciso a). c) Ingresar, asimismo, la alícuota con destino a las Aseguradoras de Riesgos del Trabajo, conforme a lo dispuesto en la ley Nº 24.557 y su normativa reglamentaria. La prestación dineraria indicada en el inciso a) no forma parte de la prevista en el artículo 223 bis de la Ley Nº"
+dev,FP,63208,412,FP_mencion_con_verbo,"or tiempo indeterminado, a excepción del contrato de trabajo caracterizado en el artículo 96 de la Ley de Contrato de Trabajo 20.744 (texto según ley 24.013), se entiende celebrado a prueba durante los primeros tres (3) meses. Los convenios colectivos de trabajo pueden modificar dicho plazo hasta un"
+dev,FP,63208,15932,FP_mencion_con_verbo,"rabajo pueden modificar dicho plazo hasta un período de seis (6) meses. Si el empleador es una pequeña empresa definida por el artículo 83 de la ley 24.467, el contrato de trabajo por tiempo indeterminado se entenderá celebrado a prueba durante los primeros seis (6) meses. En este último caso los co"
+dev,FP,63208,20993,FP_mencion_con_verbo,"con los delegados del personal o miembros de la comisión interna en un número que no exceda la representación establecida en el artículo 45 de la ley 23.551 hasta el número de doscientos (200) trabajadores, cualquiera fuere el tamaño de la empresa o el número de trabajadores que se desempeñare. En c"
+dev,FP,63208,25379,FP_mencion_con_verbo,"tos productivos por parte de los trabajadores excedentes. B) En la negociación del convenio colectivo de crisis prevista en el artículo 20 de la ley 24.522, la empresa informará a la representación sindical de sus trabajadores acerca de las siguientes circunstancias: a) causas de la crisis y sus rep"
+dev,FP,64468,61876,FP_mencion_con_verbo,"de aplicación dictadas en ejercicio de sus facultades legales, dará lugar a la aplicación de los regímenes establecidos por las Leyes Nros. 23.551 y 25.212. La falta de cumplimiento del deber de trabajar por las personas obligadas a la ejecución de los servicios mínimos, dará lugar a las responsabil"
+dev,FP,64555,412,FP_mencion_con_verbo,"to indemnizatorio establecido en el presente artículo, no será acumulable a las indemnizaciones previstas por los artículos 8°, 9°, 10 y 15 de la Ley 24.013."
+dev,FP,65015,62,FP_mencion_con_verbo,"as prestaciones de la seguridad social contempladas en las Leyes 24.241 y sus modificaciones, 24.714 y su modificatoria, 19.032 y sus modificaciones, 23.660 y sus modificaciones y 23.661 y sus modificaciones."
+dev,FP,65015,16092,FP_mencion_con_verbo,"ican a continuación: a) Locaciones encuadradas en el inciso a) del artículo 3° de la Ley del Impuesto al Valor Agregado, texto ordenado según la ley 23.349 y sus modificaciones. A estos fines deberán agruparse todas las obras contratadas entre las mismas partes ""comitente y contratista"" en la medida"
+dev,FP,65015,38264,FP_mencion_con_verbo,"doras de riesgos de trabajo, quienes lo abonarán previo a la transferencia de los recursos que correspondan. A este solo efecto ratifícase el decreto 863 del 27 de julio de 1998. CAPITULO IV Régimen especial para la determinación y percepción de los aportes y contribuciones con destino al Sistema Un"
+dev,FP,65015,229909,FP_mencion_con_verbo,ARTICULO 43. — Agrégase como artículo 132 bis de la Ley 20.744 (t.o. por decreto 390/76) el siguiente:
+dev,FP,65583,639,FP_mencion_con_verbo,"ARTICULO 8° — De las obligaciones del empleador. Los empleadores están obligados al cumplimiento de las disposiciones del artículo 12 de la Ley 24.241, además de: a) Efectuar la inscripción del artículo 7°, inciso a), de la Ley 24.013; b) Depositar los importes que correspondan al aporte destinado"
+dev,FP,65620,639,FP_mencion_con_verbo,"la Incapacidad Permanente Total no deviniere en definitiva, la ART se hará cargo del capital de recomposición correspondiente, definido en la Ley Nº 24.241 (artículo 94) o, en su caso, abonará una suma equivalente al régimen provisional a que estuviese afiliado el damnificado."""
+dev,FP,65620,25552,FP_mencion_con_verbo,"o caso, asumirá las prestaciones en especie. El pago de la prestación dineraria deberá efectuarse en el plazo y en la forma establecida en la Ley Nº 20.744 (t.o. 1976) y sus modificatorias para el pago de las remuneraciones a los trabajadores. 2. El responsable del pago de la prestación dineraria re"
+dev,FP,66686,37813,FP_mencion_con_verbo,"e trata de una incapacidad de tipo temporaria, quedará habilitado en el futuro el procedimiento regulado en los Capítulos II, III y IV del Decreto N° 717/96. 8. La SUPERINTENDENCIA DE RIESGOS DEL TRABAJO será la encargada de dictar las normas complementarias para el procedimiento establecido por el "
+dev,FP,66686,43703,FP_mencion_con_verbo,"ndadas y deducidas dentro del plazo establecido en el artículo 6°, párrafo segundo del Decreto N° 717/96 modificado por el artículo 22 del Decreto N° 491/97, será emitido por el Organo que a tal efecto determine la SUPERINTENDENCIA DE RIESGOS DEL TRABAJO. Dicho dictamen será emitido en el plazo de Q"
+dev,FP,66686,65620,FP_mencion_con_verbo,"ABAJO los dictámenes que haya emitido conforme al artículo 6° apartado 2, inciso b) de la Ley N° 24.557 (modificado por el artículo 2° del Decreto N° 1278/00), a los fines de que ese Organismo proceda a su recopilación, evaluación y posterior envío al Comité Consultivo Permanente, adjunto las sugere"
+dev,FP,69649,17699,FP_solo_alias,". 2.4. No ser titulares de un patrimonio que, en conjunto, supere la suma de PESOS CIEN MIL ($ 100.000). 2.5. No haber declarado, a los efectos del Impuesto a las Ganancias, ganancias netas imponibles superiores, en conjunto, a PESOS DOCE MIL ($ 12.000). 2.6. Ser alumno de una escuela pública de ges"
+dev,FP,69649,25552,FP_mencion_con_verbo,"on requisitos para acceder a la prestación por maternidad: 1. Encontrarse en uso del período de licencia por maternidad en los términos de la Ley Nº 20.744 2. Tener una antigüedad mínima y continuada en el empleo de TRES (3) meses. Prestación por educación ""EGB3, polimodal o media"":"
+dev,FP,69649,27971,FP_mencion_con_verbo,"ntribución de igual cuantía a la establecida en el punto anterior, a cargo del responsable del pago de prestaciones dinerarias derivadas de la Ley Nº 24.557, sobre Riesgos de Trabajo. 3. Intereses, multas y recargos. 4. Rentas provenientes de inversiones. 5. Donaciones, legados y otro tipo de contri"
+dev,FP,69724,25379,FP_mencion_con_verbo,NEXO II. Se considerará en situación de crisis a todos los Agentes del Sistema que se encuentren en concurso de acreedores en los términos de la Ley 24.522.
+dev,FP,70518,17699,FP_solo_alias,"nculen con las relaciones laborales o diferencias salariales que se regularicen, no podrán ser consideradas gasto a los fines de la determinación del Impuesto a las Ganancias del empleador."
+dev,FP,72195,25552,FP_solo_alias,edimiento preventivo de crisis no habilita por sí la procedencia de despidos ni la aplicación de la indemnización reducida de los artículos 247 de la Ley de Contrato de Trabajo (t.o. 1976) y 10 de la Ley Nº 25.013
+dev,FP,72195,53159,FP_mencion_con_verbo,edencia de despidos ni la aplicación de la indemnización reducida de los artículos 247 de la Ley de Contrato de Trabajo (t.o. 1976) y 10 de la Ley Nº 25.013
+dev,FP,72195,61876,FP_mencion_con_verbo,"sanciones previstas en el Régimen General de Sanciones por Infracciones Laborales —Anexo II— del Pacto Federal del Trabajo, ratificado por la Ley Nº 25.212, de acuerdo a la calificación de las infracciones que se verifiquen. Asimismo, la autoridad administrativa del trabajo podrá solicitar la suspen"
+dev,FP,72195,77254,FP_mencion_con_verbo,"ajes de trabajadores determinados en el artículo 98 de la Ley Nº 24.013, los empleadores deberán seguir el procedimiento contemplado en el Decreto Nº 328/88. Toda medida que se efectuare transgrediendo lo prescripto carecerá de justa causa."
+dev,FP,72200,412,FP_mencion_con_verbo,"de la Ley N° 25.561 deberá sustanciarse con carácter previo a su comunicación el procedimiento establecido en el Título III, Capítulo VI de la Ley N° 24.013 y sus normas reglamentarias. Cuando no se alcancen los porcentajes de trabajadores determinados en el artículo 98 del citado texto legal, deber"
+dev,FP,72200,53159,FP_mencion_con_verbo,"do en la presente reglamentación no podrá invocar las previsiones de los artículos 247 de la Ley de Contrato de Trabajo (t.o. 1976) y 10 de la Ley N° 25.013, considerándose los citados despidos sin causa justificada a los efectos de la aplicación del artículo 16 de la Ley N° 25.561."
+dev,FP,72200,77254,FP_mencion_con_verbo,"no se alcancen los porcentajes de trabajadores determinados en el artículo 98 del citado texto legal, deberá estarse a lo dispuesto por el Decreto N° 328/88."
+dev,FP,73048,17699,FP_solo_alias,"sector tabacalero mantengan devengadas y a devengarse, pendientes de pago, por los Ejercicios 2001 y 2002 en concepto de: agente de retención de IVA, Impuesto a las Ganancias y Bienes Personales y Obligaciones Previsionales. A tal efecto el Poder Ejecutivo nacional, a través de la Administración Fed"
+dev,FP,73048,25534,FP_mencion_con_verbo,"ARTICULO 53. — Prorrógase el plazo de duración del FONDO FIDUCIARIO PARA EL DESARROLLO PROVINCIAL creado por Decreto Nº 286 de fecha 27 de febrero de 1995, hasta el día 27 de febrero de 2025, de conformidad con lo previsto por el artículo 4º inciso c) de la Ley Nº 24.441."
+dev,FP,75926,229909,FP_mencion_con_verbo,"egirán exclusivamente por el Régimen de Contrato de Trabajo sancionado por la Ley número 20.744 modificada por la Ley número 21.297 (t. o. Decreto Nº 390/76), las relaciones de trabajo del personal que se desempeñe en: a) Entidades Bancarias Privadas. b) Entidades de Seguros y Reaseguros y de Capita"
+dev,FP,77207,229909,FP_mencion_con_verbo,"ARTICULO 1° — Sustitúyese el artículo 276 del Régimen de Contrato de Trabajo, según texto ordenado por Decreto N° 390/76, por el siguiente: ""Artículo 276 — Actualización por depreciación monetaria — Los créditos provenientes de las relaciones individuales de trabajo, d"
+dev,FP,77209,229909,FP_mencion_con_verbo,"ARTICULO 1° — Sustitúyese el artículo 177 del régimen de contrato de trabajo, según texto ordenado por decreto 390/76, por el siguiente:"
+dev,FP,77255,229909,FP_mencion_con_verbo,INIMO VITAL fijado de conformidad con lo dispuesto en los artículos 116 y siguientes del Régimen de Contrato de Trabajo (L.C.T.-T.O. por Decreto Nro. 390/76). Las remuneraciones superiores a ese importe serán embargables en la siguiente proporción: 1. Remuneraciones no superiores al doble del SALARI
+dev,FP,80732,46379,FP_mencion_con_verbo,"os los trabajadores del sector privado, en relación de dependencia, comprendidos en el régimen de negociación colectiva, en los términos de la Ley N° 14.250 y sus modificatorias. ( Nota Infoleg : Por art. 1° del Decreto N° 905/2003 B.O. 16/4/2003 se incrementa a partir del 1° de mayo de 2003 y hasta"
+dev,FP,80732,75992,FP_mencion_con_verbo,"on carácter remunerativo o no remunerativo, sobre los ingresos de los trabajadores, distintos y por sobre la asignación establecida por el Decreto N° 1273/02, podrán compensarlos hasta su concurrencia con las asignaciones fijadas en el artículo 1° del presente. Si el incremento otorgado fuera inferi"
+dev,FP,83055,21112,FP_mencion_con_verbo,"ablecido en el artículo 1° de la Ley N° 25.674, previo a la constitución de las comisiones negociadoras a que se refieren el artículo 4° de la Ley N° 23.546 y su modificatoria N° 25.250 y el artículo 6° del Decreto N° 447/93, la o las asociaciones sindicales de cualquier grado deberán, juntamente co"
+dev,FP,83055,46044,FP_mencion_con_verbo,"contraviniera los requisitos de que se trata, podrá ser impugnada, aplicándose en ese caso lo dispuesto al respecto, en el artículo 15 del Decreto N° 467/88."
+dev,FP,85275,43703,FP_mencion_con_verbo,"Artículo 1° — Sustitúyese el apartado 1 del artículo 17 del Decreto N° 334/96 modificado por el artículo 19 del Decreto N° 491/97, por el siguiente: ""1. Las que hubiera debido pagar el empleador a una Aseguradora desde que estuviera obligado a afiliarse. El valor de la cuota om"
+dev,FP,91517,46379,FP_mencion_con_verbo,"dos los trabajadores del sector privado, en relación de dependencia, comprendidos en el régimen de negociación colectiva en los términos de la Ley N° 14.250 y sus modificatorias. ( Nota Infoleg : Por art. 6° del Decreto N° 2005/2004 B.O. 6/1/2005 se dispone que a partir del 1° de abril de 2005, la s"
+dev,FP,93595,412,FP_mencion_con_verbo,"las partes signatarias del convenio colectivo, en el marco del procedimiento preventivo de crisis previsto en el Título III, Capítulo VI de la Ley Nº 24.013. El convenio de crisis deberá instrumentarse por un lapso temporal determinado."" Capítulo VI- Fomento de la Negociación Colectiva."
+dev,FP,93595,20993,FP_mencion_con_verbo,"comprenda y se integrará también con delegados del personal, en un número que no exceda la representación establecida en el artículo 45 de la Ley Nº 23.551 hasta un máximo de CUATRO (4), cualquiera sea el número de trabajadores comprendidos en el convenio colectivo de trabajo de que se trate. Capítu"
+dev,FP,93595,80046,FP_mencion_con_verbo,"2º de esta ley, se constituirá la comisión negociadora con representantes sindicales, la que deberá integrarse respetando lo establecido en la Ley Nº 25.674, y la representación de los empleadores. Las partes podrán concurrir a las negociaciones con asesores técnicos con voz pero sin voto. a) Las pa"
+dev,FP,96089,639,FP_mencion_con_verbo,"erivado de la apli- cación de la promoción que se reglamenta, mediante el procedimiento establecido en el artículo 188, Párrafo Segundo, de la Ley Nº 24.241, incorporado por la Ley Nº 24.463."
+dev,FP,96089,16092,FP_solo_alias,"clusión en el beneficio, a partir de su publicación en el Boletín Oficial. Se computará como facturación el monto de las ventas totales, excluido el Impuesto al Valor Agregado y el impuesto interno que pudiera gravarlas, correspondientes al promedio de los TRES (3) años fiscales inmediatos anteriore"
+dev,FP,96089,29273,FP_mencion_con_verbo,"l Sistema de la Seguridad Social, las empresas que efectúen nuevas contrataciones bajo los regímenes previstos en las Leyes Nros. 20.744 (t.o. 1976), 22.248 y 22.250 y sus respectivas modificatorias, con la sola excepción de la prevista en el Artículo 99 del Régimen de Contrato de Trabajo, aprobado "
+dev,FP,96089,63208,FP_mencion_con_verbo,"Art. 13. — Sin perjuicio de la derogación del artículo 2º de la Ley Nº 25.250, los beneficios ya otorgados por dicha norma subsistirán mientras se encuentren en vigencia los contratos individuales en función de los cuales fuera"
+dev,FP,96295,46379,FP_mencion_con_verbo,"ida por un funcionario del Ministerio de Trabajo y Seguridad Social y tendrá las facultades que otorgan los artículos 15, 16 y concordantes de la Ley 14.250."
+dev,FP,96344,42760,FP_mencion_con_verbo,"enumeradas en el art. 159 del Código de Comercio tendrán derecho a percibir una indemnización cuyo monto será el doble de la prevista en la ley núm. 11.729. En caso de que el despido sea por disminución o falta de trabajo fehacientemente justificada, todo empleado y obrero comprendido en las disposi"
+dev,FP,96344,109500,FP_solo_alias,"Art. 43. - Todo empleador está obligado a: 1° Llevar un registro con las formalidades del art. 53 del Código de Comercio, rubricado por el Instituto con carácter de documento público, donde anotará todos los datos referentes a los empleados y obreros que ocupe conforme"
+dev,FP,102666,46379,FP_mencion_con_verbo,"eraciones sean determinadas por instituciones o procedimientos específicos, diferentes a los previstos en la Ley N° 20.744 (t.o. 1976) y en la Ley N° 14.250 (t.o. 2004)."
+dev,FP,122396,61876,FP_mencion_con_verbo,"Art. 20. — Sin perjuicio de las sanciones que correspondan por aplicación del Anexo II del Pacto Federal del Trabajo, ratificado por la Ley Nº 25.212, la violación a las disposiciones de este decreto serán sancionadas conforme al procedimiento previsto en la Ley Nº 18.695, según el siguiente régime"
+dev,FP,124532,114315,FP_mencion_con_verbo,"entralizadas detalladas en el Anexo I del Convenio Colectivo de Trabajo General para la Administración Pública Nacional, homologado por el Decreto Nº 214/06, con honorarios mensuales no superiores a los PESOS DOS MIL CIENTO SESENTA Y CUATRO ($2164) por dedicación completa, o cifra equivalente cuando"
+dev,FP,124532,229909,FP_mencion_con_verbo,"ecreto reglamentario Nº 1421/02 y normas complementarias, o, en el Título III Capítulo II de la Ley de Contrato de Trabajo Nº 20.744 (T.O. Decreto Nº 390/76 y modificatorios), de conformidad con lo previsto en el régimen laboral de aplicación al personal de las respectivas dependencias, antes del 31"
+dev,FP,139001,229909,FP_mencion_con_verbo,"ecreto reglamentario Nº 1421/02 y normas complementarias, o, en el Título III Capítulo II de la Ley de Contrato de Trabajo Nº 20.744 (T.O. Decreto Nº 390/76 y modificatorios), de conformidad con lo previsto en el régimen laboral de aplicación al personal de las respectivas dependencias."
+dev,FP,148719,17699,FP_solo_alias,"ARTICULO 25. — Las personas físicas, las sucesiones indivisas y los sujetos comprendidos en el artículo 49 de la Ley de Impuesto a las Ganancias, texto ordenado en 1997 y sus modificaciones, inscriptos o no, podrán exteriorizar la tenencia de moneda extranjera, divisas y demás bienes en el ext"
+dev,FP,148719,25552,FP_mencion_con_verbo,"te artículo a los trabajadores eventuales incorporados bajo el régimen de contratación previsto en el artículo 99 de la Ley de Contrato de Trabajo Nº 20.744 (t.o. 1976), los trabajadores contratados en el marco del régimen propio de la Industria de la Construcción conforme artículo 35 y concordantes"
+dev,FP,148719,29273,FP_mencion_con_verbo,"de Contrato de Trabajo Nº 20.744 (T.O. 1976) y sus modificatorias, y los trabajadores no permanentes del Régimen Nacional del Trabajo Agrario Ley Nº 22.248.)"
+dev,FP,158649,17699,FP_solo_alias,"que tiene como hecho imponible a la publicidad inserta en señales no nacionales y la imposibilidad de desgravar, de conformidad a las previsiones del impuesto a las ganancias, las inversiones en publicidad extranjeras o señales no nacionales que pudieran realizar anunciantes argentinos. Este criteri"
+dev,FP,158649,17938,FP_mencion_con_verbo,su definición en el momento de su adjudicación. Película nacional: Película que cumple con los requisitos establecidos por el artículo 8º de la ley 17.741 (t.o. 2001) y sus modificatorias. Permiso : Título que expresa de modo excepcional la posibilidad de realizar transmisiones experimentales para i
+dev,FP,158649,25552,FP_mencion_con_verbo,"modificatorios, se transfiere a Radio y Televisión Argentina Sociedad del Estado en los términos y condiciones previstos en el artículo 229 de la ley 20.744 (t.o. 1976) y sus modificatorias y el artículo 44 de la ley 12.908. Es principio de interpretación de la presente la preservación de los derech"
+dev,FP,158649,43608,FP_mencion_con_verbo,ad del Estado en los términos y condiciones previstos en el artículo 229 de la ley 20.744 (t.o. 1976) y sus modificatorias y el artículo 44 de la ley 12.908. Es principio de interpretación de la presente la preservación de los derechos de los trabajadores que se desempeñan en las emisoras detalladas
+dev,FP,159765,20965,FP_mencion_con_verbo,"ciones previstas en la Ley sobre Riesgos de Trabajo, en los términos del artículo 2º y concordantes de la Ley de Entidades de Seguros y su Control Nº 20.091 y sus modificatorias y el artículo 42, inciso a), de la Ley Nº 24.557 y sus modificaciones."
+dev,FP,159765,25552,FP_mencion_con_verbo,"rtículo 11, inciso 2, se calcularán, liquidarán y ajustarán de conformidad con lo establecido por el artículo 208 de la Ley de Contrato de Trabajo Nº 20.744 (t.o. 1976) y sus modificatorias. La prestación adicional de pago mensual prevista en el artículo 17, inciso 2, de la Ley Nº 24.557 y sus modif"
+dev,FP,169694,190,FP_mencion_con_verbo,"d del trabajador o persona a su cargo, así como en caso de fallecimiento de familiar directo el servicio postal de telegrama previsto en las Leyes Nº 23.789 y Nº 24.487 podrá ser suplido por un telefonograma.""."
+dev,FP,192152,62,FP_mencion_con_verbo,la protección por desempleo: a) La prestación económica por desempleo; b) Prestaciones médico-asistenciales de acuerdo a lo dispuesto por las leyes 23.660 y sus modificatorias y 23.661; c) Pago de las asignaciones familiares que correspondieren a cargo de la Administración Nacional de la Seguridad S
+dev,FP,192152,21112,FP_mencion_con_verbo,"blecido en la presente ley; c) Por los convenios y acuerdos colectivos, celebrados de conformidad con lo previsto por las leyes 14.250 (t.o. 2004) y 23.546 (t.o. 2004), y por los laudos con fuerza de tales; d) Por las resoluciones de la Comisión Nacional de Trabajo Agrario (CNTA) y de la Comisión Na"
+dev,FP,192152,27971,FP_mencion_con_verbo,"dad que deberán reunir los lugares de trabajo, las maquinarias, las herramientas y demás elementos de trabajo, sin perjuicio de lo previsto en la ley 24.557 y sus normas modificatorias y complementarias, o las que en el futuro la reemplacen, y de la consulta que en esta materia deba realizar a la Su"
+dev,FP,192152,46379,FP_mencion_con_verbo,"ídico específico establecido en la presente ley; c) Por los convenios y acuerdos colectivos, celebrados de conformidad con lo previsto por las leyes 14.250 (t.o. 2004) y 23.546 (t.o. 2004), y por los laudos con fuerza de tales; d) Por las resoluciones de la Comisión Nacional de Trabajo Agrario (CNTA"
+dev,FP,202294,36110,FP_mencion_con_verbo,"va que les dio origen. Ello, sin perjuicio de garantizar el ámbito de otorgamiento de las prestaciones en los términos del artículo 11 del Decreto Nº 334/96 y normas complementarias. Los representantes sectoriales podrán adherirse a la ART-MUTUAL creada en la negociación colectiva de la actividad ec"
+dev,FP,202294,46379,FP_mencion_con_verbo,"e empleadores y las asociaciones sindicales de trabajadores con personería gremial que celebren negociaciones colectivas al amparo de las Leyes Nros. 14.250 (t.o. 2004), 23.929 y 24.185, podrán constituir entidades Aseguradoras de Riesgos del Trabajo (ART) sin fines de lucro, en los términos del art"
+dev,FP,202294,192152,FP_mencion_con_verbo,rán cumplimentar los recaudos contenidos en la presente medida. Similar criterio se aplicará a los ámbitos comprendidos por las Leyes Nros. 13.047 y 26.727.
+dev,FP,203798,37572,FP_mencion_con_verbo,"es competentes deberán ajustar sus informes, dictámenes y pronunciamientos al Listado de Enfermedades Profesionales previsto como Anexo I del Decreto 658/96 y a la Tabla de Evaluación de Incapacidades prevista como Anexo I del Decreto 659/96 y sus modificatorios, o los que los sustituyan en el futur"
+dev,FP,203798,37573,FP_mencion_con_verbo,"de Enfermedades Profesionales previsto como Anexo I del Decreto 658/96 y a la Tabla de Evaluación de Incapacidades prevista como Anexo I del Decreto 659/96 y sus modificatorios, o los que los sustituyan en el futuro. Capítulo II Ordenamiento de la Gestión del Régimen"
+dev,FP,203798,159765,FP_mencion_con_verbo,"entiende por régimen de reparación al conjunto integrado por esta ley, por la Ley de Riesgos del Trabajo 24.557 y sus modificatorias, por el Decreto 1694/09, sus normas complementarias y reglamentarias, y por las que en el futuro las modifiquen o sustituyan."
+dev,FP,207088,16092,FP_solo_alias,"Producción (TPP) para el cumplimiento de los objetivos planteados en esta ley, las operaciones, bienes, ingresos y demás haberes estarán exentos del Impuesto al Valor Agregado, impuestos internos y cualquier otro impuesto nacional. No será de aplicación, para este supuesto, el segundo párrafo del ar"
+dev,FP,207088,17699,FP_solo_alias,"iales para el Empleo (TPEE) o de Talleres Protegidos de Producción (TPP) tendrán derecho al cómputo de una deducción especial en la determinación del impuesto a las ganancias, equivalente al cien por ciento (100%) de las remuneraciones brutas efectivamente abonadas correspondientes al personal disca"
+dev,FP,207088,25552,FP_mencion_con_verbo,"º de la presente. Dichos trabajos especiales no configuran un contrato de trabajo en relación de dependencia regido por la Ley de Contrato de Trabajo 20.744 (t.o. 1976) y sus modificatorias, sin perjuicio de los estímulos previstos en los incisos a) y b) del artículo 26 de esta ley. Capítulo III De "
+dev,FP,210435,27971,FP_solo_alias,"es por Hijo, Hijo con discapacidad y Prenatal que corresponda abonar a los trabajadores en relación de dependencia y a los titulares de derecho de la Ley de Riesgos del Trabajo, del Sistema Integrado Previsional Argentino (SIPA) y de la Prestación por Desempleo. ( Nota Infoleg : por art. 1° de la Re"
+dev,FP,210489,412,FP_mencion_con_verbo,", que perciban una remuneración superior al salario mínimo, vital y móvil. d) No serán aplicables al presente régimen las disposiciones de las leyes 24.013 y sus modificatorias, 25.323 y 25.345; e) Las empleadas o empleados del Régimen Especial de Contrato de Trabajo para el Personal de Casas Partic"
+dev,FP,210489,45628,FP_mencion_con_verbo,"tre las partes, tanto antes como después de la recepción de las pruebas ofrecidas. Serán admitidas todas las medidas de prueba establecidas en la ley 18.345, salvo las que por su naturaleza desvirtúen el sumario del procedimiento o no sean compatibles con las características peculiares de esta relac"
+dev,FP,210489,64555,FP_mencion_con_verbo,"ón superior al salario mínimo, vital y móvil. d) No serán aplicables al presente régimen las disposiciones de las leyes 24.013 y sus modificatorias, 25.323 y 25.345; e) Las empleadas o empleados del Régimen Especial de Contrato de Trabajo para el Personal de Casas Particulares se encuentran comprend"
+dev,FP,210489,65015,FP_mencion_con_verbo,"or al salario mínimo, vital y móvil. d) No serán aplicables al presente régimen las disposiciones de las leyes 24.013 y sus modificatorias, 25.323 y 25.345; e) Las empleadas o empleados del Régimen Especial de Contrato de Trabajo para el Personal de Casas Particulares se encuentran comprendidos en e"
+dev,FP,228207,27971,FP_solo_alias,"es por Hijo, Hijo con Discapacidad y Prenatal que corresponda abonar a los trabajadores en relación de dependencia y a los titulares de derecho de la Ley de Riesgos del Trabajo, del Sistema Integrado Previsional Argentino (SIPA) y de la Prestación por Desempleo, conforme el alcance definido en el AR"
+dev,FP,228208,27971,FP_solo_alias,"es por Hijo, Hijo con Discapacidad y Prenatal que corresponda abonar a los trabajadores en relación de dependencia y a los titulares de derecho de la Ley de Riesgos del Trabajo, del Sistema Integrado Previsional Argentino (SIPA) y de la Prestación por Desempleo, conforme el alcance definido en el pr"
+dev,FP,230592,62,FP_mencion_con_verbo,"la aplicación de la reducción señalada. No se encuentran comprendidas dentro de lo dispuesto en este artículo las contribuciones previstas en la ley 23.660 y sus modificatorias, con destino a las obras sociales, como tampoco las cuotas destinadas a las Aseguradoras de Riesgos del Trabajo, previstas "
+dev,FP,230592,17699,FP_solo_alias,"ientras estén incorporados en el Registro Público de Empleadores con Sanciones Laborales (REPSAL) por haber incurrido en reincidencia, deduzcan en el impuesto a las ganancias los gastos inherentes al personal —empleados, dependientes u obreros—, de acuerdo con lo previsto por el artículo 87, incisos"
+dev,FP,230592,25552,FP_mencion_con_verbo,En el caso de los trabajadores contratados a tiempo parcial en los términos del artículo 92 ter del Régimen de Contrato de Trabajo aprobado por ley 20.744 (t.o. 1976) el empleador deberá ingresar el setenta y cinco por ciento (75%) de las citadas contribuciones. Las reducciones citadas no podrán afe
+dev,FP,230592,27971,FP_mencion_con_verbo,"s modificatorias, con destino a las obras sociales, como tampoco las cuotas destinadas a las Aseguradoras de Riesgos del Trabajo, previstas en la ley 24.557 y sus modificatorias."
+dev,FP,230592,45628,FP_mencion_con_verbo,"de la Justicia Nacional del Trabajo deban remitir a la Administración Federal de Ingresos Públicos, según lo establecido en el artículo 132 de la Ley 18.345 (t.o. por decreto 106/98)."
+dev,FP,230592,48890,FP_mencion_con_verbo,"el Trabajo deban remitir a la Administración Federal de Ingresos Públicos, según lo establecido en el artículo 132 de la Ley 18.345 (t.o. por decreto 106/98)."
+dev,FP,230592,141449,FP_mencion_con_verbo,"didos en el régimen de sustitución de aportes y contribuciones emergentes de Convenios de Corresponsabilidad Gremial suscriptos en el marco de la ley 26.377, gozarán de una reducción de sus contribuciones vigentes con destino a los siguientes subsistemas de la seguridad social: a) Sistema Integrado "
+dev,FP,230592,210489,FP_mencion_con_verbo,"excluidos del presente régimen los trabajadores encuadrados en el Régimen Especial de Contrato de Trabajo para el Personal de Casas Particulares, ley 26.844. Capítulo II Régimen de Promoción de la Contratación de Trabajo Registrado"
+dev,FP,231910,27971,FP_solo_alias,"es por Hijo, Hijo con discapacidad y Prenatal que corresponda abonar a los trabajadores en relación de dependencia y a los titulares de derecho de la Ley de Riesgos del Trabajo, del SISTEMA INTEGRADO PREVISIONAL ARGENTINO (SIPA) y de la Prestación por Desempleo, conforme el alcance definido en el ar"
+dev,FP,239209,27971,FP_solo_alias,"es por Hijo, Hijo con Discapacidad y Prenatal que corresponda abonar a los trabajadores en relación de dependencia y a los titulares de derecho de la Ley de Riesgos del Trabajo, del Sistema Integrado Previsional Argentino (SIPA) y de la Prestación por Desempleo, conforme el alcance definido en el ar"
+dev,FP,244051,27971,FP_solo_alias,"es por Hijo, Hijo con Discapacidad y Prenatal que corresponda abonar a los trabajadores en relación de dependencia y a los titulares de derecho de la Ley de Riesgos del Trabajo, del SISTEMA INTEGRADO PREVISIONAL ARGENTINO (SIPA) y de la Prestación por Desempleo, conforme el alcance definido en el ar"
+dev,FP,244052,27971,FP_solo_alias,"es por Hijo, Hijo con Discapacidad y Prenatal que corresponda abonar a los trabajadores en relación de dependencia y a los titulares de derecho de la Ley de Riesgos del Trabajo, del Sistema Integrado Previsional Argentino (SIPA) y de la Prestación por Desempleo, conforme el alcance definido en el ar"
+dev,FP,248204,27971,FP_solo_alias,"es por Hijo, Hijo con discapacidad y Prenatal que corresponda abonar a los trabajadores en relación de dependencia y a los titulares de derecho de la Ley de Riesgos del Trabajo, del Sistema Integrado Previsional Argentino (SIPA) y de la Prestación por Desempleo, conforme el alcance definido en el ar"
+dev,FP,248822,21112,FP_mencion_con_verbo,"blecido en la presente ley; c) Por los convenios y acuerdos colectivos, celebrados de conformidad con lo previsto por las leyes 14.250 (t.o. 2004) y 23.546 (t.o. 2004), y por los laudos con fuerza de tales; d) Por los usos y costumbres. Serán de aplicación supletoria al presente régimen estatutario "
+dev,FP,248822,46379,FP_mencion_con_verbo,"ídico específico establecido en la presente ley; c) Por los convenios y acuerdos colectivos, celebrados de conformidad con lo previsto por las leyes 14.250 (t.o. 2004) y 23.546 (t.o. 2004), y por los laudos con fuerza de tales; d) Por los usos y costumbres. Serán de aplicación supletoria al presente"
+dev,FP,248822,53159,FP_mencion_con_verbo,"s; d) Por los usos y costumbres. Serán de aplicación supletoria al presente régimen estatutario las disposiciones establecidas en las leyes 24.013, 25.013, 25.323 y 25.345 o las que en el futuro las reemplacen."
+dev,FP,248822,65015,FP_mencion_con_verbo,"os y costumbres. Serán de aplicación supletoria al presente régimen estatutario las disposiciones establecidas en las leyes 24.013, 25.013, 25.323 y 25.345 o las que en el futuro las reemplacen."
+dev,FP,263691,16092,FP_solo_alias,"o de la utilidad bruta, correspondientes al período fiscal que se pretende liberar. No se encuentra alcanzado por la liberación el crédito fiscal del impuesto al valor agregado, proveniente de facturas consideradas apócrifas por parte de la Administración Federal de Ingresos Públicos. 3. Impuestos a"
+dev,FP,263691,25379,FP_mencion_con_verbo,"declarados en estado de quiebra, respecto de los cuales no se haya dispuesto la continuidad de la explotación, conforme a lo establecido en las leyes 24.522 y sus modificaciones o 25.284 y sus modificaciones, mientras duren los efectos de dicha declaración; b) Los condenados por alguno de los delito"
+dev,FP,263691,230592,FP_mencion_con_verbo,e corresponder la baja de la inscripción del contribuyente del Registro Público de Empleadores con Sanciones Laborales (REPSAL) contemplado en la ley 26.940.
+dev,FP,271092,25552,FP_mencion_con_verbo,"as partes, así como las resoluciones homologatorias, pasarán en autoridad de cosa juzgada administrativa en los términos del artículo 15 de la Ley N° 20.744 (t.o. 1976) y sus modificatorias. Las resoluciones de la respectiva Comisión Médica Jurisdiccional y de la Comisión Médica Central deberán ser "
+dev,FP,271092,65620,FP_mencion_con_verbo,"omisión Médica Central, en el caso previsto en el artículo 6°, apartado 2, punto c) de la Ley N° 24.557, sustituido por el artículo 2° del Decreto N° 1278/2000; b) cuando medie apelación de la Aseguradora de Riesgos del Trabajo ante la Comisión Médica Central, en caso de reagravamiento del accidente"
+dev,FP,271092,159765,FP_mencion_con_verbo,"adicionales de pago único, incorporadas al artículo 11 de la Ley N° 24.557 y sus modificatorias, y los importes mínimos establecidos en el Decreto N° 1694/09, se deberán incrementar conforme la variación del índice RIPTE (Remuneraciones Imponibles Promedio de los Trabajadores Estables), desde el 1º "
+dev,FP,271092,166910,FP_mencion_con_verbo,"inistrativa o judicialmente, deberán ser depositadas en la “cuenta sueldo” del respectivo trabajador, creada en virtud de lo establecido en la Ley N° 26.590 y normas complementarias, y siempre que aquella se encuentre disponible."
+dev,FP,272119,25552,FP_mencion_con_verbo,"or las partes así como las resoluciones homologatorias, pasarán en autoridad de cosa juzgada administrativa en los términos del artículo 15 de la ley 20.744 (t.o. 1976). Las resoluciones de la respectiva comisión médica jurisdiccional y de la Comisión Médica Central deberán ser notificadas a las par"
+dev,FP,272119,48163,FP_mencion_con_verbo,ARTÍCULO 13. — Sustitúyese el texto del artículo 37 de la ley 24.557 (reemplazado por el artículo 74 de la ley 24.938) por el siguiente:
+dev,FP,272119,65620,FP_mencion_con_verbo,"te la Comisión Médica Central en el caso previsto en el artículo 6°, apartado 2, punto c) de la ley 24.557, sustituido por el artículo 2° del decreto 1278/2000; b) cuando medie apelación de la aseguradora de riesgos del trabajo ante la Comisión Médica Central en caso de reagravamiento del accidente "
+dev,FP,272119,159765,FP_mencion_con_verbo,"iones adicionales de pago único, incorporadas al artículo 11 de la ley 24.557 y sus modificatorias, y los importes mínimos establecidos en el decreto 1694/09, se deberán incrementar conforme la variación del índice RIPTE (Remuneraciones Imponibles Promedio de los Trabajadores Estables), desde el 1° "
+dev,FP,272119,166910,FP_mencion_con_verbo,"administrativa o judicialmente, deberán ser depositadas en la “cuenta sueldo” del respectivo trabajador, creada en virtud de lo establecido en la ley 26.590 y normativa complementaria y siempre que aquella se encuentre disponible."
+dev,FP,304593,20965,FP_mencion_con_verbo,"esos. En los demás casos, la obligación de pago se regirá por los mismos mecanismos establecidos para la tasa prevista en el artículo 81 de la Ley Nº 20.091. La mora por parte de la Aseguradora por un período mayor a TRES (3) meses importará la suspensión, de pleno derecho, para realizar nuevas cont"
+dev,FP,305057,25552,FP_mencion_con_verbo,"o, podrán requerir su homologación judicial; f) En los asuntos laborales se aplica lo dispuesto en el artículo 277 de la Ley de Contrato de Trabajo, 20.744; g) La revocación del poder o patrocinio no anulará el contrato de honorarios, salvo que aquélla hubiese sido motivada por culpa del abogado o p"
+dev,FP,305214,263691,FP_mencion_con_verbo,"97 de la ley 24.241 y sus modificaciones, se aplicará un índice combinado entre el previsto en el inciso b) del apartado I del artículo 5° de la ley 27.260 y su modificatorio y el índice establecido por la Remuneración Promedio de los Trabajadores Estables."
+dev,FP,305347,17699,FP_solo_alias,"ARTÍCULO 73.- A los efectos de la determinación del impuesto a las ganancias, el Contratista PPP podrá optar por imputar la ganancia originada por la ejecución de las obras en los proyectos de participación público-privada, en"
+dev,FP,305347,69649,FP_mencion_con_verbo,"ARTÍCULO 78.- Modifícase el artículo 1° del decreto 1.382 del 9 de agosto de 2012, el que quedará redactado de la siguiente manera:"
+dev,FP,305736,412,FP_mencion_con_verbo,"deral del Trabajo, impuestas por el MINISTERIO DE TRABAJO, EMPLEO Y SEGURIDAD SOCIAL. 5) Incumplimiento a lo previsto en el artículo 7° de la Ley N° 24.013 y las sanciones hubieran sido impuestas por las autoridades provinciales y de la CIUDAD AUTÓNOMA DE BUENOS AIRES”."
+dev,FP,305736,25379,FP_mencion_con_verbo,"de los Registros Nacionales indicados en el artículo anterior, como así también el previsto por el artículo 295 de la Ley de Concursos y Quiebras N° 24.522 y sus modificatorias, estarán a cargo del MINISTERIO DE JUSTICIA Y DERECHOS HUMANOS o del organismo que éste indique al efecto, por medio de sis"
+dev,FP,305736,61181,FP_mencion_con_verbo,o a continuación del artículo 40 de la Ley N° 11.683 (t.o. 1998) y sus modificaciones. 3) Violación a lo establecido por el artículo 15 de la Ley N° 25.191 y su modificatoria. 4) Obstrucción a la labor de la Inspección del Trabajo prevista en el artículo 8° del Anexo II del Pacto Federal del Trabajo
+dev,FP,305736,69649,FP_mencion_con_verbo,"ARTÍCULO 149.- Incorpórase el inciso 23) del artículo 8 del Decreto de Necesidad y Urgencia Nº 1.382 de fecha 9 de agosto de 2012, el que quedará redactado de la siguiente manera: “23) Percibir comisiones derivadas de la gestión de la administración"
+dev,FP,305736,114315,FP_mencion_con_verbo,os enumerados en el presente inciso podrá aplicárseles el Coeficiente de Estabilización de Referencia (CER) previsto en el artículo 4° del Decreto N° 214 del 3 de febrero de 2002”.
+dev,FP,308322,639,FP_mencion_con_verbo,NTA Y CINCO (65) o más años de edad y no contar con los años de servicio necesarios para obtener la jubilación ordinaria en los términos de la Ley N° 24.241 y sus modificatorias; b) Tener entre SESENTA (60) y SESENTA Y CINCO (65) años de edad; c) Tener hasta SESENTA (60) años de edad y acreditar una
+dev,FP,308322,27971,FP_mencion_con_verbo,"zada o demás organismos en los que el Estado Nacional sea parte, con motivo de su relación laboral. Se exceptúan las cuestiones regidas por la Ley Nº 24.557 y sus modificatorias; i) Que tengan acordado un beneficio previsional o iniciado el trámite con anterioridad a la fecha de entrada en vigencia "
+dev,FP,308322,229909,FP_mencion_con_verbo,"previsiones de la Ley N° 25.164 revistando en la planta permanente, y aquellos cuya relación de empleo se rija por la Ley N° 20.744 (t.o. Decreto N° 390/76) vinculados laboralmente a través de contratos de trabajo por tiempo indeterminado en los términos del artículo 90 y concordantes de la ley cita"
+dev,FP,312146,229909,FP_mencion_con_verbo,"ial y de trabajo eventual previstas en los artículos 90, 92 ter, 93 y 99 respectivamente, de la Ley de Contrato de Trabajo Nº 20.744 (t.o. Decreto N° 390/76); d. Las contrataciones para la prestación de servicios profesionales autónomos previstas por el Decreto Nº 1109 del 28 de diciembre de 2017; e"
+dev,FP,327566,639,FP_mencion_con_verbo,"igibles al 31 de julio de 2019: 1) Aportes y contribuciones con destino al SISTEMA PREVISIONAL INTEGRADO ARGENTINO (SIPA), establecido por la Ley N° 24.241, sus modificaciones y complementarias; 2) Aportes y contribuciones con destino al INSTITUTO NACIONAL DE SERVICIOS SOCIALES PARA JUBILADOS Y PENS"
+dev,FP,329046,192152,FP_mencion_con_verbo,"gimen laboral aplicable. También se encuentran excluidos del presente decreto los trabajadores del Régimen de Trabajo Agrario, regulado por la Ley N° 26.727, y del Régimen Especial de Contrato de Trabajo para el Personal de Casas Particulares, regulado por la Ley N° 26.844, sin perjuicio de lo que p"
+dev,FP,329046,210489,FP_mencion_con_verbo,"Agrario, regulado por la Ley N° 26.727, y del Régimen Especial de Contrato de Trabajo para el Personal de Casas Particulares, regulado por la Ley N° 26.844, sin perjuicio de lo que puedan establecer los órganos competentes."
+dev,FP,333564,15932,FP_mencion_con_verbo,"de Ingresos Públicos, que encuadren y se encuentren inscriptos como Micro, Pequeñas o Medianas Empresas, según los términos del artículo 2° de la ley 24.467 y sus modificatorias y demás normas complementarias, podrán acogerse, por las obligaciones vencidas al 30 de noviembre de 2019 inclusive, o inf"
+dev,FP,333564,16092,FP_solo_alias,"I que forma parte integrante de la presente ley. En el caso de los exportadores, las contribuciones que resulten computables como crédito fiscal del Impuesto al Valor Agregado, de acuerdo a lo previsto en el párrafo anterior, tendrán el carácter de impuesto facturado a los fines de la aplicación del"
+dev,FP,333564,230592,FP_mencion_con_verbo,"corresponder, la baja de la inscripción del contribuyente del Registro Público de Empleadores con Sanciones Laborales (REPSAL) contemplado en la ley 26.940."
+test,FN,336003,333564,FN_filtrado_por_reglas,
+test,FN,336262,203798,FN_filtrado_por_reglas,
+test,FN,336262,272119,FN_filtrado_por_reglas,
+test,FN,336262,333564,FN_filtrado_por_reglas,
+test,FN,344033,333564,FN_filtrado_por_reglas,
+test,FN,346325,25552,FN_filtrado_por_reglas,
+test,FN,348070,263691,FN_filtrado_por_reglas,
+test,FN,348194,61181,FN_filtrado_por_reglas,
+test,FN,352666,61181,FN_filtrado_por_reglas,
+test,FN,353032,412,FN_filtrado_por_reglas,
+test,FN,354174,412,FN_filtrado_por_reglas,
+test,FN,361039,27971,FN_filtrado_por_reglas,
+test,FN,370565,61181,FN_filtrado_por_reglas,
+test,FN,376814,412,FN_filtrado_por_reglas,
+test,FN,395521,190,FN_sin_mencion,
+test,FN,395521,45628,FN_sin_mencion,
+test,FN,401266,51364,FN_sin_mencion,
+test,FN,405522,412,FN_filtrado_por_reglas,
+test,FN,405522,639,FN_filtrado_por_reglas,
+test,FN,405522,401266,FN_filtrado_por_reglas,
+test,FN,412998,46044,FN_filtrado_por_reglas,
+test,FN,423680,42701,FN_sin_mencion,
+test,FN,423680,51364,FN_sin_mencion,
+test,FN,423680,332890,FN_sin_mencion,
+test,FN,426270,46044,FN_filtrado_por_reglas,
+test,FN,426270,122396,FN_filtrado_por_reglas,
+test,FN,426270,229909,FN_sin_mencion,
+test,FN,431314,114315,FN_filtrado_por_reglas,
+test,FP,336003,412,FP_mencion_con_verbo,res y trabajadoras. d. Sistema integral de prestaciones por desempleo: las y los trabajadores que reúnan los requisitos previstos en las Leyes Nros. 24.013 y 25.371 accederán a una prestación económica por desempleo conforme las consideraciones estipuladas en el artículo 11 del presente decreto.
+test,FP,341093,17699,FP_mencion_con_verbo,"rará conforme las pautas que se establezcan en la negociación colectiva, y quedará exenta del pago del impuesto a las ganancias establecido en la ley 20.628 (t. o. 2019) y sus modificatorias."
+test,FP,344033,62,FP_mencion_con_verbo,"uciones patronales correspondientes a la Obra Social y al Instituto Nacional de Servicios Sociales para Jubilados y Pensionados -INSSJP- (Leyes Nros. 23.660, 23.661 y 19.032). El beneficio establecido en el presente artículo no podrá afectar el financiamiento de la seguridad social, ni los derechos "
+test,FP,346406,25552,FP_solo_alias,"lecido por el Decreto N° 891/20. Quedan exceptuadas de esta prohibición y de los límites temporales previstos por los artículos 220, 221 y 222 de la Ley de Contrato de Trabajo, las suspensiones efectuadas en los términos del artículo 223 bis de la Ley de Contrato de Trabajo (t.o. 1976) y sus modific"
+test,FP,346406,44300,FP_mencion_con_verbo,cia N° 367/20. El financiamiento de estas prestaciones será imputado al FONDO FIDUCIARIO DE ENFERMEDADES PROFESIONALES creado mediante el Decreto N° 590/97 de acuerdo a las regulaciones que dicte la SUPERINTENDENCIA DE RIESGOS DEL TRABAJO y deberá garantizarse el mantenimiento de una reserva mínima 
+test,FP,346406,344033,FP_mencion_con_verbo,"artículo 4° del Decreto de Necesidad y Urgencia N° 367 del 13 de abril de 2020, modificado por el artículo 34 del Decreto de Necesidad y Urgencia N° 875 del 7 de noviembre de 2020, la Comisión Médica Central (C.M.C.) deberá entender que la contingencia guarda relación de causalidad directa e inmedia"
+test,FP,349059,25552,FP_solo_alias,"falta o disminución de trabajo. Quedan exceptuadas de esta prohibición y de los límites temporales previstos por los artículos 220, 221 y 222 de la Ley de Contrato de Trabajo las suspensiones efectuadas en los términos del artículo 223 bis de la Ley de Contrato de Trabajo (t.o. 1976) y sus modificat"
+test,FP,352666,47677,FP_mencion_con_verbo,"travesti, transexual, transgénero o una persona con discapacidad acreditada mediante certificado expedido en los términos de las Leyes N° 22.431, N° 24.901 o norma análoga provincial. b. Una reducción del NOVENTA POR CIENTO (90 %) de las contribuciones patronales correspondientes a los primeros DOCE"
+test,FP,352666,348194,FP_mencion_con_verbo,"respecto de cualquier relación laboral involucrada. En caso de que una nueva relación laboral encuadre en los beneficios dispuestos por el Decreto N° 191/21 y por el presente, la empleadora o el empleador contratante deberá optar entre uno u otro de tales regímenes."
+test,FP,354589,187959,FP_mencion_con_verbo,"NACIÓN ARGENTINA. El funcionamiento de la cuenta sueldo se ajustará a las características y condiciones establecidas en el artículo 1° de la Ley Nº 26.704. La incorporación a la cuenta sueldo de servicios bancarios adicionales, no derivados de su naturaleza laboral ni comprendidos en la presente reg"
+test,FP,355459,412,FP_mencion_con_verbo,optar entre la posibilidad de reingresar al programa de origen o acceder a la prestación por desempleo en los términos dispuestos por las Leyes Nros. 24.013 y sus modificatorias y 25.371.
+test,FP,355459,65583,FP_mencion_con_verbo,reingresar al programa de origen o acceder a la prestación por desempleo en los términos dispuestos por las Leyes Nros. 24.013 y sus modificatorias y 25.371.
+test,FP,355459,230592,FP_mencion_con_verbo,"es con Sanciones Laborales (REPSAL) como consecuencia de los supuestos previstos en el artículo 2°, inciso h) y en los artículos 3° y 4° de la Ley N° 26.940 y sus modificatorias."
+test,FP,361039,33757,FP_mencion_con_verbo,"l Trabajo deberán ceder los respectivos derechos de percepción derivados de la suma fija referida en el tercer párrafo del artículo 15 del Decreto Nº 170/96, necesarios para instrumentar el acceso al financiamiento mediante las herramientas financieras previstas en el Libro Tercero, Título IV, Capít"
+test,FP,362578,341093,FP_mencion_con_verbo,"5º.- En el caso de la modalidad de contratación prevista por el artículo 102 bis de la Ley N° 20.744 (t.o. 1976) y sus modificatorias y en la Ley N° 27.555, y la persona que trabaja estuviera anexada al establecimiento, la obligación establecida en el artículo 1° de la presente podrá cumplirse a tra"
+test,FP,370565,412,FP_mencion_con_verbo,ar entre la posibilidad de permanecer en el programa de origen o acceder a la prestación por desempleo en los términos dispuestos por las Leyes Nros. 24.013 y sus modificatorias y 25.371.
+test,FP,376814,17699,FP_solo_alias,dianas Empresas Tramo 1 que cuenten con Certificado MiPyME vigente a la fecha de entrada en vigencia de este decreto podrán reducir los anticipos del Impuesto a las Ganancias en un importe equivalente al CINCUENTA POR CIENTO (50 %) del monto total abonado en concepto de la asignación no remunerativa
+test,FP,379858,25552,FP_mencion_con_verbo,"ciones de este Título serán de aplicación a los trabajadores y las trabajadoras cuyo contrato de trabajo se rija por la Ley de Contrato de Trabajo N° 20.744 (t.o.1976) y sus modificatorias, y a los trabajadores y las trabajadoras del Régimen Especial de Contrato de Trabajo para el Personal de Casas "
+test,FP,379858,64555,FP_mencion_con_verbo,"al presente régimen las disposiciones de la Ley Nº 24.013, salvo su TÍTULO IV - “De la protección de los trabajadores desempleados”, ni las Leyes Nº 25.323 y Nº 25.345”."
+test,FP,379858,65015,FP_mencion_con_verbo,"régimen las disposiciones de la Ley Nº 24.013, salvo su TÍTULO IV - “De la protección de los trabajadores desempleados”, ni las Leyes Nº 25.323 y Nº 25.345”."
+test,FP,389071,412,FP_mencion_con_verbo,"as, al Instituto Nacional de Servicios Sociales para Jubilados y Pensionados, Ley N° 19.032 y sus modificatorias, al Fondo Nacional de Empleo, Ley N° 24.013 y sus modificatorias, y al Régimen de Asignaciones Familiares, Ley N° 24.714 y sus modificatorias, las sumas abonadas en concepto de la asignac"
+test,FP,389071,16092,FP_solo_alias,"ERAL DE INGRESOS PÚBLICOS (AFIP), en el marco de lo dispuesto por el artículo 1° del Decreto N° 433/23, a prorrogar los vencimientos para el pago del Impuesto al Valor Agregado y de las contribuciones de la seguridad social."
+test,FP,389071,210489,FP_mencion_con_verbo,"unerativa para los trabajadores y las trabajadoras del “Régimen de Contrato de Trabajo para el Personal de Casas Particulares”, previsto en la Ley N° 26.844 que ascenderá a la suma de PESOS VEINTICINCO MIL ($25.000), que será abonada por los sujetos empleadores en DOS (2) cuotas de PESOS DOCE MIL QU"
+test,FP,391051,62,FP_mencion_con_verbo,excluidos del presente régimen los siguientes conceptos: a. Aportes y contribuciones con destino al Régimen Nacional de Obras Sociales de la Ley N° 23.660 y sus modificaciones y aportes y contribuciones con destino al Sistema Nacional del Seguro de Salud de la Ley N° 23.661 y sus modificaciones. b. 
+test,FP,391051,27971,FP_mencion_con_verbo,"destino al Sistema Nacional del Seguro de Salud de la Ley N° 23.661 y sus modificaciones. b. Cuotas del Régimen de Riesgos del Trabajo de la Ley N° 24.557 y sus modificaciones. c. Aportes con destino a los regímenes de la Ley N° 24.241 y sus modificaciones y de la Ley N° 19.032 y sus modificaciones,"
+test,FP,391051,333564,FP_mencion_con_verbo,"lo 1° del presente decreto quedan incluidas, en su carácter de empleadores, en el inciso b) del artículo 19 del Capítulo 3 del Título IV de la Ley N° 27.541."
+test,FP,395521,15932,FP_mencion_con_verbo,"l que, en cada caso, requerirá ratificación personal y homologación judicial. Las personas humanas y las personas jurídicas alcanzadas por la Ley N° 24.467, ante una sentencia judicial condenatoria, podrán acogerse al pago total de la misma en hasta un máximo de doce (12) cuotas mensuales consecutiv"
+test,FP,395521,114578,FP_mencion_con_verbo,"ARTÍCULO 326.- Sustitúyese el artículo 45 de la Ley Nº 26.522, modificado por el Decreto 267 del 29 de diciembre de 2015, por el siguiente: “ARTICULO 45.- Multiplicidad de Licencias. A fin de garantizar los principios de diversidad, pluralid"
+test,FP,401266,16092,FP_solo_alias,"Artículo 187.- A efectos del presente régimen, cualquier referencia a la Ley de Impuesto al Valor Agregado será entendida como la Ley de Impuesto al Valor Agregado –texto ordenado en 1997 por el decreto 280/1997 y sus modificaciones– así como cualquier otr"
+test,FP,401266,17699,FP_mencion_con_verbo,"erá del veinticinco por ciento (25%) no resultando de aplicación sobre dichas utilidades la escala prevista en el inciso a) del artículo 73 de la ley 20.628 de Impuesto a las Ganancias, texto ordenado en 2019 y sus modificaciones; b) Los VPU podrán, para las inversiones que realicen, optar por pract"
+test,FP,401266,25379,FP_mencion_con_verbo,"27.401, o cuyos socios o accionistas se encuentren en dicha situación; b) Los declarados en estado de quiebra, en los términos de las leyes 19.551 y 24.522 y sus modificatorias, según corresponda; c) Los condenados, con condena confirmada en segunda instancia, con fundamento en las leyes 23.771 o 24"
+test,FP,401266,73048,FP_mencion_con_verbo,"liminados. Queda excluido de las facultades de este artículo: el Fondo Fiduciario para Subsidios de Consumos Residenciales de Gas, creado por la ley 25.565 y ampliado y modificado por ley 27.637."
+test,FP,415990,272119,FP_mencion_con_verbo,ARTÍCULO 4°.- Invítase a las jurisdicciones locales a efectuar la convocatoria prevista en el artículo 2° de la Ley N° 27.348 para que se integren los CUERPOS MÉDICOS FORENSES que intervendrán en las controversias judiciales que se susciten en el marco de la Ley N° 24.557 y
+test,FP,417788,639,FP_mencion_con_verbo,"e en el pago de una prestación mensual equivalente al setenta por ciento (70%) del haber mínimo jubilatorio garantizado al que hace referencia la ley 24.241, sus complementarias y modificatorias, y se actualiza de conformidad a lo establecido por el ordenamiento jurídico vigente en la materia. Facúl"
+test,FP,417788,207088,FP_mencion_con_verbo,"lo social de discapacidad y accesibilidad en municipios; e) Disponer el financiamiento adecuado y sostenible para el efectivo cumplimiento de la ley 26.816, actualizando la asignación mensual estímulo de acuerdo al equivalente del porcentaje del salario mínimo vital y móvil vigente dispuesto, asegur"
+test,FP,423680,639,FP_mencion_con_verbo,entralizado actuante en la órbita del Ministerio de Economía; d) Los viáticos acreditados con comprobantes en los términos del artículo 6° de la ley 24.241; e) El reintegro con comprobantes de las sumas que resulten por el uso por parte del trabajador del transporte público de pasajeros correspondie
+test,FP,423680,25379,FP_mencion_con_verbo,"27.401, o cuyos socios o accionistas se encuentren en dicha situación; b. Los declarados en estado de quiebra, en los términos de las leyes 19.551 y 24.522 y sus modificatorias, según corresponda; c. Los condenados, con condena confirmada en segunda instancia, con fundamento en la ley 24.769 y sus m"
+test,FP,423680,27971,FP_mencion_con_verbo,"cobro de aportes, contribuciones o cuotas, será competente el juez del domicilio del demandado. En las causas iniciadas en los términos de las leyes 24.557 y sus modificaciones y 27.348, se estará a la competencia territorial prevista en ellas."
+test,FP,423680,37573,FP_mencion_con_verbo,"las condiciones allí establecidas, entre ellas, la estricta aplicación de la Tabla de Evaluación de Incapacidades Laborales, aprobada por el Decreto 659/96 y sus modificatorios. En tal orden, se aclara que corresponderá: a) En los casos en que no existan peritos médicos judiciales en las condiciones"
+test,FP,423680,61876,FP_mencion_con_verbo,"por la Comisión de Garantías en ejercicio de sus facultades, dará lugar a la aplicación de las sanciones establecidas por las leyes 14.786, 23.551 y 25.212, sus modificatorias y sus normas reglamentarias y complementarias, según corresponda. La falta de cumplimiento del deber de trabajar por las per"
+test,FP,423680,80046,FP_mencion_con_verbo,"uerdo a la personería gremial otorgada. En cualquiera de los casos, la representación sindical deberá integrarse respetando lo establecido en la ley 25.674. La representación de los empleadores -cualquiera sea su nivel- se acreditará conforme lo disponga la Secretaría de Trabajo, Empleo y Seguridad "
+test,FP,423680,166910,FP_mencion_con_verbo,"laborales se efectivizará mediante depósito bancario: a) En la cuenta sueldo del respectivo trabajador, creada en virtud de lo establecido en la ley 26.590 y su normativa complementaria y siempre que aquella se encuentre disponible; b) Excepcionalmente y sólo en caso de ausencia de la primera, en au"
+test,FP,423680,230592,FP_mencion_con_verbo,"tro Público de Empleadores con Sanciones Laborales (REPSAL), creado por la Ley de Promoción del Trabajo Registrado y Prevención del Fraude Laboral N° 26.940 y sus modificaciones, por el tiempo que permanezcan en ese registro; y/o b) Incurran en prácticas de uso abusivo del beneficio establecido por "
+test,FP,423680,333564,FP_mencion_con_verbo,"ción las disposiciones del Capítulo 3 del Título IV de la Ley de Solidaridad Social y Reactivación Productiva en el Marco de la Emergencia Pública N° 27.541 y sus modificatorias, de la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificatorias, de la ley N° 22.250 y su modificatoria y de "
+test,FP,423680,401266,FP_mencion_con_verbo,dores independientes y sus colaboradores en los términos del artículo 97 de la Ley de Bases y Puntos de Partida para la Libertad de los Argentinos Nº 27.742; f. A los prestadores independientes de plataformas tecnológicas conforme la regulación específica; g. Al personal embarcado comprendido en el 
+test,FP,424730,16092,FP_solo_alias,"rafo del artículo 180 de la citada norma legal. A estos efectos, deberá estarse al importe que surja de la factura o documento equivalente, neto del impuesto al valor agregado, así como también de descuentos y similares efectuados de acuerdo con las costumbres de plaza. Para la determinación del mon"
+test,FP,424730,17699,FP_solo_alias,"os términos allí previstos, siempre que acrediten, en oportunidad de llevarse a cabo dichas inversiones, que son susceptibles de amortización para el impuesto a las ganancias. A estos efectos, se entiende por “puesta en marcha” a la afectación del bien o de la obra a la generación de la ganancia gra"
+test,FP,426270,46379,FP_mencion_con_verbo,"onsignen una fecha expresa de vencimiento o bien no se consigne un período de vigencia, conforme lo exigido por el artículo 3° inciso e) de la Ley N° 14.250 (t. o. 2004) y sus modificaciones, la Autoridad de Aplicación podrá, al solo efecto de instrumentar la convocatoria prevista en el citado artíc"
+test,FP,426271,62,FP_mencion_con_verbo,"e la Ley de Modernización Laboral N° 27.802 comprende, además de los destinos allí detallados, al Régimen de Obras Sociales establecido por la Ley N° 23.660 y sus modificaciones, al Régimen de Riesgos del Trabajo de la Ley N° 24.557 y sus modificaciones y al Seguro Colectivo de Vida Obligatorio (SCV"
+test,FP,426271,412,FP_mencion_con_verbo,tículos 97 y 98 del citado cuerpo legal; y c) El tiempo de servicio exigido para acceder a las prestaciones por desempleo del Título IV de la Ley N° 24.013 y sus modificaciones y de la Ley del Sistema Integrado de Prestaciones por Desempleo para Los Trabajadores Comprendidos en el Régimen Nacional d
+test,FP,426271,639,FP_mencion_con_verbo,"acreditar: a) El mínimo de años requeridos para la obtención de la Prestación Básica Universal prevista en el inciso a) del artículo 17 de la Ley N° 24.241, sus modificaciones y complementarias; b) La condición de aportante, en los términos de los incisos a) o b) del artículo 95 de la Ley N° 24.241,"
+test,FP,426271,27971,FP_mencion_con_verbo,"s allí detallados, al Régimen de Obras Sociales establecido por la Ley N° 23.660 y sus modificaciones, al Régimen de Riesgos del Trabajo de la Ley N° 24.557 y sus modificaciones y al Seguro Colectivo de Vida Obligatorio (SCVO) establecido por el Decreto N° 1567 del 20 de noviembre de 1974 y sus modi"
+test,FP,426271,230592,FP_mencion_con_verbo,"efectos de lo señalado en el inciso b) de dicho artículo, la baja del REGISTRO DE EMPLEADORES CON SANCIONES LABORALES (REPSAL), creado por la Ley N° 26.940 y sus modificaciones, se producirá con relación a las infracciones cometidas o constatadas hasta el 6 de marzo de 2026."
+test,FP,426272,412,FP_mencion_con_verbo,"ación de las contribuciones patronales sobre la nómina salarial con destino a los subsistemas de seguridad social regidos por las Leyes Nros. 19.032, 24.013, 24.241 y 24.714 y sus respectivas modificaciones. Dicha detracción procederá, respecto de los referidos subsistemas, en la misma proporción en"
+test,FP,426272,639,FP_mencion_con_verbo,"las contribuciones patronales sobre la nómina salarial con destino a los subsistemas de seguridad social regidos por las Leyes Nros. 19.032, 24.013, 24.241 y 24.714 y sus respectivas modificaciones. Dicha detracción procederá, respecto de los referidos subsistemas, en la misma proporción en que se d"
+test,FP,426272,16092,FP_solo_alias,"ARTÍCULO 19.- Tratamiento en el Impuesto a las Ganancias y en el Impuesto al Valor Agregado (IVA). Las exenciones previstas en el artículo 67 de la Ley de Modernización Laboral N° 27.802 resultarán de aplicación de pleno derecho, sin perjuic"
+test,FP,426272,17699,FP_solo_alias,ARTÍCULO 19.- Tratamiento en el Impuesto a las Ganancias y en el Impuesto al Valor Agregado (IVA). Las exenciones previstas en el artículo 67 de la Ley de Modernización Laboral N° 27.802 resultarán de aplic
+test,FP,426272,25552,FP_mencion_con_verbo,"rrespondiente, copia del acto extintivo o acuerdo, incluyendo, en su caso, el acuerdo previsto en el artículo 241 de la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificaciones con las formalidades exigidas por dicha norma; e) Detalle de la liquidación practicada, indicando la mejor rem"
+test,FP,426272,141449,FP_mencion_con_verbo,"ones del Título II de la Ley N° 27.802 relativas al Fondo de Asistencia Laboral a los Convenios de Corresponsabilidad Gremial regulados por la Ley Nº 26.377. A los fines de lo dispuesto en el artículo 60 de la Ley N° 27.802, entiéndese como Micro, Pequeñas y Medianas empresas a aquellas que cuenten "
+test,FP,431314,229909,FP_mencion_con_verbo,"al vinculado laboralmente por contratos por tiempo indeterminado, en los términos del artículo 90 y concordantes de la Ley N° 20.744 (T.O. Decreto N° 390/76) en las jurisdicciones y organismos que integran la Administración Pública Nacional centralizada que como ANEXO I (IF-2026-100691130-APN-STEYFP"
