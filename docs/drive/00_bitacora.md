@@ -1,8 +1,8 @@
-<!-- Copia del Google Doc "00 - Bitácora del TP" (id 1kXhR_wDGRq8TsD8jtcxX6sSWMZPaRJS9fggNjLIReCY, revision AHj4eMRjp8t1). La version editable es la del Drive; esta copia se regenera con tools/gdoc_a_md.py. -->
+<!-- Copia del Google Doc "00 - Bitácora del TP" (id 1kXhR_wDGRq8TsD8jtcxX6sSWMZPaRJS9fggNjLIReCY, revision AHj4eMQGqNf0). La version editable es la del Drive; esta copia se regenera con tools/gdoc_a_md.py. -->
 
 # Bitácora del TP Integrador
 
-*Sistemas Inteligentes (UNNOBA). Problemática III: extracción de relaciones entre normas y grafo normativo trazable. Iniciada el 27/10/2026, última entrada el 06/11/2026.*
+*Sistemas Inteligentes (UNNOBA). Problemática III: extracción de relaciones entre normas y grafo normativo trazable. Iniciada el 27/10/2026, última entrada el 09/11/2026.*
 
 ## Cómo usar esta bitácora
 
@@ -46,6 +46,9 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B30 | 06/11 | Hallazgo | La muestra de la Ley 14.250 confirma la exclusión | Abierta |
 | B31 | 06/11 | Dificultad | Permisos y límite de pedidos al correr el pipeline | Cerrada |
 | B32 | 06/11 | Decisión | La documentación se mantiene en el Drive y en el repositorio | Cerrada |
+| B33 | 09/11 | Decisión | Un solo corpus | Cerrada |
+| B34 | 09/11 | Decisión | Dataset en CSV con pandas | Cerrada |
+| B35 | 09/11 | Hallazgo | Las reglas v1 no generalizan bien a los pares nuevos | Abierta |
 
 ## Entradas
 
@@ -296,9 +299,37 @@ Los patrones de regex, los ejemplos few-shot y los umbrales del híbrido se saca
 
 **Regla de edición.** La versión editable de cada documento es la del lugar donde se creó: los informes y la bitácora en el Drive, la documentación técnica en el repositorio. La copia del otro lado se actualiza en la misma sesión en que cambia el original.
 
+### B33 · 09/11/2026 · Decisión · Un solo corpus
+
+**Contexto.** Hasta ahora había dos corpus: el v1 (183 normas, 402 pares, snapshot del 30/09), sobre el que se diseñaron las reglas, y el v2 ampliado (340 normas, 775 pares, snapshot del 06/11), pensado como prueba más grande (B23, B24). Mantener los dos obligaba a reportar cada resultado dos veces.
+
+**Decisión.** El TP usa un único corpus: el ampliado, congelado en el snapshot del 06/11 (data/corpus en el repositorio). El v1 está contenido en él con el mismo split. Sus 402 pares quedan marcados en pares_evaluados_en_v1.csv para reportar también las métricas sin ellos. El v1 queda en el historial de git y en el documento 01.
+
+**Protocolo.** Las reglas v1, congeladas, se evaluaron una vez sobre el corpus único (B35). La iteración siguiente se diseña solo sobre el dev del corpus único (583 pares, 308 de ellos nunca usados) y el test (192 pares) se evalúa una sola vez con las reglas v2 congeladas. Los tres parsers se comparan sobre ese mismo test.
+
+**Verificación.** correr_pipeline.sh regenera el corpus con los zips guardados y comprueba que sea idéntico al congelado. Se verificó en la Mac del equipo y en el entorno de Claude, con versiones distintas de pandas: el corpus, las evidencias y el dataset dan los mismos hashes.
+
+### B34 · 09/11/2026 · Decisión · Dataset en CSV con pandas
+
+**Qué se armó.** El script 07 genera dos tablas. articulos.csv tiene una fila por segmento de cada norma (8.066 segmentos de 306 normas, 7,8 millones de caracteres), con zona, número de artículo, offsets y texto limpio: es la entrada de los parsers LLM e híbrido. pares_candidatos.csv tiene una fila por par que propone el detector de menciones (1.091 pares: 801 de dev y 290 de test), con 17 atributos y la etiqueta en_gold: es la matriz para un clasificador con scikit-learn. Los candidatos cubren el 81 % del gold de dev y el 96 % del de test.
+
+**Formato.** CSV, porque se lee con pandas y se abre en cualquier herramienta. No se usa .npy: guarda arreglos numéricos sin nombres de columna, y la mitad del dataset es texto o categorías. La matriz numérica se arma en memoria con pandas cuando hace falta. Parquet quedó descartado porque pyarrow no se pudo instalar en el entorno de trabajo.
+
+**Librerías.** pandas y numpy arman el corpus y el dataset; scikit-learn se suma para el clasificador y para verificar las métricas. El parser de reglas usa solo la biblioteca estándar de Python, para que sus reglas se lean sin capas intermedias.
+
+**Cuidados.** Ningún atributo usa el gold ni los conteos de InfoLEG, que saldrían de las mismas relaciones. La etiqueta de test solo se usa para la evaluación final. Las etiquetas son supervisión distante (B14, B27). La ficha completa está en docs/dataset.md y en el documento 03.
+
+### B35 · 09/11/2026 · Hallazgo · Las reglas v1 no generalizan bien a los pares nuevos
+
+**Resultado.** Sobre el corpus único, la configuración C da F1 0,652 en dev y 0,788 en test. Sobre los pares que no se usaron para diseñarla baja a 0,514 en dev (308 pares) y 0,563 en test (65 pares), contra 0,716 y 0,844 en el v1. Caen la precisión, que queda alrededor de 0,46, y el recall.
+
+**Causas observadas.** De los 201 falsos positivos nuevos de dev, solo 27 apuntan a las semillas agregadas. Los destinos más frecuentes son la LCT, Ganancias, la Ley 24.557, el Decreto 390/76 e IVA. El Decreto 390/76 aparece porque las normas citan la LCT como «Ley 20.744 (t.o. por Decreto 390/76)» y el detector lo cuenta como otra mención. De los 73 pares nuevos que filtra la regla de zona, 72 tienen la mención solo en el VISTO, el CONSIDERANDO o un anexo. En el corpus único, la configuración sin filtro de zona supera a la C en dev (0,682 contra 0,652).
+
+**Consecuencia.** Para el informe, es una medida directa de cuánto se ajustaron las reglas al corpus donde se diseñaron. Para el trabajo, define la iteración v2: tratar el texto ordenado como parte de la cita, revisar la regla de zona y revisar a mano 30 falsos positivos.
+
 ## Cuestiones abiertas
 
-- Revisar a mano 30 falsos positivos del parser de reglas (B28).
+- Iterar las reglas v2 sobre el dev del corpus único: la cita «t.o. por Decreto 390/76», la regla de zona y la revisión de 30 falsos positivos (B28, B35).
 - Validar la anotación de la muestra de la Ley 14.250 (B30).
 - Validar la revisión de cobertura con un integrante del equipo y un segundo anotador, para el kappa (B12, B26).
 - Consultar con la cátedra la supervisión distante, la clasificación fina y si se evalúa también la modificación estricta (B02, B14, B27).
