@@ -6,3 +6,4 @@ __pycache__/
 data/raw/
 # enunciados de la catedra: no se versionan
 *.pdf
+data/verificacion/

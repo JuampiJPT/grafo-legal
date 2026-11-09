@@ -1,5 +1,7 @@
 # Revisión manual
 
+Las dos muestras se sacaron cuando había dos corpus. Los 30 pares de la sección 1 son del corpus v1, que está contenido en el corpus único con el mismo split, así que siguen valiendo (D11).
+
 ## 1. Cobertura textual: 30 pares del gold (`revision_cobertura_30.csv`)
 
 **Muestra.** 30 pares estratificados por categoría: 12 «número», 9 «solo nombre» y 9 «sin mención». La semilla es 20261106. Por cada par se leyó el contexto de la mención y, en los casos sin mención, el título y los artículos de la modificatoria.

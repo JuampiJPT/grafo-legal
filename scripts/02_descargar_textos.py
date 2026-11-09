@@ -14,7 +14,7 @@ Descarga el HTML de cada norma de un corpus desde InfoLEG.
   una fila por cada texto nuevo con URL, fecha, tamano original, charset y SHA-256.
 
 Uso:
-    python scripts/02_descargar_textos.py --corpus data/corpus_v2/corpus_normas.csv
+    python scripts/02_descargar_textos.py --corpus data/corpus/corpus_normas.csv
 """
 
 import argparse
@@ -145,7 +145,7 @@ def main(corpus: Path, out: Path) -> None:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--corpus", type=Path, default=Path("data/corpus_v2/corpus_normas.csv"))
+    ap.add_argument("--corpus", type=Path, default=Path("data/corpus/corpus_normas.csv"))
     ap.add_argument("--out", type=Path, default=Path("data/textos/infoleg"))
     a = ap.parse_args()
     main(a.corpus, a.out)

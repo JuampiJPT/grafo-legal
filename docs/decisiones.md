@@ -2,11 +2,11 @@
 
 Este archivo es un resumen. El razonamiento completo, con las dificultades y las alternativas descartadas, está en la bitácora del TP (Google Drive).
 
-## D1. Snapshot congelado (06/11/2026)
+## D1. Snapshot congelado (06/11/2026) · reemplazada por D11
 
 El corpus v1 queda fijo en el snapshot de InfoLEG del 30/09/2026: 183 normas y 402 pares. Los datos del 31/10 darían 185 y 406, pero cambiar de snapshot obligaría a rehacer la cobertura y los splits cada mes. Todos los resultados del informe se reportan sobre v1. Ver `data/corpus_v1/SNAPSHOT.md`.
 
-## D2. Corpus v2 laboral ampliado (06/11/2026)
+## D2. Corpus v2 laboral ampliado (06/11/2026) · reemplazada por D11
 
 Se agrega un corpus v2 que, además de las semillas de v1, expande desde la Ley 24.013 (Empleo), la Ley 24.557 (Riesgos del Trabajo) y la Ley 23.551 (Asociaciones Sindicales). En el análisis previo daba unas 340 normas, 775 pares y 192 pares de test. En v1, la LCT concentra la mayoría de los pares; en v2 el nodo más conectado concentra un 19%.
 
@@ -52,7 +52,7 @@ Consecuencia para el TP: hace falta distinguir dos tareas. Una es recuperar el v
 
 Sobre dev hubo dos iteraciones de reglas: los patrones de menciones (núm., N.°, nombre intercalado, listas con «(t.o. 1976) y sus modificatorias», decretos-leyes) y los verbos en subjuntivo («Agréguese», «Modifíquese»). Después las reglas se congelaron y test se evaluó una vez, el 06/11/2026.
 
-## D8. Verificación del pipeline oficial (06/11/2026)
+## D8. Verificación del pipeline oficial (06/11/2026) · ver D11
 
 `correr_pipeline.sh` regeneró el v1 con el snapshot del 06/11/2026 en `data/verificacion/`. El resultado es idéntico al v1 congelado en las 183 normas y los 402 pares, y agrega solo lo que InfoLEG cargó después del 30/09: los Decretos 1203/2026 y 1228/2026 y sus 4 relaciones. Esto valida que los scripts reproducen lo que se hizo en el navegador.
 
@@ -67,3 +67,24 @@ La exclusión queda justificada. Si en algún momento se expandiera la 14.250, e
 Los scripts escriben sus salidas en un temporal y lo renombran (`src/grafo_legal/archivos.py`). Así un corte nunca deja un CSV truncado, y se pueden regenerar archivos creados por otra herramienta sobre los que el usuario no tiene permiso de escritura.
 
 El script 02 no vuelve a pedir a InfoLEG un HTML que ya está en disco. Si falta su fila en el manifiesto, la arma desde el archivo: la fecha sale de la fecha de modificación y el tamaño original, del texto re-codificado con el charset que declara el propio HTML. Se agregó porque, después de 138 descargas seguidas, InfoLEG empezó a responder 404 a los mismos pedidos.
+
+## D11. Un solo corpus (09/11/2026)
+
+El TP usa un único corpus, `data/corpus`: el laboral ampliado, con 340 normas y 775 pares (583 dev, 192 test), congelado en el snapshot de InfoLEG del 06/11/2026. Reemplaza al v1 y al v2 (D1, D2). Tener dos corpus obligaba a reportar todo dos veces, y los tres parsers se deben comparar sobre el mismo test.
+
+- El v1 está contenido en el corpus único con el mismo split. `data/corpus/pares_evaluados_en_v1.csv` marca sus 402 pares: los 275 de dev se usaron para diseñar las reglas v1 y los 127 de test ya se evaluaron una vez. Las métricas se reportan también sin esos pares.
+- Las reglas v1 congeladas se evaluaron una vez sobre el corpus único (`results/reglas/RESULTADOS.md`): F1 de 0,652 en dev y 0,788 en test, que bajan a 0,514 y 0,563 sobre los pares nuevos.
+- La próxima iteración de reglas (v2) se diseña solo sobre el dev del corpus único. El test se evalúa una vez, con las reglas v2 congeladas.
+- `scripts/01_obtener_corpus.py` ya no tiene versiones. Con los zips guardados en `data/raw`, `correr_pipeline.sh` lo regenera en `data/verificacion/` y comprueba que sea idéntico al congelado.
+- El v1 queda en el historial de git (commit `cc6da6a`) y en el documento 01 del Drive, que describe cómo se construyó.
+
+## D12. Dataset en CSV con pandas (09/11/2026)
+
+`scripts/07_armar_dataset.py` arma `data/dataset/` (ficha en `docs/dataset.md`):
+
+- `articulos.csv`: una fila por segmento de cada norma, con su texto limpio.
+- `pares_candidatos.csv`: una fila por par candidato, con 17 atributos y la etiqueta `en_gold`.
+
+**Formato.** Se usa CSV, que se lee con `pandas.read_csv` y se abre en cualquier herramienta. No se usa `.npy`, porque guarda arreglos numéricos sin nombres de columna y la mitad del dataset es texto o categorías. Parquet conservaría los tipos, pero requiere `pyarrow`, que no se pudo instalar en el entorno de trabajo.
+
+**Librerías.** pandas y numpy arman el corpus y el dataset. scikit-learn queda en `requirements.txt` para el clasificador sobre `pares_candidatos.csv` y para verificar las métricas. El parser de reglas usa solo la biblioteca estándar (`re`, `csv`), para que sus reglas se lean sin capas intermedias.

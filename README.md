@@ -8,72 +8,72 @@ El TP extrae automáticamente las relaciones entre normas (modifica, sustituye, 
 
 | Etapa | Estado |
 |---|---|
-| Corpus v1 y gold (183 normas, 402 pares) | congelado, snapshot InfoLEG 30/09/2026 |
-| Textos InfoLEG del corpus v1 (168 HTML) | descargados y verificados por SHA-256 |
-| Techo de recall textual | `data/corpus_v1/cobertura_textual_gold.csv` |
-| Parser 1: reglas (regex/AST) | hecho, evaluado en dev y una vez en test |
-| Corpus v2 laboral ampliado (340 normas, 775 pares) | generado con los scripts el 06/11/2026, 306 textos |
-| Verificación del v1 con los scripts | coincide con el congelado salvo 2 decretos nuevos de octubre |
-| Muestra de la Ley 14.250 | revisada: 0 de 30 modifican la ley |
+| Corpus único: 340 normas, 775 pares (583 dev, 192 test) | congelado, snapshot InfoLEG 06/11/2026 (`data/corpus/SNAPSHOT.md`) |
+| Textos InfoLEG (306 HTML) | descargados y verificados por SHA-256 |
+| Dataset: 8.066 segmentos y 1.091 pares candidatos | `data/dataset/`, ficha en `docs/dataset.md` |
+| Parser 1: reglas v1 | evaluado; falta la iteración v2 sobre el dev del corpus único |
 | Parser 2: LLM puro / Parser 3: híbrido | pendiente |
 | Grafo Neo4j + text-to-Cypher | pendiente |
 
-## Resultados del parser de reglas (corpus v1)
+El estado completo está en [`docs/ESTADO.md`](docs/ESTADO.md).
 
-Evaluación a nivel de par (norma origen → norma destino). La configuración final es C: menciones del articulado más el filtro temporal.
+## Resultados del parser de reglas v1 sobre el corpus único
 
-| Configuración | P dev | R dev | F1 dev | P test | R test | F1 test |
-|---|---|---|---|---|---|---|
-| A. todas las menciones | 0,625 | 0,811 | 0,706 | 0,732 | 0,945 | 0,825 |
-| B. solo articulado | 0,674 | 0,746 | 0,708 | 0,778 | 0,913 | 0,841 |
-| **C. articulado + temporal** | **0,692** | **0,742** | **0,716** | **0,784** | **0,913** | **0,844** |
-| D. C + verbo en el artículo | 0,732 | 0,567 | 0,639 | 0,780 | 0,669 | 0,720 |
-| E. C + verbo en la oración | 0,844 | 0,414 | 0,556 | 0,849 | 0,575 | 0,685 |
+| Configuración | P dev | R dev | F1 dev | P test | R test | F1 test | F1 test sin pares del v1 |
+|---|---|---|---|---|---|---|---|
+| A. todas las menciones | 0,589 | 0,810 | 0,682 | 0,638 | 0,964 | 0,768 | 0,553 |
+| B. solo articulado | 0,642 | 0,652 | 0,647 | 0,719 | 0,854 | 0,781 | 0,551 |
+| **C. articulado + temporal** | 0,653 | 0,650 | 0,652 | **0,732** | **0,854** | **0,788** | **0,563** |
+| D. C + verbo en el artículo | 0,708 | 0,482 | 0,574 | 0,735 | 0,651 | 0,691 | 0,543 |
+| E. C + verbo en la oración | 0,792 | 0,360 | 0,495 | 0,856 | 0,526 | 0,652 | 0,509 |
 
-El detalle está en [`results/reglas_v1/RESULTADOS.md`](results/reglas_v1/RESULTADOS.md).
+Las reglas se diseñaron sobre el corpus v1, que es un subconjunto de este, y no se tocaron. El detalle está en [`results/reglas/RESULTADOS.md`](results/reglas/RESULTADOS.md).
 
 ## Estructura
 
 ```
 data/
-  corpus_v1/            corpus y gold congelados (no se regeneran: ver SNAPSHOT.md)
-  corpus_v2/            corpus laboral ampliado (snapshot InfoLEG del 06/11/2026)
-  verificacion/         v1 regenerado con el snapshot actual, para comparar con el congelado
+  corpus/               corpus único y gold, congelados (ver SNAPSHOT.md)
+  dataset/              articulos.csv y pares_candidatos.csv (ver docs/dataset.md)
   textos/infoleg/       HTML de InfoLEG en UTF-8 + manifiesto con URL, fecha y SHA-256
   raw/                  zips del portal de datos (cache local, fuera de git)
+  verificacion/         corpus regenerado para comparar con el congelado (fuera de git)
 src/grafo_legal/
   fuentes/infoleg.py    adaptador: HTML -> texto -> artículos con zona
   catalogo.py           normalización de menciones a id_norma (mundo cerrado)
   extractores/          menciones (regex + alias) y reglas de relación
   evaluacion.py         P/R/F1 a nivel de par
-scripts/                01 corpus · 02 textos · 03 extraer · 04 evaluar · 05 cobertura · 06 muestra Ley 14.250
-results/reglas_v1/      evidencias, métricas y errores del parser de reglas
-docs/                   estado, decisiones, revisión manual y copia de los documentos del Drive (docs/drive)
+  archivos.py           escritura atómica de salidas
+scripts/                01 corpus · 02 textos · 03 extraer · 04 evaluar · 05 cobertura · 06 muestra Ley 14.250 · 07 dataset
+results/reglas/         evidencias, métricas y errores del parser de reglas
+docs/                   estado, decisiones, ficha del dataset, revisión manual y copia de los documentos del Drive
 tools/                  utilidades (conversión de Google Docs a Markdown)
 tests/                  tests sin red (pytest)
 ```
 
 ## Cómo reproducir
 
-Requiere Python 3.10 o superior.
+Requiere Python 3.10 o superior. Con los zips en `data/raw` y los textos en el repo, no hace ningún pedido a la red:
 
 ```bash
-bash correr_pipeline.sh           # todo, con internet (portal de datos + InfoLEG)
+bash correr_pipeline.sh
+pytest -q
 ```
 
-Sin internet se puede reproducir la evaluación del corpus v1, porque los textos ya están en el repo:
+Si falta `data/raw`, el paso 1 descarga los zips del portal de datos. Con un snapshot distinto, el corpus regenerado no va a coincidir con el congelado, y el script lo avisa.
 
-```bash
-pip install -r requirements.txt
-python scripts/05_cobertura_textual.py --corpus data/corpus_v1
-python scripts/03_extraer_reglas.py --corpus data/corpus_v1 --out results/reglas_v1
-python scripts/04_evaluar.py --corpus data/corpus_v1 --res results/reglas_v1 --config-final C_articulado_temporal --incluir-test
-pytest -q
+Para usar el dataset:
+
+```python
+import pandas as pd
+art = pd.read_csv("data/dataset/articulos.csv")
+pares = pd.read_csv("data/dataset/pares_candidatos.csv")
+dev = pares[pares.split == "dev"]   # se entrena y ajusta solo con dev
 ```
 
 ## Reglas del protocolo
 
-- El gold nunca es entrada de un extractor. Solo lo leen `04_evaluar.py` y `05_cobertura_textual.py`, que es un análisis del dataset.
+- El gold nunca es entrada de un extractor. Solo lo leen `04_evaluar.py`, `05_cobertura_textual.py` y `07_armar_dataset.py` (para la etiqueta `en_gold`, nunca para los atributos).
 - Las reglas se iteran solo sobre dev. Test se evalúa una vez por versión congelada del parser.
 - Cada arista extraída lleva su evidencia: artículo, offsets, fragmento, método y reglas cumplidas.
 

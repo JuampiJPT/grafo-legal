@@ -1,0 +1,355 @@
+{
+  "fecha": "2026-11-09T21:23:35.487114+00:00",
+  "splits": [
+    "dev",
+    "test"
+  ],
+  "configs": {
+    "A_todas_las_menciones": {
+      "dev": {
+        "todo_el_gold": {
+          "pred": 801,
+          "gold": 583,
+          "tp": 472,
+          "fp": 329,
+          "fn": 111,
+          "precision": 0.5893,
+          "recall": 0.8096,
+          "f1": 0.6821
+        },
+        "gold_con_texto": {
+          "pred": 801,
+          "gold": 548,
+          "tp": 472,
+          "fp": 329,
+          "fn": 76,
+          "precision": 0.5893,
+          "recall": 0.8613,
+          "f1": 0.6998
+        },
+        "sin_pares_de_v1": {
+          "pred": 578,
+          "gold": 308,
+          "tp": 249,
+          "fp": 329,
+          "fn": 59,
+          "precision": 0.4308,
+          "recall": 0.8084,
+          "f1": 0.5621
+        }
+      },
+      "test": {
+        "todo_el_gold": {
+          "pred": 290,
+          "gold": 192,
+          "tp": 185,
+          "fp": 105,
+          "fn": 7,
+          "precision": 0.6379,
+          "recall": 0.9635,
+          "f1": 0.7676
+        },
+        "gold_con_texto": {
+          "pred": 290,
+          "gold": 192,
+          "tp": 185,
+          "fp": 105,
+          "fn": 7,
+          "precision": 0.6379,
+          "recall": 0.9635,
+          "f1": 0.7676
+        },
+        "sin_pares_de_v1": {
+          "pred": 170,
+          "gold": 65,
+          "tp": 65,
+          "fp": 105,
+          "fn": 0,
+          "precision": 0.3824,
+          "recall": 1.0,
+          "f1": 0.5532
+        }
+      }
+    },
+    "B_articulado": {
+      "dev": {
+        "todo_el_gold": {
+          "pred": 592,
+          "gold": 583,
+          "tp": 380,
+          "fp": 212,
+          "fn": 203,
+          "precision": 0.6419,
+          "recall": 0.6518,
+          "f1": 0.6468
+        },
+        "gold_con_texto": {
+          "pred": 592,
+          "gold": 548,
+          "tp": 380,
+          "fp": 212,
+          "fn": 168,
+          "precision": 0.6419,
+          "recall": 0.6934,
+          "f1": 0.6667
+        },
+        "sin_pares_de_v1": {
+          "pred": 388,
+          "gold": 308,
+          "tp": 176,
+          "fp": 212,
+          "fn": 132,
+          "precision": 0.4536,
+          "recall": 0.5714,
+          "f1": 0.5057
+        }
+      },
+      "test": {
+        "todo_el_gold": {
+          "pred": 228,
+          "gold": 192,
+          "tp": 164,
+          "fp": 64,
+          "fn": 28,
+          "precision": 0.7193,
+          "recall": 0.8542,
+          "f1": 0.781
+        },
+        "gold_con_texto": {
+          "pred": 228,
+          "gold": 192,
+          "tp": 164,
+          "fp": 64,
+          "fn": 28,
+          "precision": 0.7193,
+          "recall": 0.8542,
+          "f1": 0.781
+        },
+        "sin_pares_de_v1": {
+          "pred": 113,
+          "gold": 65,
+          "tp": 49,
+          "fp": 64,
+          "fn": 16,
+          "precision": 0.4336,
+          "recall": 0.7538,
+          "f1": 0.5506
+        }
+      }
+    },
+    "C_articulado_temporal": {
+      "dev": {
+        "todo_el_gold": {
+          "pred": 580,
+          "gold": 583,
+          "tp": 379,
+          "fp": 201,
+          "fn": 204,
+          "precision": 0.6534,
+          "recall": 0.6501,
+          "f1": 0.6518
+        },
+        "gold_con_texto": {
+          "pred": 580,
+          "gold": 548,
+          "tp": 379,
+          "fp": 201,
+          "fn": 169,
+          "precision": 0.6534,
+          "recall": 0.6916,
+          "f1": 0.672
+        },
+        "sin_pares_de_v1": {
+          "pred": 377,
+          "gold": 308,
+          "tp": 176,
+          "fp": 201,
+          "fn": 132,
+          "precision": 0.4668,
+          "recall": 0.5714,
+          "f1": 0.5139
+        }
+      },
+      "test": {
+        "todo_el_gold": {
+          "pred": 224,
+          "gold": 192,
+          "tp": 164,
+          "fp": 60,
+          "fn": 28,
+          "precision": 0.7321,
+          "recall": 0.8542,
+          "f1": 0.7885
+        },
+        "gold_con_texto": {
+          "pred": 224,
+          "gold": 192,
+          "tp": 164,
+          "fp": 60,
+          "fn": 28,
+          "precision": 0.7321,
+          "recall": 0.8542,
+          "f1": 0.7885
+        },
+        "sin_pares_de_v1": {
+          "pred": 109,
+          "gold": 65,
+          "tp": 49,
+          "fp": 60,
+          "fn": 16,
+          "precision": 0.4495,
+          "recall": 0.7538,
+          "f1": 0.5632
+        }
+      }
+    },
+    "D_C_mas_verbo_en_articulo": {
+      "dev": {
+        "todo_el_gold": {
+          "pred": 397,
+          "gold": 583,
+          "tp": 281,
+          "fp": 116,
+          "fn": 302,
+          "precision": 0.7078,
+          "recall": 0.482,
+          "f1": 0.5735
+        },
+        "gold_con_texto": {
+          "pred": 397,
+          "gold": 548,
+          "tp": 281,
+          "fp": 116,
+          "fn": 267,
+          "precision": 0.7078,
+          "recall": 0.5128,
+          "f1": 0.5947
+        },
+        "sin_pares_de_v1": {
+          "pred": 243,
+          "gold": 308,
+          "tp": 127,
+          "fp": 116,
+          "fn": 181,
+          "precision": 0.5226,
+          "recall": 0.4123,
+          "f1": 0.461
+        }
+      },
+      "test": {
+        "todo_el_gold": {
+          "pred": 170,
+          "gold": 192,
+          "tp": 125,
+          "fp": 45,
+          "fn": 67,
+          "precision": 0.7353,
+          "recall": 0.651,
+          "f1": 0.6906
+        },
+        "gold_con_texto": {
+          "pred": 170,
+          "gold": 192,
+          "tp": 125,
+          "fp": 45,
+          "fn": 67,
+          "precision": 0.7353,
+          "recall": 0.651,
+          "f1": 0.6906
+        },
+        "sin_pares_de_v1": {
+          "pred": 86,
+          "gold": 65,
+          "tp": 41,
+          "fp": 45,
+          "fn": 24,
+          "precision": 0.4767,
+          "recall": 0.6308,
+          "f1": 0.543
+        }
+      }
+    },
+    "E_C_mas_verbo_en_oracion": {
+      "dev": {
+        "todo_el_gold": {
+          "pred": 265,
+          "gold": 583,
+          "tp": 210,
+          "fp": 55,
+          "fn": 373,
+          "precision": 0.7925,
+          "recall": 0.3602,
+          "f1": 0.4953
+        },
+        "gold_con_texto": {
+          "pred": 265,
+          "gold": 548,
+          "tp": 210,
+          "fp": 55,
+          "fn": 338,
+          "precision": 0.7925,
+          "recall": 0.3832,
+          "f1": 0.5166
+        },
+        "sin_pares_de_v1": {
+          "pred": 151,
+          "gold": 308,
+          "tp": 96,
+          "fp": 55,
+          "fn": 212,
+          "precision": 0.6358,
+          "recall": 0.3117,
+          "f1": 0.4183
+        }
+      },
+      "test": {
+        "todo_el_gold": {
+          "pred": 118,
+          "gold": 192,
+          "tp": 101,
+          "fp": 17,
+          "fn": 91,
+          "precision": 0.8559,
+          "recall": 0.526,
+          "f1": 0.6516
+        },
+        "gold_con_texto": {
+          "pred": 118,
+          "gold": 192,
+          "tp": 101,
+          "fp": 17,
+          "fn": 91,
+          "precision": 0.8559,
+          "recall": 0.526,
+          "f1": 0.6516
+        },
+        "sin_pares_de_v1": {
+          "pred": 45,
+          "gold": 65,
+          "tp": 28,
+          "fp": 17,
+          "fn": 37,
+          "precision": 0.6222,
+          "recall": 0.4308,
+          "f1": 0.5091
+        }
+      }
+    }
+  },
+  "config_final": "C_articulado_temporal",
+  "errores_por_categoria": {
+    "dev": {
+      "FN_sin_mencion": 76,
+      "FN_sin_texto": 35,
+      "FN_filtrado_por_reglas": 93,
+      "FP_solo_alias": 40,
+      "FP_mencion_con_verbo": 161
+    },
+    "test": {
+      "FN_filtrado_por_reglas": 21,
+      "FN_sin_mencion": 7,
+      "FP_mencion_con_verbo": 51,
+      "FP_solo_alias": 9
+    }
+  }
+}

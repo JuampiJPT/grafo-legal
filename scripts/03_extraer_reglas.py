@@ -4,7 +4,7 @@ Corre el parser de reglas (regex/AST) sobre todas las normas del corpus con text
 una evidencia por mencion resuelta. No lee el gold.
 
 Uso:
-    python scripts/03_extraer_reglas.py --corpus data/corpus_v1 --out results/reglas_v1
+    python scripts/03_extraer_reglas.py --corpus data/corpus --out results/reglas
 """
 
 import argparse
@@ -38,8 +38,8 @@ def main(corpus: Path, html_dir: Path, out: Path) -> None:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--corpus", type=Path, default=Path("data/corpus_v1"))
+    ap.add_argument("--corpus", type=Path, default=Path("data/corpus"))
     ap.add_argument("--html", type=Path, default=Path("data/textos/infoleg/html"))
-    ap.add_argument("--out", type=Path, default=Path("results/reglas_v1"))
+    ap.add_argument("--out", type=Path, default=Path("results/reglas"))
     a = ap.parse_args()
     main(a.corpus, a.html, a.out)
