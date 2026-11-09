@@ -32,11 +32,26 @@ Decisiones del modelo (D15):
 
 Hace falta Neo4j 5 (Desktop, Docker o AuraDB) y el driver de Python (`pip install neo4j`, ya en `requirements.txt`).
 
+El TP usa un contenedor propio, para no pisar otra base Neo4j de la misma máquina. Tiene otros puertos (7475 para el navegador, 7688 para Bolt) y su propio volumen:
+
+```bash
+docker run -d --name neo4j-grafo-legal \
+  -p 7475:7474 -p 7688:7687 \
+  -v neo4j-grafo-legal:/data \
+  -e NEO4J_AUTH=neo4j/<clave de 8 caracteres o más> \
+  neo4j:5
+docker logs -f neo4j-grafo-legal                     # esperar la línea "Started." y salir con Ctrl+C
+```
+
+Después se arma y se carga el grafo:
+
 ```bash
 python scripts/09_armar_grafo.py                    # arma data/grafo/ y muestra los conteos
-export NEO4J_PASSWORD=...                            # la contraseña de tu base local
-python scripts/09_armar_grafo.py --uri bolt://localhost:7687 --user neo4j --borrar
+export NEO4J_PASSWORD='<la misma clave>'
+python scripts/09_armar_grafo.py --uri bolt://localhost:7688 --user neo4j --borrar
 ```
+
+El navegador de esta base queda en http://localhost:7475, conectándose a `bolt://localhost:7688`. El contenedor se frena con `docker stop neo4j-grafo-legal` y se vuelve a levantar con `docker start neo4j-grafo-legal`; los datos quedan en el volumen.
 
 `--borrar` elimina los nodos `Norma` y `Articulo` antes de cargar, para que una recarga no duplique las menciones. El script crea las restricciones de unicidad y un índice de texto completo sobre `Articulo.texto`.
 
