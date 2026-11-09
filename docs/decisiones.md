@@ -83,8 +83,26 @@ El TP usa un único corpus, `data/corpus`: el laboral ampliado, con 340 normas y
 `scripts/07_armar_dataset.py` arma `data/dataset/` (ficha en `docs/dataset.md`):
 
 - `articulos.csv`: una fila por segmento de cada norma, con su texto limpio.
-- `pares_candidatos.csv`: una fila por par candidato, con 17 atributos y la etiqueta `en_gold`.
+- `pares_candidatos.csv`: una fila por par candidato, con 17 atributos y la etiqueta `en_gold` (20 desde D13).
 
 **Formato.** Se usa CSV, que se lee con `pandas.read_csv` y se abre en cualquier herramienta. No se usa `.npy`, porque guarda arreglos numéricos sin nombres de columna y la mitad del dataset es texto o categorías. Parquet conservaría los tipos, pero requiere `pyarrow`, que no se pudo instalar en el entorno de trabajo.
 
-**Librerías.** pandas y numpy arman el corpus y el dataset. scikit-learn queda en `requirements.txt` para el clasificador sobre `pares_candidatos.csv` y para verificar las métricas. El parser de reglas usa solo la biblioteca estándar (`re`, `csv`), para que sus reglas se lean sin capas intermedias.
+**Librerías.** pandas y numpy arman el corpus y el dataset. scikit-learn se usa en el clasificador sobre `pares_candidatos.csv` (D14). El parser de reglas usa solo la biblioteca estándar (`re`, `csv`), para que sus reglas se lean sin capas intermedias.
+
+## D13. Reglas v2 (09/11/2026)
+
+Las reglas v2 (`src/grafo_legal/extractores/reglas_v2.py`) se diseñaron solo sobre el dev del corpus único, mirando sus errores y una muestra de 30 falsos positivos (`docs/revision_manual/revision_fp_dev_30.csv`). Después se congelaron y test se evaluó una vez. Comparten con v1 la detección de menciones y la normalización. La configuración final es la F: se predice el par si hay una mención en el VISTO, o en el articulado con número cuando el origen es una ley o la oración tiene un verbo. Se descartan las citas de procedencia («t.o. por Decreto 390/76») y los adjetivos «complementarias» y «reglamentarios» dejan de contar como verbos.
+
+Resultado: F1 de 0,733 en dev y 0,828 en test, contra 0,652 y 0,788 de v1. En los 65 pares de test que no son del v1, 0,671 contra 0,563 (`results/reglas_v2/RESULTADOS.md`).
+
+Se probó y se descartó limitar las menciones del VISTO a listas cortas, porque bajaba el recall más de lo que subía la precisión. También se descartó una primera versión del filtro de procedencia que incluía «aprobado por» y «modificado por la»: atrapaba 122 menciones, 53 de ellas de pares del gold, como «Régimen de Contrato de Trabajo aprobado por la Ley 20.744».
+
+v1 queda congelado y reproducible: `03_extraer_reglas.py` sin `--parser` regenera exactamente `results/reglas/evidencias.csv`.
+
+## D14. Clasificador como punto de comparación (09/11/2026)
+
+`scripts/08_clasificador.py` entrena sobre `pares_candidatos.csv` con validación cruzada de 5 particiones en dev, agrupada por norma origen, y elige modelo y umbral por F1. El elegido es un random forest con umbral 0,45. En test da F1 0,823, empatado con las reglas v2 (0,828). Se usa como referencia estadística para los parsers LLM e híbrido, no como un cuarto parser.
+
+## D15. Modelo del grafo (09/11/2026)
+
+El grafo (`docs/grafo.md`) separa lo que registra InfoLEG (`RELACION_INFOLEG`) de lo que extrae cada parser (`RELACION_EXTRAIDA`, una arista por par y por parser). Las menciones (`MENCIONA`) salen de un nodo `Articulo` que lleva el texto. Así cada arista de reglas se rastrea hasta su fragmento, y los parsers LLM e híbrido se agregan como otro valor de `parser`. El grafo no lleva embeddings: para agregarlos hay que elegir un modelo, y eso queda abierto para F7.

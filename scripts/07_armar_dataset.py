@@ -7,6 +7,7 @@ Salidas en data/dataset/:
   articulos.csv        una fila por segmento de cada norma (encabezado, articulo, anexo o notas),
                        con su texto limpio y sus offsets. Es la entrada de los parsers LLM e hibrido.
   pares_candidatos.csv una fila por par (norma origen -> norma destino) que el detector de menciones
+                       (compartido por las reglas v1 y v2; se usan las evidencias de v2)
                        propone, con atributos numericos y categoricos y la etiqueta en_gold.
                        Es la matriz para un clasificador (scikit-learn) y para elegir ejemplos
                        few-shot.
@@ -19,7 +20,7 @@ Reglas para no filtrar informacion del gold hacia los atributos:
     (bitacora B16); cualquier ajuste o entrenamiento usa solo filas con split == "dev".
 
 Uso:
-    python scripts/07_armar_dataset.py --corpus data/corpus --res results/reglas --out data/dataset
+    python scripts/07_armar_dataset.py --corpus data/corpus --res results/reglas_v2 --out data/dataset
 """
 
 import argparse
@@ -45,12 +46,15 @@ DESCRIPCION_PARES = {
     "n_menciones": "menciones del destino en toda la norma origen",
     "n_menc_articulado": "menciones en el articulado",
     "n_menc_encabezado": "menciones en el encabezado (VISTO, CONSIDERANDO)",
+    "n_menc_visto": "menciones en el VISTO",
+    "n_menc_considerando": "menciones en el CONSIDERANDO",
+    "n_procedencia": "menciones de procedencia (t.o., 'sustituido por el articulo N del ...')",
     "n_menc_anexo": "menciones en anexos",
     "n_menc_notas": "menciones en notas de InfoLEG",
     "n_articulos": "articulos distintos que mencionan al destino",
     "frac_articulos": "n_articulos / articulos de la norma origen",
-    "verbo_en_articulo": "1 si algun articulo con la mencion tiene un verbo modificatorio",
-    "verbo_en_oracion": "1 si alguna oracion con la mencion tiene un verbo modificatorio",
+    "verbo_en_articulo": "1 si algun articulo con la mencion tiene un verbo modificatorio (reglas v2)",
+    "verbo_en_oracion": "1 si alguna oracion con la mencion tiene un verbo modificatorio (reglas v2)",
     "solo_alias": "1 si el destino solo se menciona por nombre propio, sin numero",
     "temporal_ok": "1 si el destino no es posterior a la norma origen",
     "pos_primera_mencion": "offset de la primera mencion / largo del texto (0 = al principio)",
@@ -87,6 +91,9 @@ def armar_pares(corpus: Path, res: Path, art: pd.DataFrame) -> pd.DataFrame:
     for c in ("verbo_articulo", "verbo_oracion"):
         ev[c] = (ev[c] != "").astype(int)
     ev["temporal_ok"] = (ev["temporal_ok"].astype(str) == "True").astype(int)
+    ev["procedencia"] = (ev["procedencia"].astype(str) == "True").astype(int)
+    for parte in ("visto", "considerando"):
+        ev[f"p_{parte}"] = (ev["parte"] == parte).astype(int)
     ev["es_alias"] = (ev["metodo"] == "alias").astype(int)
     for z in ("articulado", "encabezado", "anexo", "notas"):
         ev[f"z_{z}"] = (ev["zona"] == z).astype(int)
@@ -99,6 +106,9 @@ def armar_pares(corpus: Path, res: Path, art: pd.DataFrame) -> pd.DataFrame:
         "n_menc_encabezado": g["z_encabezado"].sum(),
         "n_menc_anexo": g["z_anexo"].sum(),
         "n_menc_notas": g["z_notas"].sum(),
+        "n_menc_visto": g["p_visto"].sum(),
+        "n_menc_considerando": g["p_considerando"].sum(),
+        "n_procedencia": g["procedencia"].sum(),
         "n_articulos": g["art_mencion"].nunique(),
         "verbo_en_articulo": g["verbo_articulo"].max(),
         "verbo_en_oracion": g["verbo_oracion"].max(),
@@ -161,7 +171,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--corpus", type=Path, default=Path("data/corpus"))
     ap.add_argument("--html", type=Path, default=Path("data/textos/infoleg/html"))
-    ap.add_argument("--res", type=Path, default=Path("results/reglas"))
+    ap.add_argument("--res", type=Path, default=Path("results/reglas_v2"))
     ap.add_argument("--out", type=Path, default=Path("data/dataset"))
     a = ap.parse_args()
     main(a.corpus, a.html, a.res, a.out)

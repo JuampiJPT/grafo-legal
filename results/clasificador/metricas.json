@@ -1,0 +1,123 @@
+{
+  "fecha": "2026-11-09T21:51:23.355371+00:00",
+  "semilla": 20261109,
+  "atributos": [
+    "n_menciones",
+    "n_menc_articulado",
+    "n_menc_encabezado",
+    "n_menc_visto",
+    "n_menc_considerando",
+    "n_procedencia",
+    "n_menc_anexo",
+    "n_menc_notas",
+    "n_articulos",
+    "frac_articulos",
+    "verbo_en_articulo",
+    "verbo_en_oracion",
+    "solo_alias",
+    "temporal_ok",
+    "pos_primera_mencion",
+    "largo_texto",
+    "dif_anios",
+    "destino_es_semilla",
+    "tipo_origen_decreto",
+    "tipo_origen_decreto/ley",
+    "tipo_origen_ley",
+    "tipo_destino_decreto",
+    "tipo_destino_decreto/ley",
+    "tipo_destino_ley"
+  ],
+  "modelos": {
+    "regresion_logistica": {
+      "umbral": 0.35,
+      "cv_dev": {
+        "pred": 598,
+        "gold": 583,
+        "tp": 424,
+        "fp": 174,
+        "fn": 159,
+        "precision": 0.709,
+        "recall": 0.7273,
+        "f1": 0.718
+      },
+      "cv_dev_umbral_05": {
+        "pred": 475,
+        "gold": 583,
+        "tp": 366,
+        "fp": 109,
+        "fn": 217,
+        "precision": 0.7705,
+        "recall": 0.6278,
+        "f1": 0.6919
+      }
+    },
+    "random_forest": {
+      "umbral": 0.45,
+      "cv_dev": {
+        "pred": 529,
+        "gold": 583,
+        "tp": 405,
+        "fp": 124,
+        "fn": 178,
+        "precision": 0.7656,
+        "recall": 0.6947,
+        "f1": 0.7284
+      },
+      "cv_dev_umbral_05": {
+        "pred": 476,
+        "gold": 583,
+        "tp": 372,
+        "fp": 104,
+        "fn": 211,
+        "precision": 0.7815,
+        "recall": 0.6381,
+        "f1": 0.7025
+      }
+    },
+    "gradient_boosting": {
+      "umbral": 0.2,
+      "cv_dev": {
+        "pred": 613,
+        "gold": 583,
+        "tp": 424,
+        "fp": 189,
+        "fn": 159,
+        "precision": 0.6917,
+        "recall": 0.7273,
+        "f1": 0.709
+      },
+      "cv_dev_umbral_05": {
+        "pred": 429,
+        "gold": 583,
+        "tp": 349,
+        "fp": 80,
+        "fn": 234,
+        "precision": 0.8135,
+        "recall": 0.5986,
+        "f1": 0.6897
+      }
+    }
+  },
+  "elegido": "random_forest",
+  "umbral": 0.45,
+  "test": {
+    "pred": 204,
+    "gold": 192,
+    "tp": 163,
+    "fp": 41,
+    "fn": 29,
+    "precision": 0.799,
+    "recall": 0.849,
+    "f1": 0.8232
+  },
+  "test_sin_pares_de_v1": {
+    "pred": 96,
+    "gold": 65,
+    "tp": 55,
+    "fp": 41,
+    "fn": 10,
+    "precision": 0.5729,
+    "recall": 0.8462,
+    "f1": 0.6832
+  }
+}

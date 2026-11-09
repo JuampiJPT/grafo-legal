@@ -1,0 +1,375 @@
+split,tipo,id_origen,id_destino,categoria,fragmento
+dev,FN,93,25552,FN_sin_mencion,
+dev,FN,190,25552,FN_sin_mencion,
+dev,FN,347,25552,FN_filtrado_por_reglas,
+dev,FN,347,46379,FN_sin_mencion,
+dev,FN,412,48853,FN_sin_mencion,
+dev,FN,472,51364,FN_sin_mencion,
+dev,FN,2261,25552,FN_sin_texto,
+dev,FN,2262,2261,FN_sin_texto,
+dev,FN,2262,25552,FN_sin_texto,
+dev,FN,4215,25552,FN_filtrado_por_reglas,
+dev,FN,8384,25552,FN_filtrado_por_reglas,
+dev,FN,8435,412,FN_sin_texto,
+dev,FN,8435,7968,FN_sin_texto,
+dev,FN,8716,412,FN_sin_texto,
+dev,FN,8716,7968,FN_sin_texto,
+dev,FN,9193,412,FN_sin_texto,
+dev,FN,12170,25552,FN_sin_texto,
+dev,FN,12368,170,FN_filtrado_por_reglas,
+dev,FN,12368,25552,FN_filtrado_por_reglas,
+dev,FN,13270,25552,FN_sin_texto,
+dev,FN,14175,25552,FN_filtrado_por_reglas,
+dev,FN,19061,25552,FN_sin_mencion,
+dev,FN,20420,412,FN_filtrado_por_reglas,
+dev,FN,20421,412,FN_filtrado_por_reglas,
+dev,FN,20421,25552,FN_filtrado_por_reglas,
+dev,FN,20993,96834,FN_sin_mencion,
+dev,FN,20993,96835,FN_sin_mencion,
+dev,FN,21976,25552,FN_filtrado_por_reglas,
+dev,FN,25379,25552,FN_sin_mencion,
+dev,FN,25379,109500,FN_sin_mencion,
+dev,FN,25493,412,FN_sin_texto,
+dev,FN,25493,639,FN_sin_texto,
+dev,FN,25493,15931,FN_sin_texto,
+dev,FN,25534,412,FN_sin_texto,
+dev,FN,25552,45628,FN_sin_mencion,
+dev,FN,25552,48991,FN_sin_mencion,
+dev,FN,25552,109500,FN_filtrado_por_reglas,
+dev,FN,25552,114766,FN_sin_mencion,
+dev,FN,25552,194552,FN_sin_mencion,
+dev,FN,25552,194561,FN_sin_mencion,
+dev,FN,25552,194572,FN_sin_mencion,
+dev,FN,25552,194576,FN_sin_mencion,
+dev,FN,25552,194587,FN_sin_mencion,
+dev,FN,25552,194603,FN_sin_mencion,
+dev,FN,25552,299148,FN_sin_mencion,
+dev,FN,28165,25552,FN_sin_mencion,
+dev,FN,29743,412,FN_sin_mencion,
+dev,FN,32393,412,FN_sin_mencion,
+dev,FN,32393,27971,FN_sin_mencion,
+dev,FN,32744,27971,FN_sin_texto,
+dev,FN,33822,27971,FN_sin_texto,
+dev,FN,34762,412,FN_sin_mencion,
+dev,FN,36739,25552,FN_filtrado_por_reglas,
+dev,FN,37152,412,FN_sin_mencion,
+dev,FN,37152,4215,FN_filtrado_por_reglas,
+dev,FN,37182,20993,FN_sin_mencion,
+dev,FN,37301,27971,FN_filtrado_por_reglas,
+dev,FN,37881,412,FN_sin_mencion,
+dev,FN,37881,639,FN_filtrado_por_reglas,
+dev,FN,37892,412,FN_sin_mencion,
+dev,FN,37894,25552,FN_sin_mencion,
+dev,FN,38137,412,FN_filtrado_por_reglas,
+dev,FN,38137,27971,FN_filtrado_por_reglas,
+dev,FN,38137,37882,FN_sin_mencion,
+dev,FN,38142,412,FN_sin_mencion,
+dev,FN,38621,51364,FN_sin_mencion,
+dev,FN,39194,412,FN_sin_mencion,
+dev,FN,39521,412,FN_sin_mencion,
+dev,FN,39523,412,FN_sin_mencion,
+dev,FN,39697,27971,FN_sin_texto,
+dev,FN,39713,20993,FN_sin_mencion,
+dev,FN,39793,37881,FN_sin_mencion,
+dev,FN,39984,20993,FN_sin_mencion,
+dev,FN,39995,25552,FN_sin_mencion,
+dev,FN,41000,412,FN_sin_texto,
+dev,FN,41000,15932,FN_sin_texto,
+dev,FN,41004,412,FN_sin_texto,
+dev,FN,41894,25552,FN_filtrado_por_reglas,
+dev,FN,42288,412,FN_sin_texto,
+dev,FN,42288,15932,FN_sin_texto,
+dev,FN,42571,412,FN_sin_mencion,
+dev,FN,42977,412,FN_sin_texto,
+dev,FN,42980,412,FN_sin_texto,
+dev,FN,42981,412,FN_sin_texto,
+dev,FN,42985,412,FN_sin_texto,
+dev,FN,43178,412,FN_sin_mencion,
+dev,FN,44936,412,FN_sin_mencion,
+dev,FN,45085,27971,FN_filtrado_por_reglas,
+dev,FN,45171,12368,FN_sin_mencion,
+dev,FN,45898,412,FN_sin_mencion,
+dev,FN,46248,412,FN_sin_mencion,
+dev,FN,48163,639,FN_sin_mencion,
+dev,FN,48163,12368,FN_sin_mencion,
+dev,FN,48163,15932,FN_sin_mencion,
+dev,FN,48890,48991,FN_filtrado_por_reglas,
+dev,FN,49613,25552,FN_sin_mencion,
+dev,FN,55534,20993,FN_sin_mencion,
+dev,FN,57246,25552,FN_filtrado_por_reglas,
+dev,FN,61876,412,FN_sin_mencion,
+dev,FN,61876,25552,FN_sin_mencion,
+dev,FN,61876,49613,FN_filtrado_por_reglas,
+dev,FN,63761,25552,FN_sin_mencion,
+dev,FN,64161,25552,FN_sin_mencion,
+dev,FN,64468,20993,FN_filtrado_por_reglas,
+dev,FN,64468,46379,FN_sin_mencion,
+dev,FN,65015,48890,FN_filtrado_por_reglas,
+dev,FN,65205,412,FN_sin_mencion,
+dev,FN,65205,639,FN_sin_mencion,
+dev,FN,66675,27971,FN_sin_mencion,
+dev,FN,67423,39793,FN_filtrado_por_reglas,
+dev,FN,71477,17699,FN_filtrado_por_reglas,
+dev,FN,71477,25552,FN_sin_mencion,
+dev,FN,72200,25552,FN_filtrado_por_reglas,
+dev,FN,73048,12368,FN_sin_mencion,
+dev,FN,75992,25552,FN_sin_mencion,
+dev,FN,77254,25552,FN_sin_mencion,
+dev,FN,80732,25552,FN_sin_mencion,
+dev,FN,86823,25552,FN_sin_mencion,
+dev,FN,86823,75992,FN_filtrado_por_reglas,
+dev,FN,86823,80732,FN_filtrado_por_reglas,
+dev,FN,89825,412,FN_sin_mencion,
+dev,FN,91517,86823,FN_filtrado_por_reglas,
+dev,FN,96295,109500,FN_filtrado_por_reglas,
+dev,FN,96832,96295,FN_sin_texto,
+dev,FN,96835,96295,FN_sin_texto,
+dev,FN,96835,96834,FN_sin_texto,
+dev,FN,96836,96295,FN_sin_texto,
+dev,FN,96836,96835,FN_sin_texto,
+dev,FN,97774,91518,FN_filtrado_por_reglas,
+dev,FN,101629,412,FN_sin_mencion,
+dev,FN,101629,25552,FN_sin_mencion,
+dev,FN,101629,77255,FN_sin_mencion,
+dev,FN,102666,80732,FN_sin_mencion,
+dev,FN,123332,25552,FN_filtrado_por_reglas,
+dev,FN,125474,25552,FN_filtrado_por_reglas,
+dev,FN,138939,20993,FN_sin_texto,
+dev,FN,146529,25552,FN_sin_texto,
+dev,FN,194552,194070,FN_sin_texto,
+dev,FN,194561,194070,FN_sin_texto,
+dev,FN,194587,194572,FN_sin_mencion,
+dev,FN,194587,194576,FN_sin_mencion,
+dev,FN,202294,159765,FN_filtrado_por_reglas,
+dev,FN,228207,210435,FN_filtrado_por_reglas,
+dev,FN,228208,210435,FN_filtrado_por_reglas,
+dev,FN,228750,159765,FN_filtrado_por_reglas,
+dev,FN,230553,122396,FN_filtrado_por_reglas,
+dev,FN,231910,210435,FN_filtrado_por_reglas,
+dev,FN,239209,210435,FN_filtrado_por_reglas,
+dev,FN,244051,210435,FN_filtrado_por_reglas,
+dev,FN,244052,210435,FN_filtrado_por_reglas,
+dev,FN,248204,210435,FN_filtrado_por_reglas,
+dev,FN,248204,228207,FN_filtrado_por_reglas,
+dev,FN,248204,228208,FN_filtrado_por_reglas,
+dev,FN,260628,97774,FN_sin_mencion,
+dev,FN,271092,639,FN_filtrado_por_reglas,
+dev,FN,295462,43608,FN_filtrado_por_reglas,
+dev,FN,305057,803,FN_sin_mencion,
+dev,FN,305347,42701,FN_filtrado_por_reglas,
+dev,FN,305736,639,FN_filtrado_por_reglas,
+dev,FN,308322,305347,FN_filtrado_por_reglas,
+dev,FN,312783,202004,FN_filtrado_por_reglas,
+dev,FN,327566,412,FN_filtrado_por_reglas,
+dev,FN,333564,17699,FN_filtrado_por_reglas,
+dev,FN,333564,42701,FN_sin_mencion,
+dev,FN,333564,51364,FN_sin_mencion,
+dev,FP,412,62,FP_mencion_con_verbo,"imario comenzará desde el inicio de la relación laboral, sin la exigencia del período de carencia alguna, de conformidad a lo dispuesto por las leyes 23.660 y 23.661."
+dev,FP,412,20993,FP_mencion_con_verbo,"ad de aplicación verificará el cumplimiento de las condiciones establecidas en este capítulo, con arreglo a lo dispuesto por el artículo 43 de la ley 23.551 y el artículo 26 del decreto 467/88."
+dev,FP,412,46044,FP_mencion_con_verbo,"imiento de las condiciones establecidas en este capítulo, con arreglo a lo dispuesto por el artículo 43 de la ley 23.551 y el artículo 26 del decreto 467/88."
+dev,FP,639,412,FP_mencion_con_verbo,"e jubilación o tuvieren derecho a ella de conformidad con las leyes vigentes a esa fecha, se regirá por dichas leyes. Vigencia de las leyes 21.074 y 24.013"
+dev,FP,639,20965,FP_mencion_con_verbo,rar fondos de jubilaciones y pensiones y la actividad aseguradora exclusivamente inherente a este efecto dando cumplimiento en lo pertinente a la ley 20.091 sometiéndose a su organismo de control. La AFJP así constituida quedará bajo el control y supervisión directa de la Superintendencia de Adminis
+dev,FP,729,639,FP_mencion_con_verbo,"SISTEMA INTEGRADO DE JUBILACIONES Y PENSIONES Ley Nº 24.347 Modificación de la Ley Nº 24.241. Sancionada: Junio 23 de 1994. Promulgada: Junio 27 de 1994. El Senado y Cámara de Diputados de la Nación Argentina reunidos en Congreso, etc. san"
+dev,FP,729,20965,FP_mencion_con_verbo,rar fondos de jubilaciones y pensiones y la actividad aseguradora exclusivamente inherente a este efecto dando cumplimiento en lo pertinente a la ley 20.091 sometiéndose a su organismo de control. La AFJP así constituida quedará bajo el control y supervisión directa de la Superintendencia de Adminis
+dev,FP,803,45628,FP_mencion_con_verbo,"l y Comercial de la Nación, con las modificaciones introducidas por la presente ley, al procedimiento ante el fuero del trabajo instituido por la ley 18.345."
+dev,FP,14113,46379,FP_mencion_con_verbo,"isis.Su regulación. Bs. As; 25/11/94 VISTO las disposiciones de la Ley Nacional de Empleo N° 24.013, la Ley de Convenciones Colectivas de Trabajo N° 14.250 y sus decretos reglamentarios, y CONSIDERANDO: Que en las actuales condiciones de competitividad y de integración de nuestra economía en los mer"
+dev,FP,15932,8384,FP_mencion_con_verbo,"l artículo 52 del Régimen de Contrato de Trabajo (L.C.T., t.o. 1976); b) La sección especial establecida en el artículo 13, apartado 1), del decreto 342/92; c) Los libros establecidos por la ley 12.713 y su decreto reglamentario 118.755/42 de trabajadores a domicilio; d) El libro especial del artícu"
+dev,FP,15932,16092,FP_mencion_con_verbo,"ey 20.628 (t.o. 1986 y sus modificaciones) por las utilidades que generen; b) Exención en el impuesto al valor agregado, texto sustituido por la ley 23.349 y sus modificaciones, de toda la operatoria que se desarrolle con motivo de los mismos. Los aportes de capital y los aportes al fondo de riesgo "
+dev,FP,15932,17699,FP_mencion_con_verbo,"s de garantía recíproca instituidos bajo este régimen, gozarán del siguiente tratamiento impositivo: a) Exención en el impuesto a las ganancias, ley 20.628 (t.o. 1986 y sus modificaciones) por las utilidades que generen; b) Exención en el impuesto al valor agregado, texto sustituido por la ley 23.34"
+dev,FP,15932,25552,FP_mencion_con_verbo,"ARTICULO 88. — El incumplimiento de las obligaciones registrales previstas en esta sección o en la ley 20.744 (t.o. 1976) podrá ser sancionado hasta con la exclusión del régimen de la presente ley, además de las penalidades establecidas en las leyes 18.694, 2"
+dev,FP,15932,29273,FP_mencion_con_verbo,ecreto reglamentario 118.755/42 de trabajadores a domicilio; d) El libro especial del artículo 122 del Régimen Nacional de Trabajo Agrario de la ley 22.248;
+dev,FP,15932,48991,FP_mencion_con_verbo,"o (L.C.T., t.o. 1976); b) La sección especial establecida en el artículo 13, apartado 1), del decreto 342/92; c) Los libros establecidos por la ley 12.713 y su decreto reglamentario 118.755/42 de trabajadores a domicilio; d) El libro especial del artículo 122 del Régimen Nacional de Trabajo Agrario "
+dev,FP,20965,24541,FP_mencion_con_verbo,"ntrará en vigencia a los seis (6) meses de su promulgación, y desde tal fecha quedará derogado el ""Régimen legal de superintendencia de seguros"", ley 11.672, edición 1943, artículo 150 (t.o. en 1962), así como el artículo 52 del decreto ley 14.682/46 (ley 12.921); el artículo 39 de la ley 15.021; el"
+dev,FP,24541,63368,FP_mencion_con_verbo,"e la Ley número 4.349. Quedan modificadas las leyes números 4.661, 8.999, 9.104, 9.105, 9.148, 9.661, 9.688, 10.505, 11.127, 11.278, 11.317, 11.338, 11.544 y 11.640 en la forma que establece este artículo."
+dev,FP,24541,194070,FP_mencion_con_verbo,"Art. 37. — Con excepción de las multas previstas en los artículos 13 y 14 de la Ley número 11.317, al importe de las multas que se hicieren efectivas por infracciones a las leyes del trabajo en jurisdicción nacional se destinará: a) Un 10% para l"
+dev,FP,29273,25552,FP_mencion_con_verbo,"ARTICULO 3° .- Sustitúyese el texto del artículo 2º del Régimen de Contrato de Trabajo, aprobado por Ley N° 20.744 y modificado por Ley N° 21.297, por el siguiente: ""Art. 2º -- La vigencia de esta ley quedará condicionada a que la aplicación de sus disposiciones"
+dev,FP,36110,639,FP_mencion_con_verbo,"DEL SEGURO DE SALUD. Art 5º — (Reglamentario del artículo 15). 1. No corresponde el pago del retiro transitorio por invalidez previsto en la Ley Nº 24.241 durante el período de provisionalidad de la Incapacidad Laboral Permanente Total (IPT), quedando exclusivamente a cargo de la Aseguradora o del e"
+dev,FP,36739,62,FP_mencion_con_verbo,Art. 55.- Para el cobro de los aportes y contribuciones previstos en las leyes 23.660 y 23.661 serán igualmente competentes los juzgados en lo civil y comercial de la jurisdicción que corresponda.
+dev,FP,39793,62,FP_mencion_con_verbo,virtud de tales causales el trabajador no realice la prestación laboral a su cargo. Sólo tributará las contribuciones establecidas en las Leyes Nros. 23.660 y 23.661.
+dev,FP,39793,639,FP_mencion_con_verbo,"ducibles en el futuro por la DGI; c) Los viáticos de viajantes de comercio acreditados con comprobantes en los términos del articulo 6° de la Ley N° 24.241, y los reintegros de automóvil en las mismas condiciones que las especificadas en el inciso anterior; d) El comodato de casa-habitación de propi"
+dev,FP,41869,639,FP_mencion_con_verbo,"Social los beneficios sociales y demás prestaciones que establece la Ley N° 24.700. Bs. As., 12/2/97 VISTO la Ley N° 20.744 (t o. 1976), la Ley N° 24.241, la Ley N° 24.700, y CONSIDERANDO: Que es procedente establecer con certeza el concepto de ""gastos médicos' mencionados por el inciso d) del artíc"
+dev,FP,41894,37152,FP_mencion_con_verbo,"rol de las Concesiones de la Red de Accesos a la Ciudad de Buenos Aires. Bs. As., 19/12/96 VISTO lo establecido por la Ley Nº 24.629, el Decreto Nº 558 de fecha 24 de mayo de 1996, el Decreto Nº 1994 del 23 de septiembre de 1993, y lo propuesto por el MINISTERIO DE ECONOMIA Y OBRAS Y SERVICIOS PUBLI"
+dev,FP,43608,42760,FP_mencion_con_verbo,"sposiciones relativas al despido, indemnizaciones, antigüedad y enfermedad contenidas en la presente ley tienen el alcance y retroactividad de la ley 11.729. Los casos no contemplados específicamente serán resueltos de acuerdo con las disposiciones de la misma. Accidentes y enfermedades inculpables "
+dev,FP,43703,639,FP_mencion_con_verbo,"y a los trabajadores autónomos. Modificación de los Decretos Nros. 334/96 y 717/96. Bs. As., 29/5/97. VISTO las Leyes Nros. 19.587, 22.250, 24.013, 24.241, 24.465, 24.557 y 24.714, los Decretos Nros. 1342 de fecha 17 de septiembre de 1981; 340 de fecha 24 de febrero de 1992; 334 de fecha 1° de abril"
+dev,FP,44300,639,FP_mencion_con_verbo,"ente del Registro de la SUPERINTENDENCIA DE RIESGOS DEL TRABAJO SRT Nº 0235/97 dependiente del MINISTERIO DE TRABAJO Y SEGURIDAD SOCIAL, las Leyes Nº 24.241, Nº 24.557 y los Decretos Nº 170 de fecha 21 de febrero de 1996, Nº 659 de fecha 24 de junio de 1996, el Nº 717 del 28 de junio de 1996 y el De"
+dev,FP,44300,40574,FP_mencion_con_verbo,"º 24.557 y los Decretos Nº 170 de fecha 21 de febrero de 1996, Nº 659 de fecha 24 de junio de 1996, el Nº 717 del 28 de junio de 1996 y el Decreto Nº 1338 de fecha 25 de noviembre de 1996, y CONSIDERANDO: Que la Ley Nº 24.557 sobre Riesgos del Trabajo (L.R.T.) establece que las prestaciones correspo"
+dev,FP,44967,15931,FP_mencion_con_verbo,"del artículo 7° del Decreto N° 2725/91, reglamentario del artículo 28 de la Ley N° 24.013. Bs. As., 4/8/97. B. O.: 8/8/97. VISTO las Leyes N° 24.013, 24.465, 24.467 y el Decreto N° 2725 de fecha 26 de diciembre de 1.991, y CONSIDERANDO: Que la sujeción de las modalidades de contratación promovidas d"
+dev,FP,44967,15932,FP_mencion_con_verbo,"culo 7° del Decreto N° 2725/91, reglamentario del artículo 28 de la Ley N° 24.013. Bs. As., 4/8/97. B. O.: 8/8/97. VISTO las Leyes N° 24.013, 24.465, 24.467 y el Decreto N° 2725 de fecha 26 de diciembre de 1.991, y CONSIDERANDO: Que la sujeción de las modalidades de contratación promovidas de la Ley"
+dev,FP,46211,48853,FP_mencion_con_verbo,"Privado. Organización y Financiamiento. Bs. As., 2/10/97 B.O., 7/10/97 VISTO, los artículos 1º, 2º, 3º y concordantes de la Ley Nº 24.013, la Ley Nº 22.520 (T.O. 1992), y CONSIDERANDO: Que el PODER EJECUTIVO NACIONAL tiene la obligación de dirigir sus políticas a mejorar la situación socioeconómica "
+dev,FP,48163,62,FP_mencion_con_verbo,"LADOS Y PENSIONADOS, la SECRETARIA DE DESARROLLO SOCIAL de la PRESIDENCIA DE LA NACION y/o las obras sociales del artículo 1º del inciso al de la ley 23.660. El ejercicio de la opción deberá realizarse antes del día 30 de junio de 1998. El PODER EJECUTIVO NACIONAL deberá prever, en el proyecto de le"
+dev,FP,48163,39523,FP_mencion_con_verbo,"PARA EL EMPLEO, LA PRODUCCION Y EL CRECIMIENTO de fecha 12 de agosto de 1993, ratificado por el Decreto 1.807/93 y prorrogado por las leyes 24.671 y 24.699. Facúltase al JEFE DE GABINETE DE MINISTROS a disponer las ampliaciones presupuestarias necesarias para la atención de la mencionada cancelación"
+dev,FP,51973,44099,FP_mencion_con_verbo,"o 2. Bs. As., 20/7/98 VISTO lo dispuesto por la Ley Nº 24.557 que estableciera el sistema nacional en materia de RIESGOS DEL TRABAJO; el Decreto Nº 559 del 20 de junio de 1997, y CONSIDERANDO: Que el artículo 1º, apartado 2, inc. b) de la citada norma legal, consagra como uno de los objetivos del s"
+dev,FP,53159,20993,FP_mencion_con_verbo,", incluirán en su composición un representante delegado del personal, que reúna las condiciones establecidas en el artículo 40 y siguientes de la Ley 23.551, nominado por la asociación sindical."
+dev,FP,63208,412,FP_mencion_con_verbo,"or tiempo indeterminado, a excepción del contrato de trabajo caracterizado en el artículo 96 de la Ley de Contrato de Trabajo 20.744 (texto según ley 24.013), se entiende celebrado a prueba durante los primeros tres (3) meses. Los convenios colectivos de trabajo pueden modificar dicho plazo hasta un"
+dev,FP,63208,15932,FP_mencion_con_verbo,"rabajo pueden modificar dicho plazo hasta un período de seis (6) meses. Si el empleador es una pequeña empresa definida por el artículo 83 de la ley 24.467, el contrato de trabajo por tiempo indeterminado se entenderá celebrado a prueba durante los primeros seis (6) meses. En este último caso los co"
+dev,FP,63208,20993,FP_mencion_con_verbo,"con los delegados del personal o miembros de la comisión interna en un número que no exceda la representación establecida en el artículo 45 de la ley 23.551 hasta el número de doscientos (200) trabajadores, cualquiera fuere el tamaño de la empresa o el número de trabajadores que se desempeñare. En c"
+dev,FP,63208,25379,FP_mencion_con_verbo,"tos productivos por parte de los trabajadores excedentes. B) En la negociación del convenio colectivo de crisis prevista en el artículo 20 de la ley 24.522, la empresa informará a la representación sindical de sus trabajadores acerca de las siguientes circunstancias: a) causas de la crisis y sus rep"
+dev,FP,64555,412,FP_mencion_con_verbo,"to indemnizatorio establecido en el presente artículo, no será acumulable a las indemnizaciones previstas por los artículos 8°, 9°, 10 y 15 de la Ley 24.013."
+dev,FP,65015,62,FP_mencion_con_verbo,"as prestaciones de la seguridad social contempladas en las Leyes 24.241 y sus modificaciones, 24.714 y su modificatoria, 19.032 y sus modificaciones, 23.660 y sus modificaciones y 23.661 y sus modificaciones."
+dev,FP,65015,38264,FP_mencion_con_verbo,"doras de riesgos de trabajo, quienes lo abonarán previo a la transferencia de los recursos que correspondan. A este solo efecto ratifícase el decreto 863 del 27 de julio de 1998. CAPITULO IV Régimen especial para la determinación y percepción de los aportes y contribuciones con destino al Sistema Un"
+dev,FP,65583,639,FP_mencion_con_verbo,"ARTICULO 8° — De las obligaciones del empleador. Los empleadores están obligados al cumplimiento de las disposiciones del artículo 12 de la Ley 24.241, además de: a) Efectuar la inscripción del artículo 7°, inciso a), de la Ley 24.013; b) Depositar los importes que correspondan al aporte destinado"
+dev,FP,65620,639,FP_mencion_con_verbo,"cación del Fondo para Fines Específicos, creado por el Decreto Nº 590/97. Bs. As., 28/12/2000 VISTO el Expediente S.R.T Nº 3248/00, las Leyes Nros. 24.241 y 24.557 y sus modificatorias, los Decretos Nº 559 del 20 de junio de 1997, Nº 590 del 30 de junio de 1997 y Nº 170 del 21 de febrero de 1996, y "
+dev,FP,66686,639,FP_mencion_con_verbo,"ey N° 24.557. Bs. As., 6/4/2001 VISTO el Expediente del Registro de la SUPERINTENDENCIA DE RIESGOS DEL TRABAJO (S.R.T.) N° 0150/01, las Leyes Nros. 24.241 y 24.557 y sus modificatorias, los Decretos N° 658 de fecha 24 de junio de 1996, N° 659 de fecha 24 de junio de 1996, N° 717 de fecha 28 de junio"
+dev,FP,66686,37572,FP_mencion_con_verbo,"del Registro de la SUPERINTENDENCIA DE RIESGOS DEL TRABAJO (S.R.T.) N° 0150/01, las Leyes Nros. 24.241 y 24.557 y sus modificatorias, los Decretos N° 658 de fecha 24 de junio de 1996, N° 659 de fecha 24 de junio de 1996, N° 717 de fecha 28 de junio de 1996, N° 478 de fecha 30 de abril de 1998, N° 12"
+dev,FP,66686,37813,FP_mencion_con_verbo,"la naturaleza laboral del accidente, debidamente fundadas y deducidas dentro del plazo establecido en el artículo 6°, párrafo segundo del Decreto N° 717/96 modificado por el artículo 22 del Decreto N° 491/97, será emitido por el Organo que a tal efecto determine la SUPERINTENDENCIA DE RIESGOS DEL TR"
+dev,FP,69724,15931,FP_mencion_con_verbo,"ión para el Otorgamiento de Subsidios Financieros. Bs. As., 4/11/2001 VISTO, las Leyes Nos. 20.744, 22.248, 23.660, 23.661, 24.013, 24.156, 24.241, 24.465, 24.557, 24.714, 25.326 y Decreto Ley Nº 327 del 14 de enero de 1956; los Decretos Nos. 576 del 1º de abril de 1993, 292 del 14 de agosto de 1995"
+dev,FP,69724,29273,FP_mencion_con_verbo,"Garantía de Continuidad de la Cobertura. Limitación para el Otorgamiento de Subsidios Financieros. Bs. As., 4/11/2001 VISTO, las Leyes Nos. 20.744, 22.248, 23.660, 23.661, 24.013, 24.156, 24.241, 24.465, 24.557, 24.714, 25.326 y Decreto Ley Nº 327 del 14 de enero de 1956; los Decretos Nos. 576 del 1"
+dev,FP,72195,25552,FP_mencion_con_verbo,"del Decreto Nº 2072/94, regulatorio del denominado Plan para Empresas en Crisis. Bs. As., 8/2/2002 VISTO las Leyes Nº 14.786 y sus modificatorias, 20.744 (t.o. 1976) y sus modificatorias, Nº 24.013, Nº 25.013, los Decretos Nº 328/88, 2072/94, y CONSIDERANDO Que mediante el Título III, Capítulo VI de"
+dev,FP,72195,53159,FP_mencion_con_verbo,"n para Empresas en Crisis. Bs. As., 8/2/2002 VISTO las Leyes Nº 14.786 y sus modificatorias, 20.744 (t.o. 1976) y sus modificatorias, Nº 24.013, Nº 25.013, los Decretos Nº 328/88, 2072/94, y CONSIDERANDO Que mediante el Título III, Capítulo VI de la Ley Nº 24.013 se estableció el procedimiento preve"
+dev,FP,72195,77254,FP_mencion_con_verbo,"s. Bs. As., 8/2/2002 VISTO las Leyes Nº 14.786 y sus modificatorias, 20.744 (t.o. 1976) y sus modificatorias, Nº 24.013, Nº 25.013, los Decretos Nº 328/88, 2072/94, y CONSIDERANDO Que mediante el Título III, Capítulo VI de la Ley Nº 24.013 se estableció el procedimiento preventivo de crisis de empre"
+dev,FP,73048,25534,FP_mencion_con_verbo,"ARTICULO 53. — Prorrógase el plazo de duración del FONDO FIDUCIARIO PARA EL DESARROLLO PROVINCIAL creado por Decreto Nº 286 de fecha 27 de febrero de 1995, hasta el día 27 de febrero de 2025, de conformidad con lo previsto por el artículo 4º inciso c) de la Ley Nº 24.441."
+dev,FP,77254,48853,FP_mencion_con_verbo,"ón de trabajo. Bs. As., 8/3/1988 VISTO el Título X, Capítulo V. y el art. 247 de la L.C.T. (t.o.), y lo dispuesto por el art. 23 inciso 5 de la Ley 22.520 (t.o.), y CONSIDERANDO Que se hace necesario fijar los recaudos que deben implementar los empleadores para disponer suspensiones, reducciones hor"
+dev,FP,79332,71477,FP_mencion_con_verbo,"el Expediente del Registro de la SUPERINTENDENCIA DE RIESGOS DEL TRABAJO (S.R.T.) Nº 1202/02, la Ley Nº 24.557 y sus modificatorias y las Leyes Nros. 25.561 y 25.563, los Decretos Nros. 334 de fecha 8 de abril de 1996 y 491 de fecha 4 de junio de 1997, y CONSIDERANDO: Que mediante la Ley Nº 24.557 s"
+dev,FP,80732,46379,FP_mencion_con_verbo,"os los trabajadores del sector privado, en relación de dependencia, comprendidos en el régimen de negociación colectiva, en los términos de la Ley N° 14.250 y sus modificatorias. Excepciones. Bs. As., 19/12/2002 VISTO el artículo 14 bis de la CONSTITUCION NACIONAL, los Convenios N° 98 y N° 154 de la"
+dev,FP,80732,71477,FP_mencion_con_verbo,"culo 14 bis de la CONSTITUCION NACIONAL, los Convenios N° 98 y N° 154 de la ORGANIZACION INTERNACIONAL DEL TRABAJO (O.I.T.), las Leyes N° 23.661 y N° 25.561, los Decretos N° 486 de fecha 12 de marzo de 2002, N° 762 de fecha 6 de mayo de 2002, N° 1273 de fecha 17 de julio de 2002, N° 1371 de fecha 31"
+dev,FP,83055,46379,FP_mencion_con_verbo,"en las unidades de negociación colectiva de las condiciones laborales. Reglamentación de la Ley N° 25.674. Bs. As., 7/3/2003 VISTO las Leyes Nros. 14.250 T.O. por Decreto N° 108/88, y sus modificatorias, 23.546 y su modificatoria N° 25.250, 23.551 y su modificatoria N° 25.674, 24.185, los Decretos N"
+dev,FP,85275,43703,FP_mencion_con_verbo,"ueva forma de determinación del valor de la cuota omitida, conforme el apartado 1 del artículo 17 del Decreto N° 334/96, modificado por el Decreto N° 491/97 y sustituido por el presente Decreto, será de aplicación a todas las cuotas omitidas no abonadas hasta la fecha de publicación del presente."
+dev,FP,86104,8767,FP_mencion_con_verbo,"Expediente Nº 1-2015-1072784/2003 del Registro del MINISTERIO DE TRABAJO, EMPLEO Y SEGURIDAD SOCIAL; las Leyes Nº 24.013 y Nº 25.735, los Decretos Nº 739 de fecha 29 de abril de 1992, Nº 565 de fecha 3 de abril de 2002 y Nº 39 de fecha 7 de enero de 2003, y CONSIDERANDO: Que el Decreto Nº 39/03 pror"
+dev,FP,86820,7968,FP_mencion_con_verbo,"lo 140 de la Ley Nº 24.013. Bs. As., 10/7/2003 VISTO el artículo 14 bis de la CONSTITUCION NACIONAL, las Leyes Nº 24.013 y Nº 25.561, el Decreto Nº 2725 de fecha 26 de diciembre de 1991 y la Resolución del CONSEJO NACIONAL DEL EMPLEO, LA PRODUCTIVIDAD Y EL SALARIO MINIMO, VITAL Y MOVIL Nº 02 de fech"
+dev,FP,86820,71477,FP_mencion_con_verbo,"prendidos en el artículo 140 de la Ley Nº 24.013. Bs. As., 10/7/2003 VISTO el artículo 14 bis de la CONSTITUCION NACIONAL, las Leyes Nº 24.013 y Nº 25.561, el Decreto Nº 2725 de fecha 26 de diciembre de 1991 y la Resolución del CONSEJO NACIONAL DEL EMPLEO, LA PRODUCTIVIDAD Y EL SALARIO MINIMO, VITAL"
+dev,FP,91517,46379,FP_mencion_con_verbo,"dos los trabajadores del sector privado, en relación de dependencia, comprendidos en el régimen de negociación colectiva en los términos de la Ley N° 14.250 y sus modificatorios. Excepciones. Bs. As., 29/12/2003 VISTO el Expediente Nº 1.080.319/2003 del Registro del MINISTERIO DE TRABAJO, EMPLEO Y S"
+dev,FP,91518,71477,FP_mencion_con_verbo,"21/2003 del Registro del MINISTERIO DE TRABAJO, EMPLEO Y SEGURIDAD SOCIAL, el artículo 14 bis de la CONSTITUCION NACIONAL, las Leyes Nros. 24.013, N° 25.561, N° 25.820, el Decreto N° 388 de fecha 10 de julio de 2003, y CONSIDERANDO: Que con arreglo al inciso 2) del artículo 1° de la Ley Nº 25.561, m"
+dev,FP,93595,412,FP_mencion_con_verbo,"las partes signatarias del convenio colectivo, en el marco del procedimiento preventivo de crisis previsto en el Título III, Capítulo VI de la Ley Nº 24.013. El convenio de crisis deberá instrumentarse por un lapso temporal determinado."" Capítulo VI- Fomento de la Negociación Colectiva."
+dev,FP,93595,20993,FP_mencion_con_verbo,"comprenda y se integrará también con delegados del personal, en un número que no exceda la representación establecida en el artículo 45 de la Ley Nº 23.551 hasta un máximo de CUATRO (4), cualquiera sea el número de trabajadores comprendidos en el convenio colectivo de trabajo de que se trate. Capítu"
+dev,FP,93595,80046,FP_mencion_con_verbo,"2º de esta ley, se constituirá la comisión negociadora con representantes sindicales, la que deberá integrarse respetando lo establecido en la Ley Nº 25.674, y la representación de los empleadores. Las partes podrán concurrir a las negociaciones con asesores técnicos con voz pero sin voto. a) Las pa"
+dev,FP,96089,639,FP_mencion_con_verbo,"erivado de la apli- cación de la promoción que se reglamenta, mediante el procedimiento establecido en el artículo 188, Párrafo Segundo, de la Ley Nº 24.241, incorporado por la Ley Nº 24.463."
+dev,FP,96089,63208,FP_mencion_con_verbo,"Art. 13. — Sin perjuicio de la derogación del artículo 2º de la Ley Nº 25.250, los beneficios ya otorgados por dicha norma subsistirán mientras se encuentren en vigencia los contratos individuales en función de los cuales fuera"
+dev,FP,96295,46379,FP_mencion_con_verbo,"ida por un funcionario del Ministerio de Trabajo y Seguridad Social y tendrá las facultades que otorgan los artículos 15, 16 y concordantes de la Ley 14.250."
+dev,FP,96344,42760,FP_mencion_con_verbo,"enumeradas en el art. 159 del Código de Comercio tendrán derecho a percibir una indemnización cuyo monto será el doble de la prevista en la ley núm. 11.729. En caso de que el despido sea por disminución o falta de trabajo fehacientemente justificada, todo empleado y obrero comprendido en las disposi"
+dev,FP,97774,7968,FP_mencion_con_verbo,"Expediente Nº 1.094.514/2004 del Registro del MINISTERIO DE TRABAJO, EMPLEO Y SEGURIDAD SOCIAL, la Ley Nº 24.013 y sus modificatorias, el Decreto Nº 2725 de fecha 26 de diciembre de 1991, los Decretos de Necesidad y Urgencia Nros. 388 de fecha 10 de julio de 2003 y 1349 de fecha 29 de diciembre de 2"
+dev,FP,102666,46379,FP_mencion_con_verbo,"el artículo 14 bis de la CONSTITUCION NACIONAL, los Convenios Nro. 98 y Nro. 154 de la ORGANIZACION INTERNACIONAL DEL TRABAJO (O.I.T.), las Leyes N° 14.250 (t.o. 2004), N° 20.744 (t.o. 1976) y sus modificatorias, N° 25.561, N° 25.820, N° 25.972 y los Decretos Nros. 392 de fecha 10 de julio de 2003 y"
+dev,FP,102666,71477,FP_mencion_con_verbo,"98 y Nro. 154 de la ORGANIZACION INTERNACIONAL DEL TRABAJO (O.I.T.), las Leyes N° 14.250 (t.o. 2004), N° 20.744 (t.o. 1976) y sus modificatorias, N° 25.561, N° 25.820, N° 25.972 y los Decretos Nros. 392 de fecha 10 de julio de 2003 y 1347 de fecha 29 de diciembre de 2003, y CONSIDERANDO: Que oportun"
+dev,FP,114315,46379,FP_solo_alias,"/2006 del Registro del MINISTERIO DE TRABAJO, EMPLEO Y SEGURIDAD SOCIAL, la Ley de Contrato de Trabajo Nº 20.744 (t.o. 1976) y sus modificatorias, la Ley de Convenciones Colectivas de Trabajo de la Administración Pública Nacional Nº 24.185, la Ley Marco de Regulación del Empleo Público Nacional Nº 2"
+dev,FP,116783,24541,FP_mencion_con_verbo,"de la citadaentidad. Bs. As., 30/5/2006 VISTO el Expediente Nº 00151/06 del Registro de la SUPERINTENDENCIA DE RIESGOS DEL TRABAJO (SRT), la Ley Nº 11.672 Complementaria Permanente de Presupuesto (T.O. 2005) y sus modificatorias, la Ley Nº 26.078 aprobatoria del Presupuesto de la Administración Naci"
+dev,FP,116783,25552,FP_mencion_con_verbo,"s modificatorias, la Ley Nº 26.078 aprobatoria del Presupuesto de la Administración Nacional para el Ejercicio 2006, la Ley de Contrato de Trabajo Nº 20.744 (t.o. 1976) y la Ley Nº 24.557 y sus respectivas modificatorias, la Resolución del entonces MINISTERIO DE TRABAJO Y SEGURIDAD SOCIAL Nº 637 de "
+dev,FP,123332,38568,FP_mencion_con_verbo,"aordinarios, gastos de comida y órdenes de pasaje y carga para el personal de la Administración Pública Nacional y sus modificatorios y el Decreto Nº 911 del 18 de julio de 2006, y CONSIDERANDO: Que por el Decreto Nº 911/06 se homologó el Acta Acuerdo por la que se aprobó el nuevo régimen de viático"
+dev,FP,124532,114315,FP_mencion_con_verbo,"entralizadas detalladas en el Anexo I del Convenio Colectivo de Trabajo General para la Administración Pública Nacional, homologado por el Decreto Nº 214/2006, con honorarios mensuales no superiores a los pesos dos mil ciento sesenta y cuatro por dedicación completa, o cifra equivalente cuando la de"
+dev,FP,148719,25552,FP_mencion_con_verbo,"te artículo a los trabajadores eventuales incorporados bajo el régimen de contratación previsto en el artículo 99 de la Ley de Contrato de Trabajo Nº 20.744 (t.o. 1976), los trabajadores contratados en el marco del régimen propio de la Industria de la Construcción conforme artículo 35 y concordantes"
+dev,FP,148719,29273,FP_mencion_con_verbo,"de Contrato de Trabajo Nº 20.744 (T.O. 1976) y sus modificatorias, y los trabajadores no permanentes del Régimen Nacional del Trabajo Agrario Ley Nº 22.248.)"
+dev,FP,158649,17938,FP_mencion_con_verbo,su definición en el momento de su adjudicación. Película nacional: Película que cumple con los requisitos establecidos por el artículo 8º de la ley 17.741 (t.o. 2001) y sus modificatorias. Permiso : Título que expresa de modo excepcional la posibilidad de realizar transmisiones experimentales para i
+dev,FP,158649,25552,FP_mencion_con_verbo,"modificatorios, se transfiere a Radio y Televisión Argentina Sociedad del Estado en los términos y condiciones previstos en el artículo 229 de la ley 20.744 (t.o. 1976) y sus modificatorias y el artículo 44 de la ley 12.908. Es principio de interpretación de la presente la preservación de los derech"
+dev,FP,158649,43608,FP_mencion_con_verbo,ad del Estado en los términos y condiciones previstos en el artículo 229 de la ley 20.744 (t.o. 1976) y sus modificatorias y el artículo 44 de la ley 12.908. Es principio de interpretación de la presente la preservación de los derechos de los trabajadores que se desempeñan en las emisoras detalladas
+dev,FP,169694,190,FP_mencion_con_verbo,"to 1028/2010 Servicio de telegrama laboral. Modifícase el Decreto Nº 150/96. Bs. As., 19/7/2010 VISTO las Leyes Nros. 20.744 y sus modificatorias, 23.789 y 24.487, y CONSIDERANDO: Que la Cámara de Diputados de la Nación aprobó una declaración en cuanto a que vería con agrado que el PODER EJECUTIVO N"
+dev,FP,192152,62,FP_mencion_con_verbo,la protección por desempleo: a) La prestación económica por desempleo; b) Prestaciones médico-asistenciales de acuerdo a lo dispuesto por las leyes 23.660 y sus modificatorias y 23.661; c) Pago de las asignaciones familiares que correspondieren a cargo de la Administración Nacional de la Seguridad S
+dev,FP,192152,21112,FP_mencion_con_verbo,"blecido en la presente ley; c) Por los convenios y acuerdos colectivos, celebrados de conformidad con lo previsto por las leyes 14.250 (t.o. 2004) y 23.546 (t.o. 2004), y por los laudos con fuerza de tales; d) Por las resoluciones de la Comisión Nacional de Trabajo Agrario (CNTA) y de la Comisión Na"
+dev,FP,192152,27971,FP_mencion_con_verbo,"dad que deberán reunir los lugares de trabajo, las maquinarias, las herramientas y demás elementos de trabajo, sin perjuicio de lo previsto en la ley 24.557 y sus normas modificatorias y complementarias, o las que en el futuro la reemplacen, y de la consulta que en esta materia deba realizar a la Su"
+dev,FP,192152,46379,FP_mencion_con_verbo,"ídico específico establecido en la presente ley; c) Por los convenios y acuerdos colectivos, celebrados de conformidad con lo previsto por las leyes 14.250 (t.o. 2004) y 23.546 (t.o. 2004), y por los laudos con fuerza de tales; d) Por las resoluciones de la Comisión Nacional de Trabajo Agrario (CNTA"
+dev,FP,203798,37572,FP_mencion_con_verbo,"es competentes deberán ajustar sus informes, dictámenes y pronunciamientos al Listado de Enfermedades Profesionales previsto como Anexo I del Decreto 658/96 y a la Tabla de Evaluación de Incapacidades prevista como Anexo I del Decreto 659/96 y sus modificatorios, o los que los sustituyan en el futur"
+dev,FP,203798,37573,FP_mencion_con_verbo,"de Enfermedades Profesionales previsto como Anexo I del Decreto 658/96 y a la Tabla de Evaluación de Incapacidades prevista como Anexo I del Decreto 659/96 y sus modificatorios, o los que los sustituyan en el futuro. Capítulo II Ordenamiento de la Gestión del Régimen"
+dev,FP,203798,159765,FP_mencion_con_verbo,"entiende por régimen de reparación al conjunto integrado por esta ley, por la Ley de Riesgos del Trabajo 24.557 y sus modificatorias, por el Decreto 1694/09, sus normas complementarias y reglamentarias, y por las que en el futuro las modifiquen o sustituyan."
+dev,FP,207088,25552,FP_mencion_con_verbo,"º de la presente. Dichos trabajos especiales no configuran un contrato de trabajo en relación de dependencia regido por la Ley de Contrato de Trabajo 20.744 (t.o. 1976) y sus modificatorias, sin perjuicio de los estímulos previstos en los incisos a) y b) del artículo 26 de esta ley. Capítulo III De "
+dev,FP,210489,412,FP_mencion_con_verbo,", que perciban una remuneración superior al salario mínimo, vital y móvil. d) No serán aplicables al presente régimen las disposiciones de las leyes 24.013 y sus modificatorias, 25.323 y 25.345; e) Las empleadas o empleados del Régimen Especial de Contrato de Trabajo para el Personal de Casas Partic"
+dev,FP,210489,45628,FP_mencion_con_verbo,"tre las partes, tanto antes como después de la recepción de las pruebas ofrecidas. Serán admitidas todas las medidas de prueba establecidas en la ley 18.345, salvo las que por su naturaleza desvirtúen el sumario del procedimiento o no sean compatibles con las características peculiares de esta relac"
+dev,FP,210489,64555,FP_mencion_con_verbo,"ón superior al salario mínimo, vital y móvil. d) No serán aplicables al presente régimen las disposiciones de las leyes 24.013 y sus modificatorias, 25.323 y 25.345; e) Las empleadas o empleados del Régimen Especial de Contrato de Trabajo para el Personal de Casas Particulares se encuentran comprend"
+dev,FP,210489,65015,FP_mencion_con_verbo,"or al salario mínimo, vital y móvil. d) No serán aplicables al presente régimen las disposiciones de las leyes 24.013 y sus modificatorias, 25.323 y 25.345; e) Las empleadas o empleados del Régimen Especial de Contrato de Trabajo para el Personal de Casas Particulares se encuentran comprendidos en e"
+dev,FP,230553,43703,FP_mencion_con_verbo,"L del MINISTERIO DE TRABAJO, EMPLEO Y SEGURIDAD SOCIAL, las Leyes Nros. 20.744, 24.013 y 24.557, y sus respectivas modificaciones, los Decretos Nros. 491 del 29 de mayo de 1997 y 1.694 del 22 de noviembre de 2006, y CONSIDERANDO: Que conforme dispone la Ley de Contrato de Trabajo Nº 20.744 (t.o. 197"
+dev,FP,230592,62,FP_mencion_con_verbo,"la aplicación de la reducción señalada. No se encuentran comprendidas dentro de lo dispuesto en este artículo las contribuciones previstas en la ley 23.660 y sus modificatorias, con destino a las obras sociales, como tampoco las cuotas destinadas a las Aseguradoras de Riesgos del Trabajo, previstas "
+dev,FP,230592,25552,FP_mencion_con_verbo,En el caso de los trabajadores contratados a tiempo parcial en los términos del artículo 92 ter del Régimen de Contrato de Trabajo aprobado por ley 20.744 (t.o. 1976) el empleador deberá ingresar el setenta y cinco por ciento (75%) de las citadas contribuciones. Las reducciones citadas no podrán afe
+dev,FP,230592,27971,FP_mencion_con_verbo,"s modificatorias, con destino a las obras sociales, como tampoco las cuotas destinadas a las Aseguradoras de Riesgos del Trabajo, previstas en la ley 24.557 y sus modificatorias."
+dev,FP,230592,45628,FP_mencion_con_verbo,"de la Justicia Nacional del Trabajo deban remitir a la Administración Federal de Ingresos Públicos, según lo establecido en el artículo 132 de la Ley 18.345 (t.o. por decreto 106/98)."
+dev,FP,230592,141449,FP_mencion_con_verbo,"didos en el régimen de sustitución de aportes y contribuciones emergentes de Convenios de Corresponsabilidad Gremial suscriptos en el marco de la ley 26.377, gozarán de una reducción de sus contribuciones vigentes con destino a los siguientes subsistemas de la seguridad social: a) Sistema Integrado "
+dev,FP,230592,210489,FP_mencion_con_verbo,"excluidos del presente régimen los trabajadores encuadrados en el Régimen Especial de Contrato de Trabajo para el Personal de Casas Particulares, ley 26.844. Capítulo II Régimen de Promoción de la Contratación de Trabajo Registrado"
+dev,FP,231910,32715,FP_mencion_con_verbo,"N° 1.110 del 27 de julio de 2011, el Decreto N° 390 de fecha 9 de abril de 2013, el Decreto N° 1.369 de fecha 12 de setiembre de 2013, el Decreto N° 84 de fecha 23 de enero de 2014, los Decretos Nros. 352 y 353 de fecha 21 de marzo de 2014, y la Resolución DE ANSES N° 27 del 4 de febrero de 2014 y C"
+dev,FP,239209,32715,FP_mencion_con_verbo,"el Decreto Nº 1.110 del 27 de julio de 2011, el Decreto Nº 390 del 9 de abril de 2013, el Decreto Nº 1.369 del 12 de setiembre de 2013, el Decreto Nº 84 del 23 de enero de 2014, los Decretos Nros. 352 y 353 del 21 de marzo de 2014, el Decreto Nº 1.048 del 7 de julio de 2014, y la Resolución DE ANSES"
+dev,FP,244051,32715,FP_mencion_con_verbo,"el Decreto N° 1.110 del 27 de julio de 2011, el Decreto N° 390 del 9 de abril de 2013, el Decreto N° 1.369 del 12 de setiembre de 2013, el Decreto N° 84 del 23 de enero de 2014, los Decretos Nros. 352 y 353 del 21 de marzo de 2014, el Decreto N° 1.048 del 7 de julio de 2014, el Decreto N° 2.258 del "
+dev,FP,244052,32715,FP_mencion_con_verbo,"el Decreto N° 1.110 del 27 de julio de 2011, el Decreto N° 390 del 9 de abril de 2013, el Decreto N° 1.369 del 12 de setiembre de 2013, el Decreto N° 84 del 23 de enero de 2014, los Decretos Nros. 352 y 353 del 21 de marzo de 2014, el Decreto N° 1.048 del 7 de julio de 2014, el Decreto N° 2.258 del "
+dev,FP,248822,21112,FP_mencion_con_verbo,"blecido en la presente ley; c) Por los convenios y acuerdos colectivos, celebrados de conformidad con lo previsto por las leyes 14.250 (t.o. 2004) y 23.546 (t.o. 2004), y por los laudos con fuerza de tales; d) Por los usos y costumbres. Serán de aplicación supletoria al presente régimen estatutario "
+dev,FP,248822,46379,FP_mencion_con_verbo,"ídico específico establecido en la presente ley; c) Por los convenios y acuerdos colectivos, celebrados de conformidad con lo previsto por las leyes 14.250 (t.o. 2004) y 23.546 (t.o. 2004), y por los laudos con fuerza de tales; d) Por los usos y costumbres. Serán de aplicación supletoria al presente"
+dev,FP,248822,53159,FP_mencion_con_verbo,"s; d) Por los usos y costumbres. Serán de aplicación supletoria al presente régimen estatutario las disposiciones establecidas en las leyes 24.013, 25.013, 25.323 y 25.345 o las que en el futuro las reemplacen."
+dev,FP,248822,65015,FP_mencion_con_verbo,"os y costumbres. Serán de aplicación supletoria al presente régimen estatutario las disposiciones establecidas en las leyes 24.013, 25.013, 25.323 y 25.345 o las que en el futuro las reemplacen."
+dev,FP,263691,25379,FP_mencion_con_verbo,"declarados en estado de quiebra, respecto de los cuales no se haya dispuesto la continuidad de la explotación, conforme a lo establecido en las leyes 24.522 y sus modificaciones o 25.284 y sus modificaciones, mientras duren los efectos de dicha declaración; b) Los condenados por alguno de los delito"
+dev,FP,263691,230592,FP_mencion_con_verbo,e corresponder la baja de la inscripción del contribuyente del Registro Público de Empleadores con Sanciones Laborales (REPSAL) contemplado en la ley 26.940.
+dev,FP,266446,48853,FP_mencion_con_verbo,"bajo. Buenos Aires, 12/10/2016 VISTO los artículos 14, 14 bis, 99, inciso 1° y 100, inciso 1° de la CONSTITUCIÓN NACIONAL, la Ley de Ministerios N° 22.520 (texto ordenado por Decreto N° 438/92) y sus modificatorias, las Leyes Nros. 20.744 (t.o. 1976) y sus modificatorias y 24.013 y sus modificatoria"
+dev,FP,272119,25552,FP_mencion_con_verbo,"or las partes así como las resoluciones homologatorias, pasarán en autoridad de cosa juzgada administrativa en los términos del artículo 15 de la ley 20.744 (t.o. 1976). Las resoluciones de la respectiva comisión médica jurisdiccional y de la Comisión Médica Central deberán ser notificadas a las par"
+dev,FP,272119,48163,FP_mencion_con_verbo,ARTÍCULO 13. — Sustitúyese el texto del artículo 37 de la ley 24.557 (reemplazado por el artículo 74 de la ley 24.938) por el siguiente:
+dev,FP,272119,159765,FP_mencion_con_verbo,"iones adicionales de pago único, incorporadas al artículo 11 de la ley 24.557 y sus modificatorias, y los importes mínimos establecidos en el decreto 1694/09, se deberán incrementar conforme la variación del índice RIPTE (Remuneraciones Imponibles Promedio de los Trabajadores Estables), desde el 1° "
+dev,FP,272119,166910,FP_mencion_con_verbo,"administrativa o judicialmente, deberán ser depositadas en la “cuenta sueldo” del respectivo trabajador, creada en virtud de lo establecido en la ley 26.590 y normativa complementaria y siempre que aquella se encuentre disponible."
+dev,FP,274411,80046,FP_mencion_con_verbo,"catorias, la Ley de Asociaciones Sindicales N° 23.551 y su Decreto reglamentario N° 467 del 14 de abril de 1988, las Leyes Nros. 14.250 (t.o. 2004) y 25.674, los Decretos Nros. 357 del 21 de febrero de 2002, sus modificatorios y complementarios, 214 de fecha 27 de febrero de 2006, 13 de fecha 10 de "
+dev,FP,305057,25552,FP_mencion_con_verbo,"o, podrán requerir su homologación judicial; f) En los asuntos laborales se aplica lo dispuesto en el artículo 277 de la Ley de Contrato de Trabajo, 20.744; g) La revocación del poder o patrocinio no anulará el contrato de honorarios, salvo que aquélla hubiese sido motivada por culpa del abogado o p"
+dev,FP,305214,263691,FP_mencion_con_verbo,"97 de la ley 24.241 y sus modificaciones, se aplicará un índice combinado entre el previsto en el inciso b) del apartado I del artículo 5° de la ley 27.260 y su modificatorio y el índice establecido por la Remuneración Promedio de los Trabajadores Estables."
+dev,FP,305347,69649,FP_mencion_con_verbo,"ARTÍCULO 78.- Modifícase el artículo 1° del decreto 1.382 del 9 de agosto de 2012, el que quedará redactado de la siguiente manera:"
+dev,FP,305736,48853,FP_mencion_con_verbo,"PODER EJECUTIVO NACIONAL Decreto 27/2018 Desburocratización y Simplificación. Ciudad de Buenos Aires, 10/01/2018 VISTO la Ley N° 22.520, texto ordenado por los Decretos Nros. 438 de fecha 12 de marzo de 1992, 2 de fecha 2 de enero de 2017 y 64 de fecha 24 de enero de 2017, y sus modif"
+dev,FP,305736,69649,FP_mencion_con_verbo,"ARTÍCULO 149.- Incorpórase el inciso 23) del artículo 8 del Decreto de Necesidad y Urgencia Nº 1.382 de fecha 9 de agosto de 2012, el que quedará redactado de la siguiente manera: “23) Percibir comisiones derivadas de la gestión de la administración"
+dev,FP,312783,93595,FP_mencion_con_verbo,"6/07/2018 VISTO el Expediente N° EX-2018-34934818-ANSES-DGDNYP#ANSES, las Leyes Nros. 24.013, 24.241, 24.714 y sus modificatorias y complementarias, 25.877, 27.160, 27.426, 26.940 y los Decretos Nros. 1245 de fecha 1° de noviembre de 1996,1.667 de fecha 12 de septiembre de 2012, 1668 de fecha 12 de "
+dev,FP,312783,230592,FP_mencion_con_verbo,"diente N° EX-2018-34934818-ANSES-DGDNYP#ANSES, las Leyes Nros. 24.013, 24.241, 24.714 y sus modificatorias y complementarias, 25.877, 27.160, 27.426, 26.940 y los Decretos Nros. 1245 de fecha 1° de noviembre de 1996,1.667 de fecha 12 de septiembre de 2012, 1668 de fecha 12 de septiembre de 2012 y 69"
+dev,FP,312783,305214,FP_mencion_con_verbo,"el Expediente N° EX-2018-34934818-ANSES-DGDNYP#ANSES, las Leyes Nros. 24.013, 24.241, 24.714 y sus modificatorias y complementarias, 25.877, 27.160, 27.426, 26.940 y los Decretos Nros. 1245 de fecha 1° de noviembre de 1996,1.667 de fecha 12 de septiembre de 2012, 1668 de fecha 12 de septiembre de 20"
+dev,FP,323967,639,FP_mencion_con_verbo,"N° 1694/2009. Modificación. Ciudad de Buenos Aires, 05/06/2019 VISTO el EX-2018-66395564-APN-GAJYN#SRT, las Leyes N° 20.091 y sus modificaciones, N° 24.241 y sus modificatorias, N° 24.557 y sus modificaciones, N° 26.417 y su modificatoria, N° 26.773 y sus modificaciones, N° 27.348, los Decretos N° 8"
+dev,FP,323967,20965,FP_mencion_con_verbo,"ECTO-2019-404-APN-PTE - Decreto N° 1694/2009. Modificación. Ciudad de Buenos Aires, 05/06/2019 VISTO el EX-2018-66395564-APN-GAJYN#SRT, las Leyes N° 20.091 y sus modificaciones, N° 24.241 y sus modificatorias, N° 24.557 y sus modificaciones, N° 26.417 y su modificatoria, N° 26.773 y sus modificacion"
+dev,FP,323967,203798,FP_mencion_con_verbo,"GAJYN#SRT, las Leyes N° 20.091 y sus modificaciones, N° 24.241 y sus modificatorias, N° 24.557 y sus modificaciones, N° 26.417 y su modificatoria, N° 26.773 y sus modificaciones, N° 27.348, los Decretos N° 833 de fecha 25 de agosto de 1997 y N° 1694 de fecha 5 de noviembre de 2009, la Resolución de "
+dev,FP,323967,272119,FP_mencion_con_verbo,"sus modificaciones, N° 24.241 y sus modificatorias, N° 24.557 y sus modificaciones, N° 26.417 y su modificatoria, N° 26.773 y sus modificaciones, N° 27.348, los Decretos N° 833 de fecha 25 de agosto de 1997 y N° 1694 de fecha 5 de noviembre de 2009, la Resolución de la SUPERINTENDENCIA DE RIESGOS DE"
+dev,FP,329046,412,FP_mencion_con_verbo,"TO el Expediente N° EX-2019-86742054- -APN-DGD#MPYT, las Leyes Nros. 14.250 (t.o. 2004), 20.744 (t.o. 1976) y sus modificatorias, 23.546 (t.o. 2004), 24.013, sus modificaciones, 25.212, sus modificatorias y 27.345, y CONSIDERANDO: Que a través del Régimen de Convenciones Colectivas de Trabajo del Se"
+dev,FP,329046,21112,FP_mencion_con_verbo,"res, 25/09/2019 VISTO el Expediente N° EX-2019-86742054- -APN-DGD#MPYT, las Leyes Nros. 14.250 (t.o. 2004), 20.744 (t.o. 1976) y sus modificatorias, 23.546 (t.o. 2004), 24.013, sus modificaciones, 25.212, sus modificatorias y 27.345, y CONSIDERANDO: Que a través del Régimen de Convenciones Colectiva"
+dev,FP,329046,61876,FP_mencion_con_verbo,"86742054- -APN-DGD#MPYT, las Leyes Nros. 14.250 (t.o. 2004), 20.744 (t.o. 1976) y sus modificatorias, 23.546 (t.o. 2004), 24.013, sus modificaciones, 25.212, sus modificatorias y 27.345, y CONSIDERANDO: Que a través del Régimen de Convenciones Colectivas de Trabajo del Sector Privado, regulado por l"
+dev,FP,329214,272119,FP_mencion_con_verbo,". Modificación. Ciudad de Buenos Aires, 27/09/2019 VISTO el Expediente N° EX-2019-84575440-APN- -GA#SSN, la Leyes Nros. 24.557, sus modificaciones y 27.348 y la Resolución de la SUPERINTENDENCIA DE SEGUROS DE LA NACIÓN N° 41.155 del 6 de diciembre de 2017, y CONSIDERANDO: Que el Sistema de Riesgos d"
+dev,FP,333564,15932,FP_mencion_con_verbo,"de Ingresos Públicos, que encuadren y se encuentren inscriptos como Micro, Pequeñas o Medianas Empresas, según los términos del artículo 2° de la ley 24.467 y sus modificatorias y demás normas complementarias, podrán acogerse, por las obligaciones vencidas al 30 de noviembre de 2019 inclusive, o inf"
+dev,FP,333564,230592,FP_mencion_con_verbo,"corresponder, la baja de la inscripción del contribuyente del Registro Público de Empleadores con Sanciones Laborales (REPSAL) contemplado en la ley 26.940."
+test,FN,336262,333564,FN_filtrado_por_reglas,
+test,FN,344033,27971,FN_filtrado_por_reglas,
+test,FN,349059,44300,FN_filtrado_por_reglas,
+test,FN,349059,336262,FN_filtrado_por_reglas,
+test,FN,352106,25552,FN_filtrado_por_reglas,
+test,FN,370565,65583,FN_filtrado_por_reglas,
+test,FN,370565,353032,FN_filtrado_por_reglas,
+test,FN,389071,639,FN_filtrado_por_reglas,
+test,FN,389071,114315,FN_filtrado_por_reglas,
+test,FN,395521,190,FN_sin_mencion,
+test,FN,395521,45628,FN_sin_mencion,
+test,FN,401266,51364,FN_sin_mencion,
+test,FN,405522,391051,FN_filtrado_por_reglas,
+test,FN,412998,46044,FN_filtrado_por_reglas,
+test,FN,416468,114315,FN_filtrado_por_reglas,
+test,FN,423680,16092,FN_filtrado_por_reglas,
+test,FN,423680,17699,FN_filtrado_por_reglas,
+test,FN,423680,42701,FN_sin_mencion,
+test,FN,423680,48890,FN_filtrado_por_reglas,
+test,FN,423680,51364,FN_sin_mencion,
+test,FN,423680,332890,FN_sin_mencion,
+test,FN,426270,46044,FN_filtrado_por_reglas,
+test,FN,426270,122396,FN_filtrado_por_reglas,
+test,FN,426270,229909,FN_sin_mencion,
+test,FP,336003,412,FP_mencion_con_verbo,"diente N° EX-2020-20649155-APN-DGDMT#MPYT, el Decreto de Necesidad y Urgencia N° 260 del 12 de marzo de 2020, las Leyes Nros. 27.541, 27.264, 25.371, 24.013, 20.744 (T.O. 1976) y sus modificaciones, 14.250 (t.o. 2004) y sus modificaciones, 11.683 (texto ordenado en 1978) y sus modificaciones, y los "
+test,FP,336262,33757,FP_mencion_con_verbo,"0 y su modificatorio, Nº 297 de fecha 19 de marzo de 2020, Nº 325 de fecha 31 de marzo de 2020 y N° 355 de fecha 11 de abril de 2020, los Decretos N° 170 de fecha 21 de febrero de 1996, Nº 658 de fecha 24 junio de 1996 y sus modificatorios, y Nº 590 de fecha 30 de junio de 1997, y CONSIDERANDO: Que "
+test,FP,336262,65620,FP_mencion_con_verbo,"19.587, N° 24.241, N° 24.557, Nº 26.122, N° 26.773, N° 27.348, y Nº 27.541 y sus respectivas modificatorias, los Decretos de Necesidad y Urgencia N° 1278 de fecha 28 de diciembre de 2000, Nº 260 de fecha 12 de marzo de 2020 y su modificatorio, Nº 297 de fecha 19 de marzo de 2020, Nº 325 de fecha 31 "
+test,FP,341093,17699,FP_mencion_con_verbo,"rará conforme las pautas que se establezcan en la negociación colectiva, y quedará exenta del pago del impuesto a las ganancias establecido en la ley 20.628 (t. o. 2019) y sus modificatorias."
+test,FP,346406,639,FP_mencion_con_verbo,"2021 DECNU-2021-39-APN-PTE - Amplíase plazo. Ciudad de Buenos Aires, 22/01/2021 VISTO el Expediente N° EX-2021-03652265-APN-DGD#MT, las Leyes Nros. 24.241, 24.557, 26.122, 26.773, 27.348 y 27.541, los Decretos de Necesidad y Urgencia Nros. 34 del 13 de diciembre de 2019, 260 del 12 de marzo de 2020,"
+test,FP,346406,44300,FP_mencion_con_verbo,"0, 875 del 7 de noviembre de 2020, 891 del 13 de noviembre de 2020, 961 del 29 de noviembre de 2020, 1033 del 20 de diciembre de 2020 y el Decreto Nº 590 del 30 de junio de 1997 y sus respectivas normas modificatorias y complementarias, y CONSIDERANDO: Que la protección preferente de las trabajadora"
+test,FP,346406,203798,FP_mencion_con_verbo,"TE - Amplíase plazo. Ciudad de Buenos Aires, 22/01/2021 VISTO el Expediente N° EX-2021-03652265-APN-DGD#MT, las Leyes Nros. 24.241, 24.557, 26.122, 26.773, 27.348 y 27.541, los Decretos de Necesidad y Urgencia Nros. 34 del 13 de diciembre de 2019, 260 del 12 de marzo de 2020, 297 del 19 de marzo de "
+test,FP,346406,272119,FP_mencion_con_verbo,"líase plazo. Ciudad de Buenos Aires, 22/01/2021 VISTO el Expediente N° EX-2021-03652265-APN-DGD#MT, las Leyes Nros. 24.241, 24.557, 26.122, 26.773, 27.348 y 27.541, los Decretos de Necesidad y Urgencia Nros. 34 del 13 de diciembre de 2019, 260 del 12 de marzo de 2020, 297 del 19 de marzo de 2020, 32"
+test,FP,346406,333564,FP_mencion_con_verbo,"zo. Ciudad de Buenos Aires, 22/01/2021 VISTO el Expediente N° EX-2021-03652265-APN-DGD#MT, las Leyes Nros. 24.241, 24.557, 26.122, 26.773, 27.348 y 27.541, los Decretos de Necesidad y Urgencia Nros. 34 del 13 de diciembre de 2019, 260 del 12 de marzo de 2020, 297 del 19 de marzo de 2020, 329 del 31 "
+test,FP,352106,263691,FP_mencion_con_verbo,"s modificaciones, 24.714 y sus modificaciones, 24.977 y sus modificatorias, 25.994, 26.425 y sus modificatorias, 26.485 y sus modificatorias, 26.970, 27.260 y sus modificatorias, 27.360 y 27.532; los Decretos Nros. 1454 del 25 de noviembre de 2005, 1602 del 29 de octubre de 2009 y 840 del 4 de novie"
+test,FP,353032,61181,FP_mencion_con_verbo,"960638-APN-DGD#MT las Leyes Nros. 20.744 (t.o. 1976), sus modificatorias y complementarias, 24.013 y sus modificaciones, 24.714 y sus modificaciones, 25.191 y su modificatoria y 26.727 y su modificatoria, los Decretos Nros. 1602 de fecha 29 de octubre de 2009 y 592 de fecha 15 de abril de 2016 y las"
+test,FP,361039,33757,FP_mencion_con_verbo,"res, 17/02/2022 VISTO el Expediente N° EX-2022-02800846-APN-GCP#SRT, la Ley 24.557 y sus modificaciones y normas complementarias, los Decretos Nros. 170 del 21 de febrero de 1996, 590 del 30 de junio de 1997 y sus modificatorios, 260 del 12 de marzo de 2020 y sus respectivas prórrogas, 367 del 13 de"
+test,FP,362578,46379,FP_mencion_con_verbo,"TRABAJO”, ratificado por el ANEXO “A” de la Ley N° 25.212, la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificatorias, las Leyes Nros. 14.250 (t.o. 2004), 26.844 y 27.555 y el fallo de la CORTE SUPREMA DE JUSTICIA DE LA NACIÓN de fecha 21 de octubre de 2021, dictado en autos “Etcheverr"
+test,FP,362578,341093,FP_mencion_con_verbo,"ANEXO “A” de la Ley N° 25.212, la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificatorias, las Leyes Nros. 14.250 (t.o. 2004), 26.844 y 27.555 y el fallo de la CORTE SUPREMA DE JUSTICIA DE LA NACIÓN de fecha 21 de octubre de 2021, dictado en autos “Etcheverry, Juan Bautista y otros c/ "
+test,FP,370565,412,FP_mencion_con_verbo,"19.032 y sus modificatorias, la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificatorias, la Ley N° 22.250 y su modificatoria, la Ley N° 24.013 y sus modificatorias, la Ley Nacional del Sistema Integrado de Jubilaciones y Pensiones N° 24.241 y sus modificatorias, la Ley N° 24.714 y sus "
+test,FP,376814,15932,FP_mencion_con_verbo,"663-APN-DGD#MT, la “Ley de Impuesto a las Ganancias” N° 20.744 (t.o. 1976) y sus modificatorias, las Leyes Nros. 22.250, 24.013 y sus modificatorias, 24.467 y sus modificatorias, 26.122, 26.727 y su modificatoria, 26.844 y la Resolución del CONSEJO NACIONAL DEL EMPLEO, LA PRODUCTIVIDAD Y EL SALARIO "
+test,FP,376814,17699,FP_solo_alias,"DO Decreto 841/2022 DECNU-2022-841-APN-PTE - Asignación. Ciudad de Buenos Aires, 16/12/2022 VISTO el Expediente Nº EX-2022-134781663-APN-DGD#MT, la “Ley de Impuesto a las Ganancias” N° 20.744 (t.o. 1976) y sus modificatorias, las Leyes Nros. 22.250, 24.013 y sus modificatorias, 24.467 y sus modifica"
+test,FP,389071,412,FP_mencion_con_verbo,"los Bienes Personales (t.o. por Anexo I del Decreto N° 281//97) y sus modificatorias, las Leyes Nros. 20.744 (t.o.1976) y sus modificatorias, 22.250, 24.013 y sus modificatorias, 24.467 y sus modificatorias, 24.977, 26.122, 26.727 y su modificatoria, 26.844 y su modificación, y CONSIDERANDO: Que el "
+test,FP,389071,15932,FP_mencion_con_verbo,"or Anexo I del Decreto N° 281//97) y sus modificatorias, las Leyes Nros. 20.744 (t.o.1976) y sus modificatorias, 22.250, 24.013 y sus modificatorias, 24.467 y sus modificatorias, 24.977, 26.122, 26.727 y su modificatoria, 26.844 y su modificación, y CONSIDERANDO: Que el objetivo del GOBIERNO NACIONA"
+test,FP,389071,25493,FP_mencion_con_verbo,"O el Expediente Nº EX-2023-100346402-APN-DGD#MT, la Ley N° 23.966, Título VI de Impuesto sobre los Bienes Personales (t.o. por Anexo I del Decreto N° 281//97) y sus modificatorias, las Leyes Nros. 20.744 (t.o.1976) y sus modificatorias, 22.250, 24.013 y sus modificatorias, 24.467 y sus modificatoria"
+test,FP,389071,210489,FP_mencion_con_verbo,"20.744 (t.o.1976) y sus modificatorias, 22.250, 24.013 y sus modificatorias, 24.467 y sus modificatorias, 24.977, 26.122, 26.727 y su modificatoria, 26.844 y su modificación, y CONSIDERANDO: Que el objetivo del GOBIERNO NACIONAL es impulsar el desarrollo productivo articulado con la creación de empl"
+test,FP,395521,114578,FP_mencion_con_verbo,"ARTÍCULO 326.- Sustitúyese el artículo 45 de la Ley Nº 26.522, modificado por el Decreto 267 del 29 de diciembre de 2015, por el siguiente: “ARTICULO 45.- Multiplicidad de Licencias. A fin de garantizar los principios de diversidad, pluralid"
+test,FP,401266,17699,FP_mencion_con_verbo,"erá del veinticinco por ciento (25%) no resultando de aplicación sobre dichas utilidades la escala prevista en el inciso a) del artículo 73 de la ley 20.628 de Impuesto a las Ganancias, texto ordenado en 2019 y sus modificaciones; b) Los VPU podrán, para las inversiones que realicen, optar por pract"
+test,FP,401266,25379,FP_mencion_con_verbo,"27.401, o cuyos socios o accionistas se encuentren en dicha situación; b) Los declarados en estado de quiebra, en los términos de las leyes 19.551 y 24.522 y sus modificatorias, según corresponda; c) Los condenados, con condena confirmada en segunda instancia, con fundamento en las leyes 23.771 o 24"
+test,FP,401266,73048,FP_mencion_con_verbo,"liminados. Queda excluido de las facultades de este artículo: el Fondo Fiduciario para Subsidios de Consumos Residenciales de Gas, creado por la ley 25.565 y ampliado y modificado por ley 27.637."
+test,FP,412998,401266,FP_mencion_con_verbo,"de Derechos Económicos, Sociales y Culturales, el Pacto Internacional de Derechos Civiles y Políticos, las Leyes Nros. 23.551 y sus modificaciones y 27.742 y el Decreto N° 467 del 14 de abril de 1988 y sus modificatorios, y CONSIDERANDO: Que el artículo 14 bis de la CONSTITUCIÓN NACIONAL consagra, e"
+test,FP,415990,37572,FP_mencion_con_verbo,"diente N° EX-2024-118578333-APN-DGD#MT, las Leyes Nros. 24.557 y sus modificaciones, 26.773 y sus modificaciones, 27.348 y 27.742, los Decretos Nros. 658 y 659, ambos del 24 de junio de 1996 y sus respectivos modificatorios, la Resolución del MINISTERIO DE CAPITAL HUMANO N° 718 del 15 de noviembre d"
+test,FP,415990,203798,FP_mencion_con_verbo,"Modificación . Ciudad de Buenos Aires, 05/08/2025 VISTO el Expediente N° EX-2024-118578333-APN-DGD#MT, las Leyes Nros. 24.557 y sus modificaciones, 26.773 y sus modificaciones, 27.348 y 27.742, los Decretos Nros. 658 y 659, ambos del 24 de junio de 1996 y sus respectivos modificatorios, la Resolució"
+test,FP,415990,272119,FP_mencion_con_verbo,"nos Aires, 05/08/2025 VISTO el Expediente N° EX-2024-118578333-APN-DGD#MT, las Leyes Nros. 24.557 y sus modificaciones, 26.773 y sus modificaciones, 27.348 y 27.742, los Decretos Nros. 658 y 659, ambos del 24 de junio de 1996 y sus respectivos modificatorios, la Resolución del MINISTERIO DE CAPITAL "
+test,FP,415990,401266,FP_mencion_con_verbo,", 05/08/2025 VISTO el Expediente N° EX-2024-118578333-APN-DGD#MT, las Leyes Nros. 24.557 y sus modificaciones, 26.773 y sus modificaciones, 27.348 y 27.742, los Decretos Nros. 658 y 659, ambos del 24 de junio de 1996 y sus respectivos modificatorios, la Resolución del MINISTERIO DE CAPITAL HUMANO N°"
+test,FP,417788,639,FP_mencion_con_verbo,"e en el pago de una prestación mensual equivalente al setenta por ciento (70%) del haber mínimo jubilatorio garantizado al que hace referencia la ley 24.241, sus complementarias y modificatorias, y se actualiza de conformidad a lo establecido por el ordenamiento jurídico vigente en la materia. Facúl"
+test,FP,417788,207088,FP_mencion_con_verbo,"lo social de discapacidad y accesibilidad en municipios; e) Disponer el financiamiento adecuado y sostenible para el efectivo cumplimiento de la ley 26.816, actualizando la asignación mensual estímulo de acuerdo al equivalente del porcentaje del salario mínimo vital y móvil vigente dispuesto, asegur"
+test,FP,423680,639,FP_mencion_con_verbo,entralizado actuante en la órbita del Ministerio de Economía; d) Los viáticos acreditados con comprobantes en los términos del artículo 6° de la ley 24.241; e) El reintegro con comprobantes de las sumas que resulten por el uso por parte del trabajador del transporte público de pasajeros correspondie
+test,FP,423680,25379,FP_mencion_con_verbo,"27.401, o cuyos socios o accionistas se encuentren en dicha situación; b. Los declarados en estado de quiebra, en los términos de las leyes 19.551 y 24.522 y sus modificatorias, según corresponda; c. Los condenados, con condena confirmada en segunda instancia, con fundamento en la ley 24.769 y sus m"
+test,FP,423680,27971,FP_mencion_con_verbo,"cobro de aportes, contribuciones o cuotas, será competente el juez del domicilio del demandado. En las causas iniciadas en los términos de las leyes 24.557 y sus modificaciones y 27.348, se estará a la competencia territorial prevista en ellas."
+test,FP,423680,37573,FP_mencion_con_verbo,"las condiciones allí establecidas, entre ellas, la estricta aplicación de la Tabla de Evaluación de Incapacidades Laborales, aprobada por el Decreto 659/96 y sus modificatorios. En tal orden, se aclara que corresponderá: a) En los casos en que no existan peritos médicos judiciales en las condiciones"
+test,FP,423680,61876,FP_mencion_con_verbo,"por la Comisión de Garantías en ejercicio de sus facultades, dará lugar a la aplicación de las sanciones establecidas por las leyes 14.786, 23.551 y 25.212, sus modificatorias y sus normas reglamentarias y complementarias, según corresponda. La falta de cumplimiento del deber de trabajar por las per"
+test,FP,423680,80046,FP_mencion_con_verbo,"uerdo a la personería gremial otorgada. En cualquiera de los casos, la representación sindical deberá integrarse respetando lo establecido en la ley 25.674. La representación de los empleadores -cualquiera sea su nivel- se acreditará conforme lo disponga la Secretaría de Trabajo, Empleo y Seguridad "
+test,FP,423680,166910,FP_mencion_con_verbo,"laborales se efectivizará mediante depósito bancario: a) En la cuenta sueldo del respectivo trabajador, creada en virtud de lo establecido en la ley 26.590 y su normativa complementaria y siempre que aquella se encuentre disponible; b) Excepcionalmente y sólo en caso de ausencia de la primera, en au"
+test,FP,423680,230592,FP_mencion_con_verbo,"tro Público de Empleadores con Sanciones Laborales (REPSAL), creado por la Ley de Promoción del Trabajo Registrado y Prevención del Fraude Laboral N° 26.940 y sus modificaciones, por el tiempo que permanezcan en ese registro; y/o b) Incurran en prácticas de uso abusivo del beneficio establecido por "
+test,FP,423680,333564,FP_mencion_con_verbo,"ción las disposiciones del Capítulo 3 del Título IV de la Ley de Solidaridad Social y Reactivación Productiva en el Marco de la Emergencia Pública N° 27.541 y sus modificatorias, de la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificatorias, de la ley N° 22.250 y su modificatoria y de "
+test,FP,423680,401266,FP_mencion_con_verbo,dores independientes y sus colaboradores en los términos del artículo 97 de la Ley de Bases y Puntos de Partida para la Libertad de los Argentinos Nº 27.742; f. A los prestadores independientes de plataformas tecnológicas conforme la regulación específica; g. Al personal embarcado comprendido en el 
+test,FP,426270,46379,FP_mencion_con_verbo,"ECTO-2026-407-APN-PTE - Disposiciones. Ciudad de Buenos Aires, 29/05/2026 VISTO el Expediente N° EX-2026-53036291-APN-DGDTEYSS#MCH, las Leyes Nros. 14.250 (t. o. 2004) y sus modificaciones, 20.744 (t.o. 1976) y sus modificaciones, 22.250 y su modificatoria, 23.551 y sus modificaciones, 24.013 y sus "
+test,FP,426271,62,FP_mencion_con_verbo,"e la Ley de Modernización Laboral N° 27.802 comprende, además de los destinos allí detallados, al Régimen de Obras Sociales establecido por la Ley N° 23.660 y sus modificaciones, al Régimen de Riesgos del Trabajo de la Ley N° 24.557 y sus modificaciones y al Seguro Colectivo de Vida Obligatorio (SCV"
+test,FP,426271,27971,FP_mencion_con_verbo,"s allí detallados, al Régimen de Obras Sociales establecido por la Ley N° 23.660 y sus modificaciones, al Régimen de Riesgos del Trabajo de la Ley N° 24.557 y sus modificaciones y al Seguro Colectivo de Vida Obligatorio (SCVO) establecido por el Decreto N° 1567 del 20 de noviembre de 1974 y sus modi"
+test,FP,427798,423680,FP_mencion_con_verbo,"/2026 VISTO el Expediente N° EX-2026-69278765-APN-CGDTEYS#MCH, las Leyes Nros. 14.250 (t.o. 2004) y sus modificaciones, 23.551 y sus modificaciones, 27.802 y los Decretos Nros. 199 del 15 de febrero de 1988 y sus modificatorios, 467 del 14 de abril de 1988 y sus modificatorios y 407 del 29 de mayo d"
