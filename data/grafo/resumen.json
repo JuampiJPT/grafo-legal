@@ -1,0 +1,22 @@
+{
+  "nodos": {
+    "Norma": 340,
+    "Articulo": 8066
+  },
+  "relaciones": {
+    "TIENE_ARTICULO": 8066,
+    "RELACION_INFOLEG": 775,
+    "RELACION_EXTRAIDA": {
+      "reglas_v1": 804,
+      "reglas_v2": 771,
+      "clasificador": 733
+    },
+    "MENCIONA": 4430
+  },
+  "menciones_sin_articulo": 0,
+  "extraidas_en_infoleg": {
+    "clasificador": 0.7749,
+    "reglas_v1": 0.6754,
+    "reglas_v2": 0.7601
+  }
+}

@@ -11,23 +11,22 @@ El TP extrae automáticamente las relaciones entre normas (modifica, sustituye, 
 | Corpus único: 340 normas, 775 pares (583 dev, 192 test) | congelado, snapshot InfoLEG 06/11/2026 (`data/corpus/SNAPSHOT.md`) |
 | Textos InfoLEG (306 HTML) | descargados y verificados por SHA-256 |
 | Dataset: 8.066 segmentos y 1.091 pares candidatos | `data/dataset/`, ficha en `docs/dataset.md` |
-| Parser 1: reglas v1 | evaluado; falta la iteración v2 sobre el dev del corpus único |
-| Parser 2: LLM puro / Parser 3: híbrido | pendiente |
-| Grafo Neo4j + text-to-Cypher | pendiente |
+| Parser 1: reglas | v2 congelado y evaluado (F1 test 0,828); v1 se conserva para comparar |
+| Clasificador de referencia (scikit-learn) | evaluado (F1 test 0,823) |
+| Grafo Neo4j | archivos armados y verificados (`data/grafo/`, `docs/grafo.md`); falta la primera carga en Neo4j |
+| Parser 2: LLM puro / Parser 3: híbrido / text-to-Cypher | pendiente |
 
 El estado completo está en [`docs/ESTADO.md`](docs/ESTADO.md).
 
-## Resultados del parser de reglas v1 sobre el corpus único
+## Resultados
 
-| Configuración | P dev | R dev | F1 dev | P test | R test | F1 test | F1 test sin pares del v1 |
-|---|---|---|---|---|---|---|---|
-| A. todas las menciones | 0,589 | 0,810 | 0,682 | 0,638 | 0,964 | 0,768 | 0,553 |
-| B. solo articulado | 0,642 | 0,652 | 0,647 | 0,719 | 0,854 | 0,781 | 0,551 |
-| **C. articulado + temporal** | 0,653 | 0,650 | 0,652 | **0,732** | **0,854** | **0,788** | **0,563** |
-| D. C + verbo en el artículo | 0,708 | 0,482 | 0,574 | 0,735 | 0,651 | 0,691 | 0,543 |
-| E. C + verbo en la oración | 0,792 | 0,360 | 0,495 | 0,856 | 0,526 | 0,652 | 0,509 |
+| Parser | P test | R test | F1 dev | F1 test | F1 test sin pares del v1 |
+|---|---|---|---|---|---|
+| Reglas v1, configuración C | 0,732 | 0,854 | 0,652 | 0,788 | 0,563 |
+| **Reglas v2, configuración F** | **0,785** | **0,875** | **0,733** | **0,828** | **0,671** |
+| Clasificador (random forest) | 0,799 | 0,849 | 0,728 (CV) | 0,823 | 0,683 |
 
-Las reglas se diseñaron sobre el corpus v1, que es un subconjunto de este, y no se tocaron. El detalle está en [`results/reglas/RESULTADOS.md`](results/reglas/RESULTADOS.md).
+Cada versión se diseñó solo sobre dev, y su test se evaluó una vez. El detalle está en [`results/reglas_v2/RESULTADOS.md`](results/reglas_v2/RESULTADOS.md), [`results/reglas/RESULTADOS.md`](results/reglas/RESULTADOS.md) y [`results/clasificador/RESULTADOS.md`](results/clasificador/RESULTADOS.md).
 
 ## Estructura
 
@@ -35,19 +34,23 @@ Las reglas se diseñaron sobre el corpus v1, que es un subconjunto de este, y no
 data/
   corpus/               corpus único y gold, congelados (ver SNAPSHOT.md)
   dataset/              articulos.csv y pares_candidatos.csv (ver docs/dataset.md)
+  grafo/                nodos y relaciones para Neo4j (ver docs/grafo.md)
   textos/infoleg/       HTML de InfoLEG en UTF-8 + manifiesto con URL, fecha y SHA-256
   raw/                  zips del portal de datos (cache local, fuera de git)
   verificacion/         corpus regenerado para comparar con el congelado (fuera de git)
 src/grafo_legal/
   fuentes/infoleg.py    adaptador: HTML -> texto -> artículos con zona
   catalogo.py           normalización de menciones a id_norma (mundo cerrado)
-  extractores/          menciones (regex + alias) y reglas de relación
+  extractores/          menciones (regex + alias) y reglas de relación (reglas.py v1, reglas_v2.py)
   evaluacion.py         P/R/F1 a nivel de par
   archivos.py           escritura atómica de salidas
-scripts/                01 corpus · 02 textos · 03 extraer · 04 evaluar · 05 cobertura · 06 muestra Ley 14.250 · 07 dataset
-results/reglas/         evidencias, métricas y errores del parser de reglas
+scripts/                01 corpus · 02 textos · 03 extraer · 04 evaluar · 05 cobertura · 06 muestra Ley 14.250
+                        · 07 dataset · 08 clasificador · 09 grafo
+results/reglas/         reglas v1: evidencias, métricas y errores
+results/reglas_v2/      reglas v2: evidencias, métricas y errores
+results/clasificador/   clasificador: métricas, predicciones e importancia de atributos
 docs/                   estado, decisiones, ficha del dataset, revisión manual y copia de los documentos del Drive
-tools/                  utilidades (conversión de Google Docs a Markdown)
+tools/                  utilidades (conversión entre Google Docs y Markdown)
 tests/                  tests sin red (pytest)
 ```
 
@@ -71,9 +74,16 @@ pares = pd.read_csv("data/dataset/pares_candidatos.csv")
 dev = pares[pares.split == "dev"]   # se entrena y ajusta solo con dev
 ```
 
+Para cargar el grafo en un Neo4j 5 local:
+
+```bash
+export NEO4J_PASSWORD=...
+python scripts/09_armar_grafo.py --uri bolt://localhost:7687 --user neo4j --borrar
+```
+
 ## Reglas del protocolo
 
-- El gold nunca es entrada de un extractor. Solo lo leen `04_evaluar.py`, `05_cobertura_textual.py` y `07_armar_dataset.py` (para la etiqueta `en_gold`, nunca para los atributos).
+- El gold nunca es entrada de un extractor. Solo lo leen `04_evaluar.py`, `05_cobertura_textual.py`, `07_armar_dataset.py` (para la etiqueta `en_gold`, nunca para los atributos), `08_clasificador.py` (para medir) y `09_armar_grafo.py` (para la relación `RELACION_INFOLEG`, separada de lo extraído).
 - Las reglas se iteran solo sobre dev. Test se evalúa una vez por versión congelada del parser.
 - Cada arista extraída lleva su evidencia: artículo, offsets, fragmento, método y reglas cumplidas.
 
@@ -86,11 +96,11 @@ Toda la documentación está en dos lugares: la carpeta de Google Drive del TP y
 | Bitácora (decisiones, dificultades y hallazgos) | Drive: «00 - Bitácora del TP» | [`docs/drive/00_bitacora.md`](docs/drive/00_bitacora.md) |
 | Obtención y construcción del corpus | Drive: «01 - …» | [`docs/drive/01_obtencion_corpus.md`](docs/drive/01_obtencion_corpus.md) |
 | Profundidad del grafo y transferencia | Drive: «02 - …» | [`docs/drive/02_profundidad_y_transferencia.md`](docs/drive/02_profundidad_y_transferencia.md) |
-| Pipeline, decisiones, resultados y revisión manual | este repo (README, `docs/decisiones.md`, `results/`, `docs/revision_manual/`) | Drive: «03 - Pipeline oficial, parser de reglas y revisión manual» |
+| Pipeline, corpus, dataset, decisiones, resultados, grafo y revisión manual | este repo (README, `data/corpus/SNAPSHOT.md`, `docs/dataset.md`, `docs/decisiones.md`, `results/`, `docs/grafo.md`, `docs/revision_manual/`) | Drive: «03 - Pipeline oficial, corpus, dataset y parser de reglas» |
 | Estado del TP | este repo: [`docs/ESTADO.md`](docs/ESTADO.md) | Drive: «04 - Estado del TP» |
 | Roadmap | [artefacto de Claude](https://claude.ai/artifact/Aai3uXH2hrR92fLDmYpvfM) | [`docs/drive/roadmap.md`](docs/drive/roadmap.md) y Drive: «05 - Roadmap del TP (copia)» |
 
-Las copias de los documentos del Drive se regeneran con `tools/gdoc_a_md.py` a partir del JSON de la API de Google Docs.
+Las copias de los documentos del Drive se regeneran con `tools/gdoc_a_md.py` a partir del JSON de la API de Google Docs; `tools/md_a_gdoc.py` hace el camino inverso.
 
 ## Fuentes
 

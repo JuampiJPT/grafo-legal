@@ -8,6 +8,7 @@ cuando las reglas estan congeladas (queda registrado en metricas.json con la fec
 Uso:
     python scripts/04_evaluar.py --corpus data/corpus --res results/reglas
     python scripts/04_evaluar.py --corpus data/corpus --res results/reglas --incluir-test
+    python scripts/04_evaluar.py --parser v2 --res results/reglas_v2 --config-final F_visto_o_articulado_con_verbo_o_ley
 """
 
 import argparse
@@ -21,21 +22,26 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from grafo_legal.archivos import abrir_para_escribir, escribir_texto  # noqa: E402
 from grafo_legal.evaluacion import cargar_gold, prf          # noqa: E402
-from grafo_legal.extractores.reglas import CONFIGS, Evidencia  # noqa: E402
+from grafo_legal.extractores import reglas, reglas_v2         # noqa: E402
 
 
-def leer_evidencias(p: Path) -> list[Evidencia]:
+def leer_evidencias(p: Path, clase) -> list:
+    """Lee evidencias.csv en la clase de evidencia del parser (v1 o v2), con sus tipos."""
+    campos = clase.__dataclass_fields__
     out = []
     with open(p, encoding="utf-8") as f:
         for r in csv.DictReader(f):
-            out.append(Evidencia(
-                int(r["id_origen"]), int(r["id_destino"]), r["norma_destino"], r["articulo"], r["zona"],
-                int(r["inicio"]), int(r["fin"]), r["superficie"], r["metodo"], r["verbo_articulo"],
-                r["verbo_oracion"], r["temporal_ok"] == "True", r["fragmento"]))
+            v = {}
+            for k, c in campos.items():
+                t = c.type if isinstance(c.type, str) else c.type.__name__
+                v[k] = int(r[k]) if t == "int" else (r[k] == "True") if t == "bool" else r[k]
+            out.append(clase(**v))
     return out
 
 
-def main(corpus: Path, res: Path, incluir_test: bool, config_final: str) -> None:
+def main(corpus: Path, res: Path, incluir_test: bool, config_final: str, parser: str = "v1") -> None:
+    mod = reglas if parser == "v1" else reglas_v2
+    CONFIGS = mod.CONFIGS
     gold_rows = cargar_gold(corpus)
     split_de = {}
     with open(corpus / "corpus_normas.csv", encoding="utf-8") as f:
@@ -54,9 +60,9 @@ def main(corpus: Path, res: Path, incluir_test: bool, config_final: str) -> None
         with open(v_p, encoding="utf-8") as f:
             vistos = {(int(r["id_norma_modificatoria"]), int(r["id_norma_modificada"])) for r in csv.DictReader(f)}
 
-    ev = leer_evidencias(res / "evidencias.csv")
+    ev = leer_evidencias(res / "evidencias.csv", mod.Evidencia if parser == "v1" else mod.EvidenciaV2)
     splits = ["dev"] + (["test"] if incluir_test else [])
-    metricas = {"fecha": datetime.now(timezone.utc).isoformat(), "splits": splits, "configs": {}}
+    metricas = {"fecha": datetime.now(timezone.utc).isoformat(), "parser": parser, "splits": splits, "configs": {}}
 
     for nombre, filtro in CONFIGS.items():
         pares = {(e.id_origen, e.id_destino) for e in ev if filtro(e)}
@@ -119,5 +125,6 @@ if __name__ == "__main__":
     ap.add_argument("--res", type=Path, default=Path("results/reglas"))
     ap.add_argument("--incluir-test", action="store_true")
     ap.add_argument("--config-final", default="E_C_mas_verbo_en_oracion")
+    ap.add_argument("--parser", choices=["v1", "v2"], default="v1")
     a = ap.parse_args()
-    main(a.corpus, a.res, a.incluir_test, a.config_final)
+    main(a.corpus, a.res, a.incluir_test, a.config_final, a.parser)

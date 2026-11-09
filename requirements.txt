@@ -3,3 +3,4 @@ numpy>=1.26
 scikit-learn>=1.4
 requests>=2.31
 pytest>=7
+neo4j>=5.20

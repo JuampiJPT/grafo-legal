@@ -1,4 +1,4 @@
-<!-- Copia del Google Doc "00 - Bitácora del TP" (id 1kXhR_wDGRq8TsD8jtcxX6sSWMZPaRJS9fggNjLIReCY, revision AHj4eMQGqNf0). La version editable es la del Drive; esta copia se regenera con tools/gdoc_a_md.py. -->
+<!-- Copia del Google Doc "00 - Bitácora del TP" (id 1kXhR_wDGRq8TsD8jtcxX6sSWMZPaRJS9fggNjLIReCY, revision AHj4eMScRny_). La version editable es la del Drive; esta copia se regenera con tools/gdoc_a_md.py. -->
 
 # Bitácora del TP Integrador
 
@@ -327,11 +327,55 @@ Los patrones de regex, los ejemplos few-shot y los umbrales del híbrido se saca
 
 **Consecuencia.** Para el informe, es una medida directa de cuánto se ajustaron las reglas al corpus donde se diseñaron. Para el trabajo, define la iteración v2: tratar el texto ordenado como parte de la cita, revisar la regla de zona y revisar a mano 30 falsos positivos.
 
+### B36 · 09/11/2026 · Decisión · Reglas v2: el VISTO cuenta, las citas de procedencia no
+
+**Cómo se diseñó.** Se usó solo el dev del corpus único. Se cruzaron los pares por dónde aparece la mención y se revisaron a mano 30 falsos positivos (docs/revision_manual/revision_fp_dev_30.csv): 16 son remisiones en el articulado («las contribuciones previstas en la ley 23.660»), 9 son normas de listas largas del VISTO, 2 son citas de procedencia y 3 parecen modificaciones reales que InfoLEG no registra.
+
+**Qué se encontró en dev.** Separar el encabezado en VISTO y CONSIDERANDO cambia todo. Los pares citados en el VISTO están en el gold el 80 % de las veces; los que solo aparecen en el CONSIDERANDO, el 24 %. En el articulado, un decreto que nombra una norma sin verbo modificatorio casi siempre remite a ella: de esos pares, solo el 19 % está en el gold.
+
+**Regla v2 (configuración F).** Se predice el par si hay una mención no posterior al origen, que no sea una cita de procedencia, y que esté en el VISTO o en el articulado, con número, cuando el origen es una ley o la oración tiene un verbo. Se descartan las citas de procedencia («t.o. por Decreto 390/76», «sustituido por el artículo 2° del Decreto 1278/00»). «Complementarias» y «reglamentarios» dejan de contar como verbos.
+
+**Alternativas descartadas.** Limitar el VISTO a listas cortas bajaba el recall más de lo que subía la precisión. Una primera versión del filtro de procedencia, que incluía «aprobado por», atrapaba menciones que sí están en el gold, como «Régimen de Contrato de Trabajo aprobado por la Ley 20.744», y se acotó.
+
+**Resultado.** Con las reglas congeladas, test se evaluó una vez: F1 0,828, contra 0,788 de v1. En dev, 0,733 contra 0,652. En los 65 pares de test que no son del v1, 0,671 contra 0,563. Sin la condición del VISTO, el F1 de test cae a 0,645. v1 sigue congelado y se regenera idéntico.
+
+**Lo que queda.** Los falsos positivos que siguen son, sobre todo, remisiones. Distinguir «conforme a la ley X» de «sustitúyese el artículo de la ley X» pide entender la oración, y esa es la tarea del parser LLM.
+
+### B37 · 09/11/2026 · Hallazgo · Un clasificador entrenado empata con las reglas
+
+**Qué se hizo.** El script 08 entrena tres modelos de scikit-learn (regresión logística, random forest y gradient boosting) sobre pares_candidatos.csv. El dataset ahora tiene 20 atributos, porque se sumaron las menciones en el VISTO y el CONSIDERANDO y las citas de procedencia. El modelo y el umbral se eligen con validación cruzada de 5 particiones en dev, agrupada por norma origen para que los pares de una misma norma no queden repartidos entre entrenamiento y validación. Test se evalúa una vez.
+
+**Resultado.** Ganó el random forest, con umbral 0,45: F1 0,728 en la validación cruzada de dev y 0,823 en test, contra 0,828 de las reglas v2. En los 65 pares de test que no son del v1 da 0,683. Los atributos que más pesan son la posición de la primera mención, la fracción de artículos que nombran al destino, el largo del texto y la diferencia de años.
+
+**Lectura.** Con atributos de superficie, un modelo entrenado no encuentra mucho más que las reglas escritas a mano. Para el informe es un buen argumento: las reglas no son una línea de base débil, y la mejora que se busque con el LLM tiene que venir de leer el texto. Además, varios atributos describen la norma más que la mención, y pueden no transferirse a otro dominio (E2, E3).
+
+**Nota de protocolo.** El script se corrió más de una vez con test incluido. Una corrida fue para guardar en dev las probabilidades de la validación cruzada en lugar de las del modelo final, que habrían inflado la precisión en el grafo. Otra fue para verificar que el pipeline es determinista. El modelo, el umbral y el resultado de test no cambiaron.
+
+### B38 · 09/11/2026 · Decisión · Modelo del grafo: InfoLEG y lo extraído por separado
+
+**Modelo.** Nodos Norma (340) y Articulo (8.066, con su texto). Las relaciones son:
+
+- RELACION_INFOLEG (775): el gold.
+- RELACION_EXTRAIDA: una arista por par y por parser. Hay 771 de reglas v2, 804 de reglas v1 y 713 del clasificador.
+- MENCIONA (4.430): va de un artículo a la norma que cita, con offsets, fragmento, verbo y si la regla v2 la cuenta.
+
+**Por qué así.** Si lo de InfoLEG y lo extraído compartieran tipo de relación, una consulta podría mezclarlos sin decirlo. Con una arista por parser, comparar parsers es una sola consulta, y el LLM y el híbrido se agregan sin cambiar el modelo. Las menciones salen de un artículo que lleva el texto, así cada arista de las reglas se rastrea hasta su fragmento. Un test comprueba que las aristas de reglas v2 coinciden exactamente con los pares que tienen una mención que cuenta.
+
+**Qué hay.** El script 09 arma los CSV en data/grafo y, con una conexión, los carga en Neo4j con restricciones de unicidad y un índice de texto completo sobre los artículos. docs/grafo.md tiene cinco consultas de ejemplo, con su pregunta en lenguaje natural, para empezar el text-to-Cypher.
+
+**Dificultad.** Desde el entorno de Claude no se pudo descargar Neo4j. Los CSV y la trazabilidad están verificados, y dos consultas se probaron sobre una copia del grafo en memoria (networkx y grand-cypher). El Cypher de carga se corre por primera vez en la máquina del equipo.
+
+**Abierto.** El grafo no tiene embeddings. Si el text-to-Cypher se complementa con recuperación semántica, van en los artículos, con un índice vectorial de Neo4j, pero antes hay que elegir el modelo de embeddings.
+
+### B39 · 09/11/2026 · Dificultad · Sin acceso de escritura a GitHub desde la sesión de Claude
+
+El repositorio usa SSH (git@github.com:JuampiJPT/grafo-legal.git), y desde la sesión de Claude no hay salida por SSH ni una cuenta de GitHub vinculada. Los commits quedan en el repositorio local de la Mac y el push lo hace el equipo. Para que Claude pueda subir cambios hay que vincular GitHub en la configuración de claude.ai.
+
 ## Cuestiones abiertas
 
-- Iterar las reglas v2 sobre el dev del corpus único: la cita «t.o. por Decreto 390/76», la regla de zona y la revisión de 30 falsos positivos (B28, B35).
-- Validar la anotación de la muestra de la Ley 14.250 (B30).
-- Validar la revisión de cobertura con un integrante del equipo y un segundo anotador, para el kappa (B12, B26).
+- Cargar el grafo en un Neo4j 5 y correr las consultas de ejemplo (B38).
+- Elegir el LLM y el acceso para los parsers LLM e híbrido, y decidir si el grafo lleva embeddings (B38).
+- Validar las revisiones manuales de cobertura, de la Ley 14.250 y de los 30 falsos positivos, y que un segundo anotador repita parte para el kappa (B12, B26, B30, B36).
 - Consultar con la cátedra la supervisión distante, la clasificación fina y si se evalúa también la modificación estricta (B02, B14, B27).
 - Armar la muestra independiente del gold (B15).
 - Elegir cómo obtener el corpus del digesto (B19).

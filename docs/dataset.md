@@ -1,13 +1,13 @@
 # Ficha del dataset
 
-Generado por `scripts/07_armar_dataset.py` a partir del corpus único (`data/corpus`, snapshot de InfoLEG del 06/11/2026) y de las menciones que detecta el parser de reglas (`results/reglas/evidencias.csv`). Se regenera en segundos y sin red.
+Generado por `scripts/07_armar_dataset.py` a partir del corpus único (`data/corpus`, snapshot de InfoLEG del 06/11/2026) y de las menciones que detecta el parser de reglas (`results/reglas_v2/evidencias.csv`). Las reglas v1 y v2 comparten el detector, así que los candidatos y las etiquetas son los mismos con las dos; v2 agrega atributos. Se regenera en segundos y sin red.
 
 ## Archivos
 
 | Archivo | Unidad (una fila por…) | Filas | Para qué |
 |---|---|---|---|
 | `data/dataset/articulos.csv` | segmento de una norma: encabezado, artículo, anexo o notas | 8.066 (306 normas) | Entrada de los parsers LLM e híbrido; análisis del texto |
-| `data/dataset/pares_candidatos.csv` | par norma origen → norma destino propuesto por el detector de menciones | 1.091 (801 dev, 290 test) | Clasificador con scikit-learn; elección de ejemplos few-shot; análisis de errores |
+| `data/dataset/pares_candidatos.csv` | par norma origen → norma destino propuesto por el detector de menciones | 1.091 (801 dev, 290 test) | Clasificador con scikit-learn (`scripts/08_clasificador.py`); elección de ejemplos few-shot; análisis de errores |
 | `data/dataset/resumen.json` | | | Conteos y descripción de columnas |
 
 ### articulos.csv
@@ -29,9 +29,9 @@ La etiqueta es `en_gold`: vale 1 si el par está en el gold de InfoLEG.
 
 | Grupo | Atributos |
 |---|---|
-| Menciones | `n_menciones`, `n_menc_articulado`, `n_menc_encabezado`, `n_menc_anexo`, `n_menc_notas`, `n_articulos`, `frac_articulos` |
-| Verbos | `verbo_en_articulo`, `verbo_en_oracion`. Se cuentan en cualquier segmento que contenga la mención, incluido el encabezado |
-| Forma de la cita | `solo_alias` (el destino solo se nombra, sin número) |
+| Menciones | `n_menciones`, `n_menc_articulado`, `n_menc_encabezado`, `n_menc_visto`, `n_menc_considerando`, `n_menc_anexo`, `n_menc_notas`, `n_articulos`, `frac_articulos` |
+| Verbos | `verbo_en_articulo`, `verbo_en_oracion`. Se cuentan en cualquier segmento que contenga la mención, incluido el encabezado, sin los adjetivos «complementarias» y «reglamentarios» |
+| Forma de la cita | `solo_alias` (el destino solo se nombra, sin número), `n_procedencia` (citas «t.o. por…», «sustituido por el artículo N del…») |
 | Tiempo | `temporal_ok`, `dif_anios` |
 | Posición | `pos_primera_mencion`, `largo_texto` |
 | Categóricos | `tipo_origen`, `tipo_destino`, `destino_es_semilla` |

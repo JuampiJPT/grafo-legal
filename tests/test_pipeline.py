@@ -88,3 +88,28 @@ def test_script01_sintetico(tmp_path):
     gold = list(csv.DictReader(open(out / "gold_relaciones.csv")))
     assert {n["id_norma"] for n in nodos} == {"25552", "10"}   # la resolucion queda afuera
     assert len(gold) == 1 and gold[0]["split"] == "test"        # duplicado eliminado
+
+
+def test_reglas_v2_procedencia_y_verbos():
+    from grafo_legal.extractores.reglas_v2 import _PROCEDENCIA, verbo_real
+    assert _PROCEDENCIA.search("Ley N° 20.744 (t.o. por")
+    assert _PROCEDENCIA.search("artículo 46 de la Ley N° 24.557 (sustituido por el artículo 2° del")
+    assert not _PROCEDENCIA.search("Modifícase el artículo 2° de la")
+    assert verbo_real("la Ley 24.013 y sus normas complementarias") == ""
+    assert verbo_real("sus decretos reglamentarios. Sustitúyese el artículo 5") == "Sustitúyese"
+
+
+def test_grafo_trazable():
+    """Toda arista de reglas_v2 tiene una mencion que la sustenta, en un articulo de la norma origen."""
+    import pandas as pd
+    g = RAIZ / "data" / "grafo"
+    if not (g / "relaciones_extraidas.csv").exists():
+        return
+    normas = set(pd.read_csv(g / "normas.csv").id_norma)
+    re_ = pd.read_csv(g / "relaciones_extraidas.csv")
+    m = pd.read_csv(g / "menciones.csv")
+    assert set(re_.id_origen) | set(re_.id_destino) <= normas
+    assert (m.id_articulo.str.split("#").str[0].astype(int) == m.id_origen).all()
+    sustento = set(zip(m[m.cuenta_en_reglas_v2].id_origen, m[m.cuenta_en_reglas_v2].id_destino))
+    v2 = set(zip(re_[re_.parser == "reglas_v2"].id_origen, re_[re_.parser == "reglas_v2"].id_destino))
+    assert v2 == sustento
