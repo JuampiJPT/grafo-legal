@@ -1,4 +1,4 @@
-<!-- Copia del Google Doc "00 - Bitácora del TP" (id 1kXhR_wDGRq8TsD8jtcxX6sSWMZPaRJS9fggNjLIReCY, revision AHj4eMScRny_). La version editable es la del Drive; esta copia se regenera con tools/gdoc_a_md.py. -->
+<!-- Copia del Google Doc "00 - Bitácora del TP" (id 1kXhR_wDGRq8TsD8jtcxX6sSWMZPaRJS9fggNjLIReCY, revision AHj4eMTvLfwh). La version editable es la del Drive; esta copia se regenera con tools/gdoc_a_md.py. -->
 
 # Bitácora del TP Integrador
 
@@ -370,6 +370,10 @@ Los patrones de regex, los ejemplos few-shot y los umbrales del híbrido se saca
 ### B39 · 09/11/2026 · Dificultad · Sin acceso de escritura a GitHub desde la sesión de Claude
 
 El repositorio usa SSH (git@github.com:JuampiJPT/grafo-legal.git), y desde la sesión de Claude no hay salida por SSH ni una cuenta de GitHub vinculada. Los commits quedan en el repositorio local de la Mac y el push lo hace el equipo. Para que Claude pueda subir cambios hay que vincular GitHub en la configuración de claude.ai.
+
+### B40 · 09/11/2026 · Decisión · Contenedor Neo4j propio del TP
+
+El grafo se carga en un contenedor Docker propio (neo4j-grafo-legal), con los puertos 7475 para el navegador y 7688 para Bolt y un volumen propio. En la Mac del equipo ya corre otro Neo4j que se usa para otros trabajos, y la carga con --borrar elimina los nodos Norma y Articulo: en un contenedor separado no puede tocar esa base. Los comandos están en docs/grafo.md.
 
 ## Cuestiones abiertas
 
