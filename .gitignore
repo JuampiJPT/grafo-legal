@@ -7,3 +7,6 @@ data/raw/
 # enunciados de la catedra: no se versionan
 *.pdf
 data/verificacion/
+
+# clave local del contenedor Neo4j del TP (docs/grafo.md)
+.neo4j_password
