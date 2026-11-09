@@ -19,7 +19,7 @@ El TP extrae automáticamente las relaciones entre normas (modifica, sustituye, 
 
 El parser apunta a cualquier documento normativo: lo único que depende de la fuente es el adaptador que pasa el documento a texto.
 
-El estado completo está en [`docs/ESTADO.md`](docs/ESTADO.md).
+El estado completo está en [`docs/ESTADO.md`](docs/ESTADO.md). Cómo funciona el parser y cómo está armado el grafo, contado paso a paso, está en [`docs/arquitectura_parser_y_grafo.md`](docs/arquitectura_parser_y_grafo.md).
 
 ## Resultados
 
@@ -104,6 +104,7 @@ Toda la documentación está en dos lugares: la carpeta de Google Drive del TP y
 | Profundidad del grafo y transferencia | Drive: «02 - …» | [`docs/drive/02_profundidad_y_transferencia.md`](docs/drive/02_profundidad_y_transferencia.md) |
 | Pipeline, corpus, dataset, decisiones, resultados, grafo y revisión manual | este repo (README, `data/corpus/SNAPSHOT.md`, `docs/dataset.md`, `docs/decisiones.md`, `results/`, `docs/grafo.md`, `docs/revision_manual/`) | Drive: «03 - Pipeline oficial, corpus, dataset y parser de reglas» |
 | Estado del TP | este repo: [`docs/ESTADO.md`](docs/ESTADO.md) | Drive: «04 - Estado del TP» |
+| Parser y grafo: arquitectura y construcción paso a paso | este repo: [`docs/arquitectura_parser_y_grafo.md`](docs/arquitectura_parser_y_grafo.md) | Drive: «06 - Parser y grafo: arquitectura y construcción paso a paso» |
 | Roadmap | [artefacto de Claude](https://claude.ai/artifact/Aai3uXH2hrR92fLDmYpvfM) | [`docs/drive/roadmap.md`](docs/drive/roadmap.md) y Drive: «05 - Roadmap del TP (copia)» |
 
 Las copias de los documentos del Drive se regeneran con `tools/gdoc_a_md.py` a partir del JSON de la API de Google Docs; `tools/md_a_gdoc.py` hace el camino inverso.

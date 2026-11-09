@@ -18,7 +18,7 @@ Hay un solo corpus congelado (340 normas, 775 relaciones) con sus 306 textos, un
 | F5 · Parser híbrido | No empezada | Los candidatos ya existen: `data/dataset/pares_candidatos.csv`. |
 | F6 · Grafo en Neo4j | **En curso** | Modelo genérico con relaciones tipadas, armado desde la salida estándar (B41, B42). Evaluación leyendo el grafo: ida y vuelta idéntica y F1 0,828 contra InfoLEG en test (B43). Falta correr la evaluación sobre el Neo4j del equipo. |
 | F7 · Text-to-Cypher | No empezada | Hay cinco consultas de ejemplo con su pregunta en lenguaje natural (`docs/grafo.md`). |
-| F8 · Errores, informe y defensa | No empezada | La bitácora (B01 a B43) y los documentos 01 a 03 alimentan las secciones de Datos, Metodología y Limitaciones. |
+| F8 · Errores, informe y defensa | No empezada | La bitácora (B01 a B44) y el documento 06 y los documentos 01 a 03 alimentan las secciones de Datos, Metodología y Limitaciones. |
 
 ## Hallazgos que van al informe
 
@@ -59,6 +59,7 @@ Hay un solo corpus congelado (340 normas, 775 relaciones) con sus 306 textos, un
 | Profundidad y transferencia | 02 - Profundidad del grafo y transferencia de los parsers | `docs/drive/02_profundidad_y_transferencia.md` |
 | Pipeline, corpus, dataset, parsers, salida estándar, grafo, evaluación y revisión manual | 03 - Pipeline oficial, corpus, dataset y parser de reglas | `README.md`, `data/corpus/SNAPSHOT.md`, `docs/dataset.md`, `docs/decisiones.md`, `docs/salida_estandar.md`, `docs/grafo.md`, `results/*/RESULTADOS.md`, `docs/revision_manual/` |
 | Estado | 04 - Estado del TP | `docs/ESTADO.md` |
+| Parser y grafo paso a paso | 06 - Parser y grafo: arquitectura y construcción paso a paso | `docs/arquitectura_parser_y_grafo.md` |
 | Roadmap | 05 - Roadmap del TP (copia; la versión editable es el artefacto de Claude) | `docs/drive/roadmap.md` |
 | Datos, textos, dataset, grafo y código | Solo los del corpus v1 histórico | Todo |
 
