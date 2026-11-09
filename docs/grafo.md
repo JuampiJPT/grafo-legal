@@ -17,7 +17,7 @@
 | `Articulo` | 8.066 | `id` («id_norma#orden»), `numero`, `zona`, `inicio`, `fin`, `texto` |
 | `TIENE_ARTICULO` | 8.066 | |
 | `RELACION_INFOLEG` | 775 | `split`, `fuente`. Es el gold: lo que registra la base complementaria de InfoLEG |
-| `RELACION_EXTRAIDA` | 2.288 (771 de reglas_v2, 804 de reglas_v1, 713 del clasificador) | `parser`, `config`, `puntaje`, `n_evidencias`, `articulos`, `en_infoleg`, `split` |
+| `RELACION_EXTRAIDA` | 2.308 (771 de reglas_v2, 804 de reglas_v1, 733 del clasificador) | `parser`, `config`, `puntaje`, `n_evidencias`, `articulos`, `en_infoleg`, `split` |
 | `MENCIONA` | 4.430 | `parte` (visto, considerando, articulado, anexo, notas), `inicio`, `fin`, `superficie`, `metodo`, `verbo`, `temporal_ok`, `procedencia`, `cuenta_en_reglas_v2`, `fragmento` |
 
 Decisiones del modelo (D15):
