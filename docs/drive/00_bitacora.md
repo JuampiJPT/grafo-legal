@@ -1,4 +1,4 @@
-<!-- Copia del Google Doc "00 - Bitácora del TP" (id 1kXhR_wDGRq8TsD8jtcxX6sSWMZPaRJS9fggNjLIReCY, revision AHj4eMTvLfwh). La version editable es la del Drive; esta copia se regenera con tools/gdoc_a_md.py. -->
+<!-- Copia del Google Doc "00 - Bitácora del TP" (id 1kXhR_wDGRq8TsD8jtcxX6sSWMZPaRJS9fggNjLIReCY, revision AHj4eMRX8wZR). La version editable es la del Drive; esta copia se regenera con tools/gdoc_a_md.py. -->
 
 # Bitácora del TP Integrador
 
@@ -375,11 +375,40 @@ El repositorio usa SSH (git@github.com:JuampiJPT/grafo-legal.git), y desde la se
 
 El grafo se carga en un contenedor Docker propio (neo4j-grafo-legal), con los puertos 7475 para el navegador y 7688 para Bolt y un volumen propio. En la Mac del equipo ya corre otro Neo4j que se usa para otros trabajos, y la carga con --borrar elimina los nodos Norma y Articulo: en un contenedor separado no puede tocar esa base. Los comandos están en docs/grafo.md.
 
+### B41 · 09/11/2026 · Decisión · Una salida estándar para cualquier parser y cualquier documento normativo
+
+**Objetivo.** El parser tiene que servir para cualquier documento normativo argentino: leyes y decretos de InfoLEG, resoluciones del digesto de la UNNOBA, normas provinciales. Todos tienen VISTO, CONSIDERANDO y artículos, y usan los mismos verbos («Sustitúyese», «Derógase»). Lo único que cambia de una fuente a otra es cómo se pasa el documento a texto.
+
+**Decisión.** Todos los parsers (reglas, LLM, híbrido) escriben la misma tabla de relaciones (docs/salida_estandar.md). Una fila dice qué hace un artículo de la norma origen sobre una norma o un artículo destino, con uno de seis tipos: SUSTITUYE, INCORPORA, DEROGA, REGLAMENTA, MODIFICA o CITA. Cada fila lleva su evidencia (fragmento y posición), la fuente que la produjo y, si el parser la da, una confianza.
+
+**Cómo la produce el parser de reglas v2.** El tipo sale del verbo de la oración; sin verbo, o en el VISTO o el CONSIDERANDO, es una CITA. El artículo destino sale del «artículo N de la» que precede a la mención. Se descartan las menciones de las notas editoriales de InfoLEG, que no son texto de la norma. Resultado: 3.277 relaciones (2.332 citas, 375 sustituciones, 181 incorporaciones, 176 modificaciones, 155 derogaciones y 58 reglamentaciones). El 71 % de las que no son citas tiene artículo destino.
+
+### B42 · 09/11/2026 · Decisión · El grafo representa lo que hace cada norma; InfoLEG queda afuera
+
+**Problema.** El grafo anterior (B38) servía para comparar parsers contra InfoLEG: tenía una arista por parser que solo decía «hay un vínculo». No respondía qué hace una norma sobre otra, ni sobre qué artículo. Para el objetivo del TP (consultar el grafo en lenguaje natural) no servía.
+
+**Decisión.** El grafo se arma solo con la salida estándar. Tiene (:Norma)-[:CONTIENE]->(:Articulo) y aristas tipadas de un artículo a otro artículo, o a la norma entera si el texto no dice cuál. Ejemplo: (art. 70 del Decreto 70/2023)-[:SUSTITUYE]->(art. 80 de la Ley 20.744). La evidencia va en la arista. InfoLEG no forma parte del grafo: se usa como referencia para evaluarlo.
+
+**Qué responde ahora.** Preguntas como «¿qué artículos de la LCT sustituyó la Ley 27.802?» (52 artículos), «¿quién cambió por última vez el artículo 245 de la LCT?» (la Ley 27.802) o «¿qué decretos reglamentan la Ley de Riesgos del Trabajo?». Las consultas están en docs/grafo.md.
+
+### B43 · 09/11/2026 · Hallazgo · El grafo devuelve lo que se le cargó; contra InfoLEG, las citas son el problema
+
+**Cómo se evalúa.** El script 11 lee las relaciones desde el grafo, no desde los archivos del parser. Puede leerlas del Neo4j del equipo o de una copia en memoria armada con el mismo código.
+
+**Ida y vuelta.** El grafo devuelve exactamente las 3.277 relaciones cargadas, con el mismo tipo y el mismo artículo destino.
+
+**Contra InfoLEG.** Las relaciones se proyectan a pares de normas con la regla F de las reglas v2 y dan las mismas métricas: F1 0,733 en dev y 0,828 en test. Contar cualquier relación sube el recall de test a 0,958, pero baja la precisión a 0,669. Por tipo, los pares con SUSTITUYE o DEROGA están en InfoLEG entre el 90 % y el 100 % de las veces; los que solo tienen citas, alrededor del 63 %, y explican 160 de los 185 falsos positivos. Por semilla, el grafo recupera el 72 % de las modificatorias de la LCT, con 90 % de precisión.
+
+**El tipo.** InfoLEG no dice si una norma sustituye, deroga o cita, así que el tipo se revisó a mano en 36 relaciones, 6 por tipo. El tipo es correcto en 24 (67 %) y el artículo destino en 30 (83 %). MODIFICA es el más débil, con 1 de 6. Los errores son nominalizaciones o verbos que no actúan tomados como acción («la derogación del artículo 2°», «deberá proponer la reglamentación»), el «texto ordenado» de una cita, y las incorporaciones con la forma «como artículo 53 bis a la Ley».
+
+**Consecuencia.** El tipado por verbo es la parte que más hay que mejorar. Es la próxima iteración de las reglas, sobre dev, y es donde se espera que aporte el parser LLM. La revisión es una primera pasada de Claude, pendiente de validación humana.
+
 ## Cuestiones abiertas
 
-- Cargar el grafo en un Neo4j 5 y correr las consultas de ejemplo (B38).
+- Correr la evaluación del grafo sobre el Neo4j del equipo y probar las consultas de ejemplo (B38, B43).
+- Mejorar el tipado de las reglas sobre dev y ampliar la revisión de tipos para medirlo (B43).
 - Elegir el LLM y el acceso para los parsers LLM e híbrido, y decidir si el grafo lleva embeddings (B38).
-- Validar las revisiones manuales de cobertura, de la Ley 14.250 y de los 30 falsos positivos, y que un segundo anotador repita parte para el kappa (B12, B26, B30, B36).
+- Validar las revisiones manuales de cobertura, de la Ley 14.250, de los 30 falsos positivos y de los 36 tipos, y que un segundo anotador repita parte para el kappa (B12, B26, B30, B36, B43).
 - Consultar con la cátedra la supervisión distante, la clasificación fina y si se evalúa también la modificación estricta (B02, B14, B27).
 - Armar la muestra independiente del gold (B15).
-- Elegir cómo obtener el corpus del digesto (B19).
+- Elegir cómo obtener el corpus del digesto y probar el parser ahí cambiando solo el adaptador (B19, B41).
