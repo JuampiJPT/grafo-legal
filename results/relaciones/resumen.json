@@ -1,0 +1,20 @@
+{
+  "relaciones": 3277,
+  "por_tipo": {
+    "CITA": 2332,
+    "SUSTITUYE": 375,
+    "INCORPORA": 181,
+    "MODIFICA": 176,
+    "DEROGA": 155,
+    "REGLAMENTA": 58
+  },
+  "por_parte_origen": {
+    "articulado": 2325,
+    "visto": 477,
+    "considerando": 348,
+    "anexo": 127
+  },
+  "con_articulo_destino": 1684,
+  "con_articulo_destino_sin_citas": 0.7058,
+  "pares_de_normas": 1037
+}

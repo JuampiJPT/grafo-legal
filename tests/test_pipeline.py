@@ -99,17 +99,34 @@ def test_reglas_v2_procedencia_y_verbos():
     assert verbo_real("sus decretos reglamentarios. Sustitúyese el artículo 5") == "Sustitúyese"
 
 
-def test_grafo_trazable():
-    """Toda arista de reglas_v2 tiene una mencion que la sustenta, en un articulo de la norma origen."""
+def test_relaciones_tipo_y_articulo_destino():
+    from grafo_legal.extractores.relaciones import articulos_destino, tipo_por_verbo
+    assert tipo_por_verbo("Sustitúyese") == "SUSTITUYE"
+    assert tipo_por_verbo("Deróganse") == "DEROGA"
+    assert tipo_por_verbo("Incorpórase") == "INCORPORA"
+    assert tipo_por_verbo("prorrógase") == "MODIFICA"
+    assert tipo_por_verbo("") == "CITA"
+    assert articulos_destino("Sustitúyese el artículo 245 de la ") == ["245"]
+    assert articulos_destino("previstas en los artículos 232, 233 y 245 de la ") == ["232", "233", "245"]
+    assert articulos_destino("modalidades previstas en los artículos 43 a 46 de la ") == ["43", "44", "45", "46"]
+    assert articulos_destino("Incorpórase el artículo 4° bis del ") == ["4 bis"]
+    # el articulo es de otra norma que se nombra en el medio
+    assert articulos_destino("el artículo 5 de la Ley 24.013 y la ") == []
+
+
+def test_grafo_ida_y_vuelta():
+    """El grafo en memoria devuelve exactamente las relaciones de la salida estandar."""
     import pandas as pd
-    g = RAIZ / "data" / "grafo"
-    if not (g / "relaciones_extraidas.csv").exists():
+    from grafo_legal.grafo import a_networkx, construir, exportar_networkx
+    from grafo_legal.salida import CLAVE, validar
+    rel_p = RAIZ / "results" / "relaciones" / "relaciones_reglas_v2.csv"
+    if not rel_p.exists():
         return
-    normas = set(pd.read_csv(g / "normas.csv").id_norma)
-    re_ = pd.read_csv(g / "relaciones_extraidas.csv")
-    m = pd.read_csv(g / "menciones.csv")
-    assert set(re_.id_origen) | set(re_.id_destino) <= normas
-    assert (m.id_articulo.str.split("#").str[0].astype(int) == m.id_origen).all()
-    sustento = set(zip(m[m.cuenta_en_reglas_v2].id_origen, m[m.cuenta_en_reglas_v2].id_destino))
-    v2 = set(zip(re_[re_.parser == "reglas_v2"].id_origen, re_[re_.parser == "reglas_v2"].id_destino))
-    assert v2 == sustento
+    rel = pd.read_csv(rel_p, keep_default_na=False, dtype={"articulo_destino": str})
+    assert validar(rel) == []
+    normas = pd.read_csv(RAIZ / "data" / "corpus" / "corpus_normas.csv", dtype=str, keep_default_na=False)
+    art = pd.read_csv(RAIZ / "data" / "dataset" / "articulos.csv", keep_default_na=False, dtype={"articulo": str},
+                      usecols=["id_norma", "orden", "zona", "articulo", "inicio", "fin", "texto"])
+    g = exportar_networkx(a_networkx(construir(normas, art, rel)))
+    clave = lambda df: set(map(tuple, df[CLAVE].astype(str).values.tolist()))  # noqa: E731
+    assert clave(g) == clave(rel)
