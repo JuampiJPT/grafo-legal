@@ -1,4 +1,4 @@
-<!-- Copia del Google Doc "00 - Bitácora del TP" (id 1kXhR_wDGRq8TsD8jtcxX6sSWMZPaRJS9fggNjLIReCY, revision AHj4eMRX8wZR). La version editable es la del Drive; esta copia se regenera con tools/gdoc_a_md.py. -->
+<!-- Copia del Google Doc "00 - Bitácora del TP" (id 1kXhR_wDGRq8TsD8jtcxX6sSWMZPaRJS9fggNjLIReCY, revision AHj4eMSPpiaF). La version editable es la del Drive; esta copia se regenera con tools/gdoc_a_md.py. -->
 
 # Bitácora del TP Integrador
 
@@ -402,6 +402,24 @@ El grafo se carga en un contenedor Docker propio (neo4j-grafo-legal), con los pu
 **El tipo.** InfoLEG no dice si una norma sustituye, deroga o cita, así que el tipo se revisó a mano en 36 relaciones, 6 por tipo. El tipo es correcto en 24 (67 %) y el artículo destino en 30 (83 %). MODIFICA es el más débil, con 1 de 6. Los errores son nominalizaciones o verbos que no actúan tomados como acción («la derogación del artículo 2°», «deberá proponer la reglamentación»), el «texto ordenado» de una cita, y las incorporaciones con la forma «como artículo 53 bis a la Ley».
 
 **Consecuencia.** El tipado por verbo es la parte que más hay que mejorar. Es la próxima iteración de las reglas, sobre dev, y es donde se espera que aporte el parser LLM. La revisión es una primera pasada de Claude, pendiente de validación humana.
+
+### B44 · 09/11/2026 · Decisión · Documento del parser y del grafo, contado paso a paso
+
+**Qué se hizo.** Se escribió un documento que cuenta cómo se construyó el sistema, en el orden en que se hizo. Está en el Drive como «06 - Parser y grafo: arquitectura y construcción paso a paso» y en el repositorio como docs/arquitectura_parser_y_grafo.md. Las etapas son nueve:
+
+- corpus y referencia;
+- textos y adaptador;
+- segmentación;
+- detección de menciones;
+- reglas v1 y el hallazgo de que no generalizan;
+- reglas v2 y el clasificador de referencia;
+- salida estándar con relaciones tipadas;
+- arquitectura del grafo;
+- evaluación del grafo.
+
+**Por qué.** La bitácora registra cada decisión por separado. Para el informe y la defensa hace falta además una explicación continua del parser y del grafo. El documento sigue un artículo real de punta a punta (artículo 70 del Decreto 70/2023, que sustituye el artículo 80 de la LCT), desde el HTML hasta la consulta Cypher que lo devuelve, e incluye el mapa de scripts y módulos.
+
+**Limitación detectada al escribirlo.** Cuando una norma sustituye un artículo, el texto nuevo entre comillas queda dentro del artículo que sustituye. Las menciones de ese texto citado generan citas extra del mismo artículo. Queda como mejora del tipado.
 
 ## Cuestiones abiertas
 
