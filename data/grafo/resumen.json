@@ -1,22 +1,21 @@
 {
   "nodos": {
     "Norma": 340,
-    "Articulo": 8066
+    "Articulo": 8129,
+    "Articulo_sin_texto": 63
   },
-  "relaciones": {
-    "TIENE_ARTICULO": 8066,
-    "RELACION_INFOLEG": 775,
-    "RELACION_EXTRAIDA": {
-      "reglas_v1": 804,
-      "reglas_v2": 771,
-      "clasificador": 733
-    },
-    "MENCIONA": 4430
+  "aristas": {
+    "CONTIENE": 8129,
+    "CITA": 2332,
+    "SUSTITUYE": 375,
+    "INCORPORA": 181,
+    "MODIFICA": 176,
+    "DEROGA": 155,
+    "REGLAMENTA": 58
   },
-  "menciones_sin_articulo": 0,
-  "extraidas_en_infoleg": {
-    "clasificador": 0.7749,
-    "reglas_v1": 0.6754,
-    "reglas_v2": 0.7601
+  "relaciones_a_articulo": 1684,
+  "relaciones_a_norma": 1593,
+  "fuentes": {
+    "reglas_v2": 3277
   }
 }

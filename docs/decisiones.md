@@ -103,6 +103,18 @@ v1 queda congelado y reproducible: `03_extraer_reglas.py` sin `--parser` regener
 
 `scripts/08_clasificador.py` entrena sobre `pares_candidatos.csv` con validación cruzada de 5 particiones en dev, agrupada por norma origen, y elige modelo y umbral por F1. El elegido es un random forest con umbral 0,45. En test da F1 0,823, empatado con las reglas v2 (0,828). Se usa como referencia estadística para los parsers LLM e híbrido, no como un cuarto parser.
 
-## D15. Modelo del grafo (09/11/2026)
+## D15. Modelo del grafo (09/11/2026) · reemplazada por D17
 
 El grafo (`docs/grafo.md`) separa lo que registra InfoLEG (`RELACION_INFOLEG`) de lo que extrae cada parser (`RELACION_EXTRAIDA`, una arista por par y por parser). Las menciones (`MENCIONA`) salen de un nodo `Articulo` que lleva el texto. Así cada arista de reglas se rastrea hasta su fragmento, y los parsers LLM e híbrido se agregan como otro valor de `parser`. El grafo no lleva embeddings: para agregarlos hay que elegir un modelo, y eso queda abierto para F7.
+
+## D16. Salida estándar de los parsers (09/11/2026)
+
+Todos los parsers escriben la misma tabla de relaciones tipadas (`src/grafo_legal/salida.py`, `docs/salida_estandar.md`). Una fila dice qué hace un artículo de la norma origen sobre una norma o un artículo destino. Los tipos son `SUSTITUYE`, `INCORPORA`, `DEROGA`, `REGLAMENTA`, `MODIFICA` y `CITA`, y cada relación lleva su evidencia. Lo único que cambia de una fuente de documentos a otra es el adaptador que convierte el documento en texto; la detección, el tipado, la salida y el grafo son los mismos. El parser de reglas v2 la produce con `scripts/09_relaciones.py`: el tipo sale del verbo de la oración y el artículo destino del «artículo N de la» que precede a la mención.
+
+## D17. El grafo se arma solo con la salida estándar; InfoLEG queda afuera (09/11/2026)
+
+Reemplaza a D15. El grafo tiene `(:Norma)-[:CONTIENE]->(:Articulo)` y aristas tipadas de un artículo a un artículo o a una norma (`docs/grafo.md`). Ya no lleva `RELACION_INFOLEG`, `RELACION_EXTRAIDA` ni `MENCIONA`: el modelo anterior servía para comparar parsers, pero no para representar lo que hace cada norma, y no respondía preguntas como «¿qué artículos de la LCT sustituyó la Ley 27.802?». InfoLEG se usa solo como referencia para evaluar el grafo. El script del grafo pasa a ser `scripts/10_armar_grafo.py`.
+
+## D18. Evaluación del grafo leyéndolo de vuelta (09/11/2026)
+
+`scripts/11_evaluar_grafo.py` lee las relaciones desde el grafo (Neo4j o una copia en memoria armada con el mismo código), no desde los archivos del parser. Primero comprueba la ida y vuelta: que el grafo devuelva exactamente lo que se cargó. Después proyecta las relaciones a pares de normas con la regla F de las reglas v2 y las compara con InfoLEG por split, por tipo y por norma semilla. El tipo, que InfoLEG no registra, se evalúa con una revisión manual (`docs/revision_manual/revision_tipos_36.csv`). Resultados en `results/evaluacion_grafo/RESULTADOS.md`.

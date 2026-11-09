@@ -42,10 +42,12 @@ python scripts/07_armar_dataset.py --corpus data/corpus --res results/reglas_v2 
 echo "== 8/10 Clasificador de referencia (CV agrupada en dev; test una vez)"
 python scripts/08_clasificador.py --incluir-test
 
-echo "== 9/10 Grafo para Neo4j (solo arma los CSV; para cargar ver docs/grafo.md)"
-python scripts/09_armar_grafo.py
+echo "== 9/10 Relaciones tipadas (salida estandar) y grafo (CSV; para cargar en Neo4j: cargar_y_evaluar_grafo.sh)"
+python scripts/09_relaciones.py
+python scripts/10_armar_grafo.py
 
-echo "== 10/10 Tests"
+echo "== 10/10 Evaluacion del grafo (copia en memoria) y tests"
+python scripts/11_evaluar_grafo.py
 pytest -q
 
 echo "Listo. Revisa con: git status"

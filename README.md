@@ -13,8 +13,11 @@ El TP extrae automáticamente las relaciones entre normas (modifica, sustituye, 
 | Dataset: 8.066 segmentos y 1.091 pares candidatos | `data/dataset/`, ficha en `docs/dataset.md` |
 | Parser 1: reglas | v2 congelado y evaluado (F1 test 0,828); v1 se conserva para comparar |
 | Clasificador de referencia (scikit-learn) | evaluado (F1 test 0,823) |
-| Grafo Neo4j | archivos armados y verificados (`data/grafo/`, `docs/grafo.md`); falta la primera carga en Neo4j |
+| Salida estándar de relaciones tipadas | 3.277 relaciones del parser de reglas v2 (`docs/salida_estandar.md`) |
+| Grafo Neo4j | se arma solo desde la salida estándar (`docs/grafo.md`); ida y vuelta idéntica, F1 0,828 contra InfoLEG en test (`results/evaluacion_grafo/`) |
 | Parser 2: LLM puro / Parser 3: híbrido / text-to-Cypher | pendiente |
+
+El parser apunta a cualquier documento normativo: lo único que depende de la fuente es el adaptador que pasa el documento a texto.
 
 El estado completo está en [`docs/ESTADO.md`](docs/ESTADO.md).
 
@@ -41,14 +44,18 @@ data/
 src/grafo_legal/
   fuentes/infoleg.py    adaptador: HTML -> texto -> artículos con zona
   catalogo.py           normalización de menciones a id_norma (mundo cerrado)
-  extractores/          menciones (regex + alias) y reglas de relación (reglas.py v1, reglas_v2.py)
+  extractores/          menciones (regex + alias), reglas de relación (reglas.py v1, reglas_v2.py) y tipado (relaciones.py)
+  salida.py             formato de la salida estándar de los parsers
+  grafo.py              modelo del grafo: construcción, carga en Neo4j y lectura de vuelta
   evaluacion.py         P/R/F1 a nivel de par
   archivos.py           escritura atómica de salidas
 scripts/                01 corpus · 02 textos · 03 extraer · 04 evaluar · 05 cobertura · 06 muestra Ley 14.250
-                        · 07 dataset · 08 clasificador · 09 grafo
+                        · 07 dataset · 08 clasificador · 09 relaciones · 10 grafo · 11 evaluar grafo
 results/reglas/         reglas v1: evidencias, métricas y errores
 results/reglas_v2/      reglas v2: evidencias, métricas y errores
 results/clasificador/   clasificador: métricas, predicciones e importancia de atributos
+results/relaciones/     salida estándar: relaciones tipadas de cada parser
+results/evaluacion_grafo/  ida y vuelta del grafo y comparación con InfoLEG
 docs/                   estado, decisiones, ficha del dataset, revisión manual y copia de los documentos del Drive
 tools/                  utilidades (conversión entre Google Docs y Markdown)
 tests/                  tests sin red (pytest)
@@ -74,16 +81,15 @@ pares = pd.read_csv("data/dataset/pares_candidatos.csv")
 dev = pares[pares.split == "dev"]   # se entrena y ajusta solo con dev
 ```
 
-Para cargar el grafo en un Neo4j 5 local:
+Para cargar el grafo en el Neo4j del TP y evaluarlo (contenedor y clave en `docs/grafo.md`):
 
 ```bash
-export NEO4J_PASSWORD=...
-python scripts/09_armar_grafo.py --uri bolt://localhost:7687 --user neo4j --borrar
+bash cargar_y_evaluar_grafo.sh
 ```
 
 ## Reglas del protocolo
 
-- El gold nunca es entrada de un extractor. Solo lo leen `04_evaluar.py`, `05_cobertura_textual.py`, `07_armar_dataset.py` (para la etiqueta `en_gold`, nunca para los atributos), `08_clasificador.py` (para medir) y `09_armar_grafo.py` (para la relación `RELACION_INFOLEG`, separada de lo extraído).
+- El gold nunca es entrada de un extractor. Solo lo leen `04_evaluar.py`, `05_cobertura_textual.py`, `07_armar_dataset.py` (para la etiqueta `en_gold`, nunca para los atributos), `08_clasificador.py` y `11_evaluar_grafo.py` (para medir). El grafo no lo lee.
 - Las reglas se iteran solo sobre dev. Test se evalúa una vez por versión congelada del parser.
 - Cada arista extraída lleva su evidencia: artículo, offsets, fragmento, método y reglas cumplidas.
 
