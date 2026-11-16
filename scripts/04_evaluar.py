@@ -22,7 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from grafo_legal.archivos import abrir_para_escribir, escribir_texto  # noqa: E402
 from grafo_legal.evaluacion import cargar_gold, prf          # noqa: E402
-from grafo_legal.extractores import reglas, reglas_v2         # noqa: E402
+from grafo_legal.extractores import reglas, reglas_v2, reglas_v3  # noqa: E402
 
 
 def leer_evidencias(p: Path, clase) -> list:
@@ -40,7 +40,7 @@ def leer_evidencias(p: Path, clase) -> list:
 
 
 def main(corpus: Path, res: Path, incluir_test: bool, config_final: str, parser: str = "v1") -> None:
-    mod = reglas if parser == "v1" else reglas_v2
+    mod = {"v1": reglas, "v2": reglas_v2, "v3": reglas_v3}[parser]
     CONFIGS = mod.CONFIGS
     gold_rows = cargar_gold(corpus)
     split_de = {}
@@ -60,7 +60,7 @@ def main(corpus: Path, res: Path, incluir_test: bool, config_final: str, parser:
         with open(v_p, encoding="utf-8") as f:
             vistos = {(int(r["id_norma_modificatoria"]), int(r["id_norma_modificada"])) for r in csv.DictReader(f)}
 
-    ev = leer_evidencias(res / "evidencias.csv", mod.Evidencia if parser == "v1" else mod.EvidenciaV2)
+    ev = leer_evidencias(res / "evidencias.csv", reglas.Evidencia if parser == "v1" else reglas_v2.EvidenciaV2)
     splits = ["dev"] + (["test"] if incluir_test else [])
     metricas = {"fecha": datetime.now(timezone.utc).isoformat(), "parser": parser, "splits": splits, "configs": {}}
 
@@ -125,6 +125,6 @@ if __name__ == "__main__":
     ap.add_argument("--res", type=Path, default=Path("results/reglas"))
     ap.add_argument("--incluir-test", action="store_true")
     ap.add_argument("--config-final", default="E_C_mas_verbo_en_oracion")
-    ap.add_argument("--parser", choices=["v1", "v2"], default="v1")
+    ap.add_argument("--parser", choices=["v1", "v2", "v3"], default="v1")
     a = ap.parse_args()
     main(a.corpus, a.res, a.incluir_test, a.config_final, a.parser)

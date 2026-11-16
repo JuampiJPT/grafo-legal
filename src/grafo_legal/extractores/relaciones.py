@@ -51,8 +51,17 @@ def tipo_por_verbo(verbo: str) -> str:
     return "MODIFICA"     # prorroga, suspende, amplia, exime, ratifica, texto ordenado, modifica...
 
 
-def articulos_destino(previo: str) -> list[str]:
-    """Numeros de articulo que se refieren a la norma mencionada justo despues de `previo`."""
+# encabezado del propio articulo: "Artículo 1° —", "ARTÍCULO 2.-", "Art. 5º:"
+_ENCABEZADO = re.compile(r"\s*[°ºo]?\s*(?:bis|ter)?\s*[°º]?\s*[.\-–—:]")
+
+
+def articulos_destino(previo: str, ignorar_encabezado: bool = False) -> list[str]:
+    """Numeros de articulo que se refieren a la norma mencionada justo despues de `previo`.
+
+    ignorar_encabezado (reglas v3): si el "articulo N" encontrado es el encabezado del propio
+    articulo de la norma origen ("Articulo 1° — Apruebase la reglamentacion de la Ley 26.773"),
+    no es un articulo destino.
+    """
     # el ultimo "articulo(s) N" antes de la mencion es el candidato
     m = None
     for m in _ART_LISTA.finditer(previo):
@@ -61,6 +70,9 @@ def articulos_destino(previo: str) -> list[str]:
         return []
     # entre "articulo N" y la mencion tiene que haber solo un "de la"/"del" corto, sin otra norma:
     # "el articulo 80 de la Ley 20.744" si; "el articulo 80 de la Ley 24.013 y la Ley 20.744" no
+    if ignorar_encabezado and m.start() == len(previo) - len(previo.lstrip()) \
+            and _ENCABEZADO.match(previo, m.end()):
+        return []
     puente = previo[m.end():]
     if not _PUENTE.match(puente) or _OTRA_NORMA.search(puente):
         return []
@@ -77,7 +89,8 @@ def articulos_destino(previo: str) -> list[str]:
 
 
 def desde_evidencias(ev: pd.DataFrame, textos: dict[int, str], articulos: pd.DataFrame,
-                     etiquetas: dict[int, str], fuente: str = "reglas_v2") -> pd.DataFrame:
+                     etiquetas: dict[int, str], fuente: str = "reglas_v2",
+                     ignorar_encabezado: bool = False) -> pd.DataFrame:
     """ev: evidencias.csv de reglas_v2. textos: texto limpio por norma. articulos: articulos.csv."""
     # Paso 1: menciones que cuentan (no de procedencia, no posteriores al origen, no en notas)
     # las notas son anotaciones editoriales de la fuente (InfoLEG), no texto de la norma
@@ -99,7 +112,7 @@ def desde_evidencias(ev: pd.DataFrame, textos: dict[int, str], articulos: pd.Dat
         tipo = tipo_por_verbo(r.verbo_oracion) if en_texto else "CITA"
         # la oracion de la mencion empieza en el ultimo punto, punto y coma o salto de linea
         a = max(texto.rfind(". ", 0, ini_sup), texto.rfind(";", 0, ini_sup), texto.rfind("\n", 0, ini_sup)) + 1
-        destinos = articulos_destino(texto[max(a, ini_sup - 200):ini_sup]) or [""]
+        destinos = articulos_destino(texto[max(a, ini_sup - 200):ini_sup], ignorar_encabezado) or [""]
         for art_dest in destinos:
             filas.append({
                 "fuente": fuente, "id_norma_origen": r.id_origen, "norma_origen": etiquetas[r.id_origen],

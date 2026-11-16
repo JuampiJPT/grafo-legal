@@ -16,7 +16,7 @@ Como funciona, paso a paso:
   3. PROMPT. El LLM recibe la definicion de los seis tipos de relacion (SUSTITUYE, INCORPORA,
      DEROGA, REGLAMENTA, MODIFICA, CITA) y devuelve un JSON con una entrada por relacion: de que
      segmento sale, la cita textual exacta, tipo y numero de la norma destino, articulo destino,
-     tipo de relacion y verbo. Temperatura 0.
+     tipo de relacion y verbo.
   4. VERIFICACION (anti-alucinacion). La cita que devuelve el LLM se busca en el texto del
      segmento. Si aparece, se guardan sus offsets: la relacion queda trazable a la evidencia,
      igual que en las reglas. Si no aparece, la relacion se descarta y se cuenta (tasa de citas
@@ -160,8 +160,9 @@ class ClienteLLM:
             self._cliente = anthropic.Anthropic(api_key=self.clave)
         for intento in range(5):
             try:
+                # la API de los modelos 5.5 no acepta "temperature": la reproducibilidad la da la cache
                 r = self._cliente.messages.create(
-                    model=self.modelo, max_tokens=8000, temperature=0, system=SISTEMA,
+                    model=self.modelo, max_tokens=8000, system=SISTEMA,
                     messages=[{"role": "user", "content": usuario}])
                 break
             except Exception:  # limites de uso o cortes de red: se reintenta con espera creciente

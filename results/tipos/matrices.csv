@@ -5,3 +5,10 @@ DEROGA,0,0,11,0,0,2,reglas_v2
 REGLAMENTA,0,0,0,8,0,5,reglas_v2
 MODIFICA,1,0,0,0,4,8,reglas_v2
 CITA,0,0,1,0,2,10,reglas_v2
+CITA,0,0,1,0,2,11,reglas_v3
+DEROGA,0,0,10,0,0,2,reglas_v3
+INCORPORA,0,8,0,0,0,0,reglas_v3
+MODIFICA,1,0,0,0,4,9,reglas_v3
+NO_EXTRAIDA,0,0,0,0,0,3,reglas_v3
+REGLAMENTA,0,0,0,8,0,5,reglas_v3
+SUSTITUYE,12,0,1,0,0,1,reglas_v3

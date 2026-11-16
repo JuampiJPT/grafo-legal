@@ -52,6 +52,15 @@ def main() -> None:
     f = ok & ((ev.parte == "visto") | ((ev.zona == "articulado") & (ev.metodo == "regex_numero")
                                        & ((ev.tipo_origen != "decreto") | (ev.verbo_oracion != ""))))
     metodos["reglas_v2_F"] = set(zip(ev[f].id_origen, ev[f].id_destino))
+    # reglas v3, configuracion F3 (F + alias con verbo en el articulado)
+    v3p = Path("results/reglas_v3/evidencias.csv")
+    if v3p.exists():
+        e3 = pd.read_csv(v3p, keep_default_na=False)
+        ok3 = (e3.temporal_ok.astype(str) == "True") & (e3.procedencia.astype(str) != "True")
+        f3 = ok3 & ((e3.parte == "visto") | ((e3.zona == "articulado") & (e3.metodo == "regex_numero")
+                                             & ((e3.tipo_origen != "decreto") | (e3.verbo_oracion != "")))
+                    | ((e3.zona == "articulado") & (e3.metodo == "alias") & (e3.verbo_oracion != "")))
+        metodos["reglas_v3_F3"] = set(zip(e3[f3].id_origen, e3[f3].id_destino))
     # clasificador de superficie
     c = pd.read_csv("results/clasificador/predicciones.csv")
     c = c[(c.split == "test") & (c.predicho == 1)]

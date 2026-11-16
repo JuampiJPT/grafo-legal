@@ -32,11 +32,14 @@ El estado completo está en [`docs/ESTADO.md`](docs/ESTADO.md). Cómo funciona e
 |---|---|---|---|---|---|
 | Reglas v1, configuración C | 0,732 | 0,854 | 0,652 | 0,788 | 0,563 |
 | **Reglas v2, configuración F** | **0,785** | **0,875** | **0,733** | **0,828** | **0,671** |
+| Reglas v3, configuración F3 (experimento) | 0,779 | 0,880 | 0,750 | 0,826 | 0,671 |
 | Clasificador (random forest) | 0,799 | 0,849 | 0,728 (CV) | 0,823 | 0,683 |
 | Modelo contextual (TF-IDF + superficie) | 0,760 | 0,807 | 0,751 (CV) | 0,783 | |
 | **Híbrido reglas + modelo contextual** | 0,780 | 0,906 | 0,749 (CV) | **0,839** | |
 
 Ninguna diferencia con las reglas v2 es significativa, salvo las de los modelos contextuales solos, que son peores: el intervalo del 95 % de la diferencia del híbrido va de −2,2 a +4,0 puntos (`results/comparacion/`). Cómo se compara con el gold: [`docs/comparacion_con_el_gold.md`](docs/comparacion_con_el_gold.md). Recorrido del código para la presentación: [`docs/guia_codigo.md`](docs/guia_codigo.md).
+
+La v3 corrige la normalización: lee el año escrito como fecha, y la normalización ya no pierde pares. En test empata con la v2 ([`results/reglas_v3/RESULTADOS.md`](results/reglas_v3/RESULTADOS.md)). Cómo se detecta una relación, paso por paso: [`docs/como_se_detecta_una_relacion.md`](docs/como_se_detecta_una_relacion.md). Por qué falla cada error: [`docs/analisis_de_fallos.md`](docs/analisis_de_fallos.md).
 
 Cada versión se diseñó solo sobre dev, y su test se evaluó una vez. El detalle está en [`results/reglas_v2/RESULTADOS.md`](results/reglas_v2/RESULTADOS.md), [`results/reglas/RESULTADOS.md`](results/reglas/RESULTADOS.md) y [`results/clasificador/RESULTADOS.md`](results/clasificador/RESULTADOS.md).
 
@@ -53,7 +56,7 @@ data/
 src/grafo_legal/
   fuentes/infoleg.py    adaptador: HTML -> texto -> artículos con zona
   catalogo.py           normalización de menciones a id_norma (mundo cerrado)
-  extractores/          menciones (regex + alias), reglas de relación (reglas.py v1, reglas_v2.py), tipado (relaciones.py) y parser LLM (llm.py)
+  extractores/          menciones (regex + alias), reglas de relación (reglas.py v1, reglas_v2.py, reglas_v3.py), tipado (relaciones.py) y parser LLM (llm.py)
   salida.py             formato de la salida estándar de los parsers
   grafo.py              modelo del grafo: construcción, carga en Neo4j y lectura de vuelta
   evaluacion.py         P/R/F1 a nivel de par
@@ -122,6 +125,8 @@ Toda la documentación está en dos lugares: la carpeta de Google Drive del TP y
 | Pipeline, corpus, dataset, decisiones, resultados, grafo y revisión manual | este repo (README, `data/corpus/SNAPSHOT.md`, `docs/dataset.md`, `docs/decisiones.md`, `results/`, `docs/grafo.md`, `docs/revision_manual/`) | Drive: «03 - Pipeline oficial, corpus, dataset y parser de reglas» |
 | Estado del TP | este repo: [`docs/ESTADO.md`](docs/ESTADO.md) | Drive: «04 - Estado del TP» |
 | Parser y grafo: arquitectura y construcción paso a paso | este repo: [`docs/arquitectura_parser_y_grafo.md`](docs/arquitectura_parser_y_grafo.md) | Drive: «06 - Parser y grafo: arquitectura y construcción paso a paso» |
+| Evaluación completa, parser LLM y guía del código | este repo: `docs/comparacion_con_el_gold.md`, `docs/parser_llm.md`, `docs/guia_codigo.md` | Drive: «07 - Evaluación completa, parser LLM y guía del código» |
+| Análisis de fallos y cómo se detecta una relación | este repo: [`docs/analisis_de_fallos.md`](docs/analisis_de_fallos.md), [`docs/como_se_detecta_una_relacion.md`](docs/como_se_detecta_una_relacion.md) | Drive: «08 - Análisis de fallos y cómo se detecta una relación» |
 | Roadmap | [artefacto de Claude](https://claude.ai/artifact/Aai3uXH2hrR92fLDmYpvfM) | [`docs/drive/roadmap.md`](docs/drive/roadmap.md) y Drive: «05 - Roadmap del TP (copia)» |
 
 Las copias de los documentos del Drive se regeneran con `tools/gdoc_a_md.py` a partir del JSON de la API de Google Docs; `tools/md_a_gdoc.py` hace el camino inverso.

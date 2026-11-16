@@ -21,7 +21,7 @@ segmentos del adaptador ──► 1 prefiltro ──► 2 lotes ──► 3 LLM 
    - tipo de relación;
    - verbo.
 
-   Se usa temperatura 0. El prompt está en `llm.SISTEMA` y su versión en `llm.VERSION_PROMPT`.
+   No se fija la temperatura: la API de los modelos 5.5 no acepta el parámetro (B53). La reproducibilidad viene de la caché (punto 6). El prompt está en `llm.SISTEMA` y su versión en `llm.VERSION_PROMPT`.
 4. **Verificación de la cita (anti-alucinación).** La cita que devuelve el LLM se busca en el texto del segmento. Si aparece, se guardan sus offsets en el texto limpio de la norma, y la relación queda trazable a su evidencia igual que en las reglas. Si no aparece, la relación se descarta y se cuenta: la tasa de citas que no están en el texto es una medida de alucinación.
 5. **Normalización.** El tipo, el número y el año que da el LLM se resuelven contra el mismo catálogo que usan las reglas (`catalogo.py`, mundo cerrado). Así la comparación entre parsers mide solo la lectura del texto, no la normalización.
 6. **Caché.** Cada respuesta se guarda en `results/relaciones_llm/cache/`, con nombre igual a la huella SHA-256 del pedido (modelo, versión del prompt, prompt y texto). La caché va en el repositorio. Volver a correr no llama a la API y da exactamente lo mismo, así que el experimento es reproducible sin la clave y sin costo.

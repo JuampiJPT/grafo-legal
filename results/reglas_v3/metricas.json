@@ -1,0 +1,159 @@
+{
+  "fecha": "2026-11-16T20:46:57.668718+00:00",
+  "parser": "v3",
+  "splits": [
+    "dev",
+    "test"
+  ],
+  "configs": {
+    "F_v2_sobre_evidencias_v3": {
+      "dev": {
+        "todo_el_gold": {
+          "pred": 555,
+          "gold": 583,
+          "tp": 424,
+          "fp": 131,
+          "fn": 159,
+          "precision": 0.764,
+          "recall": 0.7273,
+          "f1": 0.7452
+        },
+        "gold_con_texto": {
+          "pred": 555,
+          "gold": 548,
+          "tp": 424,
+          "fp": 131,
+          "fn": 124,
+          "precision": 0.764,
+          "recall": 0.7737,
+          "f1": 0.7688
+        },
+        "sin_pares_de_v1": {
+          "pred": 362,
+          "gold": 308,
+          "tp": 231,
+          "fp": 131,
+          "fn": 77,
+          "precision": 0.6381,
+          "recall": 0.75,
+          "f1": 0.6896
+        }
+      },
+      "test": {
+        "todo_el_gold": {
+          "pred": 212,
+          "gold": 192,
+          "tp": 167,
+          "fp": 45,
+          "fn": 25,
+          "precision": 0.7877,
+          "recall": 0.8698,
+          "f1": 0.8267
+        },
+        "gold_con_texto": {
+          "pred": 212,
+          "gold": 192,
+          "tp": 167,
+          "fp": 45,
+          "fn": 25,
+          "precision": 0.7877,
+          "recall": 0.8698,
+          "f1": 0.8267
+        },
+        "sin_pares_de_v1": {
+          "pred": 102,
+          "gold": 65,
+          "tp": 57,
+          "fp": 45,
+          "fn": 8,
+          "precision": 0.5588,
+          "recall": 0.8769,
+          "f1": 0.6826
+        }
+      }
+    },
+    "F3_alias_con_verbo": {
+      "dev": {
+        "todo_el_gold": {
+          "pred": 566,
+          "gold": 583,
+          "tp": 431,
+          "fp": 135,
+          "fn": 152,
+          "precision": 0.7615,
+          "recall": 0.7393,
+          "f1": 0.7502
+        },
+        "gold_con_texto": {
+          "pred": 566,
+          "gold": 548,
+          "tp": 431,
+          "fp": 135,
+          "fn": 117,
+          "precision": 0.7615,
+          "recall": 0.7865,
+          "f1": 0.7738
+        },
+        "sin_pares_de_v1": {
+          "pred": 369,
+          "gold": 308,
+          "tp": 234,
+          "fp": 135,
+          "fn": 74,
+          "precision": 0.6341,
+          "recall": 0.7597,
+          "f1": 0.6913
+        }
+      },
+      "test": {
+        "todo_el_gold": {
+          "pred": 217,
+          "gold": 192,
+          "tp": 169,
+          "fp": 48,
+          "fn": 23,
+          "precision": 0.7788,
+          "recall": 0.8802,
+          "f1": 0.8264
+        },
+        "gold_con_texto": {
+          "pred": 217,
+          "gold": 192,
+          "tp": 169,
+          "fp": 48,
+          "fn": 23,
+          "precision": 0.7788,
+          "recall": 0.8802,
+          "f1": 0.8264
+        },
+        "sin_pares_de_v1": {
+          "pred": 105,
+          "gold": 65,
+          "tp": 57,
+          "fp": 48,
+          "fn": 8,
+          "precision": 0.5429,
+          "recall": 0.8769,
+          "f1": 0.6706
+        }
+      }
+    }
+  },
+  "config_final": "F3_alias_con_verbo",
+  "errores_por_categoria": {
+    "dev": {
+      "FN_sin_mencion": 75,
+      "FN_filtrado_por_reglas": 41,
+      "FN_sin_texto": 35,
+      "FN_mencion_no_detectada(solo_nombre)": 1,
+      "FP_mencion_con_verbo": 128,
+      "FP_solo_alias": 7
+    },
+    "test": {
+      "FN_filtrado_por_reglas": 16,
+      "FN_sin_mencion": 7,
+      "FP_mencion_con_verbo": 44,
+      "FP_solo_alias": 4
+    }
+  }
+}

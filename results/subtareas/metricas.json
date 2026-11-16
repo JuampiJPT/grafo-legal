@@ -1,6 +1,7 @@
 {
-  "fecha": "2026-11-16T20:17:54.730572+00:00",
+  "fecha": "2026-11-16T20:41:47.102808+00:00",
   "config": "F_visto_o_articulado_con_verbo_o_ley",
+  "parser": "reglas_v2",
   "catalogo_completo_normas": 106466,
   "deteccion": {
     "dev": {

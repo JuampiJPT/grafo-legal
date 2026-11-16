@@ -65,8 +65,9 @@ def main(revision: Path, rel_reglas: Path, rel_llm: Path, out: Path) -> None:
     m = pd.crosstab(rev.tipo, rev.tipo_correcto).reindex(index=TIPOS, columns=TIPOS, fill_value=0)
     matrices.append(m.assign(metodo="reglas_v2").reset_index().rename(columns={"tipo": "predicho"}))
 
-    if rel_llm.exists():
-        llm = pd.read_csv(rel_llm, keep_default_na=False, dtype=str)
+    def evaluar_otro(nombre: str, ruta: Path) -> None:
+        """Tipo de otra salida (reglas v3, LLM) sobre los mismos casos de la revision."""
+        llm = pd.read_csv(ruta, keep_default_na=False, dtype=str)
         # tipo del LLM para el mismo articulo origen y la misma norma destino; si el LLM dio varios
         # (por ejemplo SUSTITUYE el articulo 10 y CITA a la ley), gana el que no es CITA
         prioridad = {t: i for i, t in enumerate(["SUSTITUYE", "INCORPORA", "DEROGA", "REGLAMENTA", "MODIFICA", "CITA"])}
@@ -75,12 +76,19 @@ def main(revision: Path, rel_reglas: Path, rel_llm: Path, out: Path) -> None:
         j = rev.merge(llm[["norma_origen", "articulo_origen", "norma_destino", "tipo"]].rename(columns={"tipo": "tipo_llm"}),
                       on=["norma_origen", "articulo_origen", "norma_destino"], how="left")
         j["tipo_llm"] = j.tipo_llm.fillna("NO_EXTRAIDA")
-        res["llm"] = {"no_extraidas": int((j.tipo_llm == "NO_EXTRAIDA").sum()),
+        res[nombre] = {"no_extraidas": int((j.tipo_llm == "NO_EXTRAIDA").sum()),
                       "muestra": metricas_tipo(j.tipo_correcto, j.tipo_llm, uno),
                       "poblacion_ponderada": metricas_tipo(j.tipo_correcto, j.tipo_llm, j.peso)}
         m = pd.crosstab(j.tipo_llm, j.tipo_correcto).reindex(columns=TIPOS, fill_value=0)
-        matrices.append(m.assign(metodo="llm").reset_index().rename(columns={"tipo_llm": "predicho"}))
-        j.to_csv(out / "casos_con_llm.csv", index=False, lineterminator="\n") if out.exists() else None
+        matrices.append(m.assign(metodo=nombre).reset_index().rename(columns={"tipo_llm": "predicho"}))
+
+    # reglas v3: OJO, sus correcciones de tipado (B52) salieron de errores vistos en esta misma
+    # muestra, asi que su medida aca es optimista
+    v3 = rel_reglas.parent / "relaciones_reglas_v3.csv"
+    if v3.exists():
+        evaluar_otro("reglas_v3", v3)
+    if rel_llm.exists():
+        evaluar_otro("llm", rel_llm)
 
     out.mkdir(parents=True, exist_ok=True)
     escribir_texto(out / "metricas.json", json.dumps(res, indent=2, ensure_ascii=False))

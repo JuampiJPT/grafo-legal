@@ -88,12 +88,32 @@ def _tipo(t: str) -> str:
     return "ley" if t.startswith("ley") else "decreto"
 
 
-def detectar(texto: str) -> list[Mencion]:
+# --- Ano escrito como fecha (solo reglas v3) -------------------------------------------
+# "Decreto N° 1694 del 22 de noviembre de 2006", "Decreto Nº 84 de fecha 23 de enero de 2014",
+# "Decretos Nros. 658 y 659, ambos del 24 de junio de 1996", "Decreto 410 del 13/03/2001".
+_MESES = r"(?:enero|febrero|marzo|abril|mayo|junio|julio|agosto|sep?tiembre|octubre|noviembre|diciembre)"
+_FECHA = re.compile(
+    rf"^\s*,?\s*(?:ambos\s+|todos\s+)?(?:de\s+fecha|del|de)\s+(?:\d{{1,2}}\s*[°º]?\s+de\s+{_MESES}\s+(?:de|del)\s+"
+    rf"(?P<a1>\d{{4}})|\d{{1,2}}/\d{{1,2}}/(?P<a2>\d{{4}}))", re.I)
+_AMBOS = re.compile(r"^\s*,?\s*(?:ambos|todos)\b", re.I)
+
+
+def anio_de_fecha(texto: str, fin: int) -> int | None:
+    """Ano de la fecha que sigue inmediatamente a una mencion, o None."""
+    m = _FECHA.match(texto[fin:fin + 80])
+    if not m:
+        return None
+    return int(m.group("a1") or m.group("a2"))
+
+
+def detectar(texto: str, anio_por_fecha: bool = False) -> list[Mencion]:
     """Paso 3 del pipeline (deteccion): todas las menciones por tipo y numero de un segmento.
 
     Cada mencion conserva sus offsets dentro del segmento, para poder volver a la evidencia.
     La deteccion no decide si la mencion es una relacion: eso lo hacen las reglas despues.
     """
+    # anio_por_fecha=False es el comportamiento congelado de las reglas v1 y v2. Con True (reglas
+    # v3), si la mencion no trae "/ano", se lee el ano de la fecha que la sigue.
     out: list[Mencion] = []
     for m in _PATRON.finditer(texto):
         tipo = _tipo(m.group("tipo"))
@@ -107,10 +127,30 @@ def detectar(texto: str) -> list[Mencion]:
                 continue
             ini, fin = base + it.start(), base + it.end()
             out.append(Mencion(tipo, num, _anio(it.group("anio")), ini, fin, texto[m.start():fin]))
+        if anio_por_fecha:
+            _completar_anios(texto, out, m.end())
     return out
 
 
-def detectar_alias(texto: str) -> list[tuple[int, int, int, str]]:
+def _completar_anios(texto: str, menciones: list[Mencion], fin_lista: int) -> None:
+    """Reglas v3: completa el ano de las menciones sin "/ano" con la fecha que las sigue.
+
+    - "Decreto N° 1694 del 22 de noviembre de 2006": la fecha sigue al numero.
+    - "Decretos Nros. 658 y 659, ambos del 24 de junio de 1996": la fecha vale para toda la lista.
+    """
+    for mm in menciones:
+        if mm.anio is None and mm.metodo == "regex_numero":
+            mm.anio = anio_de_fecha(texto, mm.fin) or mm.anio
+    resto = texto[fin_lista:fin_lista + 80]
+    if _AMBOS.match(resto):
+        a = anio_de_fecha(texto, fin_lista)
+        if a:
+            for mm in menciones:
+                if mm.anio is None and mm.fin <= fin_lista:
+                    mm.anio = a
+
+
+def detectar_alias(texto: str, alias: dict | None = None) -> list[tuple[int, int, int, str]]:
     """Devuelve (id_norma, inicio, fin, superficie) de las menciones por nombre propio.
 
     Busca los nombres del gazetteer ALIAS ("ley de contrato de trabajo" -> Ley 20.744) sobre una
@@ -119,7 +159,7 @@ def detectar_alias(texto: str) -> list[tuple[int, int, int, str]]:
     """
     plano = "".join((sin_tildes(c) or c).lower() for c in texto)   # misma longitud que texto
     out = []
-    for id_norma, nombres in ALIAS.items():
+    for id_norma, nombres in (alias or ALIAS).items():
         for nombre in nombres:
             for m in re.finditer(r"\b" + re.escape(nombre) + r"\b", plano):
                 out.append((id_norma, m.start(), m.end(), texto[m.start():m.end()]))

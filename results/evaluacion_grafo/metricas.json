@@ -1,6 +1,6 @@
 {
-  "fecha": "2026-11-09T23:19:26.912546+00:00",
-  "backend": "neo4j bolt://localhost:7688",
+  "fecha": "2026-11-16T19:46:42.848727+00:00",
+  "backend": "memoria (networkx)",
   "fuente": "reglas_v2",
   "ida_y_vuelta": {
     "cargadas": 3277,

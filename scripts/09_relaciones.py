@@ -24,22 +24,24 @@ from grafo_legal.fuentes.infoleg import cargar                        # noqa: E4
 from grafo_legal.salida import validar                                # noqa: E402
 
 
-def main(corpus: Path, html: Path, dataset: Path, res_v2: Path, out: Path) -> None:
+def main(corpus: Path, html: Path, dataset: Path, res_v2: Path, out: Path, parser: str = "v2") -> None:
     normas = pd.read_csv(corpus / "corpus_normas.csv", dtype=str, keep_default_na=False)
     etiquetas = {int(r.id_norma): f"{r.tipo_norma} {r.numero_norma}" for r in normas.itertuples()}
     ev = pd.read_csv(res_v2 / "evidencias.csv", keep_default_na=False, dtype={"articulo": str})
     textos = {i: cargar(i, html)[0] for i in sorted(set(ev.id_origen))}
     art = pd.read_csv(dataset / "articulos.csv", keep_default_na=False, dtype={"articulo": str},
                       usecols=["id_norma", "orden", "zona", "articulo", "inicio", "fin"])
-    rel = desde_evidencias(ev, textos, art, etiquetas)
+    # v3 corrige ademas el articulo destino tomado del encabezado del propio articulo (B52)
+    rel = desde_evidencias(ev, textos, art, etiquetas, fuente=f"reglas_{parser}", ignorar_encabezado=parser == "v3")
     errores = validar(rel)
     if errores:
         sys.exit("La salida no cumple el formato: " + "; ".join(errores))
 
     out.mkdir(parents=True, exist_ok=True)
-    tmp = out / ".relaciones_reglas_v2.csv.tmp"
+    nombre = f"relaciones_reglas_{parser}.csv"
+    tmp = out / f".{nombre}.tmp"
     rel.to_csv(tmp, index=False, lineterminator="\n")
-    tmp.replace(out / "relaciones_reglas_v2.csv")
+    tmp.replace(out / nombre)
     resumen = {
         "relaciones": len(rel),
         "por_tipo": rel.tipo.value_counts().to_dict(),
@@ -48,7 +50,7 @@ def main(corpus: Path, html: Path, dataset: Path, res_v2: Path, out: Path) -> No
         "con_articulo_destino_sin_citas": round(float((rel[rel.tipo != "CITA"].articulo_destino != "").mean()), 4),
         "pares_de_normas": int(rel[["id_norma_origen", "id_norma_destino"]].drop_duplicates().shape[0]),
     }
-    escribir_texto(out / "resumen.json", json.dumps(resumen, indent=2, ensure_ascii=False))
+    escribir_texto(out / ("resumen.json" if parser == "v2" else f"resumen_{parser}.json"), json.dumps(resumen, indent=2, ensure_ascii=False))
     print(json.dumps(resumen, indent=2, ensure_ascii=False))
 
 
@@ -59,5 +61,8 @@ if __name__ == "__main__":
     ap.add_argument("--dataset", type=Path, default=Path("data/dataset"))
     ap.add_argument("--res-v2", type=Path, default=Path("results/reglas_v2"))
     ap.add_argument("--out", type=Path, default=Path("results/relaciones"))
+    ap.add_argument("--parser", choices=["v2", "v3"], default="v2")
     a = ap.parse_args()
-    main(a.corpus, a.html, a.dataset, a.res_v2, a.out)
+    if a.parser == "v3" and a.res_v2 == Path("results/reglas_v2"):
+        a.res_v2 = Path("results/reglas_v3")
+    main(a.corpus, a.html, a.dataset, a.res_v2, a.out, a.parser)
