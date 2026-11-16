@@ -16,6 +16,7 @@ El TP extrae automáticamente las relaciones entre normas (modifica, sustituye, 
 | Salida estándar de relaciones tipadas | 3.277 relaciones del parser de reglas v2 (`docs/salida_estandar.md`) |
 | Grafo Neo4j | se arma solo desde la salida estándar (`docs/grafo.md`); ida y vuelta idéntica, F1 0,828 contra InfoLEG en test (`results/evaluacion_grafo/`) |
 | Evaluación por subtareas (detección, normalización, extracción) y taxonomía de errores | `results/subtareas/` |
+| Explicación de cada error (causa y evidencia, caso por caso) | `results/errores_explicados/` |
 | Modelo con contexto textual (TF-IDF) e híbrido reglas + modelo | evaluado: híbrido F1 test 0,839 (`results/modelo_contextual/`) |
 | Tipo de relación: matriz de confusión y macro-F1 (78 casos) | macro-F1 0,672, exactitud 0,754 (`results/tipos/`) |
 | Parser 2: LLM | implementado con caché reproducible (`docs/parser_llm.md`); falta correrlo con la clave de la API |
@@ -60,13 +61,14 @@ src/grafo_legal/
 scripts/                01 corpus · 02 textos · 03 extraer · 04 evaluar · 05 cobertura · 06 muestra Ley 14.250
                         · 07 dataset · 08 clasificador · 09 relaciones · 10 grafo · 11 evaluar grafo
                         · 12 subtareas · 13 modelo contextual e híbrido · 14 parser LLM · 15 evaluar LLM
-                        · 16 tipos · 17 tabla final con intervalos de confianza
+                        · 16 tipos · 17 tabla final con intervalos de confianza · 18 explicación de cada error
 results/reglas/         reglas v1: evidencias, métricas y errores
 results/reglas_v2/      reglas v2: evidencias, métricas y errores
 results/clasificador/   clasificador: métricas, predicciones e importancia de atributos
 results/relaciones/     salida estándar: relaciones tipadas de cada parser
 results/evaluacion_grafo/  ida y vuelta del grafo y comparación con InfoLEG
 results/subtareas/      detección, normalización y extracción por separado; taxonomía de errores
+results/errores_explicados/ la causa y la evidencia de cada falso negativo y falso positivo
 results/modelo_contextual/ modelo TF-IDF e híbrido reglas + modelo
 results/tipos/          matriz de confusión y macro-F1 del tipo de relación
 results/comparacion/    todos los métodos en test, con intervalos de confianza

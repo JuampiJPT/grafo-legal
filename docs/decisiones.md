@@ -149,3 +149,12 @@ La revisión de tipos pasa de 36 a 78 casos, 13 por tipo predicho (`docs/revisio
 ## D23. Tabla final con intervalos de confianza (16/11/2026)
 
 `scripts/17_comparar_metodos.py` compara todos los métodos en test con bootstrap pareado por norma origen (2.000 réplicas). Se remuestrean normas, no pares, porque los pares de una misma norma no son independientes. Una diferencia con las reglas se considera significativa solo si su intervalo del 95 % no contiene al 0.
+
+## D24. Explicación de cada error (16/11/2026)
+
+`scripts/18_explicar_errores.py` le asigna a cada falso negativo y falso positivo una causa concreta, una explicación y la evidencia del texto (`results/errores_explicados/`).
+
+- **Asignación automática:** cuando la causa se puede leer de las evidencias, como las de los pares que descarta la regla.
+- **Revisión manual:** cuando el texto no nombra la norma; la hizo Claude y está pendiente de validación humana.
+
+Para no depender del detector, la evaluación por subtareas (script 12) lee el año escrito como fecha («del 14 de abril de 1988») y usa una lista de nombres que el gazetteer no tiene. Las dos cosas son diagnósticos y el parser no las usa. Con eso corrige su clasificación: la normalización pierde 10 pares del gold y vincula mal 31 menciones; la detección pierde 2 pares de dev (B51).

@@ -51,6 +51,7 @@ python scripts/11_evaluar_grafo.py
 
 echo "== Evaluacion por subtareas, modelo contextual e hibrido, tipos y tabla final"
 python scripts/12_evaluar_subtareas.py
+python scripts/18_explicar_errores.py
 python scripts/13_modelo_contextual.py --incluir-test
 if [ -f results/relaciones_llm/relaciones_llm.csv ]; then
   # sin clave usa solo la cache de results/relaciones_llm/cache (reproducible y sin costo)

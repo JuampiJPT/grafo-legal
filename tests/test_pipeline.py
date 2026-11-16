@@ -184,3 +184,14 @@ def test_modelo_contextual_marca_destino_y_borra_numeros():
     m = importlib.import_module("13_modelo_contextual")
     t = m.limpiar_fragmento("Sustitúyese el artículo 80 de la Ley N° 20.744 por", "Ley N° 20.744", "articulado")
     assert t == "PARTE_articulado Sustitúyese el artículo ## de la  DESTINO  por"
+
+
+def test_anio_escrito_como_fecha():
+    sys.path.insert(0, str(RAIZ / "scripts"))
+    import importlib
+    m = importlib.import_module("12_evaluar_subtareas")
+    t = "el Decreto N° 1694 del 22 de noviembre de 2006 y"
+    assert m.anio_por_fecha(t, t.index("1694") + 4) == 2006
+    t = "el Decreto Nº 1.694 de fecha 5 de noviembre de 2009,"
+    assert m.anio_por_fecha(t, t.index("1.694") + 5) == 2009
+    assert m.anio_por_fecha("Decreto 1694/06 y", 12) is None

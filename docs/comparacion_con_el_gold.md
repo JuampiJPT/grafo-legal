@@ -48,11 +48,11 @@ Un par del gold que el parser no puede ver, porque no tiene texto o no tiene men
 
 | Subtarea | Métrica | Resultado |
 |---|---|---|
-| Detección | Recall contra una búsqueda laxa del número de la norma destino; precisión en una muestra de 60 | 1,00 (dev y test); 0,97 |
-| Normalización | Proporción de menciones no resueltas; exactitud de vinculación contra el catálogo completo de InfoLEG | 55,6 % no resueltas (48,0 % son normas fuera del corpus); 95,9 % inequívocas |
+| Detección | Recall contra una búsqueda laxa del número o el nombre de la norma destino; precisión en una muestra de 60 | 0,996 en dev y 1,000 en test; 0,97 |
+| Normalización | Proporción de menciones no resueltas; exactitud de vinculación contra el catálogo completo de InfoLEG y la fecha escrita en el texto | 55,6 % no resueltas (48,0 % son normas fuera del corpus); exactitud estimada 99,1 % |
 | Extracción | P, R y F1 de punta a punta y condicional a los candidatos | test 0,828 de punta a punta; 0,842 condicional |
 
-Además están el embudo (dónde se pierde cada par del gold) y la taxonomía de errores con las categorías de la consigna.
+Además están el embudo (dónde se pierde cada par del gold) y la taxonomía de errores con las categorías de la consigna. Cada error tiene su causa concreta y su evidencia en `results/errores_explicados/RESULTADOS.md`.
 
 ## 6. Techo de recall
 

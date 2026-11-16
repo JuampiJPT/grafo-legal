@@ -519,11 +519,60 @@ Los comentarios no cambian el comportamiento: se volvió a correr el pipeline y 
 
 **Documentos nuevos.** `docs/guia_codigo.md` recorre el código en el orden en que viaja un documento, con el artículo 70 del Decreto 70/2023 como ejemplo. `docs/comparacion_con_el_gold.md` explica cómo se compara con el gold y es la base de la sección «Diseño experimental» del artículo. Los dos, junto con el parser LLM y los resultados nuevos, están en el Drive como «07 - Evaluación completa, parser LLM y guía del código».
 
+### B51 · 16/11/2026 · Hallazgo · Cada error explicado; corrige la clasificación de B45
+
+**Qué se hizo.** Cada falso negativo y cada falso positivo del parser de reglas v2 tiene ahora una causa concreta, una explicación y la evidencia del texto que la muestra (script 18, `results/errores_explicados/`). Son 304 errores de dev y 70 de test.
+
+- **Descartados por la regla:** la causa sale automáticamente de las evidencias del par.
+- **Sin mención:** se asignó con reglas y, para 57 pares, con una revisión manual de Claude pendiente de validación.
+- **Falsos positivos:** la causa sale de por qué pasó la regla F, con 8 casos corregidos a mano.
+
+**Corrección de B45.** Explicar los casos uno por uno mostró dos errores que B45 no había visto:
+
+1. **El año escrito como fecha.** «Decreto N° 467 del 14 de abril de 1988»: el detector solo lee el año en la forma «467/88». Cuando el corpus tiene más de un decreto con ese número, la mención queda sin resolver; cuando tiene uno solo, se vincula a ese aunque sea de otro año.
+   - De las 580 menciones ambiguas, 360 tienen el año en la fecha.
+   - De las 147 resueltas por mundo cerrado, la fecha permite verificar 117: 86 están bien y 31 son otro decreto con el mismo número.
+   - La exactitud de vinculación estimada pasa a 99,1 %.
+   - Se pierden por esto 10 pares del gold (9 en dev, 1 en test) que en B45 figuraban como descartados por la regla, y hay 9 falsos positivos que en realidad son vinculaciones erróneas.
+2. **Nombres que el gazetteer no tiene.** «Ley de Ministerios» y «L.C.T.» hacen perder 2 pares de dev. El recall de detección en dev pasa de 1,000 a 0,996; en test sigue en 1,000.
+
+**Por qué se pierden los pares de test.** De los 24:
+
+- 16 los descarta la regla: decretos que nombran la norma sin verbo o solo en el CONSIDERANDO, leyes de impuestos citadas por nombre y una cita de texto ordenado;
+- 5 son decretos de texto ordenado que el texto no nombra («Ley de Impuesto al Valor Agregado (t.o. en 1997)» vincula al Decreto 280/97);
+- 2 no se pueden explicar desde el texto (el DNU 70/2023 con las leyes 23.789 y 18.345);
+- 1 es el año escrito como fecha.
+
+**Los 46 falsos positivos de test.**
+
+- 24 son normas citadas en la lista de fundamentos del VISTO.
+- 14 son remisiones desde el articulado de una ley.
+- 3 tienen un verbo que no actúa sobre la norma.
+- 1 es una procedencia no filtrada («creado por la ley 25.565 y … modificado por ley 27.637»).
+- 1 es otro decreto con el mismo número.
+- 2 son decretos sin año.
+- 1 es un error del propio texto: el Decreto 841/22 llama «Ley de Impuesto a las Ganancias» a la Ley 20.744.
+
+**Qué registra InfoLEG sin que el texto lo diga.** De los 80 pares sin mención:
+
+- 36 son normas que complementan a la destino sin citarla;
+- 9 son decretos de texto ordenado;
+- 8 son derogaciones genéricas;
+- 8 son modificatorias de una ley derogada;
+- 7 tienen el texto incompleto en InfoLEG;
+- 5 son referencias conceptuales («el convenio colectivo de la actividad»);
+- 3 nombran la ANSES en lugar del Decreto 2741/91;
+- 2 parecen errores del gold, como el Decreto 12/99, que designa un ministro interino de Relaciones Exteriores y aparece vinculado a la Ley de Asociaciones Sindicales;
+- 2 no son verificables.
+
+**Decisión.** El parser congelado no cambia. Leer el año escrito como fecha queda como la primera mejora de una v3, para diseñar sobre dev y medir aparte.
+
 ## Cuestiones abiertas
 
 - Crear la clave de la API (`.anthropic_key`) y correr el parser LLM; actualizar la tabla final con el LLM y sus híbridos (B48, B49).
 - Correr la evaluación del grafo sobre el Neo4j del equipo, cargar el grafo del LLM sin `--borrar` y probar las consultas de ejemplo (B38, B43, B48).
 - Mejorar el tipado de las reglas sobre otra muestra de dev, sin tocar los 78 casos de medición (B43, B47).
+- Reglas v3: leer el año escrito como fecha («Decreto 467 del 14 de abril de 1988») y agregar al gazetteer los nombres que faltan, diseñado sobre dev (B51).
 - Decidir si el grafo lleva embeddings (B38).
 - Validar las revisiones manuales de cobertura, de la Ley 14.250, de los 30 falsos positivos, de los 78 tipos y de las 60 menciones, y que un segundo anotador repita parte para el kappa (B12, B26, B30, B36, B45, B47).
 - Consultar con la cátedra la supervisión distante, la clasificación fina y si se evalúa también la modificación estricta (B02, B14, B27).
