@@ -56,7 +56,7 @@ HTML de InfoLEG ──► fuentes/infoleg.py  html_a_texto() ──► segmentar
     - «Ley de Contrato de Trabajo Nº 20.744»;
     - «Leyes Nros. 24.013, 24.465 y 24.467», que da tres menciones.
   - `detectar_alias()` encuentra nombres propios sin número («Ley de Contrato de Trabajo»), con un gazetteer.
-- **Resultado medido** (`results/subtareas`): cuando el número de la norma destino está en el texto, el detector lo encuentra siempre (recall 1,00), con precisión 0,97 en una muestra de 60.
+- **Resultado medido** (`results/subtareas`): cuando el número de la norma destino está en el texto, el detector lo encuentra siempre. Pierde 2 pares de dev por nombres que el gazetteer no tiene («Ley de Ministerios», «L.C.T.»). La precisión es 0,97 en una muestra de 60: los 2 errores son nombres de tributos tomados como alias.
 
 ### 4. Normalización
 
@@ -65,7 +65,8 @@ HTML de InfoLEG ──► fuentes/infoleg.py  html_a_texto() ──► segmentar
 - **Mundo cerrado:** el catálogo es el corpus. Una mención que no resuelve se conserva como evidencia, pero no genera arista.
 - **Resultado medido:**
   - el 48 % de las menciones nombra normas reales fuera del corpus;
-  - de las que se resuelven, el 95,9 % es inequívoco también contra todo InfoLEG.
+  - de las que se resuelven, el 95,9 % es inequívoco también contra todo InfoLEG, y la exactitud estimada es 99,1 %;
+      - el error principal: el año del decreto escrito como fecha («Decreto N° 467 del 14 de abril de 1988») no se lee, así que la mención queda ambigua o se vincula a otro decreto con el mismo número.
 
 ### 5. Reglas: de mención a evidencia y de evidencia a par
 

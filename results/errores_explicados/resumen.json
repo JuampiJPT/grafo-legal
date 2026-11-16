@@ -1,0 +1,84 @@
+{
+  "dev": {
+    "FN": {
+      "complementa_sin_citar": 36,
+      "solo_alias": 14,
+      "referencia_conceptual": 5,
+      "nombre_no_reconocido": 2,
+      "texto_ordenado_implicito": 4,
+      "sin_texto": 35,
+      "decreto_articulado_sin_verbo": 10,
+      "solo_anexo_o_notas": 4,
+      "considerando_y_decreto_sin_verbo": 10,
+      "derogacion_generica": 8,
+      "texto_incompleto_en_infoleg": 7,
+      "modificatorias_de_la_citada": 8,
+      "organismo_en_lugar_de_norma": 3,
+      "posible_error_del_gold": 2,
+      "solo_procedencia": 2,
+      "solo_considerando": 6,
+      "anio_como_fecha": 9
+    },
+    "FP": {
+      "remision_desde_ley": 66,
+      "verbo_que_no_actua": 6,
+      "posible_omision_del_gold": 5,
+      "cita_en_el_visto": 48,
+      "procedencia_no_filtrada": 4,
+      "otro_decreto_mismo_numero": 8,
+      "decreto_sin_anio_mundo_cerrado": 1,
+      "alias_de_otra_ley": 1
+    }
+  },
+  "test": {
+    "FN": {
+      "solo_considerando": 3,
+      "decreto_articulado_sin_verbo": 4,
+      "considerando_y_decreto_sin_verbo": 6,
+      "no_verificable": 2,
+      "texto_ordenado_implicito": 5,
+      "anio_como_fecha": 1,
+      "solo_alias": 2,
+      "solo_procedencia": 1
+    },
+    "FP": {
+      "cita_en_el_visto": 24,
+      "remision_desde_ley": 14,
+      "error_en_el_texto_fuente": 1,
+      "decreto_sin_anio_mundo_cerrado": 2,
+      "otro_decreto_mismo_numero": 1,
+      "verbo_que_no_actua": 3,
+      "procedencia_no_filtrada": 1
+    }
+  },
+  "causas": {
+    "sin_texto": "InfoLEG no publica el texto de la norma modificatoria.",
+    "solo_considerando": "La norma destino solo se nombra en el CONSIDERANDO, donde la regla F no acepta menciones (en dev, solo el 24 % de esos pares está en InfoLEG).",
+    "decreto_articulado_sin_verbo": "Un decreto nombra la norma en el articulado, pero sin verbo modificatorio en la oración: la regla F lo trata como una remisión.",
+    "considerando_y_decreto_sin_verbo": "Las menciones están en el CONSIDERANDO y en el articulado de un decreto sin verbo: ninguna pasa la regla F.",
+    "solo_alias": "La norma solo aparece por su nombre propio (sin número), y la regla F exige número en el articulado.",
+    "solo_procedencia": "La única mención es una cita de procedencia («t.o. por Decreto …»), que la regla descarta a propósito.",
+    "solo_anexo_o_notas": "La mención está en un anexo o en una nota de InfoLEG, que no son texto dispositivo.",
+    "anio_como_fecha": "El decreto se cita con el año escrito como fecha («Decreto 1694 del 22 de noviembre de 2006»). El detector no lee ese año y, como el corpus tiene más de un decreto con ese número, la mención queda sin resolver.",
+    "nombre_no_reconocido": "El texto nombra la norma con un nombre o abreviatura que no está en el gazetteer del detector («Ley de Ministerios», «L.C.T.»).",
+    "texto_ordenado_implicito": "El texto cita la ley por su texto ordenado («t.o. 1976», «texto ordenado en 2019») y InfoLEG registra el vínculo con el decreto que aprobó ese texto ordenado, que el texto no nombra.",
+    "texto_incompleto_en_infoleg": "InfoLEG no publica el texto completo (norma anterior a 1997 o anexo no publicado): la mención puede estar en la parte que falta.",
+    "modificatorias_de_la_citada": "El texto nombra una ley y deroga o modifica también «sus modificatorias»; InfoLEG registra el vínculo con cada una, aunque no se nombren.",
+    "derogacion_generica": "El vínculo viene de una derogación genérica («toda otra disposición que se oponga») o del reemplazo de un régimen anterior, sin nombrar la norma.",
+    "complementa_sin_citar": "La norma regula la misma materia (licencias, empleo, asignaciones…) y InfoLEG la registra como complementaria, pero el texto no la nombra.",
+    "referencia_conceptual": "El texto nombra otra norma o una figura que pertenece a la destino (el convenio colectivo, la personería gremial, el CUIL) y no a la norma misma.",
+    "organismo_en_lugar_de_norma": "El texto nombra al organismo que la norma creó (la ANSES) y no a la norma.",
+    "posible_error_del_gold": "El texto no tiene ninguna relación visible con la norma destino: probable error de InfoLEG.",
+    "no_verificable": "El texto no nombra la norma y no se encontró una relación indirecta que explique el vínculo de InfoLEG.",
+    "cita_en_el_visto": "La norma aparece en la enumeración de fundamentos del VISTO. La regla F acepta todo el VISTO (el 80 % de esos pares está en InfoLEG), y este es del 20 % restante.",
+    "remision_desde_ley": "Una ley nombra la norma en su articulado como remisión («en los términos de», «creado por», «establecido en»), sin modificarla.",
+    "verbo_que_no_actua": "La oración tiene un verbo modificatorio, pero no actúa sobre la norma destino: es nominal («y su modificación», «la reglamentación») o se refiere a otra norma.",
+    "procedencia_no_filtrada": "La mención indica de dónde viene un texto («modificado por el Decreto 267», «creado por la ley 25.565 y modificado por …»), una forma de procedencia que el filtro no cubre.",
+    "alias_de_tributo": "El alias es el nombre de un tributo («Impuesto a las Ganancias», «Valor Agregado») y no una cita a la ley.",
+    "otro_decreto_mismo_numero": "El texto cita un decreto con el año escrito como fecha; el detector no lee ese año y lo vinculó al único decreto del corpus con ese número, que es de otro año: es otro decreto.",
+    "decreto_sin_anio_mundo_cerrado": "Decreto citado sin año: se vinculó al único del corpus con ese número, pero en InfoLEG hay varios y puede no ser el correcto.",
+    "alias_de_otra_ley": "El alias es el comienzo del nombre de otra ley («Ley de Convenciones Colectivas de Trabajo de la Administración Pública Nacional», que es la 24.185) y se vinculó a la equivocada.",
+    "error_en_el_texto_fuente": "El propio texto de la norma tiene un error que confunde al detector.",
+    "posible_omision_del_gold": "El texto modifica a la norma (hay un verbo que actúa sobre ella) y InfoLEG no registra el vínculo."
+  }
+}

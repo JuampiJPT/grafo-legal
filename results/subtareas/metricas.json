@@ -1,15 +1,16 @@
 {
-  "fecha": "2026-11-16T19:37:50.180555+00:00",
+  "fecha": "2026-11-16T20:17:54.730572+00:00",
   "config": "F_visto_o_articulado_con_verbo_o_ley",
   "catalogo_completo_normas": 106466,
   "deteccion": {
     "dev": {
       "detectada_y_normalizada": 472,
-      "sin_mencion": 75,
+      "sin_mencion": 73,
+      "no_detectada": 2,
       "sin_texto": 35,
       "detectada_mal_normalizada": 1,
       "pares_gold": 583,
-      "recall_deteccion": 1.0
+      "recall_deteccion": 0.9958
     },
     "test": {
       "detectada_y_normalizada": 185,
@@ -32,7 +33,14 @@
       },
       "proporcion_no_resueltas": 0.5708,
       "proporcion_fuera_del_corpus": 0.4824,
-      "exactitud_vinculacion_verificable": 0.9551
+      "exactitud_vinculacion_verificable": 0.9551,
+      "mundo_cerrado": {
+        "confirmadas_por_fecha": 64,
+        "contradichas_por_fecha": 24,
+        "sin_verificar": 24
+      },
+      "exactitud_vinculacion_estimada": 0.9903,
+      "vinculaciones_erroneas": 24
     },
     "test": {
       "menciones": 2564,
@@ -46,7 +54,14 @@
       },
       "proporcion_no_resueltas": 0.5191,
       "proporcion_fuera_del_corpus": 0.4729,
-      "exactitud_vinculacion_verificable": 0.9677
+      "exactitud_vinculacion_verificable": 0.9677,
+      "mundo_cerrado": {
+        "confirmadas_por_fecha": 22,
+        "contradichas_por_fecha": 7,
+        "sin_verificar": 6
+      },
+      "exactitud_vinculacion_estimada": 0.9935,
+      "vinculaciones_erroneas": 7
     },
     "total": {
       "menciones": 8915,
@@ -61,7 +76,14 @@
       },
       "proporcion_no_resueltas": 0.5563,
       "proporcion_fuera_del_corpus": 0.4798,
-      "exactitud_vinculacion_verificable": 0.9589
+      "exactitud_vinculacion_verificable": 0.9589,
+      "mundo_cerrado": {
+        "confirmadas_por_fecha": 86,
+        "contradichas_por_fecha": 31,
+        "sin_verificar": 30
+      },
+      "exactitud_vinculacion_estimada": 0.9913,
+      "vinculaciones_erroneas": 31
     }
   },
   "extraccion": {
@@ -118,9 +140,9 @@
     "dev": {
       "1_pares_gold": 583,
       "2_con_texto": 548,
-      "3_con_mencion_en_el_texto": 473,
+      "3_con_mencion_en_el_texto": 475,
       "4_detectados": 473,
-      "5_normalizados": 472,
+      "5_normalizados": 464,
       "6_extraidos_por_la_regla": 418
     },
     "test": {
@@ -128,32 +150,36 @@
       "2_con_texto": 192,
       "3_con_mencion_en_el_texto": 185,
       "4_detectados": 185,
-      "5_normalizados": 185,
+      "5_normalizados": 184,
       "6_extraidos_por_la_regla": 168
     }
   },
   "taxonomia_errores": {
     "dev": {
       "FN": {
-        "relacion_sin_mencion_explicita": 75,
-        "relacion_descartada_por_la_regla": 54,
+        "relacion_sin_mencion_explicita": 73,
+        "relacion_descartada_por_la_regla": 46,
+        "norma_no_detectada": 2,
         "fuera_de_alcance_sin_texto": 35,
-        "norma_mal_normalizada": 1
+        "norma_mal_normalizada": 9
       },
       "FP": {
-        "relacion_inexistente": 119,
-        "referencia_ambigua": 20
+        "relacion_inexistente": 129,
+        "norma_mal_normalizada": 8,
+        "referencia_ambigua": 2
       },
       "destino_ausente_del_corpus": 886
     },
     "test": {
       "FN": {
-        "relacion_descartada_por_la_regla": 17,
-        "relacion_sin_mencion_explicita": 7
+        "relacion_descartada_por_la_regla": 16,
+        "relacion_sin_mencion_explicita": 7,
+        "norma_mal_normalizada": 1
       },
       "FP": {
-        "relacion_inexistente": 38,
-        "referencia_ambigua": 8
+        "relacion_inexistente": 42,
+        "referencia_ambigua": 3,
+        "norma_mal_normalizada": 1
       },
       "destino_ausente_del_corpus": 203
     }

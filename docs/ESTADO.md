@@ -6,7 +6,7 @@ TP Integrador de Sistemas Inteligentes (UNNOBA), Problemática III: extracción 
 
 Hay un solo corpus congelado (340 normas, 775 relaciones) con sus 306 textos y el parser de reglas v2 congelado: F1 0,828 en test. La evaluación ya cubre lo que pide la consigna:
 
-- **Subtareas por separado.** La detección no pierde ningún par que nombre a su destino; el 95,9 % de las vinculaciones es inequívoco; el resto de las pérdidas está en la decisión de la regla.
+- **Subtareas por separado.** La detección encuentra el 99,6 % de los destinos nombrados y la exactitud de vinculación estimada es 99,1 %; casi todas las pérdidas están en la decisión de la regla. Cada falso negativo y falso positivo tiene su causa concreta y su evidencia (`results/errores_explicados/`, B51).
 - **Taxonomía de errores** con las categorías de la consigna.
 - **Modelo con contexto textual.** Solo da 0,783; en un híbrido con las reglas da 0,839, sin diferencia significativa con las reglas.
 - **Tipos.** Matriz de confusión y macro-F1 ponderada de 0,672 sobre 78 casos.
@@ -26,7 +26,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 | F5 · Parser híbrido | **En curso** | Híbrido reglas + modelo contextual: F1 0,839 en test (B46). El híbrido reglas + LLM se evalúa con el script 15 cuando se corra el LLM. |
 | F6 · Grafo en Neo4j | **En curso** | Modelo genérico con relaciones tipadas, armado desde la salida estándar (B41, B42). Evaluación leyendo el grafo: ida y vuelta idéntica y F1 0,828 contra InfoLEG en test (B43). Falta correr la evaluación sobre el Neo4j del equipo. |
 | F7 · Text-to-Cypher | No empezada | Hay cinco consultas de ejemplo con su pregunta en lenguaje natural (`docs/grafo.md`). |
-| F8 · Errores, informe y defensa | **En curso** | Evaluación por subtareas y taxonomía de errores (B45), tipos sobre 78 casos (B47), tabla final con intervalos de confianza (B49), comparación con el gold (`docs/comparacion_con_el_gold.md`) y guía del código para la presentación (`docs/guia_codigo.md`, B50). La bitácora (B01 a B50) y los documentos 01 a 03, 06 y 07 alimentan el artículo. Falta escribir el artículo LNCS. |
+| F8 · Errores, informe y defensa | **En curso** | Evaluación por subtareas y taxonomía de errores (B45), tipos sobre 78 casos (B47), tabla final con intervalos de confianza (B49), comparación con el gold (`docs/comparacion_con_el_gold.md`) y guía del código para la presentación (`docs/guia_codigo.md`, B50). La bitácora (B01 a B51) y los documentos 01 a 03, 06 y 07 alimentan el artículo. Falta escribir el artículo LNCS. |
 
 ## Hallazgos que van al informe
 
@@ -40,10 +40,12 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 8. **Las relaciones que cambian el texto casi siempre están en InfoLEG; las citas, no.** Los pares con una relación `SUSTITUYE` o `DEROGA` están en InfoLEG entre el 90 % y el 100 % de las veces. Los que solo tienen citas, alrededor del 63 %, y explican 160 de los 185 falsos positivos (B43).
 9. **El tipo por verbo es una heurística débil para `MODIFICA`.** En la revisión manual el tipo es correcto en 24 de 36 casos, pero en `MODIFICA` solo en 1 de 6. Las nominalizaciones («la derogación del artículo 2°») y los verbos que no actúan («deberá proponer la reglamentación») se toman como acción (B43).
 
-10. **Las pérdidas no están en la detección ni en la normalización.** En test, de los 24 pares del gold que se pierden, 7 no nombran a su destino en el texto y 17 los descarta la regla. La detección encuentra el 100 % de los destinos nombrados (B45).
-11. **El mundo cerrado tiene un costo acotado.** El 48 % de las menciones nombra normas reales fuera del corpus. De las vinculadas, el 4,1 % son decretos sin año que solo se resuelven porque el corpus tiene uno con ese número. Fuera del corpus, la regla F acierta contra la base completa de InfoLEG el 62 % de las veces en test (B45).
+10. **Casi todas las pérdidas están en la decisión de la regla.** En test, de los 24 pares del gold que se pierden, 16 los descarta la regla, 7 no nombran a su destino en el texto y 1 no se normaliza. Los que descarta la regla son decretos que nombran la norma sin verbo o solo en el CONSIDERANDO (B45, B51).
+11. **El mundo cerrado tiene un costo acotado.** El 48 % de las menciones nombra normas reales fuera del corpus. De las vinculadas, el 4,1 % son decretos sin año que solo se resuelven porque el corpus tiene uno con ese número; la fecha del texto permite verificar 117 y 31 resultan ser otro decreto. Fuera del corpus, la regla F acierta contra la base completa de InfoLEG el 62 % de las veces en test (B45).
 12. **Leer el contexto, solo, no alcanza; combinado con las reglas, ayuda en la zona gris.** El modelo TF-IDF da 0,761 a 0,783 en test, significativamente peor que las reglas. Usado solo donde las reglas dudan, sube el recall de 0,875 a 0,906 y el F1 a 0,839. La mejora no es significativa con 192 pares (B46, B49).
 13. **El error de tipo dominante es una cita tomada como acción** (21 de 25 errores en 78 casos). La macro-F1 ponderada es 0,672 y la exactitud 0,754 (B47).
+14. **El año escrito como fecha es el principal error de normalización.** «Decreto N° 467 del 14 de abril de 1988»: el detector no lee el año de la fecha. Por eso quedan ambiguas 360 de 580 menciones, se vinculan mal 31 y se pierden 10 pares del gold (B51).
+15. **InfoLEG registra vínculos que el texto no nombra.** De los 80 pares del gold sin mención: 36 son normas que complementan a la destino sin citarla, 9 son decretos de texto ordenado («t.o. 1976» vincula al Decreto 390/76), 16 son derogaciones genéricas o de modificatorias, y 2 parecen errores del gold (B51).
 
 ## Pendientes
 

@@ -136,6 +136,56 @@ def pares_infoleg(mod_zip: Path) -> set[tuple[int, int]]:
                     for r in csv.DictReader(io.TextIOWrapper(fb, encoding="utf-8", errors="replace"))}
 
 
+# --------------------------------------------------------------------------------------------
+# Diagnosticos que el parser NO usa (solo explican errores)
+# --------------------------------------------------------------------------------------------
+# Nombres con los que el texto nombra una norma y que NO estan en el gazetteer del detector
+# (ALIAS). Sirven para que la referencia de la deteccion sea independiente del detector: si el
+# texto dice "Ley de Ministerios" y el detector no lo vio, es un fallo de deteccion.
+NOMBRES_EXTRA = {
+    48853: [r"\bley de ministerios\b"],          # Ley 22.520
+    25552: [r"\bl\.\s?c\.\s?t\b"],          # "L.C.T." (Ley de Contrato de Trabajo)
+}
+_MESES = r"(?:enero|febrero|marzo|abril|mayo|junio|julio|agosto|sep?tiembre|octubre|noviembre|diciembre)"
+# "Decreto N° 1694 del 22 de noviembre de 2006": el ano esta en la fecha, no en "1694/06"
+_ANIO_FECHA = re.compile(rf"^\s*,?\s*(?:de\s+fecha|del|de)\s+\d{{1,2}}\s*[°º]?\s+de\s+{_MESES}\s+(?:de|del)\s+(\d{{4}})",
+                         re.I)
+
+
+def anio_por_fecha(texto: str, fin: int) -> int | None:
+    """Ano de la fecha que sigue a la mencion, si la hay ("... del 22 de noviembre de 2006")."""
+    m = _ANIO_FECHA.match(texto[fin:fin + 70])
+    return int(m.group(1)) if m else None
+
+
+def recuperables(arts, cat: Catalogo, origen: Norma | None) -> dict[int, bool]:
+    """Destinos que el parser no resolvio en alguna mencion por no leer el ano escrito como fecha.
+
+    Devuelve {id_destino: True si esa mencion, ya resuelta, pasaria la regla F}. Es un
+    diagnostico: el parser congelado no lee estas fechas (queda como mejora, bitacora B51).
+    """
+    out: dict[int, bool] = {}
+    for art in arts:
+        cons = reglas_v2._CONSIDERANDO.search(art.texto) if art.zona == "encabezado" else None
+        for m in detectar(art.texto):
+            if m.anio is not None or cat.resolver(m.tipo, m.numero, None) is not None:
+                continue
+            anio = anio_por_fecha(art.texto, m.fin)
+            n = cat.resolver(m.tipo, m.numero, anio) if anio else None
+            if n is None or (origen and n.id == origen.id):
+                continue
+            parte = art.zona
+            if art.zona == "encabezado":
+                parte = "considerando" if cons and m.inicio >= cons.start() else "visto"
+            oa, ob = reglas_v2._oracion(art.texto, m.inicio, m.fin)
+            verbo = reglas_v2.verbo_real(art.texto[oa:ob])
+            temporal = not (origen and n.fecha and origen.fecha and n.fecha > origen.fecha)
+            pasa = temporal and (parte == "visto" or (art.zona == "articulado"
+                                                       and (origen is None or origen.tipo != "decreto" or bool(verbo))))
+            out[n.id] = out.get(n.id, False) or pasa
+    return out
+
+
 def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
          mod_zip: Path | None = None) -> None:
     cat = Catalogo.desde_corpus(corpus / "corpus_normas.csv")
@@ -154,12 +204,14 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
     # ---- recorrer los textos: todas las menciones, resueltas o no -------------------------
     filas_m = []
     textos = {}
+    recup = {}             # id_origen -> {id_destino: pasaria F} (ano escrito como fecha)
     for id_o in sorted(split_de):
         doc = cargar(id_o, html_dir)
         if doc is None:
             continue
         texto, arts = doc
         textos[id_o] = texto
+        recup[id_o] = recuperables(arts, cat, cat.normas.get(id_o))
         for art in arts:
             for m in detectar(art.texto):
                 est, id_d, ncand = estado_normalizacion(m, cat, completo, cat.normas.get(id_o))
@@ -169,6 +221,8 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
                                 "zona": art.zona, "metodo": "regex_numero", "tipo": m.tipo,
                                 "numero": norm_numero(m.numero), "anio": m.anio or "",
                                 "estado": est, "id_destino": id_d or "", "candidatos_infoleg": ncand,
+                                # ano escrito como fecha despues de la mencion (diagnostico, el parser no lo usa)
+                                "anio_en_fecha": anio_por_fecha(art.texto, m.fin) or "",
                                 "superficie": m.superficie[-80:]})
             for id_d, a, b, sup in detectar_alias(art.texto):
                 if id_d == id_o:
@@ -176,7 +230,7 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
                 # un alias apunta por construccion a una norma del corpus: se vincula sin ambiguedad
                 filas_m.append({"id_origen": id_o, "split": split_de[id_o], "articulo": art.numero,
                                 "zona": art.zona, "metodo": "alias", "tipo": "", "numero": "", "anio": "",
-                                "estado": "resuelta", "id_destino": id_d, "candidatos_infoleg": 1,
+                                "estado": "resuelta", "id_destino": id_d, "candidatos_infoleg": 1, "anio_en_fecha": "",
                                 "superficie": sup})
 
     # ---- 1. DETECCION ----------------------------------------------------------------------
@@ -202,7 +256,8 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
             dest = cat.normas[d]
             plano = sin_tildes(textos[o]).lower()
             aparece_num = bool(patron_laxo(dest.numero).search(textos[o]))
-            aparece_alias = any(a in plano for a in ALIAS.get(d, []))
+            aparece_alias = any(a in plano for a in ALIAS.get(d, [])) or any(
+                re.search(p, plano) for p in NOMBRES_EXTRA.get(d, []))
             if d in detectados[o]:
                 estado_par[(o, d)] = "detectada_y_normalizada"
                 c["detectada_y_normalizada"] += 1
@@ -214,9 +269,14 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
                 estado_par[(o, d)] = "no_detectada"
                 c["no_detectada"] += 1
                 i = patron_laxo(dest.numero).search(textos[o]) if aparece_num else None
+                if i is None:
+                    for p_ in NOMBRES_EXTRA.get(d, []) + [re.escape(a) for a in ALIAS.get(d, [])]:
+                        i = re.search(p_, plano)
+                        if i:
+                            break
                 fallos_det.append({"split": s, "id_origen": o, "id_destino": d, "norma_destino": dest.etiqueta,
-                                   "contexto": re.sub(r"\s+", " ", textos[o][max(0, i.start() - 120): i.end() + 60])
-                                   if i else "(solo por nombre)"})
+                                   "contexto": re.sub(r"\s+", " ", (textos[o] if aparece_num else plano)
+                                                      [max(0, i.start() - 120): i.end() + 60]) if i else ""})
             else:
                 estado_par[(o, d)] = "sin_mencion"
                 c["sin_mencion"] += 1
@@ -233,6 +293,11 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
         e = Counter(r["estado"] for r in num)
         n = len(num)
         resueltas = e["resuelta"] + e["resuelta_mundo_cerrado"]
+        # las resueltas solo por mundo cerrado se pueden verificar cuando el texto escribe el ano
+        # como fecha despues de la mencion ("Decreto 84 del 3 de febrero de 2014")
+        mc = [r for r in num if r["estado"] == "resuelta_mundo_cerrado"]
+        conf = sum(1 for r in mc if r["anio_en_fecha"] != "" and cat.normas[int(r["id_destino"])].anio == r["anio_en_fecha"])
+        contra = sum(1 for r in mc if r["anio_en_fecha"] != "" and cat.normas[int(r["id_destino"])].anio != r["anio_en_fecha"])
         normalizacion[s] = {
             "menciones": len(filas), "menciones_por_numero": n,
             "menciones_por_alias": len(filas) - n,
@@ -244,6 +309,13 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
             # exactitud de vinculacion verificable: de las resueltas, las que tambien son unicas en
             # el catalogo completo. Las "mundo cerrado" son una cota inferior de error posible.
             "exactitud_vinculacion_verificable": round(e["resuelta"] / resueltas, 4) if resueltas else 0.0,
+            "mundo_cerrado": {"confirmadas_por_fecha": conf, "contradichas_por_fecha": contra,
+                              "sin_verificar": len(mc) - conf - contra},
+            # exactitud sobre todas las vinculaciones que se pueden verificar (unicas en InfoLEG o
+            # confirmadas/contradichas por la fecha); las contradichas son vinculaciones erroneas
+            "exactitud_vinculacion_estimada": round((e["resuelta"] + conf) / (e["resuelta"] + conf + contra), 4)
+            if resueltas else 0.0,
+            "vinculaciones_erroneas": contra,
         }
 
     # ---- 3. EXTRACCION ---------------------------------------------------------------------
@@ -263,21 +335,6 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
             "candidatos": len(cand), "candidatos_en_gold": len(gold[s] & cand),
         }
 
-    # ---- Embudo: donde se pierde cada par del gold -----------------------------------------
-    embudo = {}
-    for s in ("dev", "test"):
-        pred = {p for p in pred_todo if split_de.get(p[0]) == s}
-        c = Counter(estado_par[p] for p in gold[s])
-        recuperados = len(gold[s] & pred)
-        embudo[s] = {
-            "1_pares_gold": len(gold[s]),
-            "2_con_texto": len(gold[s]) - c["sin_texto"],
-            "3_con_mencion_en_el_texto": len(gold[s]) - c["sin_texto"] - c["sin_mencion"],
-            "4_detectados": c["detectada_y_normalizada"] + c["detectada_mal_normalizada"],
-            "5_normalizados": c["detectada_y_normalizada"],
-            "6_extraidos_por_la_regla": recuperados,
-        }
-
     # ---- Taxonomia de errores de la consigna ----------------------------------------------
     # Catalogo completo para detectar "destino ausente del corpus": las mismas reglas, pero
     # resolviendo contra todo InfoLEG. Lo que pase la regla F con destino fuera del corpus es una
@@ -295,7 +352,9 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
                     ausentes_ej.append(f"{cat.normas[id_o].etiqueta} -> {e.norma_destino}")
     ambiguas_por_par = defaultdict(int)
     for r in filas_m:
-        if r["estado"] == "resuelta_mundo_cerrado" and r["id_destino"] != "":
+        if r["estado"] == "resuelta_mundo_cerrado" and r["id_destino"] != "" and not (
+                r["anio_en_fecha"] != "" and cat.normas[int(r["id_destino"])].anio == r["anio_en_fecha"]):
+            # si la fecha que sigue a la mencion confirma el ano, la vinculacion no es dudosa
             ambiguas_por_par[(r["id_origen"], int(r["id_destino"]))] += 1
 
     errores = []
@@ -304,6 +363,11 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
         gold_inv = {(d, o) for (o, d) in gold[s] | gold["dev" if s == "test" else "test"]}
         for p in sorted(gold[s] - pred):
             est = estado_par[p]
+            if est == "detectada_y_normalizada" and recup.get(p[0], {}).get(p[1]):
+                # una mencion que pasaria la regla no se resolvio porque el ano estaba escrito como
+                # fecha ("Decreto 1694 del 22 de noviembre de 2006"): es un error de normalizacion
+                est = "detectada_mal_normalizada"
+                estado_par[p] = est
             cat_err = {"sin_texto": "fuera_de_alcance_sin_texto",
                        "sin_mencion": "relacion_sin_mencion_explicita",
                        "no_detectada": "norma_no_detectada",
@@ -313,8 +377,17 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
                             "origen": cat.normas[p[0]].etiqueta, "destino": cat.normas[p[1]].etiqueta,
                             "categoria": cat_err})
         for p in sorted(pred - gold[s]):
+            pasan = [e for e in ev if (e.id_origen, e.id_destino) == p and filtro(e)]
+            destino = cat.normas[p[1]]
+
+            def contradicha(e):
+                # el ano escrito como fecha despues de la mencion no es el de la norma vinculada
+                a = anio_por_fecha(textos.get(p[0], ""), e.fin) if e.metodo == "regex_numero" else None
+                return a is not None and a != destino.anio
             if p in gold_inv:
                 cat_err = "relacion_invertida"
+            elif pasan and all(contradicha(e) for e in pasan):
+                cat_err = "norma_mal_normalizada"    # se vinculo a otro decreto con el mismo numero
             elif ambiguas_por_par.get(p):
                 cat_err = "referencia_ambigua"
             elif all(e.metodo == "alias" for e in ev if (e.id_origen, e.id_destino) == p and filtro(e)):
@@ -324,6 +397,21 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
             errores.append({"split": s, "error": "FP", "id_origen": p[0], "id_destino": p[1],
                             "origen": cat.normas[p[0]].etiqueta, "destino": cat.normas[p[1]].etiqueta,
                             "categoria": cat_err})
+    # ---- Embudo: donde se pierde cada par del gold -----------------------------------------
+    embudo = {}
+    for s in ("dev", "test"):
+        pred = {p for p in pred_todo if split_de.get(p[0]) == s}
+        c = Counter(estado_par[p] for p in gold[s])
+        recuperados = len(gold[s] & pred)
+        embudo[s] = {
+            "1_pares_gold": len(gold[s]),
+            "2_con_texto": len(gold[s]) - c["sin_texto"],
+            "3_con_mencion_en_el_texto": len(gold[s]) - c["sin_texto"] - c["sin_mencion"],
+            "4_detectados": c["detectada_y_normalizada"] + c["detectada_mal_normalizada"],
+            "5_normalizados": c["detectada_y_normalizada"],
+            "6_extraidos_por_la_regla": recuperados,
+        }
+
     # Los pares con destino fuera del corpus no estan en el gold (que se filtro al corpus), pero si
     # pueden estar en la base complementaria completa. Su precision contra esa base mide si el
     # parser generaliza mas alla del corpus.
