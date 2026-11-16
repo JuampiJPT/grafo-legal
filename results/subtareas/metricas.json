@@ -1,0 +1,200 @@
+{
+  "fecha": "2026-11-16T19:37:50.180555+00:00",
+  "config": "F_visto_o_articulado_con_verbo_o_ley",
+  "catalogo_completo_normas": 106466,
+  "deteccion": {
+    "dev": {
+      "detectada_y_normalizada": 472,
+      "sin_mencion": 75,
+      "sin_texto": 35,
+      "detectada_mal_normalizada": 1,
+      "pares_gold": 583,
+      "recall_deteccion": 1.0
+    },
+    "test": {
+      "detectada_y_normalizada": 185,
+      "sin_mencion": 7,
+      "pares_gold": 192,
+      "recall_deteccion": 1.0
+    }
+  },
+  "normalizacion": {
+    "dev": {
+      "menciones": 6351,
+      "menciones_por_numero": 5808,
+      "menciones_por_alias": 543,
+      "estados": {
+        "fuera_del_corpus": 2802,
+        "ambigua": 476,
+        "resuelta": 2381,
+        "no_encontrada": 37,
+        "resuelta_mundo_cerrado": 112
+      },
+      "proporcion_no_resueltas": 0.5708,
+      "proporcion_fuera_del_corpus": 0.4824,
+      "exactitud_vinculacion_verificable": 0.9551
+    },
+    "test": {
+      "menciones": 2564,
+      "menciones_por_numero": 2254,
+      "menciones_por_alias": 310,
+      "estados": {
+        "ambigua": 104,
+        "resuelta": 1049,
+        "fuera_del_corpus": 1066,
+        "resuelta_mundo_cerrado": 35
+      },
+      "proporcion_no_resueltas": 0.5191,
+      "proporcion_fuera_del_corpus": 0.4729,
+      "exactitud_vinculacion_verificable": 0.9677
+    },
+    "total": {
+      "menciones": 8915,
+      "menciones_por_numero": 8062,
+      "menciones_por_alias": 853,
+      "estados": {
+        "fuera_del_corpus": 3868,
+        "ambigua": 580,
+        "resuelta": 3430,
+        "no_encontrada": 37,
+        "resuelta_mundo_cerrado": 147
+      },
+      "proporcion_no_resueltas": 0.5563,
+      "proporcion_fuera_del_corpus": 0.4798,
+      "exactitud_vinculacion_verificable": 0.9589
+    }
+  },
+  "extraccion": {
+    "dev": {
+      "punta_a_punta": {
+        "pred": 557,
+        "gold": 583,
+        "tp": 418,
+        "fp": 139,
+        "fn": 165,
+        "precision": 0.7504,
+        "recall": 0.717,
+        "f1": 0.7333
+      },
+      "condicional_a_candidatos": {
+        "pred": 557,
+        "gold": 472,
+        "tp": 418,
+        "fp": 139,
+        "fn": 54,
+        "precision": 0.7504,
+        "recall": 0.8856,
+        "f1": 0.8124
+      },
+      "candidatos": 801,
+      "candidatos_en_gold": 472
+    },
+    "test": {
+      "punta_a_punta": {
+        "pred": 214,
+        "gold": 192,
+        "tp": 168,
+        "fp": 46,
+        "fn": 24,
+        "precision": 0.785,
+        "recall": 0.875,
+        "f1": 0.8276
+      },
+      "condicional_a_candidatos": {
+        "pred": 214,
+        "gold": 185,
+        "tp": 168,
+        "fp": 46,
+        "fn": 17,
+        "precision": 0.785,
+        "recall": 0.9081,
+        "f1": 0.8421
+      },
+      "candidatos": 290,
+      "candidatos_en_gold": 185
+    }
+  },
+  "embudo": {
+    "dev": {
+      "1_pares_gold": 583,
+      "2_con_texto": 548,
+      "3_con_mencion_en_el_texto": 473,
+      "4_detectados": 473,
+      "5_normalizados": 472,
+      "6_extraidos_por_la_regla": 418
+    },
+    "test": {
+      "1_pares_gold": 192,
+      "2_con_texto": 192,
+      "3_con_mencion_en_el_texto": 185,
+      "4_detectados": 185,
+      "5_normalizados": 185,
+      "6_extraidos_por_la_regla": 168
+    }
+  },
+  "taxonomia_errores": {
+    "dev": {
+      "FN": {
+        "relacion_sin_mencion_explicita": 75,
+        "relacion_descartada_por_la_regla": 54,
+        "fuera_de_alcance_sin_texto": 35,
+        "norma_mal_normalizada": 1
+      },
+      "FP": {
+        "relacion_inexistente": 119,
+        "referencia_ambigua": 20
+      },
+      "destino_ausente_del_corpus": 886
+    },
+    "test": {
+      "FN": {
+        "relacion_descartada_por_la_regla": 17,
+        "relacion_sin_mencion_explicita": 7
+      },
+      "FP": {
+        "relacion_inexistente": 38,
+        "referencia_ambigua": 8
+      },
+      "destino_ausente_del_corpus": 203
+    }
+  },
+  "ejemplos_destino_ausente": [
+    "Ley 23697 -> Ley 23664",
+    "Ley 23697 -> Ley 19640",
+    "Ley 23697 -> Ley 20560",
+    "Ley 23697 -> Ley 21608",
+    "Ley 23697 -> Ley 21635",
+    "Ley 23697 -> Ley 22021",
+    "Ley 23697 -> Ley 22702",
+    "Ley 23697 -> Ley 23614",
+    "Ley 23697 -> Ley 23658",
+    "Ley 23697 -> Ley 23669",
+    "Ley 23697 -> Ley 22095",
+    "Ley 23697 -> Ley 21382",
+    "Ley 23697 -> Ley 23668",
+    "Ley 23697 -> Decreto/Ley 5340",
+    "Ley 23697 -> Ley 18875"
+  ],
+  "precision_fuera_del_corpus_contra_infoleg_completo": {
+    "dev": {
+      "pred": 886,
+      "gold": 474,
+      "tp": 474,
+      "fp": 412,
+      "fn": 0,
+      "precision": 0.535,
+      "recall": 1.0,
+      "f1": 0.6971
+    },
+    "test": {
+      "pred": 203,
+      "gold": 126,
+      "tp": 126,
+      "fp": 77,
+      "fn": 0,
+      "precision": 0.6207,
+      "recall": 1.0,
+      "f1": 0.766
+    }
+  }
+}

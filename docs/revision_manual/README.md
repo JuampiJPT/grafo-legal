@@ -89,3 +89,34 @@ Las citas de procedencia motivaron el filtro de v2. Las remisiones y las listas 
 **Errores de tipo.** Las nominalizaciones y los verbos que no actúan se toman como acción: «la derogación del artículo 2°», «deberá proponer la reglamentación», «prorrogadas por las leyes…». También el «texto ordenado» de una cita y palabras de un nombre propio («Impuesto al Valor Agregado»). En el otro sentido, una derogación quedó como cita porque el verbo estaba fuera de la oración detectada.
 
 **Errores de artículo destino.** Las incorporaciones con la forma «como artículo 53 bis a la Ley» no se reconocen. Además, un artículo de la reglamentación de una ley (Decreto 467/88) se toma como artículo de la ley.
+
+## 5. Tipo de relación: 78 relaciones (`revision_tipos_78.csv`)
+
+**Muestra.** Los 36 casos de la sección 4 (lote 1) y 42 nuevos (lote 2), 7 más por cada tipo predicho, sorteados con la semilla 20261116 entre las relaciones que no estaban en el lote 1. En total son 13 por tipo.
+
+**Anotación.** Es una primera pasada de Claude, pendiente de validación humana (columnas `anotador` y `validacion_humana`). La evaluación con ponderación está en `results/tipos/RESULTADOS.md`.
+
+| Tipo asignado | Tipo correcto | Artículo destino correcto |
+|---|---|---|
+| `SUSTITUYE` | 12 de 13 | 13 de 13 |
+| `INCORPORA` | 8 de 13 | 7 de 13 |
+| `DEROGA` | 11 de 13 | 13 de 13 |
+| `REGLAMENTA` | 8 de 13 | 10 de 13 |
+| `MODIFICA` | 4 de 13 | 11 de 13 |
+| `CITA` | 10 de 13 | 13 de 13 |
+| **Total** | **53 de 78** | **67 de 78** |
+
+**Errores nuevos del lote 2.**
+
+- «Impuesto al Valor **Agregado**» se lee como el verbo de `INCORPORA`. Pasa en 4 de los 7 casos nuevos de `INCORPORA`.
+- El «Artículo 1°» de la propia norma se toma como artículo destino en «Apruébase la reglamentación de la Ley …» y en «Apruébase el texto ordenado …».
+- Una derogación de artículos de la reglamentación de una ley se atribuye a la ley.
+- El sumario del encabezado de una ley («Modifícase el artículo 12 de la Ley 20.744») se tipa como `CITA`.
+
+## 6. Detección: 60 menciones (`revision_deteccion_60.csv`)
+
+**Muestra.** 60 menciones al azar (semilla 7) entre las 8.915 que detecta el parser en las 306 normas con texto.
+
+**Anotación.** Es una primera pasada de Claude, pendiente de validación humana. La columna `es_mencion_a_norma` dice si la superficie detectada es una cita a una norma.
+
+**Resultado.** 58 sí. Las otras 2 son dudosas: son nombres de tributos tomados como alias de la ley («Impuesto al Valor Agregado», «impuesto a las ganancias»), que pueden nombrar el tributo y no la ley. Precisión de detección: 0,97.

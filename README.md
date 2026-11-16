@@ -15,7 +15,11 @@ El TP extrae automáticamente las relaciones entre normas (modifica, sustituye, 
 | Clasificador de referencia (scikit-learn) | evaluado (F1 test 0,823) |
 | Salida estándar de relaciones tipadas | 3.277 relaciones del parser de reglas v2 (`docs/salida_estandar.md`) |
 | Grafo Neo4j | se arma solo desde la salida estándar (`docs/grafo.md`); ida y vuelta idéntica, F1 0,828 contra InfoLEG en test (`results/evaluacion_grafo/`) |
-| Parser 2: LLM puro / Parser 3: híbrido / text-to-Cypher | pendiente |
+| Evaluación por subtareas (detección, normalización, extracción) y taxonomía de errores | `results/subtareas/` |
+| Modelo con contexto textual (TF-IDF) e híbrido reglas + modelo | evaluado: híbrido F1 test 0,839 (`results/modelo_contextual/`) |
+| Tipo de relación: matriz de confusión y macro-F1 (78 casos) | macro-F1 0,672, exactitud 0,754 (`results/tipos/`) |
+| Parser 2: LLM | implementado con caché reproducible (`docs/parser_llm.md`); falta correrlo con la clave de la API |
+| Text-to-Cypher | pendiente |
 
 El parser apunta a cualquier documento normativo: lo único que depende de la fuente es el adaptador que pasa el documento a texto.
 
@@ -28,6 +32,10 @@ El estado completo está en [`docs/ESTADO.md`](docs/ESTADO.md). Cómo funciona e
 | Reglas v1, configuración C | 0,732 | 0,854 | 0,652 | 0,788 | 0,563 |
 | **Reglas v2, configuración F** | **0,785** | **0,875** | **0,733** | **0,828** | **0,671** |
 | Clasificador (random forest) | 0,799 | 0,849 | 0,728 (CV) | 0,823 | 0,683 |
+| Modelo contextual (TF-IDF + superficie) | 0,760 | 0,807 | 0,751 (CV) | 0,783 | |
+| **Híbrido reglas + modelo contextual** | 0,780 | 0,906 | 0,749 (CV) | **0,839** | |
+
+Ninguna diferencia con las reglas v2 es significativa, salvo las de los modelos contextuales solos, que son peores: el intervalo del 95 % de la diferencia del híbrido va de −2,2 a +4,0 puntos (`results/comparacion/`). Cómo se compara con el gold: [`docs/comparacion_con_el_gold.md`](docs/comparacion_con_el_gold.md). Recorrido del código para la presentación: [`docs/guia_codigo.md`](docs/guia_codigo.md).
 
 Cada versión se diseñó solo sobre dev, y su test se evaluó una vez. El detalle está en [`results/reglas_v2/RESULTADOS.md`](results/reglas_v2/RESULTADOS.md), [`results/reglas/RESULTADOS.md`](results/reglas/RESULTADOS.md) y [`results/clasificador/RESULTADOS.md`](results/clasificador/RESULTADOS.md).
 
@@ -44,18 +52,25 @@ data/
 src/grafo_legal/
   fuentes/infoleg.py    adaptador: HTML -> texto -> artículos con zona
   catalogo.py           normalización de menciones a id_norma (mundo cerrado)
-  extractores/          menciones (regex + alias), reglas de relación (reglas.py v1, reglas_v2.py) y tipado (relaciones.py)
+  extractores/          menciones (regex + alias), reglas de relación (reglas.py v1, reglas_v2.py), tipado (relaciones.py) y parser LLM (llm.py)
   salida.py             formato de la salida estándar de los parsers
   grafo.py              modelo del grafo: construcción, carga en Neo4j y lectura de vuelta
   evaluacion.py         P/R/F1 a nivel de par
   archivos.py           escritura atómica de salidas
 scripts/                01 corpus · 02 textos · 03 extraer · 04 evaluar · 05 cobertura · 06 muestra Ley 14.250
                         · 07 dataset · 08 clasificador · 09 relaciones · 10 grafo · 11 evaluar grafo
+                        · 12 subtareas · 13 modelo contextual e híbrido · 14 parser LLM · 15 evaluar LLM
+                        · 16 tipos · 17 tabla final con intervalos de confianza
 results/reglas/         reglas v1: evidencias, métricas y errores
 results/reglas_v2/      reglas v2: evidencias, métricas y errores
 results/clasificador/   clasificador: métricas, predicciones e importancia de atributos
 results/relaciones/     salida estándar: relaciones tipadas de cada parser
 results/evaluacion_grafo/  ida y vuelta del grafo y comparación con InfoLEG
+results/subtareas/      detección, normalización y extracción por separado; taxonomía de errores
+results/modelo_contextual/ modelo TF-IDF e híbrido reglas + modelo
+results/tipos/          matriz de confusión y macro-F1 del tipo de relación
+results/comparacion/    todos los métodos en test, con intervalos de confianza
+results/relaciones_llm/ salida del parser LLM y caché de sus respuestas (cuando se corre)
 docs/                   estado, decisiones, ficha del dataset, revisión manual y copia de los documentos del Drive
 tools/                  utilidades (conversión entre Google Docs y Markdown)
 tests/                  tests sin red (pytest)
@@ -89,7 +104,7 @@ bash cargar_y_evaluar_grafo.sh
 
 ## Reglas del protocolo
 
-- El gold nunca es entrada de un extractor. Solo lo leen `04_evaluar.py`, `05_cobertura_textual.py`, `07_armar_dataset.py` (para la etiqueta `en_gold`, nunca para los atributos), `08_clasificador.py` y `11_evaluar_grafo.py` (para medir). El grafo no lo lee.
+- El gold nunca es entrada de un extractor. Solo lo leen `04_evaluar.py`, `05_cobertura_textual.py`, `07_armar_dataset.py` (para la etiqueta `en_gold`, nunca para los atributos), `08_clasificador.py` y `13_modelo_contextual.py` (para entrenar con dev), y `11`, `12`, `15`, `16` y `17` (para medir). El grafo y el parser LLM no lo leen.
 - Las reglas se iteran solo sobre dev. Test se evalúa una vez por versión congelada del parser.
 - Cada arista extraída lleva su evidencia: artículo, offsets, fragmento, método y reglas cumplidas.
 

@@ -421,12 +421,111 @@ El grafo se carga en un contenedor Docker propio (neo4j-grafo-legal), con los pu
 
 **Limitación detectada al escribirlo.** Cuando una norma sustituye un artículo, el texto nuevo entre comillas queda dentro del artículo que sustituye. Las menciones de ese texto citado generan citas extra del mismo artículo. Queda como mejora del tipado.
 
+### B45 · 16/11/2026 · Hallazgo · Evaluación por subtareas: la detección y la normalización no pierden pares
+
+**Qué pide la consigna.** Evaluar por separado la detección de referencias, la normalización (con la exactitud de vinculación y la proporción de referencias no resueltas) y la extracción de relaciones, y clasificar los errores en norma no detectada, mal normalizada, relación invertida, relación inexistente, tipo incorrecto, referencia ambigua y destino ausente del corpus.
+
+**Cómo se mide.** Con el script 12 (`results/subtareas/RESULTADOS.md`).
+
+- **Detección.** Se compara con una búsqueda laxa del número de la norma destino («20.744» o «20744»), independiente del detector, y con una muestra de 60 menciones revisadas a mano.
+- **Normalización.** Cada mención se resuelve contra el catálogo del corpus y contra el catálogo completo de InfoLEG (106.466 leyes, decretos y decretos-leyes).
+- **Extracción.** Se mide de punta a punta y condicional a los pares candidatos.
+
+**Resultados.**
+
+- **Detección.** Recall 1,00 en dev y en test: cuando el número de la norma destino está en el texto, el detector lo encuentra. Precisión 0,97 en la muestra; los 2 casos dudosos son nombres de tributos tomados como alias de la ley.
+- **Normalización.** El 55,6 % de las 8.062 menciones por número no se resuelve, pero casi todas (48,0 %) son normas reales fuera del corpus. Otro 7,2 % son decretos citados sin año que en InfoLEG tienen varias candidatas. La exactitud de vinculación verificable es 95,9 %. El 4,1 % restante son decretos sin año que se resuelven solo porque el corpus tiene uno con ese número: es la cota de error de la decisión de mundo cerrado.
+- **Extracción.** En test, F1 0,828 de punta a punta y 0,842 condicional a los candidatos. La regla recupera el 91 % de los pares que ya pasaron los pasos anteriores.
+
+**Embudo de test.** Hay 192 pares; 185 nombran a su destino en el texto; los 185 se detectan y se normalizan bien; 168 los extrae la regla. De los 24 que se pierden, 7 no tienen mención y 17 los descarta la regla.
+
+**Taxonomía de test.**
+
+- Falsos negativos: 17 relaciones descartadas por la regla y 7 sin mención explícita. No hay normas no detectadas ni mal normalizadas.
+- Falsos positivos: 38 relaciones inexistentes (citas que InfoLEG no registra) y 8 referencias ambiguas. No hay relaciones invertidas: las elimina la restricción temporal.
+- Destino ausente del corpus: 203 pares que la regla extraería si el destino estuviera en el catálogo. Contra la base complementaria completa de InfoLEG, el 62 % de ellos son vínculos registrados (54 % en dev). El parser generaliza fuera del corpus, con unos 20 puntos menos de precisión.
+
+### B46 · 16/11/2026 · Hallazgo · El modelo con contexto textual, solo, no supera a las reglas; en un híbrido, ayuda en la zona gris
+
+**Qué faltaba.** La consigna pide un método basado en modelos «a partir del contexto textual». El clasificador de B37 usaba solo atributos de superficie.
+
+**Qué se hizo.** El script 13 (`results/modelo_contextual/RESULTADOS.md`).
+
+- **Texto del par.** Por cada par candidato se juntan los fragmentos de sus menciones. La mención del destino se reemplaza por `DESTINO`, los dígitos por `#`, y adelante va la parte del documento.
+- **Modelo.** TF-IDF de unigramas y bigramas con regresión logística, con y sin los atributos de superficie. Mismo protocolo que B37: validación cruzada agrupada en dev para elegir C y umbral, y test una vez.
+- **Híbrido.** Las reglas deciden los casos seguros (VISTO, o articulado con verbo: el 82 % está en el gold) y los descartes seguros (9 %). El modelo decide la zona gris (articulado sin verbo, solo CONSIDERANDO, solo alias: 40 % en el gold).
+
+**Resultados en test.**
+
+| Método | F1 |
+|---|---|
+| Solo texto | 0,761 |
+| Texto + superficie | 0,783 |
+| Reglas v2 | 0,828 |
+| Híbrido con el modelo de texto + superficie | 0,839 (P 0,780, R 0,906) |
+
+**Lectura.** Con 801 pares de entrenamiento, el TF-IDF aprende rasgos del período de dev que no transfieren a las normas de 2020 en adelante. Donde ayuda es en la zona gris: sube el recall de 0,875 a 0,906 sin perder precisión. Los n-gramas con más peso a favor son técnica legislativa («parte_articulado articulo», «la destino», «siguiente»); en contra, remisiones de contenido («alcance», «caso», «contrato de»).
+
+### B47 · 16/11/2026 · Hallazgo · Tipo de relación sobre 78 casos: macro-F1 0,672; el error dominante es una cita tomada como acción
+
+**Qué se hizo.** La revisión de tipos de B43 se amplió de 36 a 78 casos, 13 por tipo predicho (`docs/revision_manual/revision_tipos_78.csv`). Con el script 16 (`results/tipos/RESULTADOS.md`) se calculan la matriz de confusión de la muestra y las métricas de la población, ponderando cada caso por la inversa de su probabilidad de muestreo.
+
+**Resultados.**
+
+- En la muestra, el tipo es correcto en 53 de 78 casos y el artículo destino en 67 de 78.
+- En la población, la exactitud es 0,754 y la macro-F1 0,672.
+- Por tipo: `SUSTITUYE` tiene F1 0,94 y `MODIFICA` 0,18.
+
+**Errores.** 21 de los 25 errores son citas tomadas como acción. Hay errores nuevos: «Impuesto al Valor **Agregado**» leído como verbo de incorporación (4 de 7 casos nuevos de `INCORPORA`), y el «Artículo 1°» de la propia norma tomado como artículo destino en «Apruébase la reglamentación de la Ley …».
+
+**Decisión.** Los errores se documentan y no se corrigen sobre esta muestra: corregirlos mirando los casos que después se usan para medir inflaría el resultado. La revisión es de Claude y está pendiente de validación humana y de un segundo anotador para el kappa.
+
+### B48 · 16/11/2026 · Decisión · Parser LLM con verificación de la cita, caché reproducible y grafo aparte
+
+**Diseño** (`docs/parser_llm.md`, `src/grafo_legal/extractores/llm.py`).
+
+- **Contrato.** El parser LLM cumple el mismo que el de reglas: segmentos del adaptador como entrada, salida estándar como salida.
+- **Entrada.** Un prefiltro sin LLM manda solo los segmentos del encabezado y del articulado que nombran alguna norma. Van en lotes de hasta 12.000 caracteres, con el identificador de cada artículo.
+- **Respuesta.** El modelo (`claude-sonnet-5-5`, temperatura 0) recibe la definición de los seis tipos y devuelve un JSON por relación, con la cita textual.
+- **Verificación.** La cita se busca en el texto: si no está, la relación se descarta y se cuenta como alucinación. Si está, se guardan sus offsets, y la relación queda trazable igual que en las reglas.
+- **Normalización.** Con el mismo catálogo que las reglas, así la comparación mide solo la lectura del texto.
+- **Reproducibilidad.** Cada respuesta se guarda en una caché versionada, indexada por la huella del pedido. Volver a correr no llama a la API.
+
+**Grafo aparte.** El grafo del LLM va a `data/grafo_llm/`, y el de las reglas no se toca. En Neo4j se carga sin `--borrar`: sus aristas llevan `fuente = 'llm'` y conviven con las de `reglas_v2` sobre los mismos nodos. Así se pueden comparar las dos lecturas de un mismo artículo.
+
+**Costo.** Son 590 pedidos y unos 1,8 millones de tokens de entrada: unos USD 8 con Sonnet 5.5, menos de USD 0,50 con Haiku 5.5.
+
+**Estado.** El código está probado con respuestas simuladas, pero no se corrió: falta la clave de la API. No hay LLM local (no está Ollama y Hugging Face está bloqueado por la red); la API de Anthropic sí es accesible.
+
+### B49 · 16/11/2026 · Decisión · Tabla final con intervalos de confianza por bootstrap
+
+**Qué se hizo.** El script 17 (`results/comparacion/`) pone todos los métodos sobre el mismo test, con intervalos del 95 % por bootstrap pareado sobre normas origen (2.000 réplicas). Se remuestrean normas porque los pares de una misma norma no son independientes.
+
+**Resultado.**
+
+- Contra las reglas v2 (0,828), el híbrido gana 1,1 puntos, con intervalo de −2,2 a +4,0, y el clasificador de superficie pierde 0,4, con intervalo de −3,5 a +2,5. Ninguna de las dos diferencias es significativa.
+- Los modelos contextuales solos sí son significativamente peores: solo texto, −6,6 puntos [−13,6; −1,5]; texto y superficie, −4,5 [−8,6; −0,7].
+- Con 192 pares de test, solo se distinguen diferencias de unos 4 puntos o más.
+
+### B50 · 16/11/2026 · Decisión · Código comentado y guía de lectura para la presentación
+
+**Qué se hizo.** Se agregaron comentarios que explican cada paso del pipeline en el adaptador, el detector, el catálogo, las reglas, el tipado y el grafo:
+
+- cada expresión regular, pieza por pieza;
+- por qué se toma cada decisión;
+- un ejemplo real en cada función.
+
+Los comentarios no cambian el comportamiento: se volvió a correr el pipeline y las evidencias, las relaciones, el dataset y el grafo dieron idénticos byte a byte. La huella de `reglas_v2.py` cambió solo por los comentarios.
+
+**Documentos nuevos.** `docs/guia_codigo.md` recorre el código en el orden en que viaja un documento, con el artículo 70 del Decreto 70/2023 como ejemplo. `docs/comparacion_con_el_gold.md` explica cómo se compara con el gold y es la base de la sección «Diseño experimental» del artículo. Los dos, junto con el parser LLM y los resultados nuevos, están en el Drive como «07 - Evaluación completa, parser LLM y guía del código».
+
 ## Cuestiones abiertas
 
-- Correr la evaluación del grafo sobre el Neo4j del equipo y probar las consultas de ejemplo (B38, B43).
-- Mejorar el tipado de las reglas sobre dev y ampliar la revisión de tipos para medirlo (B43).
-- Elegir el LLM y el acceso para los parsers LLM e híbrido, y decidir si el grafo lleva embeddings (B38).
-- Validar las revisiones manuales de cobertura, de la Ley 14.250, de los 30 falsos positivos y de los 36 tipos, y que un segundo anotador repita parte para el kappa (B12, B26, B30, B36, B43).
+- Crear la clave de la API (`.anthropic_key`) y correr el parser LLM; actualizar la tabla final con el LLM y sus híbridos (B48, B49).
+- Correr la evaluación del grafo sobre el Neo4j del equipo, cargar el grafo del LLM sin `--borrar` y probar las consultas de ejemplo (B38, B43, B48).
+- Mejorar el tipado de las reglas sobre otra muestra de dev, sin tocar los 78 casos de medición (B43, B47).
+- Decidir si el grafo lleva embeddings (B38).
+- Validar las revisiones manuales de cobertura, de la Ley 14.250, de los 30 falsos positivos, de los 78 tipos y de las 60 menciones, y que un segundo anotador repita parte para el kappa (B12, B26, B30, B36, B45, B47).
 - Consultar con la cátedra la supervisión distante, la clasificación fina y si se evalúa también la modificación estricta (B02, B14, B27).
 - Armar la muestra independiente del gold (B15).
 - Elegir cómo obtener el corpus del digesto y probar el parser ahí cambiando solo el adaptador (B19, B41).

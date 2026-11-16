@@ -48,7 +48,9 @@ SEMILLAS = {25552: "Ley 20.744 (LCT)", 423680: "Ley 27.802", 412: "Ley 24.013", 
 
 def proyectar(g: pd.DataFrame) -> pd.Series:
     """Que relaciones del grafo cuentan como vinculo entre normas (regla F de reglas v2)."""
-    art = (g.parte_origen == "articulado") & (g.metodo == "regex_numero") & \
+    # metodo != "alias": para las reglas equivale a "con numero"; el parser LLM (metodo "llm")
+    # siempre resuelve la norma por tipo y numero, asi que tambien cuenta
+    art = (g.parte_origen == "articulado") & (g.metodo != "alias") & \
           ((g.tipo != "CITA") | (g.tipo_norma_origen != "Decreto"))
     return (g.parte_origen == "visto") | art
 

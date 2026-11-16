@@ -130,3 +130,57 @@ def test_grafo_ida_y_vuelta():
     g = exportar_networkx(a_networkx(construir(normas, art, rel)))
     clave = lambda df: set(map(tuple, df[CLAVE].astype(str).values.tolist()))  # noqa: E731
     assert clave(g) == clave(rel)
+
+
+# ---------- parser LLM (sin red: respuestas simuladas) ----------
+
+def _cat_chico():
+    return Catalogo([Norma(25552, "ley", "20744", 1974, "1974-09-27", "Ley 20744"),
+                     Norma(1, "decreto", "70", 2023, "2023-12-21", "Decreto 70"),
+                     Norma(2, "decreto", "1694", 2006, "2006-11-23", "Decreto 1694"),
+                     Norma(3, "decreto", "1694", 2009, "2009-11-06", "Decreto 1694")])
+
+
+def test_catalogo_candidatos_cuenta_ambiguedad():
+    cat = _cat_chico()
+    assert len(cat.candidatos("decreto", "1694")) == 2           # sin ano: dos candidatos
+    assert [n.id for n in cat.candidatos("decreto", "1694", 2009)] == [3]
+    assert cat.resolver("decreto", "1694") is None               # el parser no adivina
+
+
+def test_llm_verifica_cita_y_normaliza():
+    from grafo_legal.extractores import llm
+    seg = llm.Segmento(1, 5, "77", "articulado", 1000,
+                       "ARTÍCULO 77.- Sustitúyese el artículo 143 de la Ley N° 20.744 (t.o. 1976), por el siguiente:")
+    lote = [(seg, 0, seg.texto)]
+    crudas = llm.leer_json('```json\n{"relaciones": ['
+                           '{"segmento": "S5", "cita": "Ley N° 20.744", "tipo_norma": "ley", "numero": "20744",'
+                           ' "articulo_destino": "143", "tipo": "SUSTITUYE", "verbo": "Sustitúyese"},'
+                           '{"segmento": "S5", "cita": "Ley 99.999", "tipo_norma": "ley", "numero": "99999", "tipo": "CITA"},'
+                           '{"segmento": "S9", "cita": "x", "tipo": "CITA"}]}\n```')
+    filas, conteo = llm.a_relaciones(1, "Decreto 70", lote, crudas, _cat_chico(), {})
+    assert conteo["aceptadas"] == 1 and conteo["cita_no_encontrada"] == 1 and conteo["segmento_invalido"] == 1
+    f = filas[0]
+    assert (f["tipo"], f["id_norma_destino"], f["articulo_destino"]) == ("SUSTITUYE", 25552, "143")
+    # offset en el texto de la norma = inicio del segmento + posicion de la cita en el segmento
+    assert seg.texto[f["inicio"] - 1000: f["fin"] - 1000] == "Ley N° 20.744"
+
+
+def test_llm_prefiltro_y_lotes():
+    from grafo_legal.extractores import llm
+    segs = [llm.Segmento(1, 0, "0", "encabezado", 0, "VISTO la Ley 20.744"),
+            llm.Segmento(1, 1, "1", "articulado", 20, "Comuníquese, publíquese."),
+            llm.Segmento(1, 2, "-", "notas", 50, "Nota Infoleg: Ley 1")]
+    sel = llm.seleccionar(segs)
+    assert [s.orden for s in sel] == [0]                         # ni el articulo sin normas ni las notas
+    largo = llm.Segmento(1, 3, "2", "articulado", 0, "ley " * 5000)
+    pedazos = [p for lt in llm.lotes([largo], max_chars=6000) for p in lt]
+    assert sum(len(p[2]) for p in pedazos) == len(largo.texto) and pedazos[1][1] == 6000
+
+
+def test_modelo_contextual_marca_destino_y_borra_numeros():
+    sys.path.insert(0, str(RAIZ / "scripts"))
+    import importlib
+    m = importlib.import_module("13_modelo_contextual")
+    t = m.limpiar_fragmento("Sustitúyese el artículo 80 de la Ley N° 20.744 por", "Ley N° 20.744", "articulado")
+    assert t == "PARTE_articulado Sustitúyese el artículo ## de la  DESTINO  por"

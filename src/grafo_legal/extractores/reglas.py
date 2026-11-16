@@ -24,6 +24,10 @@ from ..catalogo import Catalogo, sin_tildes
 from ..fuentes.infoleg import cargar
 from .menciones import detectar, detectar_alias
 
+# VERBOS: las formas verbales (y algunos sustantivos) que en tecnica legislativa expresan un
+# efecto sobre otra norma. Se escriben las conjugaciones que se usan en el articulado argentino:
+# imperativo con enclitico ("Sustituyese", "Derogase"), presente ("modifica"), participio
+# ("sustituido"), formulas ("quedara redactado", "dejase sin efecto", "tengase por ley").
 VERBOS = re.compile(
     r"\b(?:"
     r"modif[ií]c(?:a|an|ase|anse|ar|ado|ada|ados|adas)|modif[ií]qu(?:e|ese|ense)|"
@@ -48,6 +52,7 @@ VERBOS = re.compile(
     r"sustituci[oó]n|modificaci[oó]n|derogaci[oó]n|incorporaci[oó]n"
     r")\b", re.I)
 
+# una oracion termina en punto seguido de espacio, en punto y coma o en salto de linea
 _ORACION = re.compile(r"[^.;\n]*(?:\.(?=\s|$)|;|\n|$)")
 
 
@@ -69,6 +74,8 @@ class Evidencia:
 
 
 def _oracion(texto: str, ini: int, fin: int) -> tuple[int, int]:
+    """Limites (a, b) de la oracion que contiene la mencion texto[ini:fin]: desde el ultimo
+    punto, punto y coma o salto de linea anterior hasta el primero posterior."""
     a = max(texto.rfind(".", 0, ini), texto.rfind(";", 0, ini), texto.rfind("\n", 0, ini)) + 1
     cands = [i for i in (texto.find(". ", fin), texto.find(";", fin), texto.find("\n", fin)) if i != -1]
     b = min(cands) + 1 if cands else len(texto)

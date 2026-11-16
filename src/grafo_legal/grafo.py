@@ -23,6 +23,7 @@ PROPS_REL = ["fuente", "parte_origen", "verbo", "metodo", "confianza", "n_mencio
 def construir(normas: pd.DataFrame, articulos: pd.DataFrame, rel: pd.DataFrame) -> dict[str, pd.DataFrame]:
     """normas: corpus_normas.csv. articulos: data/dataset/articulos.csv (con texto).
     rel: salida estandar. Devuelve las tablas de nodos y aristas."""
+    # Nodos Norma: uno por norma del corpus (tenga o no texto)
     n = pd.DataFrame({
         "id_norma": normas.id_norma.astype(int), "tipo": normas.tipo_norma, "numero": normas.numero_norma,
         "nombre": normas.tipo_norma + " " + normas.numero_norma,
@@ -30,6 +31,7 @@ def construir(normas: pd.DataFrame, articulos: pd.DataFrame, rel: pd.DataFrame) 
         "titulo": normas.titulo_resumido, "sumario": normas.titulo_sumario,
         "organismo": normas.organismo_origen, "split": normas.split,
     })
+    # Nodos Articulo: uno por segmento con texto, con id "id_norma#orden" (el #0 es el encabezado)
     a = articulos.copy()
     a["id"] = a.id_norma.astype(str) + "#" + a.orden.astype(str)
     a = a.rename(columns={"articulo": "numero"})
@@ -48,6 +50,8 @@ def construir(normas: pd.DataFrame, articulos: pd.DataFrame, rel: pd.DataFrame) 
     rel.loc[con_art, "destino"] = ids
     rel["destino_es_articulo"] = con_art
 
+    # articulos destino que no estan en el texto del corpus (p. ej. la norma no tiene texto en
+    # InfoLEG): se crean como nodos "stub" sin texto, para no perder la relacion
     faltan = sorted(set(ids) - set(a.id))
     stubs = pd.DataFrame({"id": faltan,
                           "id_norma": [int(x.split("#")[0]) for x in faltan],

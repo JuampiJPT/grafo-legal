@@ -46,8 +46,22 @@ echo "== 9/10 Relaciones tipadas (salida estandar) y grafo (CSV; para cargar en 
 python scripts/09_relaciones.py
 python scripts/10_armar_grafo.py
 
-echo "== 10/10 Evaluacion del grafo (copia en memoria) y tests"
+echo "== 10/10 Evaluacion del grafo (copia en memoria)"
 python scripts/11_evaluar_grafo.py
+
+echo "== Evaluacion por subtareas, modelo contextual e hibrido, tipos y tabla final"
+python scripts/12_evaluar_subtareas.py
+python scripts/13_modelo_contextual.py --incluir-test
+if [ -f results/relaciones_llm/relaciones_llm.csv ]; then
+  # sin clave usa solo la cache de results/relaciones_llm/cache (reproducible y sin costo)
+  python scripts/14_parser_llm.py
+  python scripts/15_evaluar_llm.py
+  python scripts/10_armar_grafo.py --relaciones results/relaciones_llm/relaciones_llm.csv --out data/grafo_llm
+fi
+python scripts/16_evaluar_tipos.py
+python scripts/17_comparar_metodos.py
+
+echo "== Tests"
 pytest -q
 
 echo "Listo. Revisa con: git status"
