@@ -77,6 +77,8 @@
     "alias_de_tributo": "El alias es el nombre de un tributo («Impuesto a las Ganancias», «Valor Agregado») y no una cita a la ley.",
     "otro_decreto_mismo_numero": "El texto cita un decreto con el año escrito como fecha; el detector no lee ese año y lo vinculó al único decreto del corpus con ese número, que es de otro año: es otro decreto.",
     "decreto_sin_anio_mundo_cerrado": "Decreto citado sin año: se vinculó al único del corpus con ese número, pero en InfoLEG hay varios y puede no ser el correcto.",
+    "alias_ley_sin_vinculo": "La ley se nombra por su nombre («Ley de Impuesto al Valor Agregado») con un verbo en la oración (regla F3 de v3), pero el verbo actúa sobre otra cosa e InfoLEG no registra el vínculo.",
+    "procedencia_mal_filtrada": "Regresión de v3: el filtro de procedencia descarta «texto sustituido por la ley 24.674», que en realidad nombra la ley que se está modificando.",
     "alias_de_otra_ley": "El alias es el comienzo del nombre de otra ley («Ley de Convenciones Colectivas de Trabajo de la Administración Pública Nacional», que es la 24.185) y se vinculó a la equivocada.",
     "error_en_el_texto_fuente": "El propio texto de la norma tiene un error que confunde al detector.",
     "posible_omision_del_gold": "El texto modifica a la norma (hay un verbo que actúa sobre ella) y InfoLEG no registra el vínculo."

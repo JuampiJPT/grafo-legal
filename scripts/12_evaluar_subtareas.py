@@ -50,6 +50,8 @@ from grafo_legal.extractores.menciones import detectar, detectar_alias      # no
 from grafo_legal.fuentes.infoleg import cargar                              # noqa: E402
 
 CONFIG = "F_visto_o_articulado_con_verbo_o_ley"
+# parser evaluado: v2 (por defecto) o v3 (--parser v3). Se fija antes de main().
+PARSER = {"modulo": reglas_v2, "config": CONFIG, "anio_por_fecha": False, "alias": None}
 TIPOS_BASE = {"Ley", "Decreto", "Decreto/Ley"}
 
 
@@ -167,7 +169,7 @@ def recuperables(arts, cat: Catalogo, origen: Norma | None) -> dict[int, bool]:
     out: dict[int, bool] = {}
     for art in arts:
         cons = reglas_v2._CONSIDERANDO.search(art.texto) if art.zona == "encabezado" else None
-        for m in detectar(art.texto):
+        for m in detectar(art.texto, anio_por_fecha=PARSER["anio_por_fecha"]):
             if m.anio is not None or cat.resolver(m.tipo, m.numero, None) is not None:
                 continue
             anio = anio_por_fecha(art.texto, m.fin)
@@ -213,7 +215,7 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
         textos[id_o] = texto
         recup[id_o] = recuperables(arts, cat, cat.normas.get(id_o))
         for art in arts:
-            for m in detectar(art.texto):
+            for m in detectar(art.texto, anio_por_fecha=PARSER["anio_por_fecha"]):
                 est, id_d, ncand = estado_normalizacion(m, cat, completo, cat.normas.get(id_o))
                 if id_d == id_o:
                     continue      # la norma citandose a si misma ("el presente decreto 70/2023")
@@ -224,7 +226,7 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
                                 # ano escrito como fecha despues de la mencion (diagnostico, el parser no lo usa)
                                 "anio_en_fecha": anio_por_fecha(art.texto, m.fin) or "",
                                 "superficie": m.superficie[-80:]})
-            for id_d, a, b, sup in detectar_alias(art.texto):
+            for id_d, a, b, sup in detectar_alias(art.texto, PARSER["alias"]):
                 if id_d == id_o:
                     continue
                 # un alias apunta por construccion a una norma del corpus: se vincula sin ambiguedad
@@ -320,7 +322,7 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
 
     # ---- 3. EXTRACCION ---------------------------------------------------------------------
     ev = [e for e in _leer_ev(ev_csv)]
-    filtro = reglas_v2.CONFIGS[CONFIG]
+    filtro = PARSER["modulo"].CONFIGS[PARSER["config"]]
     pred_todo = {(e.id_origen, e.id_destino) for e in ev if filtro(e)}
     cand_todo = {(e.id_origen, e.id_destino) for e in ev}
     extraccion = {}
@@ -342,7 +344,7 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
     ausentes = defaultdict(set)      # split -> pares (origen, destino fuera del corpus)
     ausentes_ej = []
     for id_o in sorted(textos):
-        evs = reglas_v2.extraer(id_o, html_dir, completo) or []
+        evs = PARSER["modulo"].extraer(id_o, html_dir, completo) or []
         for e in evs:
             if e.id_destino not in cat.normas and filtro(e):
                 if (id_o, e.id_destino) in ausentes[split_de[id_o]]:
@@ -426,7 +428,8 @@ def main(corpus: Path, html_dir: Path, base_zip: Path, ev_csv: Path, out: Path,
                      "destino_ausente_del_corpus": len(ausentes[s])}
                  for s in ("dev", "test")}
 
-    metricas = {"fecha": datetime.now(timezone.utc).isoformat(), "config": CONFIG,
+    metricas = {"fecha": datetime.now(timezone.utc).isoformat(), "config": PARSER["config"],
+                "parser": PARSER["modulo"].__name__.split(".")[-1],
                 "catalogo_completo_normas": len(completo.normas),
                 "deteccion": deteccion, "normalizacion": normalizacion, "extraccion": extraccion,
                 "embudo": embudo, "taxonomia_errores": taxonomia,
@@ -469,6 +472,13 @@ if __name__ == "__main__":
     ap.add_argument("--base", type=Path, default=Path("data/raw/base.zip"))
     ap.add_argument("--modificatorias", type=Path, default=Path("data/raw/modificatorias.zip"))
     ap.add_argument("--evidencias", type=Path, default=Path("results/reglas_v2/evidencias.csv"))
-    ap.add_argument("--out", type=Path, default=Path("results/subtareas"))
+    ap.add_argument("--out", type=Path)
+    ap.add_argument("--parser", choices=["v2", "v3"], default="v2")
     a = ap.parse_args()
-    main(a.corpus, a.html, a.base, a.evidencias, a.out, a.modificatorias)
+    if a.parser == "v3":
+        from grafo_legal.extractores import reglas_v3
+        PARSER.update(modulo=reglas_v3, config="F3_alias_con_verbo", anio_por_fecha=True, alias=reglas_v3.ALIAS_V3)
+        if a.evidencias == Path("results/reglas_v2/evidencias.csv"):
+            a.evidencias = Path("results/reglas_v3/evidencias.csv")
+    main(a.corpus, a.html, a.base, a.evidencias, a.out or Path("results/subtareas" + ("_v3" if a.parser == "v3" else "")),
+         a.modificatorias)

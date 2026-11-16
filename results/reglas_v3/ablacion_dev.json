@@ -1,0 +1,134 @@
+[
+  {
+    "variante": "v3 completa",
+    "pred": 566,
+    "gold": 583,
+    "tp": 431,
+    "fp": 135,
+    "fn": 152,
+    "precision": 0.7615,
+    "recall": 0.7393,
+    "f1": 0.7502
+  },
+  {
+    "variante": "v2 (ningun cambio)",
+    "pred": 557,
+    "gold": 583,
+    "tp": 418,
+    "fp": 139,
+    "fn": 165,
+    "precision": 0.7504,
+    "recall": 0.717,
+    "f1": 0.7333
+  },
+  {
+    "variante": "v3 sin alias_con_verbo",
+    "pred": 555,
+    "gold": 583,
+    "tp": 424,
+    "fp": 131,
+    "fn": 159,
+    "precision": 0.764,
+    "recall": 0.7273,
+    "f1": 0.7452
+  },
+  {
+    "variante": "v2 + alias_con_verbo",
+    "pred": 576,
+    "gold": 583,
+    "tp": 423,
+    "fp": 153,
+    "fn": 160,
+    "precision": 0.7344,
+    "recall": 0.7256,
+    "f1": 0.7299
+  },
+  {
+    "variante": "v3 sin fecha",
+    "pred": 564,
+    "gold": 583,
+    "tp": 422,
+    "fp": 142,
+    "fn": 161,
+    "precision": 0.7482,
+    "recall": 0.7238,
+    "f1": 0.7358
+  },
+  {
+    "variante": "v2 + fecha",
+    "pred": 559,
+    "gold": 583,
+    "tp": 427,
+    "fp": 132,
+    "fn": 156,
+    "precision": 0.7639,
+    "recall": 0.7324,
+    "f1": 0.7478
+  },
+  {
+    "variante": "v3 sin gazetteer",
+    "pred": 568,
+    "gold": 583,
+    "tp": 431,
+    "fp": 137,
+    "fn": 152,
+    "precision": 0.7588,
+    "recall": 0.7393,
+    "f1": 0.7489
+  },
+  {
+    "variante": "v2 + gazetteer",
+    "pred": 558,
+    "gold": 583,
+    "tp": 417,
+    "fp": 141,
+    "fn": 166,
+    "precision": 0.7473,
+    "recall": 0.7153,
+    "f1": 0.7309
+  },
+  {
+    "variante": "v3 sin procedencia",
+    "pred": 570,
+    "gold": 583,
+    "tp": 432,
+    "fp": 138,
+    "fn": 151,
+    "precision": 0.7579,
+    "recall": 0.741,
+    "f1": 0.7493
+  },
+  {
+    "variante": "v2 + procedencia",
+    "pred": 553,
+    "gold": 583,
+    "tp": 417,
+    "fp": 136,
+    "fn": 166,
+    "precision": 0.7541,
+    "recall": 0.7153,
+    "f1": 0.7342
+  },
+  {
+    "variante": "v3 sin valor_agregado",
+    "pred": 567,
+    "gold": 583,
+    "tp": 431,
+    "fp": 136,
+    "fn": 152,
+    "precision": 0.7601,
+    "recall": 0.7393,
+    "f1": 0.7496
+  },
+  {
+    "variante": "v2 + valor_agregado",
+    "pred": 557,
+    "gold": 583,
+    "tp": 418,
+    "fp": 139,
+    "fn": 165,
+    "precision": 0.7504,
+    "recall": 0.717,
+    "f1": 0.7333
+  }
+]

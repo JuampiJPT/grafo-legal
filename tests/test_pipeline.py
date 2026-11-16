@@ -195,3 +195,24 @@ def test_anio_escrito_como_fecha():
     t = "el Decreto Nº 1.694 de fecha 5 de noviembre de 2009,"
     assert m.anio_por_fecha(t, t.index("1.694") + 5) == 2009
     assert m.anio_por_fecha("Decreto 1694/06 y", 12) is None
+
+
+def test_v3_anio_por_fecha_en_el_detector():
+    t = "los Decretos Nros. 658 y 659, ambos del 24 de junio de 1996, y el Decreto 467 del 14 de abril de 1988"
+    por_num = {m.numero: m.anio for m in detectar(t, anio_por_fecha=True)}
+    assert por_num == {"658": 1996, "659": 1996, "467": 1988}
+    # sin el parametro (v2) el comportamiento no cambia
+    assert all(m.anio is None for m in detectar(t))
+
+
+def test_v3_alias_y_encabezado():
+    from grafo_legal.extractores.menciones import detectar_alias
+    from grafo_legal.extractores.reglas_v3 import ALIAS_V3, verbo_real
+    from grafo_legal.extractores.relaciones import articulos_destino
+    ids = {x[0] for x in detectar_alias("Modifícase la Ley de Ministerios", ALIAS_V3)}
+    assert 48853 in ids
+    assert not {x[0] for x in detectar_alias("exención del impuesto a las ganancias", ALIAS_V3)}
+    assert not verbo_real("del Impuesto al Valor Agregado")
+    assert verbo_real("Agrégase al artículo 5")
+    previo = "Artículo 1° — Apruébase la reglamentación de la "
+    assert articulos_destino(previo, ignorar_encabezado=True) == []

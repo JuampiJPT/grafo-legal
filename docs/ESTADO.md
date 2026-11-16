@@ -11,8 +11,9 @@ Hay un solo corpus congelado (340 normas, 775 relaciones) con sus 306 textos y e
 - **Modelo con contexto textual.** Solo da 0,783; en un híbrido con las reglas da 0,839, sin diferencia significativa con las reglas.
 - **Tipos.** Matriz de confusión y macro-F1 ponderada de 0,672 sobre 78 casos.
 - **Tabla final** con intervalos de confianza.
+- **Reglas v3** (experimento, B52). Corrigen la normalización: lee el año escrito como fecha y ya no se pierde ningún par del gold ahí. En test empatan con la v2 (0,826 contra 0,828). Todos los fallos están explicados en `docs/analisis_de_fallos.md`, y el pipeline en `docs/como_se_detecta_una_relacion.md`.
 
-El parser LLM está implementado, con verificación de la cita y caché reproducible, y va a un grafo aparte. Falta correrlo con la clave de la API y escribir el artículo.
+El parser LLM está implementado, con verificación de la cita y caché reproducible, y va a un grafo aparte. Falta correrlo con una clave de la API real (la entregada es un token `sk-ant-usr`, B53) y escribir el artículo.
 
 ## Avance por fase del roadmap
 
@@ -21,12 +22,12 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 | F0 · Alcance y estado del arte | Parcial | Alcance y relación «modifica o complementa» fijados (B01, B02). Faltan las fichas de lectura y el borrador de Introducción y Trabajos relacionados. |
 | F1 · Corpus y gold | **Cerrada** | Corpus único congelado: 340 normas, 775 pares (583 dev, 192 test), 306 textos (B33). Scripts que lo reproducen byte a byte. |
 | F2 · Segmentación, detección y normalización | **Cerrada para InfoLEG** | Segmentación por zonas, detector de menciones con listas y nombres, catálogo cerrado. Revisión manual de 30 casos de cobertura: 30 correctos. Dataset de segmentos y candidatos (B34). |
-| F3 · Parser de reglas y evaluación | **Cerrada** | Reglas v2 diseñadas sobre dev y congeladas: F1 0,733 en dev y 0,828 en test (B36). Revisión de 30 falsos positivos. Clasificador de referencia: F1 0,823 en test (B37). |
-| F4 · Parser LLM puro | **Implementado, falta correrlo** | `extractores/llm.py` y scripts 14 y 15 (`docs/parser_llm.md`). Modelo `claude-sonnet-5-5`, unos USD 8 para todo el corpus. Falta la clave de la API (B48). |
+| F3 · Parser de reglas y evaluación | **Cerrada** | Reglas v2 diseñadas sobre dev y congeladas: F1 0,733 en dev y 0,828 en test (B36). Revisión de 30 falsos positivos. Clasificador de referencia: F1 0,823 en test (B37). Reglas v3 como experimento: dev 0,750, test 0,826 (B52). |
+| F4 · Parser LLM puro | **Implementado, falta correrlo** | `extractores/llm.py` y scripts 14 y 15 (`docs/parser_llm.md`). Modelo `claude-sonnet-5-5`, unos USD 8 para todo el corpus. Falta una clave de la API real (B48, B53). |
 | F5 · Parser híbrido | **En curso** | Híbrido reglas + modelo contextual: F1 0,839 en test (B46). El híbrido reglas + LLM se evalúa con el script 15 cuando se corra el LLM. |
 | F6 · Grafo en Neo4j | **En curso** | Modelo genérico con relaciones tipadas, armado desde la salida estándar (B41, B42). Evaluación leyendo el grafo: ida y vuelta idéntica y F1 0,828 contra InfoLEG en test (B43). Falta correr la evaluación sobre el Neo4j del equipo. |
 | F7 · Text-to-Cypher | No empezada | Hay cinco consultas de ejemplo con su pregunta en lenguaje natural (`docs/grafo.md`). |
-| F8 · Errores, informe y defensa | **En curso** | Evaluación por subtareas y taxonomía de errores (B45), tipos sobre 78 casos (B47), tabla final con intervalos de confianza (B49), comparación con el gold (`docs/comparacion_con_el_gold.md`) y guía del código para la presentación (`docs/guia_codigo.md`, B50). La bitácora (B01 a B51) y los documentos 01 a 03, 06 y 07 alimentan el artículo. Falta escribir el artículo LNCS. |
+| F8 · Errores, informe y defensa | **En curso** | Evaluación por subtareas y taxonomía de errores (B45), tipos sobre 78 casos (B47), tabla final con intervalos de confianza (B49), comparación con el gold (`docs/comparacion_con_el_gold.md`) y guía del código para la presentación (`docs/guia_codigo.md`, B50). Análisis de fallos y explicación del pipeline (B52). La bitácora (B01 a B53) y los documentos 01 a 03 y 06 a 08 alimentan el artículo. Falta escribir el artículo LNCS. |
 
 ## Hallazgos que van al informe
 
@@ -46,6 +47,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 13. **El error de tipo dominante es una cita tomada como acción** (21 de 25 errores en 78 casos). La macro-F1 ponderada es 0,672 y la exactitud 0,754 (B47).
 14. **El año escrito como fecha es el principal error de normalización.** «Decreto N° 467 del 14 de abril de 1988»: el detector no lee el año de la fecha. Por eso quedan ambiguas 360 de 580 menciones, se vinculan mal 31 y se pierden 10 pares del gold (B51).
 15. **InfoLEG registra vínculos que el texto no nombra.** De los 80 pares del gold sin mención: 36 son normas que complementan a la destino sin citarla, 9 son decretos de texto ordenado («t.o. 1976» vincula al Decreto 390/76), 16 son derogaciones genéricas o de modificatorias, y 2 parecen errores del gold (B51).
+16. **Corregir la normalización no mueve el F1 de test.** La v3 lee el año escrito como fecha: las vinculaciones erróneas verificables pasan de 31 a 0 y la normalización deja de perder pares. Aun así empata en test (0,826 contra 0,828), porque gana 3 pares del gold y pierde 2 por una regresión del filtro de procedencia. Lo que limita es la decisión de la regla: el 80 % de los falsos positivos de test son citas del VISTO y remisiones desde leyes (B52).
 
 ## Pendientes
 
@@ -55,7 +57,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 - Subir los commits al repositorio (`git push`): desde la sesión de Claude no hay acceso de escritura a GitHub.
 - Consultar con la cátedra: supervisión distante, si se evalúa también la modificación estricta y la clasificación fina (B02, B14, B27).
 - Elegir cómo obtener la muestra del digesto UNNOBA (B19, B22).
-- Crear `.anthropic_key` con la clave de la API para correr el parser LLM (B48).
+- Crear una clave de la API en la Console de Anthropic (empieza con `sk-ant-api03-`; la que hay es un token `sk-ant-usr`) y guardarla en `.anthropic_key` (B48, B53).
 - Decidir si el grafo lleva embeddings (B38).
 
 **Técnicos, en este orden:**
@@ -77,6 +79,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 | Estado | 04 - Estado del TP | `docs/ESTADO.md` |
 | Parser y grafo paso a paso | 06 - Parser y grafo: arquitectura y construcción paso a paso | `docs/arquitectura_parser_y_grafo.md` |
 | Evaluación completa, parser LLM y guía del código | 07 - Evaluación completa, parser LLM y guía del código | `docs/comparacion_con_el_gold.md`, `docs/parser_llm.md`, `docs/guia_codigo.md`, `results/subtareas/`, `results/modelo_contextual/`, `results/tipos/`, `results/comparacion/` |
+| Análisis de fallos y cómo se detecta una relación | 08 - Análisis de fallos y cómo se detecta una relación | `docs/analisis_de_fallos.md`, `docs/como_se_detecta_una_relacion.md`, `results/reglas_v3/RESULTADOS.md`, `results/subtareas_v3/`, `results/errores_explicados_v3/` |
 | Roadmap | 05 - Roadmap del TP (copia; la versión editable es el artefacto de Claude) | `docs/drive/roadmap.md` |
 | Datos, textos, dataset, grafo y código | Solo los del corpus v1 histórico | Todo |
 

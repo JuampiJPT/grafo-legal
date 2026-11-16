@@ -49,6 +49,24 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B33 | 09/11 | Decisión | Un solo corpus | Cerrada |
 | B34 | 09/11 | Decisión | Dataset en CSV con pandas | Cerrada |
 | B35 | 09/11 | Hallazgo | Las reglas v1 no generalizan bien a los pares nuevos | Abierta |
+| B36 | 09/11 | Decisión | Reglas v2: el VISTO cuenta, las citas de procedencia no | Cerrada |
+| B37 | 09/11 | Hallazgo | Un clasificador entrenado empata con las reglas | Cerrada |
+| B38 | 09/11 | Decisión | Modelo del grafo: InfoLEG y lo extraído por separado | Abierta |
+| B39 | 09/11 | Dificultad | Sin acceso de escritura a GitHub desde la sesión de Claude | Cerrada |
+| B40 | 09/11 | Decisión | Contenedor Neo4j propio del TP | Cerrada |
+| B41 | 09/11 | Decisión | Una salida estándar para cualquier parser y cualquier documento normativo | Cerrada |
+| B42 | 09/11 | Decisión | El grafo representa lo que hace cada norma; InfoLEG queda afuera | Cerrada |
+| B43 | 09/11 | Hallazgo | El grafo devuelve lo que se le cargó; contra InfoLEG, las citas son el problema | Abierta |
+| B44 | 09/11 | Decisión | Documento del parser y del grafo, contado paso a paso | Cerrada |
+| B45 | 16/11 | Hallazgo | Evaluación por subtareas: la detección y la normalización no pierden pares | Abierta |
+| B46 | 16/11 | Hallazgo | El modelo con contexto textual, solo, no supera a las reglas; en un híbrido, ayuda en la zona gris | Cerrada |
+| B47 | 16/11 | Hallazgo | Tipo de relación sobre 78 casos: macro-F1 0,672; el error dominante es una cita tomada como acción | Abierta |
+| B48 | 16/11 | Decisión | Parser LLM con verificación de la cita, caché reproducible y grafo aparte | Abierta |
+| B49 | 16/11 | Decisión | Tabla final con intervalos de confianza por bootstrap | Cerrada |
+| B50 | 16/11 | Decisión | Código comentado y guía de lectura para la presentación | Cerrada |
+| B51 | 16/11 | Hallazgo | Cada error explicado; corrige la clasificación de B45 | Cerrada |
+| B52 | 16/11 | Hallazgo | Reglas v3: corrigen la normalización, empatan en test | Abierta |
+| B53 | 16/11 | Dificultad | La clave entregada no es de la API; se saca la temperatura | Abierta |
 
 ## Entradas
 
@@ -567,12 +585,52 @@ Los comentarios no cambian el comportamiento: se volvió a correr el pipeline y 
 
 **Decisión.** El parser congelado no cambia. Leer el año escrito como fecha queda como la primera mejora de una v3, para diseñar sobre dev y medir aparte.
 
+### B52 · 16/11/2026 · Hallazgo · Reglas v3: corrigen la normalización, empatan en test
+
+**Qué se hizo.** Con los errores explicados en B51 se diseñó una v3 de las reglas, mirando solo dev (`reglas_v3.py`). La v3 hace seis cambios:
+
+1. lee el año escrito como fecha («Decreto 467 del 14 de abril de 1988»);
+2. agrega al gazetteer «Ley de Ministerios» y «L.C.T.», y saca los nombres sueltos de tributos;
+3. «Valor Agregado» deja de leerse como verbo;
+4. extiende el filtro de procedencia («modificado por», «reemplazado por»);
+5. aplica la regla F3: en el articulado, una norma nombrada sin número cuenta si la oración tiene verbo;
+6. ignora el número del propio artículo al tipar.
+
+Cada cambio se midió por separado en dev (ablación, script 19). Después la v3 se congeló y test se evaluó una vez. La v2 no se tocó: sus salidas dan idénticas byte a byte.
+
+**Resultados.**
+
+- **Dev:** F1 de 0,733 a 0,750. El año escrito como fecha aporta 1,5 puntos solo; el alias con verbo resta si se aplica sin limpiar el gazetteer.
+- **Test:** F1 de 0,828 a 0,826, con una diferencia de −0,1 puntos e intervalo del 95 % entre −1,9 y +1,3. **No mejora.** Las versiones difieren en 9 pares:
+  - gana 3 del gold;
+  - elimina 1 falso positivo;
+  - agrega 3 falsos positivos: leyes nombradas con un verbo que no actúa sobre ellas;
+  - pierde 2 del gold, por una regresión: el filtro nuevo de procedencia descarta «texto sustituido por la ley 24.674».
+- **Normalización:**
+  - ambiguas, de 580 a 251;
+  - vinculaciones erróneas verificables, de 31 a 0;
+  - pares del gold perdidos ahí, de 10 a 0.
+- **Tipo**, sobre los 78 casos: macro-F1 de 0,672 a 0,703. La medida es optimista, porque las correcciones salieron de esa misma muestra.
+
+**Decisión.** La v2 sigue siendo el parser de referencia del artículo, porque es la que se congeló primero y la v3 no la supera en test. La v3 se informa como experimento: muestra que la detección y la normalización ya no limitan, y que lo que queda es la decisión de la regla. Su grafo está aparte, en `data/grafo_v3/` y con `fuente = 'reglas_v3'` en Neo4j. La regresión y el alias «l.c.t.», que no se encuentra por el punto final, quedan para una v4 diseñada sobre dev; no se corrigen después de ver test.
+
+**Documentos.** `docs/analisis_de_fallos.md` reúne todos los fallos con su causa y su ejemplo. `docs/como_se_detecta_una_relacion.md` explica el pipeline con un caso real. Los dos están en el Drive como «08 - Análisis de fallos y cómo se detecta una relación».
+
+### B53 · 16/11/2026 · Dificultad · La clave entregada no es de la API; se saca la temperatura
+
+**Qué pasó.** La primera llamada al parser LLM falló dos veces:
+
+1. **Temperatura.** El SDK 2.9.0 ya no acepta el parámetro `temperature` para los modelos 5.5. Se sacó del pedido. La reproducibilidad no dependía de él: viene de la caché, porque cada respuesta se guarda con la huella del pedido.
+2. **Error 401 (no autorizado).** La clave en `.anthropic_key` empieza con `sk-ant-usr`: es un token de usuario, no una clave de la API.
+
+**Qué hay que hacer.** Crear una clave de la API en la Console de Anthropic (empieza con `sk-ant-api03-`), guardarla en `.anthropic_key` y correr el piloto de 5 normas (`python scripts/14_parser_llm.py --limite 5 --out results/relaciones_llm_piloto`). Después, la corrida completa y los scripts 15, 16 y 17.
+
 ## Cuestiones abiertas
 
-- Crear la clave de la API (`.anthropic_key`) y correr el parser LLM; actualizar la tabla final con el LLM y sus híbridos (B48, B49).
+- Crear una clave de la API real (`sk-ant-api03-…`, no `sk-ant-usr`) en `.anthropic_key` y correr el parser LLM (B53); actualizar la tabla final con el LLM y sus híbridos (B48, B49).
 - Correr la evaluación del grafo sobre el Neo4j del equipo, cargar el grafo del LLM sin `--borrar` y probar las consultas de ejemplo (B38, B43, B48).
 - Mejorar el tipado de las reglas sobre otra muestra de dev, sin tocar los 78 casos de medición (B43, B47).
-- Reglas v3: leer el año escrito como fecha («Decreto 467 del 14 de abril de 1988») y agregar al gazetteer los nombres que faltan, diseñado sobre dev (B51).
+- Reglas v4, diseñadas sobre dev: sacar «texto sustituido por» del filtro de procedencia, escribir «l.c.t» sin punto, agregar «creado por» e «inclúyense», y exigir el verbo antes de la mención en F3 (B52).
 - Decidir si el grafo lleva embeddings (B38).
 - Validar las revisiones manuales de cobertura, de la Ley 14.250, de los 30 falsos positivos, de los 78 tipos y de las 60 menciones, y que un segundo anotador repita parte para el kappa (B12, B26, B30, B36, B45, B47).
 - Consultar con la cátedra la supervisión distante, la clasificación fina y si se evalúa también la modificación estricta (B02, B14, B27).

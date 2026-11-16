@@ -94,6 +94,11 @@ CAUSAS = {
                                  "decreto.",
     "decreto_sin_anio_mundo_cerrado": "Decreto citado sin año: se vinculó al único del corpus con ese número, pero en "
                                       "InfoLEG hay varios y puede no ser el correcto.",
+    "alias_ley_sin_vinculo": "La ley se nombra por su nombre («Ley de Impuesto al Valor Agregado») con un verbo en la "
+                             "oración (regla F3 de v3), pero el verbo actúa sobre otra cosa e InfoLEG no registra el "
+                             "vínculo.",
+    "procedencia_mal_filtrada": "Regresión de v3: el filtro de procedencia descarta «texto sustituido por la ley 24.674», "
+                                "que en realidad nombra la ley que se está modificando.",
     "alias_de_otra_ley": "El alias es el comienzo del nombre de otra ley («Ley de Convenciones Colectivas de Trabajo de "
                          "la Administración Pública Nacional», que es la 24.185) y se vinculó a la equivocada.",
     "error_en_el_texto_fuente": "El propio texto de la norma tiene un error que confunde al detector.",
@@ -208,6 +213,8 @@ def causa_fp(g: pd.DataFrame, tipo_origen: str) -> tuple[str, pd.DataFrame]:
     Devuelve la causa y las evidencias que la muestran. Orden: una accion real sobre el destino
     pesa mas que una cita en el VISTO, y esta mas que una remision."""
     if (g.metodo == "alias").all():
+        if g.superficie.str.lower().str.startswith("ley").all():
+            return "alias_ley_sin_vinculo", g
         return ("alias_de_tributo" if g.superficie.str.contains(_TRIBUTO).all() else "solo_alias"), g
     art = g[(g.zona == "articulado") & (g.metodo == "regex_numero")]
     con_verbo = art[art.verbo_oracion != ""]
@@ -230,20 +237,24 @@ def causa_fp(g: pd.DataFrame, tipo_origen: str) -> tuple[str, pd.DataFrame]:
     return "cita_en_el_visto", g
 
 
-def main() -> None:
-    out = Path("results/errores_explicados")
-    errores = pd.read_csv("results/subtareas/errores.csv")
-    ev = pd.read_csv("results/reglas_v2/evidencias.csv", keep_default_na=False)
+def main(parser: str = "v2") -> None:
+    suf = "" if parser == "v2" else f"_{parser}"
+    out = Path(f"results/errores_explicados{suf}")
+    errores = pd.read_csv(f"results/subtareas{suf}/errores.csv")
+    ev = pd.read_csv(f"results/reglas_{parser}/evidencias.csv", keep_default_na=False)
     ev["temporal_ok"] = ev.temporal_ok.astype(str) == "True"
     ev["procedencia"] = ev.procedencia.astype(str) == "True"
     ev["pasa_F"] = ev.temporal_ok & ~ev.procedencia & (
         (ev.parte == "visto") | ((ev.zona == "articulado") & (ev.metodo == "regex_numero")
                                  & ((ev.tipo_origen != "decreto") | (ev.verbo_oracion != ""))))
+    if parser == "v3":   # F3: en el articulado, un alias con verbo tambien cuenta
+        ev["pasa_F"] |= ev.temporal_ok & ~ev.procedencia & (ev.zona == "articulado") & (ev.metodo == "alias") \
+            & (ev.verbo_oracion != "")
     normas = pd.read_csv("data/corpus/corpus_normas.csv", dtype=str, keep_default_na=False)
     titulo = dict(zip(normas.id_norma.astype(int), normas.titulo_resumido))
     sumario = dict(zip(normas.id_norma.astype(int), normas.titulo_sumario))
     tipo = dict(zip(normas.id_norma.astype(int), normas.tipo_norma.str.lower()))
-    fallos_det = pd.read_csv("results/subtareas/deteccion_fallos.csv", keep_default_na=False)
+    fallos_det = pd.read_csv(f"results/subtareas{suf}/deteccion_fallos.csv", keep_default_na=False)
     textos: dict[int, str] = {}
 
     def texto(i):
@@ -272,6 +283,8 @@ def main() -> None:
                 evidencia = re.sub(r"\s+", " ", m.group(0)) if m else ""
             elif r.categoria == "relacion_descartada_por_la_regla":
                 causa = causa_fn_regla(g)
+                if causa == "solo_procedencia" and g.fragmento.str.contains("texto sustituido por", case=False).any():
+                    causa = "procedencia_mal_filtrada"
                 x = g.sort_values("inicio").iloc[0]
                 evidencia = f"[{x.parte}] {x.fragmento[60:320]}"
             else:   # sin mencion explicita
@@ -331,4 +344,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--parser", choices=["v2", "v3"], default="v2")
+    main(ap.parse_args().parser)
