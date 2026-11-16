@@ -2,7 +2,7 @@
 
 # Bitácora del TP Integrador
 
-*Sistemas Inteligentes (UNNOBA). Problemática III: extracción de relaciones entre normas y grafo normativo trazable. Iniciada el 27/10/2026, última entrada el 09/11/2026.*
+*Sistemas Inteligentes (UNNOBA). Problemática III: extracción de relaciones entre normas y grafo normativo trazable. Iniciada el 27/10/2026, última entrada el 16/11/2026.*
 
 ## Cómo usar esta bitácora
 
