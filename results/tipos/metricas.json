@@ -165,5 +165,80 @@
       "macro_f1": 0.703,
       "exactitud": 0.755
     }
+  },
+  "llm": {
+    "no_extraidas": 4,
+    "muestra": {
+      "por_tipo": {
+        "SUSTITUYE": {
+          "precision": 0.923,
+          "recall": 0.923,
+          "f1": 0.923
+        },
+        "INCORPORA": {
+          "precision": 1.0,
+          "recall": 0.875,
+          "f1": 0.933
+        },
+        "DEROGA": {
+          "precision": 1.0,
+          "recall": 0.667,
+          "f1": 0.8
+        },
+        "REGLAMENTA": {
+          "precision": 1.0,
+          "recall": 0.875,
+          "f1": 0.933
+        },
+        "MODIFICA": {
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1": 0.857
+        },
+        "CITA": {
+          "precision": 0.839,
+          "recall": 0.839,
+          "f1": 0.839
+        }
+      },
+      "macro_f1": 0.881,
+      "exactitud": 0.846
+    },
+    "poblacion_ponderada": {
+      "por_tipo": {
+        "SUSTITUYE": {
+          "precision": 0.965,
+          "recall": 0.92,
+          "f1": 0.942
+        },
+        "INCORPORA": {
+          "precision": 1.0,
+          "recall": 0.875,
+          "f1": 0.933
+        },
+        "DEROGA": {
+          "precision": 1.0,
+          "recall": 0.846,
+          "f1": 0.917
+        },
+        "REGLAMENTA": {
+          "precision": 1.0,
+          "recall": 0.875,
+          "f1": 0.933
+        },
+        "MODIFICA": {
+          "precision": 0.535,
+          "recall": 1.0,
+          "f1": 0.697
+        },
+        "CITA": {
+          "precision": 0.959,
+          "recall": 0.804,
+          "f1": 0.875
+        }
+      },
+      "macro_f1": 0.883,
+      "exactitud": 0.849
+    }
   }
 }

@@ -1,0 +1,1 @@
+{"modelo": "claude-sonnet-5-5", "version_prompt": "v1-2026-11-16", "respuesta": "{\"relaciones\": [{\"segmento\": \"S2\", \"cita\": \"artículo 2º de la Ley Nº 22.431\", \"tipo_norma\": \"ley\", \"numero\": \"22431\", \"anio\": null, \"articulo_destino\": \"2\", \"tipo\": \"CITA\", \"verbo\": \"\"}]}", "tokens_entrada": 1592, "tokens_salida": 101, "stop_reason": "end_turn"}

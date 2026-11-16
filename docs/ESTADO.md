@@ -13,7 +13,7 @@ Hay un solo corpus congelado (340 normas, 775 relaciones) con sus 306 textos y e
 - **Tabla final** con intervalos de confianza.
 - **Reglas v3** (experimento, B52). Corrigen la normalización: lee el año escrito como fecha y ya no se pierde ningún par del gold ahí. En test empatan con la v2 (0,826 contra 0,828). Todos los fallos están explicados en `docs/analisis_de_fallos.md`, y el pipeline en `docs/como_se_detecta_una_relacion.md`.
 
-El parser LLM está implementado, con verificación de la cita y caché reproducible, y va a un grafo aparte. Lleva 230 de 590 lotes: se cortó porque se acabó el crédito de la API, y faltan unos USD 7,5 para terminar (B53). Falta completarlo, evaluarlo y escribir el artículo.
+El parser LLM está implementado, con verificación de la cita y caché reproducible, y va a un grafo aparte. Ya corrió sobre todo el corpus (USD 14). F1 0,841 en test; el híbrido por intersección da 0,838 y es la única mejora significativa sobre las reglas. Tipo de relación: macro-F1 0,883, contra 0,672 de las reglas (B54). Falta escribir el artículo.
 
 ## Avance por fase del roadmap
 
@@ -23,8 +23,8 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 | F1 · Corpus y gold | **Cerrada** | Corpus único congelado: 340 normas, 775 pares (583 dev, 192 test), 306 textos (B33). Scripts que lo reproducen byte a byte. |
 | F2 · Segmentación, detección y normalización | **Cerrada para InfoLEG** | Segmentación por zonas, detector de menciones con listas y nombres, catálogo cerrado. Revisión manual de 30 casos de cobertura: 30 correctos. Dataset de segmentos y candidatos (B34). |
 | F3 · Parser de reglas y evaluación | **Cerrada** | Reglas v2 diseñadas sobre dev y congeladas: F1 0,733 en dev y 0,828 en test (B36). Revisión de 30 falsos positivos. Clasificador de referencia: F1 0,823 en test (B37). Reglas v3 como experimento: dev 0,750, test 0,826 (B52). |
-| F4 · Parser LLM puro | **Implementado, falta correrlo** | `extractores/llm.py` y scripts 14 y 15 (`docs/parser_llm.md`). Modelo `claude-sonnet-5-5`, unos USD 8 para todo el corpus. 230 de 590 lotes hechos; falta crédito de la API para terminar (B53). |
-| F5 · Parser híbrido | **En curso** | Híbrido reglas + modelo contextual: F1 0,839 en test (B46). El híbrido reglas + LLM se evalúa con el script 15 cuando se corra el LLM. |
+| F4 · Parser LLM puro | **Cerrada** | `extractores/llm.py` y scripts 14 y 15 (`docs/parser_llm.md`). `claude-sonnet-5-5`, USD 14. F1 0,841 en test, R 0,938, alucinación del 0,1 %, tipo con macro-F1 0,883. Grafo en `data/grafo_llm/` (B54). |
+| F5 · Parser híbrido | **En curso** | Híbrido reglas + modelo contextual: F1 0,839 en test (B46). Híbrido reglas ∩ LLM: F1 0,838, la única mejora significativa sobre las reglas (B54). |
 | F6 · Grafo en Neo4j | **En curso** | Modelo genérico con relaciones tipadas, armado desde la salida estándar (B41, B42). Evaluación leyendo el grafo: ida y vuelta idéntica y F1 0,828 contra InfoLEG en test (B43). Falta correr la evaluación sobre el Neo4j del equipo. |
 | F7 · Text-to-Cypher | No empezada | Hay cinco consultas de ejemplo con su pregunta en lenguaje natural (`docs/grafo.md`). |
 | F8 · Errores, informe y defensa | **En curso** | Evaluación por subtareas y taxonomía de errores (B45), tipos sobre 78 casos (B47), tabla final con intervalos de confianza (B49), comparación con el gold (`docs/comparacion_con_el_gold.md`) y guía del código para la presentación (`docs/guia_codigo.md`, B50). Análisis de fallos y explicación del pipeline (B52). La bitácora (B01 a B53) y los documentos 01 a 03 y 06 a 08 alimentan el artículo. Falta escribir el artículo LNCS. |
@@ -48,6 +48,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 14. **El año escrito como fecha es el principal error de normalización.** «Decreto N° 467 del 14 de abril de 1988»: el detector no lee el año de la fecha. Por eso quedan ambiguas 360 de 580 menciones, se vinculan mal 31 y se pierden 10 pares del gold (B51).
 15. **InfoLEG registra vínculos que el texto no nombra.** De los 80 pares del gold sin mención: 36 son normas que complementan a la destino sin citarla, 9 son decretos de texto ordenado («t.o. 1976» vincula al Decreto 390/76), 16 son derogaciones genéricas o de modificatorias, y 2 parecen errores del gold (B51).
 16. **Corregir la normalización no mueve el F1 de test.** La v3 lee el año escrito como fecha: las vinculaciones erróneas verificables pasan de 31 a 0 y la normalización deja de perder pares. Aun así empata en test (0,826 contra 0,828), porque gana 3 pares del gold y pierde 2 por una regresión del filtro de procedencia. Lo que limita es la decisión de la regla: el 80 % de los falsos positivos de test son citas del VISTO y remisiones desde leyes (B52).
+17. **El LLM lee mejor la oración, pero no resuelve el VISTO.** Recupera 12 de los 24 pares de test que pierden las reglas: decretos sin verbo en la oración, el CONSIDERANDO y nombres propios. Mejora mucho el tipo de relación: macro-F1 de 0,672 a 0,883. Los falsos positivos del VISTO siguen ahí, y el híbrido por intersección es la única mejora significativa en F1: +1,0 puntos, intervalo de +0,2 a +2,5 (B54).
 
 ## Pendientes
 
@@ -61,7 +62,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 
 **Técnicos, en este orden:**
 
-1. Correr el parser LLM (script 14), evaluarlo (15 y 16), armar su grafo en `data/grafo_llm/` y cargarlo en Neo4j sin `--borrar`. Actualizar la tabla final (17).
+1. Cargar los grafos de la v3 y del LLM en Neo4j sin `--borrar` y comparar las fuentes con consultas (B54).
 2. Correr `bash cargar_y_evaluar_grafo.sh` sobre el Neo4j del equipo y probar las consultas de `docs/grafo.md` (F6).
 3. Figuras del artículo: embudo de pérdidas, matriz de confusión de tipos, tabla de métodos con intervalos y diagrama del pipeline.
 4. Artículo LNCS y guion de la defensa.

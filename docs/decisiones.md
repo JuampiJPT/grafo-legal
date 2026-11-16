@@ -150,6 +150,15 @@ La revisión de tipos pasa de 36 a 78 casos, 13 por tipo predicho (`docs/revisio
 
 `scripts/17_comparar_metodos.py` compara todos los métodos en test con bootstrap pareado por norma origen (2.000 réplicas). Se remuestrean normas, no pares, porque los pares de una misma norma no son independientes. Una diferencia con las reglas se considera significativa solo si su intervalo del 95 % no contiene al 0.
 
+## D26. El LLM como segundo parser y el híbrido por intersección (16/11/2026)
+
+El parser LLM se evalúa con la regla F aplicada a sus relaciones, una proyección elegida en dev entre cuatro. En test da F1 0,841, sin diferencia significativa con las reglas. Se informan los dos híbridos:
+
+- **Intersección:** F1 0,838 y precisión 0,804. Es la única mejora significativa sobre las reglas.
+- **Unión:** F1 0,831.
+
+El tipo de relación del LLM (macro-F1 ponderada 0,883) se informa como el resultado principal de tipado. El grafo del LLM se publica aparte, con `fuente = 'llm'`. La caché de respuestas va en el repositorio para que el experimento sea reproducible sin clave (B54).
+
 ## D25. Reglas v3 como experimento; la v2 sigue de referencia (16/11/2026)
 
 La v3 (`reglas_v3.py`, configuración F3) se diseñó sobre dev con los errores de D24, se midió con ablación (script 19) y test se evaluó una vez: F1 0,826 contra 0,828 de la v2, sin diferencia significativa. La v2 sigue siendo el parser de referencia porque se congeló primero; la v3 se informa como experimento sobre la normalización. Sus salidas van aparte: `results/reglas_v3/`, `results/relaciones/relaciones_reglas_v3.csv`, `results/subtareas_v3/`, `results/errores_explicados_v3/` y `data/grafo_v3/`. En Neo4j, `fuente = 'reglas_v3'`. Los scripts 03, 04, 09, 12 y 18 aceptan `--parser v3`; sin el parámetro reproducen la v2. Lo que se vio en test no se corrige en la v3: queda para una v4 diseñada sobre dev (B52).

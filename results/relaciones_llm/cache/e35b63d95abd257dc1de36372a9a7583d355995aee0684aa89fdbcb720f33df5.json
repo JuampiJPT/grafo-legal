@@ -1,0 +1,1 @@
+{"modelo": "claude-sonnet-5-5", "version_prompt": "v1-2026-11-16", "respuesta": "{\"relaciones\": [{\"segmento\": \"S11\", \"cita\": \"Decreto N° 297/20\", \"tipo_norma\": \"decreto\", \"numero\": \"297\", \"anio\": 2020, \"articulo_destino\": \"6\", \"tipo\": \"CITA\", \"verbo\": \"\"}]}", "tokens_entrada": 4849, "tokens_salida": 528, "stop_reason": "end_turn"}

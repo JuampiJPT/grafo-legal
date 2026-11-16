@@ -1,0 +1,1 @@
+{"modelo": "claude-sonnet-5-5", "version_prompt": "v1-2026-11-16", "respuesta": "{\"relaciones\": []}", "tokens_entrada": 5121, "tokens_salida": 129, "stop_reason": "end_turn"}

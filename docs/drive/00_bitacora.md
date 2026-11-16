@@ -66,7 +66,8 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B50 | 16/11 | Decisión | Código comentado y guía de lectura para la presentación | Cerrada |
 | B51 | 16/11 | Hallazgo | Cada error explicado; corrige la clasificación de B45 | Cerrada |
 | B52 | 16/11 | Hallazgo | Reglas v3: corrigen la normalización, empatan en test | Abierta |
-| B53 | 16/11 | Dificultad | La API no respondía desde el entorno de la Mac; se saca la temperatura | Abierta |
+| B53 | 16/11 | Dificultad | La API no respondía desde el entorno de la Mac; se saca la temperatura | Cerrada |
+| B54 | 16/11 | Hallazgo | El parser LLM sube el recall y el tipado; la intersección con las reglas es la única mejora significativa | Abierta |
 
 ## Entradas
 
@@ -637,9 +638,33 @@ Después se lanzó la corrida completa, con 8 pedidos en paralelo (`--hilos 8`).
 
 La diferencia está en los tokens de salida, que la estimación no contaba, y en la longitud del prompt.
 
+### B54 · 16/11/2026 · Hallazgo · El parser LLM sube el recall y el tipado; la intersección con las reglas es la única mejora significativa
+
+**Qué se hizo.** Se completó la corrida del parser LLM: 590 lotes, `claude-sonnet-5-5`, unos USD 14. La corrida tuvo dos cortes:
+
+- por falta de crédito;
+- por el límite de gasto del workspace de la clave, que el equipo subió.
+
+Ninguno de los dos hizo perder trabajo, porque lo hecho quedó en la caché. Después se corrieron los scripts 15, 16 y 17 y se armó el grafo en `data/grafo_llm/`. Los grafos de reglas no cambian.
+
+**Resultados.**
+
+- **Alucinación:** 8 de 7.688 citas (0,1 %) no están en el texto, y se descartaron.
+- **Proyección:** la proyección elegida en dev es la regla F aplicada a lo que extrae el LLM. Test: P 0,763, R 0,938, F1 0,841, contra 0,828 de las reglas v2. La diferencia, +1,3 puntos con intervalo de −1,9 a +4,0, no es significativa.
+- **Intersección:** cuenta una relación solo si la extraen las reglas y el LLM. F1 0,838 y precisión 0,804. Es **la única mejora significativa sobre las reglas**: +1,0 puntos, con intervalo de +0,2 a +2,5. Descarta 5 falsos positivos sin perder ninguna relación del gold.
+- **Tipo**, sobre los 78 casos: macro-F1 ponderada de 0,672 a **0,883**, y exactitud de 0,754 a 0,849. No está sesgada, porque el LLM no se ajustó con esa muestra.
+- **Errores de las reglas en test:** el LLM recupera 12 de los 24 falsos negativos y no pierde ninguna relación que las reglas encontraban. Recupera sobre todo decretos sin verbo en la oración, el CONSIDERANDO y nombres propios. No recupera los 5 de texto ordenado implícito ni los 2 no verificables, que el texto no contiene.
+- **Falsos positivos:** el LLM comparte con las reglas los del VISTO (24) y las remisiones (14), y agrega 15 propios.
+
+**Decisión.** Ver D26. Para el artículo, la comparación queda así:
+
+- las reglas son una línea de base fuerte y barata;
+- el LLM mejora el recall y, sobre todo, el tipo de relación;
+- el híbrido por intersección es el que mejor balancea precisión y recall.
+
 ## Cuestiones abiertas
 
-- Evaluar el parser LLM (scripts 15 a 17) cuando termine la corrida completa (B53); actualizar la tabla final con el LLM y sus híbridos (B48, B49).
+- Cargar el grafo del LLM en Neo4j sin `--borrar` (B54); actualizar la tabla final con el LLM y sus híbridos (B48, B49).
 - Correr la evaluación del grafo sobre el Neo4j del equipo, cargar el grafo del LLM sin `--borrar` y probar las consultas de ejemplo (B38, B43, B48).
 - Mejorar el tipado de las reglas sobre otra muestra de dev, sin tocar los 78 casos de medición (B43, B47).
 - Reglas v4, diseñadas sobre dev: sacar «texto sustituido por» del filtro de procedencia, escribir «l.c.t» sin punto, agregar «creado por» e «inclúyense», y exigir el verbo antes de la mención en F3 (B52).
