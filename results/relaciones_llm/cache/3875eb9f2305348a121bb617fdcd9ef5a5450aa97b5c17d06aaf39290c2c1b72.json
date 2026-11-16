@@ -1,0 +1,1 @@
+{"modelo": "claude-sonnet-5-5", "version_prompt": "v1-2026-11-16", "respuesta": "{\"relaciones\": [{\"segmento\": \"S14\", \"cita\": \"artículo 82 de la ley 18.037\", \"tipo_norma\": \"ley\", \"numero\": \"18037\", \"anio\": null, \"articulo_destino\": \"82\", \"tipo\": \"CITA\", \"verbo\": \"\"}]}", "tokens_entrada": 5781, "tokens_salida": 320, "stop_reason": "end_turn"}

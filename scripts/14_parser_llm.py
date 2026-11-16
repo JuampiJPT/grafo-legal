@@ -63,6 +63,8 @@ def main() -> None:
     ap.add_argument("--modelo", default=llm.MODELO_POR_DEFECTO)
     ap.add_argument("--limite", type=int, help="procesar solo las primeras N normas (piloto)")
     ap.add_argument("--estimar", action="store_true", help="no llama a la API: cuenta lotes y tokens")
+    ap.add_argument("--hilos", type=int, default=1,
+                    help="pedidos en paralelo para llenar la cache antes del recorrido (el resultado no cambia)")
     a = ap.parse_args()
 
     normas = pd.read_csv(a.corpus / "corpus_normas.csv", dtype=str, keep_default_na=False)
@@ -82,6 +84,15 @@ def main() -> None:
         return
 
     cliente = llm.ClienteLLM(a.out / "cache", a.modelo, os.environ.get("ANTHROPIC_API_KEY"))
+    if a.hilos > 1:
+        # Llena la cache en paralelo. Cada respuesta se guarda con la huella del pedido, asi que el
+        # recorrido de abajo lee todo de la cache y da exactamente lo mismo que en serie.
+        from concurrent.futures import ThreadPoolExecutor
+        pedidos = [llm.mensaje_usuario(etiquetas[i], lt) for i in ids for lt in plan[i]]
+        with ThreadPoolExecutor(a.hilos) as ex:
+            for n, _ in enumerate(ex.map(cliente.pedir, pedidos), 1):
+                if n % 50 == 0 or n == len(pedidos):
+                    print(f"  cache: {n}/{len(pedidos)} lotes  {dict(cliente.uso)}", flush=True)
     filas, conteo = [], Counter()
     for k, i in enumerate(ids, 1):
         for lt in plan[i]:

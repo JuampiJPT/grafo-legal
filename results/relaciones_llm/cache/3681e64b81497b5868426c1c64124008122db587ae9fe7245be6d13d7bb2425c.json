@@ -1,0 +1,1 @@
+{"modelo": "claude-sonnet-5-5", "version_prompt": "v1-2026-11-16", "respuesta": "{\"relaciones\": [{\"segmento\": \"S3\", \"cita\": \"la ley de contrato de trabajo\", \"tipo_norma\": \"ley\", \"numero\": \"20744\", \"anio\": null, \"articulo_destino\": null, \"tipo\": \"CITA\", \"verbo\": \"\"}]}", "tokens_entrada": 2921, "tokens_salida": 94, "stop_reason": "end_turn"}

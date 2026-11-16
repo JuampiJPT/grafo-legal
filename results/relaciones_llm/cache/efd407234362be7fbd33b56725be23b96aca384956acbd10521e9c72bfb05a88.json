@@ -1,0 +1,1 @@
+{"modelo": "claude-sonnet-5-5", "version_prompt": "v1-2026-11-16", "respuesta": "{\"relaciones\": [{\"segmento\": \"S63\", \"cita\": \"Código Penal\", \"tipo_norma\": \"ley\", \"numero\": \"11179\", \"anio\": 1921, \"articulo_destino\": null, \"tipo\": \"CITA\", \"verbo\": \"\"}]}", "tokens_entrada": 5782, "tokens_salida": 263, "stop_reason": "end_turn"}
