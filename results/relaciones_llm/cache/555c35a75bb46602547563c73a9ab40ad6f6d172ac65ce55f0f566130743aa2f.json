@@ -1,0 +1,1 @@
+{"modelo": "claude-sonnet-5-5", "version_prompt": "v1-2026-11-16", "respuesta": "{\"relaciones\": [{\"segmento\": \"S300\", \"cita\": \"Código Civil y Comercial de la Nación\", \"tipo_norma\": \"ley\", \"numero\": \"26994\", \"anio\": 2014, \"articulo_destino\": null, \"tipo\": \"CITA\", \"verbo\": \"\"}]}", "tokens_entrada": 3760, "tokens_salida": 282, "stop_reason": "end_turn"}

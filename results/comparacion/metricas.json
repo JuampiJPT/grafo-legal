@@ -80,6 +80,39 @@
       "dif_vs_reglas": -0.0448,
       "dif_ic95_inf": -0.0856,
       "dif_ic95_sup": -0.0073
+    },
+    {
+      "metodo": "llm",
+      "precision": 0.7627,
+      "recall": 0.9375,
+      "f1": 0.8411,
+      "f1_ic95_inf": 0.7873,
+      "f1_ic95_sup": 0.8872,
+      "dif_vs_reglas": 0.0135,
+      "dif_ic95_inf": -0.0185,
+      "dif_ic95_sup": 0.0404
+    },
+    {
+      "metodo": "hibrido_reglas_union_llm",
+      "precision": 0.7469,
+      "recall": 0.9375,
+      "f1": 0.8314,
+      "f1_ic95_inf": 0.7754,
+      "f1_ic95_sup": 0.8776,
+      "dif_vs_reglas": 0.0038,
+      "dif_ic95_inf": -0.0274,
+      "dif_ic95_sup": 0.0295
+    },
+    {
+      "metodo": "hibrido_reglas_interseccion_llm",
+      "precision": 0.8038,
+      "recall": 0.875,
+      "f1": 0.8379,
+      "f1_ic95_inf": 0.794,
+      "f1_ic95_sup": 0.8868,
+      "dif_vs_reglas": 0.0103,
+      "dif_ic95_inf": 0.0018,
+      "dif_ic95_sup": 0.0246
     }
   ]
 }

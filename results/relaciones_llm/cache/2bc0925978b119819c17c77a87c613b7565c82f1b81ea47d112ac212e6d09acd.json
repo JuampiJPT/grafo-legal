@@ -1,0 +1,1 @@
+{"modelo": "claude-sonnet-5-5", "version_prompt": "v1-2026-11-16", "respuesta": "{\"relaciones\": [{\"segmento\": \"S121\", \"cita\": \"ley 20.705\", \"tipo_norma\": \"ley\", \"numero\": \"20705\", \"anio\": null, \"articulo_destino\": null, \"tipo\": \"CITA\", \"verbo\": \"\"}]}", "tokens_entrada": 5479, "tokens_salida": 88, "stop_reason": "end_turn"}

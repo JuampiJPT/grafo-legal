@@ -1,0 +1,37 @@
+{
+  "modelo": "claude-sonnet-5-5",
+  "version_prompt": "v1-2026-11-16",
+  "normas": 306,
+  "lotes": 590,
+  "uso_api_esta_corrida": {
+    "llamadas_api": 96,
+    "desde_cache": 1084,
+    "tokens_entrada": 512243,
+    "tokens_salida": 215777
+  },
+  "entradas_del_llm": {
+    "crudas": 7688,
+    "segmento_invalido": 0,
+    "cita_no_encontrada": 8,
+    "tipo_invalido": 0,
+    "no_resuelta": 4318,
+    "autorreferencia": 2,
+    "aceptadas": 3360
+  },
+  "tasa_cita_no_encontrada": 0.001,
+  "relaciones": 3247,
+  "por_tipo": {
+    "CITA": 2225,
+    "SUSTITUYE": 393,
+    "REGLAMENTA": 207,
+    "DEROGA": 159,
+    "MODIFICA": 149,
+    "INCORPORA": 114
+  },
+  "por_parte_origen": {
+    "articulado": 2355,
+    "visto": 522,
+    "considerando": 370
+  },
+  "pares_de_normas": 1014
+}

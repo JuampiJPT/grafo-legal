@@ -1,0 +1,214 @@
+{
+  "fecha": "2026-11-16T21:28:39.810826+00:00",
+  "relaciones_llm": 3235,
+  "proyecciones": {
+    "sin_cita": {
+      "dev": {
+        "pred": 203,
+        "gold": 583,
+        "tp": 189,
+        "fp": 14,
+        "fn": 394,
+        "precision": 0.931,
+        "recall": 0.3242,
+        "f1": 0.4809
+      },
+      "test": {
+        "pred": 90,
+        "gold": 192,
+        "tp": 86,
+        "fp": 4,
+        "fn": 106,
+        "precision": 0.9556,
+        "recall": 0.4479,
+        "f1": 0.6099
+      }
+    },
+    "visto_o_sin_cita": {
+      "dev": {
+        "pred": 437,
+        "gold": 583,
+        "tp": 354,
+        "fp": 83,
+        "fn": 229,
+        "precision": 0.8101,
+        "recall": 0.6072,
+        "f1": 0.6941
+      },
+      "test": {
+        "pred": 207,
+        "gold": 192,
+        "tp": 166,
+        "fp": 41,
+        "fn": 26,
+        "precision": 0.8019,
+        "recall": 0.8646,
+        "f1": 0.8321
+      }
+    },
+    "regla_F_sobre_llm": {
+      "dev": {
+        "pred": 605,
+        "gold": 583,
+        "tp": 440,
+        "fp": 165,
+        "fn": 143,
+        "precision": 0.7273,
+        "recall": 0.7547,
+        "f1": 0.7407
+      },
+      "test": {
+        "pred": 236,
+        "gold": 192,
+        "tp": 180,
+        "fp": 56,
+        "fn": 12,
+        "precision": 0.7627,
+        "recall": 0.9375,
+        "f1": 0.8411
+      }
+    },
+    "todas": {
+      "dev": {
+        "pred": 732,
+        "gold": 583,
+        "tp": 466,
+        "fp": 266,
+        "fn": 117,
+        "precision": 0.6366,
+        "recall": 0.7993,
+        "f1": 0.7087
+      },
+      "test": {
+        "pred": 273,
+        "gold": 192,
+        "tp": 185,
+        "fp": 88,
+        "fn": 7,
+        "precision": 0.6777,
+        "recall": 0.9635,
+        "f1": 0.7957
+      }
+    }
+  },
+  "proyeccion_elegida_en_dev": "regla_F_sobre_llm",
+  "comparacion": [
+    {
+      "metodo": "reglas_F",
+      "split": "dev",
+      "precision": 0.7504,
+      "recall": 0.717,
+      "f1": 0.7333,
+      "tp": 418,
+      "fp": 139,
+      "fn": 165
+    },
+    {
+      "metodo": "reglas_F",
+      "split": "test",
+      "precision": 0.785,
+      "recall": 0.875,
+      "f1": 0.8276,
+      "tp": 168,
+      "fp": 46,
+      "fn": 24
+    },
+    {
+      "metodo": "llm_regla_F_sobre_llm",
+      "split": "dev",
+      "precision": 0.7273,
+      "recall": 0.7547,
+      "f1": 0.7407,
+      "tp": 440,
+      "fp": 165,
+      "fn": 143
+    },
+    {
+      "metodo": "llm_regla_F_sobre_llm",
+      "split": "test",
+      "precision": 0.7627,
+      "recall": 0.9375,
+      "f1": 0.8411,
+      "tp": 180,
+      "fp": 56,
+      "fn": 12
+    },
+    {
+      "metodo": "hibrido_union",
+      "split": "dev",
+      "precision": 0.7122,
+      "recall": 0.7684,
+      "f1": 0.7393,
+      "tp": 448,
+      "fp": 181,
+      "fn": 135
+    },
+    {
+      "metodo": "hibrido_union",
+      "split": "test",
+      "precision": 0.7469,
+      "recall": 0.9375,
+      "f1": 0.8314,
+      "tp": 180,
+      "fp": 61,
+      "fn": 12
+    },
+    {
+      "metodo": "hibrido_interseccion",
+      "split": "dev",
+      "precision": 0.7692,
+      "recall": 0.7033,
+      "f1": 0.7348,
+      "tp": 410,
+      "fp": 123,
+      "fn": 173
+    },
+    {
+      "metodo": "hibrido_interseccion",
+      "split": "test",
+      "precision": 0.8038,
+      "recall": 0.875,
+      "f1": 0.8379,
+      "tp": 168,
+      "fp": 41,
+      "fn": 24
+    }
+  ],
+  "diagnostico_llm": {
+    "modelo": "claude-sonnet-5-5",
+    "version_prompt": "v1-2026-11-16",
+    "normas": 306,
+    "lotes": 590,
+    "uso_api_esta_corrida": {
+      "llamadas_api": 96,
+      "desde_cache": 1084,
+      "tokens_entrada": 512243,
+      "tokens_salida": 215777
+    },
+    "entradas_del_llm": {
+      "crudas": 7688,
+      "segmento_invalido": 0,
+      "cita_no_encontrada": 8,
+      "tipo_invalido": 0,
+      "no_resuelta": 4318,
+      "autorreferencia": 2,
+      "aceptadas": 3360
+    },
+    "tasa_cita_no_encontrada": 0.001,
+    "relaciones": 3247,
+    "por_tipo": {
+      "CITA": 2225,
+      "SUSTITUYE": 393,
+      "REGLAMENTA": 207,
+      "DEROGA": 159,
+      "MODIFICA": 149,
+      "INCORPORA": 114
+    },
+    "por_parte_origen": {
+      "articulado": 2355,
+      "visto": 522,
+      "considerando": 370
+    },
+    "pares_de_normas": 1014
+  }
+}

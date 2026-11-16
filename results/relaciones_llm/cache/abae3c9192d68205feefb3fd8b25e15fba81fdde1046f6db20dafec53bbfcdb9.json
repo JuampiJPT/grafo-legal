@@ -1,0 +1,1 @@
+{"modelo": "claude-sonnet-5-5", "version_prompt": "v1-2026-11-16", "respuesta": "{\"relaciones\": [{\"segmento\": \"S0\", \"cita\": \"decreto-ley 554/55\", \"tipo_norma\": \"decreto/ley\", \"numero\": \"554\", \"anio\": 1955, \"articulo_destino\": null, \"tipo\": \"CITA\", \"verbo\": \"\"}]}", "tokens_entrada": 2344, "tokens_salida": 97, "stop_reason": "end_turn"}

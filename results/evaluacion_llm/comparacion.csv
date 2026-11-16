@@ -1,0 +1,9 @@
+metodo,split,precision,recall,f1,tp,fp,fn
+reglas_F,dev,0.7504,0.717,0.7333,418,139,165
+reglas_F,test,0.785,0.875,0.8276,168,46,24
+llm_regla_F_sobre_llm,dev,0.7273,0.7547,0.7407,440,165,143
+llm_regla_F_sobre_llm,test,0.7627,0.9375,0.8411,180,56,12
+hibrido_union,dev,0.7122,0.7684,0.7393,448,181,135
+hibrido_union,test,0.7469,0.9375,0.8314,180,61,12
+hibrido_interseccion,dev,0.7692,0.7033,0.7348,410,123,173
+hibrido_interseccion,test,0.8038,0.875,0.8379,168,41,24
