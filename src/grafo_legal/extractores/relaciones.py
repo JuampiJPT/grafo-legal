@@ -28,7 +28,10 @@ _RAICES = [
     ("reglament", "REGLAMENTA"),
 ]
 
+# --- articulo destino ------------------------------------------------------------------
+# _N: un numero de articulo con ordinal y sufijo opcionales ("80", "14 bis", "9º")
 _N = r"\d+\s*[°ºo]?(?:\s*(?:bis|ter|qu[aá]ter|quinquies))?"
+# _ART_LISTA: "articulo 245", "articulos 232, 233 y 245", "articulos 43 a 65"
 _ART_LISTA = re.compile(
     rf"art[ií]culos?\s+(?:n[°º]\s*)?(?P<lista>{_N}(?:\s*(?:,|\by\b|\be\b|\ba\b|\bal\b)\s*{_N})*)", re.I)
 # entre "articulo N" y la mencion: un tramo corto, sin otra norma ni fin de oracion
@@ -38,6 +41,7 @@ _ITEM = re.compile(r"(\d+)\s*[°ºo]?(?:\s*(bis|ter|qu[aá]ter|quinquies))?", re
 
 
 def tipo_por_verbo(verbo: str) -> str:
+    """Tipo de relacion a partir del verbo de la oracion: "Sustituyese" -> SUSTITUYE, etc."""
     if not verbo:
         return "CITA"
     v = unicodedata.normalize("NFKD", verbo.lower()).encode("ascii", "ignore").decode()
@@ -49,17 +53,21 @@ def tipo_por_verbo(verbo: str) -> str:
 
 def articulos_destino(previo: str) -> list[str]:
     """Numeros de articulo que se refieren a la norma mencionada justo despues de `previo`."""
+    # el ultimo "articulo(s) N" antes de la mencion es el candidato
     m = None
     for m in _ART_LISTA.finditer(previo):
         pass
     if m is None:
         return []
+    # entre "articulo N" y la mencion tiene que haber solo un "de la"/"del" corto, sin otra norma:
+    # "el articulo 80 de la Ley 20.744" si; "el articulo 80 de la Ley 24.013 y la Ley 20.744" no
     puente = previo[m.end():]
     if not _PUENTE.match(puente) or _OTRA_NORMA.search(puente):
         return []
     lista = m.group("lista")
     items = [(int(n), (s or "").lower().replace("á", "a")) for n, s in _ITEM.findall(lista)]
     nums = []
+    # "43 a 65" es un rango: se expande si es corto (hasta 40 articulos)
     rango = re.search(rf"({_N})\s*\b(?:a|al)\b\s*({_N})", lista, re.I)
     if rango and len(items) == 2 and not items[0][1] and not items[1][1] and 0 < items[1][0] - items[0][0] <= 40:
         nums = [str(i) for i in range(items[0][0], items[1][0] + 1)]
@@ -71,14 +79,18 @@ def articulos_destino(previo: str) -> list[str]:
 def desde_evidencias(ev: pd.DataFrame, textos: dict[int, str], articulos: pd.DataFrame,
                      etiquetas: dict[int, str], fuente: str = "reglas_v2") -> pd.DataFrame:
     """ev: evidencias.csv de reglas_v2. textos: texto limpio por norma. articulos: articulos.csv."""
+    # Paso 1: menciones que cuentan (no de procedencia, no posteriores al origen, no en notas)
     # las notas son anotaciones editoriales de la fuente (InfoLEG), no texto de la norma
     ev = ev[(ev.temporal_ok.astype(str) == "True") & (ev.procedencia.astype(str) != "True")
             & (ev.zona != "notas")].copy()
+    # Paso 2: cada mencion se asigna al segmento (articulo) que la contiene: el ultimo segmento
+    # que empieza antes del offset de la mencion (merge_asof hacia atras)
     art = articulos.sort_values(["id_norma", "inicio"])
     art = art.assign(id_articulo=art.id_norma.astype(str) + "#" + art.orden.astype(str))
     ev = pd.merge_asof(ev.sort_values("inicio"),
                        art[["id_norma", "inicio", "id_articulo"]].rename(columns={"id_norma": "id_origen"})
                        .sort_values("inicio"), on="inicio", by="id_origen", direction="backward")
+    # Paso 3: tipo y articulo destino de cada mencion
     filas = []
     for r in ev.itertuples(index=False):
         texto = textos[r.id_origen]
@@ -96,6 +108,8 @@ def desde_evidencias(ev: pd.DataFrame, textos: dict[int, str], articulos: pd.Dat
                 "articulo_destino": art_dest, "verbo": r.verbo_oracion if tipo != "CITA" else "",
                 "metodo": r.metodo, "confianza": "", "inicio": r.inicio, "fin": r.fin, "fragmento": r.fragmento,
             })
+    # Paso 4: varias menciones con la misma clave (mismo articulo origen, tipo, destino) son una
+    # sola relacion; se guarda cuantas menciones la sustentan
     df = pd.DataFrame(filas)
     # una relacion por clave: VISTO antes que CONSIDERANDO, numero antes que alias, primera mencion
     df["_p"] = (df.parte_origen != "visto").astype(int)

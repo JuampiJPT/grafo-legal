@@ -1,0 +1,13 @@
+metodo,split,precision,recall,f1,tp,fp,fn
+reglas_F,dev,0.7504,0.717,0.7333,418,139,165
+reglas_F,test,0.785,0.875,0.8276,168,46,24
+clasificador_superficie_08,dev,0.7656,0.6947,0.7284,405,124,178
+clasificador_superficie_08,test,0.799,0.849,0.8232,163,41,29
+contexto|hibrido,dev_cv,0.7138,0.7702,0.7409,449,180,134
+contexto|hibrido,test,0.716,0.9323,0.81,179,71,13
+contexto,dev_cv,0.705,0.7461,0.725,435,182,148
+contexto,test,0.697,0.8385,0.7612,161,70,31
+contexto+superficie|hibrido,dev_cv,0.7355,0.7633,0.7492,445,160,138
+contexto+superficie|hibrido,test,0.7803,0.9062,0.8386,174,49,18
+contexto+superficie,dev_cv,0.7462,0.7564,0.7513,441,150,142
+contexto+superficie,test,0.7598,0.8073,0.7828,155,49,37

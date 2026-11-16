@@ -64,6 +64,8 @@ class Norma:
 class Catalogo:
     def __init__(self, normas: list[Norma]):
         self.normas = {n.id: n for n in normas}
+        # indice (familia, numero) -> normas. Leyes y decretos son familias distintas; los
+        # decretos-leyes van con los decretos porque el texto los cita de las dos formas.
         self._idx: dict[tuple[str, str], list[Norma]] = {}
         for n in normas:
             fam = "decreto" if n.tipo in ("decreto", "decreto/ley") else n.tipo
@@ -82,13 +84,29 @@ class Catalogo:
                     etiqueta=f"{r['tipo_norma']} {r['numero_norma']}"))
         return cls(normas)
 
+    def candidatos(self, tipo: str, numero: str, anio: int | None = None) -> list[Norma]:
+        """Todas las normas del catalogo compatibles con (tipo, numero, ano), sin desempatar.
+
+        Lo usa la evaluacion de la normalizacion (scripts/12) para medir ambiguedad: un
+        "Decreto 1694" sin ano puede tener varios candidatos en el catalogo completo de InfoLEG
+        aunque en el corpus haya uno solo.
+        """
+        t = tipo_canonico(tipo)
+        fam = "decreto" if t in ("decreto", "decreto/ley") else t
+        cands = self._idx.get((fam, norm_numero(numero)), [])
+        if fam == "decreto" and anio is not None:
+            cands = [c for c in cands if c.anio is not None and c.anio == anio]
+        return list(cands)
+
     def resolver(self, tipo: str, numero: str, anio: int | None = None) -> Norma | None:
         """Ley: el numero es unico. Decreto: el numero se repite cada ano, se exige el ano si
         hay mas de un candidato; si hay uno solo y no hay ano, se acepta (riesgo documentado)."""
+        # Paso 4 del pipeline (normalizacion): de "Decreto N° 1694/06" a un id_norma del catalogo
         t = tipo_canonico(tipo)
         fam = "decreto" if t in ("decreto", "decreto/ley") else t
         cands = self._idx.get((fam, norm_numero(numero)), [])
         if fam == "decreto":
+            # los decretos se numeran de nuevo cada ano: el ano desempata
             if anio is not None:
                 cands = [c for c in cands if c.anio is not None and c.anio == anio]
             if len(cands) == 1:

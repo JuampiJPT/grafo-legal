@@ -1,0 +1,94 @@
+{
+  "casos": 78,
+  "por_estrato": {
+    "SUSTITUYE": 13,
+    "INCORPORA": 13,
+    "DEROGA": 13,
+    "REGLAMENTA": 13,
+    "MODIFICA": 13,
+    "CITA": 13
+  },
+  "poblacion": {
+    "CITA": 2332,
+    "SUSTITUYE": 375,
+    "INCORPORA": 181,
+    "MODIFICA": 176,
+    "DEROGA": 155,
+    "REGLAMENTA": 58
+  },
+  "reglas_v2": {
+    "muestra": {
+      "por_tipo": {
+        "SUSTITUYE": {
+          "precision": 0.923,
+          "recall": 0.923,
+          "f1": 0.923
+        },
+        "INCORPORA": {
+          "precision": 0.615,
+          "recall": 1.0,
+          "f1": 0.762
+        },
+        "DEROGA": {
+          "precision": 0.846,
+          "recall": 0.917,
+          "f1": 0.88
+        },
+        "REGLAMENTA": {
+          "precision": 0.615,
+          "recall": 1.0,
+          "f1": 0.762
+        },
+        "MODIFICA": {
+          "precision": 0.308,
+          "recall": 0.667,
+          "f1": 0.421
+        },
+        "CITA": {
+          "precision": 0.769,
+          "recall": 0.323,
+          "f1": 0.455
+        }
+      },
+      "macro_f1": 0.7,
+      "exactitud": 0.679
+    },
+    "poblacion_ponderada": {
+      "por_tipo": {
+        "SUSTITUYE": {
+          "precision": 0.923,
+          "recall": 0.962,
+          "f1": 0.942
+        },
+        "INCORPORA": {
+          "precision": 0.615,
+          "recall": 1.0,
+          "f1": 0.762
+        },
+        "DEROGA": {
+          "precision": 0.846,
+          "recall": 0.422,
+          "f1": 0.563
+        },
+        "REGLAMENTA": {
+          "precision": 0.615,
+          "recall": 1.0,
+          "f1": 0.762
+        },
+        "MODIFICA": {
+          "precision": 0.308,
+          "recall": 0.131,
+          "f1": 0.184
+        },
+        "CITA": {
+          "precision": 0.769,
+          "recall": 0.876,
+          "f1": 0.819
+        }
+      },
+      "macro_f1": 0.672,
+      "exactitud": 0.754
+    },
+    "articulo_destino_ok": 0.859
+  }
+}

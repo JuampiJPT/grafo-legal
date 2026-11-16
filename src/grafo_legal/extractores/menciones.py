@@ -21,6 +21,15 @@ from dataclasses import dataclass
 
 from ..catalogo import ALIAS, sin_tildes
 
+# --- Como se arma el patron de una mencion -----------------------------------------------
+# Una mencion es: TIPO + (NOMBRE intercalado opcional) + (abreviatura de numero opcional) + LISTA
+#   "Decreto de Necesidad y Urgencia N° 70/23"
+#    \_____________ TIPO _____________/ \NRO/ \LISTA/
+#   "Ley de Contrato de Trabajo Nº 20.744"
+#    TIPO \______ NOMBRE ________/ NRO  LISTA
+#   "Leyes Nros. 24.013, 24.465 y 24.467"  -> una LISTA con tres numeros: tres menciones
+#
+# _TIPO: la clase de norma. Se capturan los plurales para las enumeraciones.
 _TIPO = (r"(?P<tipo>decretos?[\s\-]+ley(?:es)?|decretos?\s+de\s+necesidad\s+y\s+urgencia|"
          r"decretos?|leyes|ley|dnu)")
 # "N°", "Nº", "Nro.", "Nros.", "Nos.", "N.°", "núm.", "número", "NQ" (error de OCR de "Nº")
@@ -28,16 +37,23 @@ _NRO = r"(?:n(?:ros?|os?|ro)?\s*\.?\s*[º°]?|n[uú]m(?:ero)?s?\.?|nq)"
 # nombre propio intercalado entre el tipo y el numero: "Ley de Contrato de Trabajo Nº 20.744"
 _NOMBRE = (r"(?:(?:de|del|sobre|complementaria|nacional|general|org[aá]nica)\b"
            r"(?:(?!\b(?:ley|leyes|decreto|decretos|texto|t\.o)\b)[^\d\n.;:()]){0,110}?)")
+# _NUM: "20.744" (con punto de miles) o "20744"
 _NUM = r"\d{1,3}(?:\.\d{3})+|\d+"
+# _UNO: un numero con ano opcional: "1694/06", "70/2023"
 _UNO = rf"(?:{_NUM})(?:\s*/\s*\d{{2,4}})?"
 # entre items de una lista pueden aparecer "(t.o. 1976)", "y sus modificatorias", etc.
 _RELLENO = (r"(?:\s*\([^()\n]{0,60}\))?(?:\s*,?\s*(?:y\s+)?sus?\s+(?:modificatorias?|modificaciones|"
             r"complementarias|normas\s+(?:modificatorias|complementarias|reglamentarias))(?:\s+y\s+complementarias)?)?")
+# _SEP: separador entre items de una enumeracion: coma, punto y coma, "y", "e"
 _SEP = r"\s*(?:,|;|\by\b|\be\b)\s*"
+# _LISTA: uno o mas numeros separados, con relleno permitido entre ellos
 _LISTA = rf"(?P<lista>{_UNO}(?:{_RELLENO}{_SEP}(?:{_NRO}\s*)?{_UNO})*)"
+# _PATRON: la mencion completa. "(?<=por)" y "(?<=del)" admiten textos pegados por el OCR
+# ("porla Ley", "delDecreto").
 _PATRON = re.compile(
     rf"(?:\b|(?<=por)|(?<=del)){_TIPO}\s*(?:{_NOMBRE}\s*)?(?:{_NRO}\s*)?{_LISTA}", re.I)
 _PAREN = re.compile(r"\([^()\n]{0,60}\)")
+# _ITEM: dentro de una LISTA, cada numero (y su ano, si lo tiene) es una mencion separada
 _ITEM = re.compile(rf"(?P<num>{_NUM})(?:\s*/\s*(?P<anio>\d{{2,4}}))?")
 
 
@@ -53,6 +69,7 @@ class Mencion:
 
 
 def _anio(s: str | None) -> int | None:
+    """Ano de dos cifras -> cuatro: "06" -> 2006, "76" -> 1976 (corte en 30)."""
     if not s:
         return None
     a = int(s)
@@ -62,6 +79,7 @@ def _anio(s: str | None) -> int | None:
 
 
 def _tipo(t: str) -> str:
+    """Texto del tipo -> tipo canonico: "Decretos-Leyes" -> decreto/ley, "DNU" -> decreto."""
     t = sin_tildes(t).lower()
     if "necesidad" in t or t == "dnu":
         return "decreto"
@@ -71,6 +89,11 @@ def _tipo(t: str) -> str:
 
 
 def detectar(texto: str) -> list[Mencion]:
+    """Paso 3 del pipeline (deteccion): todas las menciones por tipo y numero de un segmento.
+
+    Cada mencion conserva sus offsets dentro del segmento, para poder volver a la evidencia.
+    La deteccion no decide si la mencion es una relacion: eso lo hacen las reglas despues.
+    """
     out: list[Mencion] = []
     for m in _PATRON.finditer(texto):
         tipo = _tipo(m.group("tipo"))
@@ -88,7 +111,12 @@ def detectar(texto: str) -> list[Mencion]:
 
 
 def detectar_alias(texto: str) -> list[tuple[int, int, int, str]]:
-    """Devuelve (id_norma, inicio, fin, superficie) de las menciones por nombre propio."""
+    """Devuelve (id_norma, inicio, fin, superficie) de las menciones por nombre propio.
+
+    Busca los nombres del gazetteer ALIAS ("ley de contrato de trabajo" -> Ley 20.744) sobre una
+    copia del texto en minusculas y sin tildes, del mismo largo que el original, asi los offsets
+    sirven tambien para el texto original.
+    """
     plano = "".join((sin_tildes(c) or c).lower() for c in texto)   # misma longitud que texto
     out = []
     for id_norma, nombres in ALIAS.items():

@@ -10,3 +10,6 @@ data/verificacion/
 
 # clave local del contenedor Neo4j del TP (docs/grafo.md)
 .neo4j_password
+
+# clave de la API de Anthropic para el parser LLM (docs/parser_llm.md)
+.anthropic_key

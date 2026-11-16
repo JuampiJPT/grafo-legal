@@ -69,6 +69,13 @@ class EvidenciaV2:
 
 
 def extraer(id_origen: int, html_dir: Path, cat: Catalogo) -> list[EvidenciaV2] | None:
+    """Pipeline completo de una norma: texto -> segmentos -> menciones -> normas -> evidencias.
+
+    Devuelve UNA evidencia por mencion resuelta, con todo lo que las reglas necesitan para
+    decidir (zona, parte, verbo, restriccion temporal, procedencia). La decision (relacion si/no)
+    se toma despues con CONFIGS, asi la ablacion se calcula sobre la misma salida.
+    """
+    # pasos 1 y 2: adaptador de la fuente (HTML -> texto limpio -> segmentos)
     doc = cargar(id_origen, html_dir)
     if doc is None:
         return None
@@ -76,20 +83,27 @@ def extraer(id_origen: int, html_dir: Path, cat: Catalogo) -> list[EvidenciaV2] 
     origen = cat.normas.get(id_origen)
     out: list[EvidenciaV2] = []
     for art in arts:
+        # pasos 3 y 4: deteccion (regex + alias) y normalizacion contra el catalogo
         bruto = [(cat.resolver(m.tipo, m.numero, m.anio), m.inicio, m.fin, m.superficie, "regex_numero")
                  for m in detectar(art.texto)]
         bruto += [(cat.normas.get(i), a, b, s, "alias") for i, a, b, s in detectar_alias(art.texto)]
         v_art = verbo_real(art.texto)
+        # en el encabezado, lo que esta despues de "CONSIDERANDO" es considerando; antes, visto
         cons = _CONSIDERANDO.search(art.texto) if art.zona == "encabezado" else None
         for norma, a, b, sup, metodo in bruto:
+            # mundo cerrado: una mencion que no resuelve a una norma del catalogo no genera
+            # evidencia; tampoco la norma citandose a si misma
             if norma is None or norma.id == id_origen:
                 continue
+            # paso 5: los atributos que usan las reglas
             oa, ob = _oracion(art.texto, a, b)
             ini_sup = max(0, b - len(sup))
             parte = art.zona
             if art.zona == "encabezado":
                 parte = "considerando" if cons and ini_sup >= cons.start() else "visto"
+            # una norma no puede modificar a otra que se publico despues
             temporal = not (origen and norma.fecha and origen.fecha and norma.fecha > origen.fecha)
+            # los 80 caracteres anteriores a la mencion dicen si es una cita de procedencia
             previo = art.texto[max(0, ini_sup - 80):ini_sup].rstrip()
             out.append(EvidenciaV2(
                 id_origen, norma.id, norma.etiqueta, origen.tipo if origen else "", art.numero, art.zona, parte,
@@ -100,9 +114,12 @@ def extraer(id_origen: int, html_dir: Path, cat: Catalogo) -> list[EvidenciaV2] 
 
 
 def _cuenta(e) -> bool:
+    """Filtros comunes a todas las configuraciones: restriccion temporal y fuera procedencia."""
     return e.temporal_ok and not e.procedencia
 
 
+# Paso 6: la DECISION. Cada configuracion es un filtro sobre evidencias; un par (origen, destino)
+# se predice si alguna de sus evidencias pasa el filtro. F es la configuracion final.
 CONFIGS = {
     # las de v1, recalculadas con los cambios 2 y 3, para comparar sobre la misma salida
     "A_todas_las_menciones": lambda e: _cuenta(e),

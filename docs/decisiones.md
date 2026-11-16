@@ -118,3 +118,34 @@ Reemplaza a D15. El grafo tiene `(:Norma)-[:CONTIENE]->(:Articulo)` y aristas ti
 ## D18. Evaluación del grafo leyéndolo de vuelta (09/11/2026)
 
 `scripts/11_evaluar_grafo.py` lee las relaciones desde el grafo (Neo4j o una copia en memoria armada con el mismo código), no desde los archivos del parser. Primero comprueba la ida y vuelta: que el grafo devuelva exactamente lo que se cargó. Después proyecta las relaciones a pares de normas con la regla F de las reglas v2 y las compara con InfoLEG por split, por tipo y por norma semilla. El tipo, que InfoLEG no registra, se evalúa con una revisión manual (`docs/revision_manual/revision_tipos_36.csv`). Resultados en `results/evaluacion_grafo/RESULTADOS.md`.
+
+## D19. Evaluación por subtareas (16/11/2026)
+
+`scripts/12_evaluar_subtareas.py` mide por separado detección, normalización y extracción, como pide la consigna (`results/subtareas/RESULTADOS.md`).
+
+- **Detección.** Se compara con una búsqueda laxa del número de la norma destino, independiente del detector.
+- **Normalización.** Se resuelve cada mención contra el catálogo del corpus y contra el catálogo completo de InfoLEG (106.466 leyes, decretos y decretos-leyes, de `data/raw/base.zip`). Así se separan las no resueltas por estar fuera del corpus de las ambiguas.
+- **Extracción.** Se reporta de punta a punta y condicional a los candidatos.
+- **Errores.** Se clasifican con las categorías de la consigna. Los pares con destino fuera del corpus se evalúan aparte contra la base complementaria completa.
+
+## D20. Modelo con contexto textual e híbrido reglas + modelo (16/11/2026)
+
+`scripts/13_modelo_contextual.py`: TF-IDF de los fragmentos de cada mención, con el destino marcado y los números borrados, más una regresión logística. Mismo protocolo que D14. El híbrido deja a las reglas los grupos seguros y le da al modelo la zona gris (articulado sin verbo, solo CONSIDERANDO, solo alias). Test se evaluó una vez: el híbrido con texto y superficie da F1 0,839, contra 0,828 de las reglas. La diferencia no es significativa (D23). Es la primera aproximación a la PI2.
+
+## D21. Tipo de relación sobre 78 casos, con ponderación (16/11/2026)
+
+La revisión de tipos pasa de 36 a 78 casos, 13 por tipo predicho (`docs/revision_manual/revision_tipos_78.csv`). Como la muestra está estratificada, las métricas de la población se estiman ponderando cada caso por N_tipo / n_tipo (`scripts/16_evaluar_tipos.py`). Los errores que aparecieron, como «Valor Agregado» leído como verbo o el «Artículo 1°» de la propia norma tomado como destino, se documentan y no se corrigen sobre esta muestra, para no inflar la medida.
+
+## D22. Parser LLM con verificación de la cita y caché (16/11/2026)
+
+`src/grafo_legal/extractores/llm.py` (`docs/parser_llm.md`) escribe la misma salida estándar que las reglas.
+
+- **Normalización.** Usa el mismo catálogo que las reglas, así la comparación mide solo la lectura del texto.
+- **Verificación.** Toda relación debe traer una cita que esté literalmente en el texto. Si no está, se descarta y cuenta como alucinación.
+- **Reproducibilidad.** Las respuestas se guardan en una caché versionada, indexada por la huella del pedido.
+- **Modelo.** Por defecto `claude-sonnet-5-5`, con temperatura 0.
+- **Grafo.** Va a `data/grafo_llm/` y, en Neo4j, se carga sin `--borrar`, como aristas con `fuente = 'llm'`. El grafo de las reglas no se toca.
+
+## D23. Tabla final con intervalos de confianza (16/11/2026)
+
+`scripts/17_comparar_metodos.py` compara todos los métodos en test con bootstrap pareado por norma origen (2.000 réplicas). Se remuestrean normas, no pares, porque los pares de una misma norma no son independientes. Una diferencia con las reglas se considera significativa solo si su intervalo del 95 % no contiene al 0.
