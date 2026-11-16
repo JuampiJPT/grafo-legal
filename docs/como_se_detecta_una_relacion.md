@@ -4,7 +4,7 @@ Este documento explica, paso por paso y con un caso real, cómo el parser de reg
 
 **Caso de ejemplo.** Ley 24.013, artículo 25:
 
-> ARTICULO 25.- Sustituyese el artículo 198, de la Ley de Contrato de Trabajo (t.o 1976), por lo siguiente: "Artículo 198.- Jornada reducida. …"
+«ARTICULO 25.- Sustituyese el artículo 198, de la Ley de Contrato de Trabajo (t.o 1976), por lo siguiente: "Artículo 198.- Jornada reducida. …"»
 
 Resultado: `Ley 24013 —SUSTITUYE {articulo: 198}→ Ley 20744`, con la evidencia en los caracteres 16.784 a 16.810 del texto limpio.
 
