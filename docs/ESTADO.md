@@ -13,7 +13,7 @@ Hay un solo corpus congelado (340 normas, 775 relaciones) con sus 306 textos y e
 - **Tabla final** con intervalos de confianza.
 - **Reglas v3** (experimento, B52). Corrigen la normalización: lee el año escrito como fecha y ya no se pierde ningún par del gold ahí. En test empatan con la v2 (0,826 contra 0,828). Todos los fallos están explicados en `docs/analisis_de_fallos.md`, y el pipeline en `docs/como_se_detecta_una_relacion.md`.
 
-El parser LLM está implementado, con verificación de la cita y caché reproducible, y va a un grafo aparte. Falta correrlo con una clave de la API real (la entregada es un token `sk-ant-usr`, B53) y escribir el artículo.
+El parser LLM está implementado, con verificación de la cita y caché reproducible, y va a un grafo aparte. Lleva 230 de 590 lotes: se cortó porque se acabó el crédito de la API, y faltan unos USD 7,5 para terminar (B53). Falta completarlo, evaluarlo y escribir el artículo.
 
 ## Avance por fase del roadmap
 
@@ -23,7 +23,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 | F1 · Corpus y gold | **Cerrada** | Corpus único congelado: 340 normas, 775 pares (583 dev, 192 test), 306 textos (B33). Scripts que lo reproducen byte a byte. |
 | F2 · Segmentación, detección y normalización | **Cerrada para InfoLEG** | Segmentación por zonas, detector de menciones con listas y nombres, catálogo cerrado. Revisión manual de 30 casos de cobertura: 30 correctos. Dataset de segmentos y candidatos (B34). |
 | F3 · Parser de reglas y evaluación | **Cerrada** | Reglas v2 diseñadas sobre dev y congeladas: F1 0,733 en dev y 0,828 en test (B36). Revisión de 30 falsos positivos. Clasificador de referencia: F1 0,823 en test (B37). Reglas v3 como experimento: dev 0,750, test 0,826 (B52). |
-| F4 · Parser LLM puro | **Implementado, falta correrlo** | `extractores/llm.py` y scripts 14 y 15 (`docs/parser_llm.md`). Modelo `claude-sonnet-5-5`, unos USD 8 para todo el corpus. Falta una clave de la API real (B48, B53). |
+| F4 · Parser LLM puro | **Implementado, falta correrlo** | `extractores/llm.py` y scripts 14 y 15 (`docs/parser_llm.md`). Modelo `claude-sonnet-5-5`, unos USD 8 para todo el corpus. 230 de 590 lotes hechos; falta crédito de la API para terminar (B53). |
 | F5 · Parser híbrido | **En curso** | Híbrido reglas + modelo contextual: F1 0,839 en test (B46). El híbrido reglas + LLM se evalúa con el script 15 cuando se corra el LLM. |
 | F6 · Grafo en Neo4j | **En curso** | Modelo genérico con relaciones tipadas, armado desde la salida estándar (B41, B42). Evaluación leyendo el grafo: ida y vuelta idéntica y F1 0,828 contra InfoLEG en test (B43). Falta correr la evaluación sobre el Neo4j del equipo. |
 | F7 · Text-to-Cypher | No empezada | Hay cinco consultas de ejemplo con su pregunta en lenguaje natural (`docs/grafo.md`). |
@@ -57,7 +57,6 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 - Subir los commits al repositorio (`git push`): desde la sesión de Claude no hay acceso de escritura a GitHub.
 - Consultar con la cátedra: supervisión distante, si se evalúa también la modificación estricta y la clasificación fina (B02, B14, B27).
 - Elegir cómo obtener la muestra del digesto UNNOBA (B19, B22).
-- Crear una clave de la API en la Console de Anthropic (empieza con `sk-ant-api03-`; la que hay es un token `sk-ant-usr`) y guardarla en `.anthropic_key` (B48, B53).
 - Decidir si el grafo lleva embeddings (B38).
 
 **Técnicos, en este orden:**

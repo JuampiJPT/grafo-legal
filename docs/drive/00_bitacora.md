@@ -66,7 +66,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B50 | 16/11 | Decisión | Código comentado y guía de lectura para la presentación | Cerrada |
 | B51 | 16/11 | Hallazgo | Cada error explicado; corrige la clasificación de B45 | Cerrada |
 | B52 | 16/11 | Hallazgo | Reglas v3: corrigen la normalización, empatan en test | Abierta |
-| B53 | 16/11 | Dificultad | La clave entregada no es de la API; se saca la temperatura | Abierta |
+| B53 | 16/11 | Dificultad | La API no respondía desde el entorno de la Mac; se saca la temperatura | Abierta |
 
 ## Entradas
 
@@ -616,18 +616,30 @@ Cada cambio se midió por separado en dev (ablación, script 19). Después la v3
 
 **Documentos.** `docs/analisis_de_fallos.md` reúne todos los fallos con su causa y su ejemplo. `docs/como_se_detecta_una_relacion.md` explica el pipeline con un caso real. Los dos están en el Drive como «08 - Análisis de fallos y cómo se detecta una relación».
 
-### B53 · 16/11/2026 · Dificultad · La clave entregada no es de la API; se saca la temperatura
+### B53 · 16/11/2026 · Dificultad · La API no respondía desde el entorno de la Mac; se saca la temperatura
 
 **Qué pasó.** La primera llamada al parser LLM falló dos veces:
 
 1. **Temperatura.** El SDK 2.9.0 ya no acepta el parámetro `temperature` para los modelos 5.5. Se sacó del pedido. La reproducibilidad no dependía de él: viene de la caché, porque cada respuesta se guarda con la huella del pedido.
-2. **Error 401 (no autorizado).** La clave en `.anthropic_key` empieza con `sk-ant-usr`: es un token de usuario, no una clave de la API.
+2. **Error 401 (no autorizado).** Primero se atribuyó a la clave, porque empieza con `sk-ant-usr`, y ese diagnóstico **era erróneo**. Las claves que crea hoy la Console son personales, están vinculadas a un usuario y tienen ese prefijo; son válidas. El 401 lo devolvía el proxy de red del entorno que usa Claude en la Mac: con una clave inventada respondía igual, «Unauthorized» en texto plano y no el error JSON de la API. Desde el espacio de trabajo en la nube, la misma clave responde 200.
 
-**Qué hay que hacer.** Crear una clave de la API en la Console de Anthropic (empieza con `sk-ant-api03-`), guardarla en `.anthropic_key` y correr el piloto de 5 normas (`python scripts/14_parser_llm.py --limite 5 --out results/relaciones_llm_piloto`). Después, la corrida completa y los scripts 15, 16 y 17.
+**Qué se hizo.** El parser LLM se corre desde el espacio de trabajo en la nube. La clave queda en `.anthropic_key`, que está en `.gitignore`. El piloto de 5 normas dio:
+
+- 12 pedidos, unos 54.000 tokens de entrada y 16.000 de salida;
+- 127 menciones devueltas por el modelo, y ninguna cita que no esté en el texto;
+- 115 de esas menciones son normas fuera del corpus (mundo cerrado) y 3 no tienen número;
+- 9 relaciones aceptadas.
+
+Después se lanzó la corrida completa, con 8 pedidos en paralelo (`--hilos 8`). El resultado es el mismo que en serie, porque cada respuesta se guarda en la caché. **Se cortó en 230 de 590 lotes porque se acabó el crédito de la cuenta.** Lo hecho no se pierde: queda en la caché y no se vuelve a pagar. El costo real es mayor que la estimación:
+
+- en 230 lotes, unos 990.000 tokens de entrada y 276.000 de salida, alrededor de USD 4,75;
+- para todo el corpus, unos USD 12 a 13, contra los USD 8 estimados.
+
+La diferencia está en los tokens de salida, que la estimación no contaba, y en la longitud del prompt.
 
 ## Cuestiones abiertas
 
-- Crear una clave de la API real (`sk-ant-api03-…`, no `sk-ant-usr`) en `.anthropic_key` y correr el parser LLM (B53); actualizar la tabla final con el LLM y sus híbridos (B48, B49).
+- Evaluar el parser LLM (scripts 15 a 17) cuando termine la corrida completa (B53); actualizar la tabla final con el LLM y sus híbridos (B48, B49).
 - Correr la evaluación del grafo sobre el Neo4j del equipo, cargar el grafo del LLM sin `--borrar` y probar las consultas de ejemplo (B38, B43, B48).
 - Mejorar el tipado de las reglas sobre otra muestra de dev, sin tocar los 78 casos de medición (B43, B47).
 - Reglas v4, diseñadas sobre dev: sacar «texto sustituido por» del filtro de procedencia, escribir «l.c.t» sin punto, agregar «creado por» e «inclúyense», y exigir el verbo antes de la mención en F3 (B52).
