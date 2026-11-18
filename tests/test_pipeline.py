@@ -216,3 +216,36 @@ def test_v3_alias_y_encabezado():
     assert verbo_real("Agrégase al artículo 5")
     previo = "Artículo 1° — Apruébase la reglamentación de la "
     assert articulos_destino(previo, ignorar_encabezado=True) == []
+
+
+def test_hibrido_zonas_lectura_y_decision():
+    import pandas as pd
+    from grafo_legal.extractores import hibrido
+    base = dict(tipo_origen="decreto", metodo="regex_numero", superficie="Ley 1", articulo="1",
+                inicio=10, fin=15, fragmento="x", norma_destino="Ley 1", verbo_articulo="")
+    ev = pd.DataFrame([
+        {**base, "id_origen": 1, "id_destino": 2, "zona": "articulado", "parte": "articulado",
+         "verbo_oracion": "Sustitúyese", "temporal_ok": True, "procedencia": False},
+        {**base, "id_origen": 1, "id_destino": 3, "zona": "encabezado", "parte": "visto",
+         "verbo_oracion": "", "temporal_ok": True, "procedencia": False},
+        {**base, "id_origen": 1, "id_destino": 4, "zona": "anexo", "parte": "anexo",
+         "verbo_oracion": "", "temporal_ok": True, "procedencia": False},
+        {**base, "id_origen": 1, "id_destino": 5, "zona": "articulado", "parte": "articulado",
+         "verbo_oracion": "", "temporal_ok": False, "procedencia": False},
+    ])
+    c = hibrido.candidatos(ev).set_index("id_destino")
+    assert c.zona.to_dict() == {2: "seguro", 3: "gris", 4: "descarte", 5: "descarte"}
+    assert c.loc[3, "pasa_F3"] and not c.loc[4, "pasa_F3"]
+    # el LLM a veces escribe codigo dentro del JSON
+    j = hibrido.leer('{"candidatos":[{"id":"C1","probabilidad":0.9,"relacion":true,'
+                     '"cita":"la ⟦Ley 1⟧".replace("⟦","").replace("⟧","")}]}')
+    assert j["C1"]["probabilidad"] == 0.9
+    ok, _ = hibrido.verificar(j["C1"], [{"texto": "segun la ⟦Ley 1⟧ vigente"}])
+    assert ok
+    # politica previa: la regla opina, el LLM corrige con confianza
+    bajo, alto = {"probabilidad": 0.1}, {"probabilidad": 0.6}
+    assert hibrido.decidir("gris", bajo, True, "previa", 0.5, pasa_f3=True) is False
+    assert hibrido.decidir("gris", alto, True, "previa", 0.5, pasa_f3=False) is True
+    assert hibrido.decidir("gris", alto, False, "previa", 0.5, pasa_f3=False) is False   # cita no verificada
+    assert hibrido.decidir("seguro", bajo, True, "previa") is True
+    assert hibrido.decidir("descarte", alto, True, "previa") is False

@@ -67,6 +67,8 @@ if [ -f results/relaciones_llm/relaciones_llm.csv ]; then
   python scripts/15_evaluar_llm.py
   python scripts/10_armar_grafo.py --relaciones results/relaciones_llm/relaciones_llm.csv --out data/grafo_llm
 fi
+python scripts/20_parser_hibrido.py --incluir-test   # parser hibrido en cascada (usa la cache sin clave)
+python scripts/10_armar_grafo.py --relaciones results/hibrido/relaciones_hibrido.csv --out data/grafo_hibrido
 python scripts/16_evaluar_tipos.py
 python scripts/17_comparar_metodos.py
 

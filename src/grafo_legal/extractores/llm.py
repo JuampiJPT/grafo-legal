@@ -137,16 +137,20 @@ def mensaje_usuario(norma: str, lote: list[tuple[Segmento, int, str]]) -> str:
 class ClienteLLM:
     """Envuelve la API de Anthropic con una cache en disco. Sin clave, solo lee la cache."""
 
-    def __init__(self, cache_dir: Path, modelo: str = MODELO_POR_DEFECTO, clave: str | None = None):
+    def __init__(self, cache_dir: Path, modelo: str = MODELO_POR_DEFECTO, clave: str | None = None,
+                 sistema: str | None = None, version: str | None = None):
+        # sistema/version: otro prompt (el parser hibrido usa el suyo); por defecto, el de este modulo
         self.cache_dir = Path(cache_dir)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.modelo = modelo
         self.clave = clave or os.environ.get("ANTHROPIC_API_KEY")
         self._cliente = None
         self.uso = {"llamadas_api": 0, "desde_cache": 0, "tokens_entrada": 0, "tokens_salida": 0}
+        self.sistema = sistema or SISTEMA
+        self.version = version or VERSION_PROMPT
 
     def _huella(self, usuario: str) -> str:
-        return hashlib.sha256(f"{self.modelo}\n{VERSION_PROMPT}\n{SISTEMA}\n{usuario}".encode()).hexdigest()
+        return hashlib.sha256(f"{self.modelo}\n{self.version}\n{self.sistema}\n{usuario}".encode()).hexdigest()
 
     def pedir(self, usuario: str) -> dict:
         ruta = self.cache_dir / f"{self._huella(usuario)}.json"
@@ -162,7 +166,7 @@ class ClienteLLM:
             try:
                 # la API de los modelos 5.5 no acepta "temperature": la reproducibilidad la da la cache
                 r = self._cliente.messages.create(
-                    model=self.modelo, max_tokens=8000, system=SISTEMA,
+                    model=self.modelo, max_tokens=8000, system=self.sistema,
                     messages=[{"role": "user", "content": usuario}])
                 break
             except Exception:  # limites de uso o cortes de red: se reintenta con espera creciente
@@ -170,7 +174,7 @@ class ClienteLLM:
                     raise
                 time.sleep(5 * (intento + 1))
         texto = "".join(b.text for b in r.content if getattr(b, "type", "") == "text")
-        reg = {"modelo": self.modelo, "version_prompt": VERSION_PROMPT, "respuesta": texto,
+        reg = {"modelo": self.modelo, "version_prompt": self.version, "respuesta": texto,
                "tokens_entrada": r.usage.input_tokens, "tokens_salida": r.usage.output_tokens,
                "stop_reason": r.stop_reason}
         tmp = ruta.with_suffix(".tmp")

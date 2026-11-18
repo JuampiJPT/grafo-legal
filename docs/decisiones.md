@@ -150,6 +150,16 @@ La revisión de tipos pasa de 36 a 78 casos, 13 por tipo predicho (`docs/revisio
 
 `scripts/17_comparar_metodos.py` compara todos los métodos en test con bootstrap pareado por norma origen (2.000 réplicas). Se remuestrean normas, no pares, porque los pares de una misma norma no son independientes. Una diferencia con las reglas se considera significativa solo si su intervalo del 95 % no contiene al 0.
 
+## D27. Parser híbrido en cascada (18/11/2026)
+
+Es un parser propio y no una combinación de salidas:
+
+- las reglas v3 generan los candidatos y los separan en zonas (descarte, seguro, gris);
+- el LLM juzga cada candidato con su evidencia;
+- en la zona gris, la regla F3 da la opinión previa y el LLM la corrige con confianza (umbrales 0,15 y 0,5).
+
+Se eligió en dev entre tres políticas y dos prompts. Test se evaluó una vez: F1 0,829, R 0,911, sin diferencia significativa con las reglas. Detalle en `docs/parser_hibrido.md` y B55.
+
 ## D26. El LLM como segundo parser y el híbrido por intersección (16/11/2026)
 
 El parser LLM se evalúa con la regla F aplicada a sus relaciones, una proyección elegida en dev entre cuatro. En test da F1 0,841, sin diferencia significativa con las reglas. Se informan los dos híbridos:

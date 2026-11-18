@@ -89,6 +89,9 @@ def main(revision: Path, rel_reglas: Path, rel_llm: Path, out: Path) -> None:
         evaluar_otro("reglas_v3", v3)
     if rel_llm.exists():
         evaluar_otro("llm", rel_llm)
+    hib = Path("results/hibrido/relaciones_hibrido.csv")
+    if hib.exists():
+        evaluar_otro("hibrido", hib)
 
     out.mkdir(parents=True, exist_ok=True)
     escribir_texto(out / "metricas.json", json.dumps(res, indent=2, ensure_ascii=False))

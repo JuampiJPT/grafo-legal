@@ -34,6 +34,7 @@ El estado completo está en [`docs/ESTADO.md`](docs/ESTADO.md). Cómo funciona e
 | **Reglas v2, configuración F** | **0,785** | **0,875** | **0,733** | **0,828** | **0,671** |
 | Reglas v3, configuración F3 (experimento) | 0,779 | 0,880 | 0,750 | 0,826 | 0,671 |
 | **Parser LLM (Sonnet 5.5), regla F** | 0,763 | **0,938** | 0,741 | **0,841** | |
+| **Parser híbrido en cascada** | 0,761 | 0,911 | **0,758** | 0,829 | |
 | Híbrido reglas ∩ LLM | **0,804** | 0,875 | 0,735 | 0,838 | |
 | Clasificador (random forest) | 0,799 | 0,849 | 0,728 (CV) | 0,823 | 0,683 |
 | Modelo contextual (TF-IDF + superficie) | 0,760 | 0,807 | 0,751 (CV) | 0,783 | |
@@ -41,7 +42,7 @@ El estado completo está en [`docs/ESTADO.md`](docs/ESTADO.md). Cómo funciona e
 
 Ninguna diferencia con las reglas v2 es significativa, salvo las de los modelos contextuales solos, que son peores: el intervalo del 95 % de la diferencia del híbrido va de −2,2 a +4,0 puntos (`results/comparacion/`). Cómo se compara con el gold: [`docs/comparacion_con_el_gold.md`](docs/comparacion_con_el_gold.md). Recorrido del código para la presentación: [`docs/guia_codigo.md`](docs/guia_codigo.md).
 
-Parser LLM: [`results/evaluacion_llm/RESULTADOS.md`](results/evaluacion_llm/RESULTADOS.md). El híbrido por intersección es la única mejora significativa sobre las reglas (+1,0 puntos, IC de +0,2 a +2,5), y el LLM sube la macro-F1 del tipo de 0,672 a 0,883. La v3 corrige la normalización: lee el año escrito como fecha, y la normalización ya no pierde pares. En test empata con la v2 ([`results/reglas_v3/RESULTADOS.md`](results/reglas_v3/RESULTADOS.md)). Cómo se detecta una relación, paso por paso: [`docs/como_se_detecta_una_relacion.md`](docs/como_se_detecta_una_relacion.md). Por qué falla cada error: [`docs/analisis_de_fallos.md`](docs/analisis_de_fallos.md).
+Parser híbrido en cascada (las reglas filtran y el LLM decide la zona gris): [`docs/parser_hibrido.md`](docs/parser_hibrido.md). Parser LLM: [`results/evaluacion_llm/RESULTADOS.md`](results/evaluacion_llm/RESULTADOS.md). El híbrido por intersección es la única mejora significativa sobre las reglas (+1,0 puntos, IC de +0,2 a +2,5), y el LLM sube la macro-F1 del tipo de 0,672 a 0,883. La v3 corrige la normalización: lee el año escrito como fecha, y la normalización ya no pierde pares. En test empata con la v2 ([`results/reglas_v3/RESULTADOS.md`](results/reglas_v3/RESULTADOS.md)). Cómo se detecta una relación, paso por paso: [`docs/como_se_detecta_una_relacion.md`](docs/como_se_detecta_una_relacion.md). Por qué falla cada error: [`docs/analisis_de_fallos.md`](docs/analisis_de_fallos.md).
 
 Cada versión se diseñó solo sobre dev, y su test se evaluó una vez. El detalle está en [`results/reglas_v2/RESULTADOS.md`](results/reglas_v2/RESULTADOS.md), [`results/reglas/RESULTADOS.md`](results/reglas/RESULTADOS.md) y [`results/clasificador/RESULTADOS.md`](results/clasificador/RESULTADOS.md).
 
@@ -58,7 +59,7 @@ data/
 src/grafo_legal/
   fuentes/infoleg.py    adaptador: HTML -> texto -> artículos con zona
   catalogo.py           normalización de menciones a id_norma (mundo cerrado)
-  extractores/          menciones (regex + alias), reglas de relación (reglas.py v1, reglas_v2.py, reglas_v3.py), tipado (relaciones.py) y parser LLM (llm.py)
+  extractores/          menciones (regex + alias), reglas de relación (reglas.py v1, reglas_v2.py, reglas_v3.py), parser híbrido (hibrido.py), tipado (relaciones.py) y parser LLM (llm.py)
   salida.py             formato de la salida estándar de los parsers
   grafo.py              modelo del grafo: construcción, carga en Neo4j y lectura de vuelta
   evaluacion.py         P/R/F1 a nivel de par

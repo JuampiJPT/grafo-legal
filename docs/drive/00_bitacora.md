@@ -68,6 +68,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B52 | 16/11 | Hallazgo | Reglas v3: corrigen la normalización, empatan en test | Abierta |
 | B53 | 16/11 | Dificultad | La API no respondía desde el entorno de la Mac; se saca la temperatura | Cerrada |
 | B54 | 16/11 | Hallazgo | El parser LLM sube el recall y el tipado; la intersección con las reglas es la única mejora significativa | Abierta |
+| B55 | 18/11 | Decisión | Parser híbrido en cascada: las reglas filtran y el LLM decide la zona gris | Cerrada |
 
 ## Entradas
 
@@ -662,9 +663,42 @@ Ninguno de los dos hizo perder trabajo, porque lo hecho quedó en la caché. Des
 - el LLM mejora el recall y, sobre todo, el tipo de relación;
 - el híbrido por intersección es el que mejor balancea precisión y recall.
 
+### B55 · 18/11/2026 · Decisión · Parser híbrido en cascada: las reglas filtran y el LLM decide la zona gris
+
+**Por qué.** El híbrido de B54 combinaba al final las salidas de dos parsers. El equipo pidió un parser híbrido propio, en el que las reglas y el LLM trabajen articulados.
+
+**Cómo funciona** (`docs/parser_hibrido.md`):
+
+1. La parte determinista de la v3 (estructura, detección y catálogo) genera un candidato por par de normas.
+2. Las reglas lo ubican en una zona: descarte, seguro (articulado, con verbo y sin procedencia, 91 % en InfoLEG) o gris (todo lo demás).
+3. El LLM juzga cada candidato con los fragmentos donde se nombra. Da una probabilidad de vínculo, el tipo, el artículo y una cita.
+4. Seguro: se acepta. Gris: la regla F3 opina primero y el LLM la corrige solo con confianza (descarta con menos de 0,15, agrega con 0,5 o más).
+5. La cita tiene que estar en el fragmento.
+
+El LLM nunca inventa destinos: solo juzga lo que el catálogo resolvió.
+
+**Iteraciones en dev.**
+
+- **Prompt v1, estricto:** aceptó 64 de 544 pares grises, y 296 estaban en InfoLEG; además, 199 respuestas traían código dentro del JSON. F1 en dev: 0,52. Se descartó.
+- **Prompt v2:** criterio amplio de InfoLEG («modifica o complementa»), las tasas de base del VISTO y del CONSIDERANDO, una probabilidad y un parseo tolerante.
+- **Políticas comparadas en dev:**
+  - que el LLM decida toda la zona gris: F1 0,729 con su mejor umbral;
+  - que además pueda vetar los seguros: 0,728;
+  - que la regla opine primero (política «previa»): **0,758**, el mejor F1 de dev de todo el trabajo.
+
+  Se congeló la previa con 0,15 y 0,5, en lugar del máximo exacto del barrido (0,4), para no ajustar al ruido.
+
+**Test (una vez).** P 0,761, R 0,911, F1 0,829. Las reglas v2 dan 0,828: +0,2 puntos, con intervalo de −3,4 a +3,2. No es significativo.
+
+- **Zona gris:** el LLM agrega 19 pares que la regla rechazaba (8 en InfoLEG) y saca 6 que aceptaba (4 bien sacados).
+- **Tipo**, sobre los 78 casos: macro-F1 0,763, contra 0,672 de las reglas y 0,883 del LLM puro. La exactitud baja a 0,646, porque los pares aceptados por el VISTO quedan como MODIFICA.
+- **Costo:** USD 3,6 por corrida, contra USD 14 del LLM puro. Más USD 3,4 del prompt v1 descartado.
+
+**Decisión.** Ver D27. El híbrido en cascada se informa como tercer parser. El cuello de botella vuelve a ser el VISTO: el criterio de InfoLEG para vincular una norma citada como fundamento no está en el texto. Grafo en `data/grafo_hibrido/`, con `fuente = 'hibrido'`.
+
 ## Cuestiones abiertas
 
-- Cargar el grafo del LLM en Neo4j sin `--borrar` (B54); actualizar la tabla final con el LLM y sus híbridos (B48, B49).
+- Cargar los grafos de la v3, del LLM y del híbrido en Neo4j sin `--borrar` (B54, B55); actualizar la tabla final con el LLM y sus híbridos (B48, B49).
 - Correr la evaluación del grafo sobre el Neo4j del equipo, cargar el grafo del LLM sin `--borrar` y probar las consultas de ejemplo (B38, B43, B48).
 - Mejorar el tipado de las reglas sobre otra muestra de dev, sin tocar los 78 casos de medición (B43, B47).
 - Reglas v4, diseñadas sobre dev: sacar «texto sustituido por» del filtro de procedencia, escribir «l.c.t» sin punto, agregar «creado por» e «inclúyense», y exigir el verbo antes de la mención en F3 (B52).

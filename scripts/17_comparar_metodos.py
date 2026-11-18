@@ -61,6 +61,12 @@ def main() -> None:
                                              & ((e3.tipo_origen != "decreto") | (e3.verbo_oracion != "")))
                     | ((e3.zona == "articulado") & (e3.metodo == "alias") & (e3.verbo_oracion != "")))
         metodos["reglas_v3_F3"] = set(zip(e3[f3].id_origen, e3[f3].id_destino))
+    # parser hibrido en cascada (reglas filtran, LLM decide la zona gris; script 20)
+    hp = Path("results/hibrido/relaciones_hibrido.csv")
+    if hp.exists():
+        h = pd.read_csv(hp, keep_default_na=False)
+        h = h[h.tipo != "CITA"]          # un par es vinculo si tiene alguna relacion que no es CITA
+        metodos["hibrido_cascada"] = set(zip(h.id_norma_origen.astype(int), h.id_norma_destino.astype(int)))
     # clasificador de superficie
     c = pd.read_csv("results/clasificador/predicciones.csv")
     c = c[(c.split == "test") & (c.predicho == 1)]

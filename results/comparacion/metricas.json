@@ -27,6 +27,17 @@
       "dif_ic95_sup": 0.0127
     },
     {
+      "metodo": "hibrido_cascada",
+      "precision": 0.7609,
+      "recall": 0.9115,
+      "f1": 0.8294,
+      "f1_ic95_inf": 0.7821,
+      "f1_ic95_sup": 0.8712,
+      "dif_vs_reglas": 0.0018,
+      "dif_ic95_inf": -0.0343,
+      "dif_ic95_sup": 0.0323
+    },
+    {
       "metodo": "clasificador_superficie",
       "precision": 0.799,
       "recall": 0.849,
