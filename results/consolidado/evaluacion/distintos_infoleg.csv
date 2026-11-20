@@ -1,0 +1,88 @@
+articulo;palabras_infoleg;palabras_consolidado;jaccard_estimado;ultima_nota_infoleg;clase;modificado_consolidado;nota_infoleg
+1;49;49;0.83;;diferencias menores (0,6-0,9);False;False
+2;283;194;0.38;sus L27.802;diferencia sustantiva (<0,6);True;True
+5;80;80;0.96;;casi igual (>=0,9);False;False
+13;38;38;0.92;;casi igual (>=0,9);False;False
+17;28;28;0.5;;diferencia sustantiva (<0,6);False;False
+28;2;0;0.0;der L27.802;derogado en los dos;True;True
+34;70;70;1.0;;casi igual (>=0,9);False;False
+38;17;17;0.88;;diferencias menores (0,6-0,9);False;False
+42;56;56;0.79;;diferencias menores (0,6-0,9);False;False
+54;2;0;0.0;der L27.802;derogado en los dos;True;True
+56;49;49;0.88;;diferencias menores (0,6-0,9);False;False
+58;66;66;0.96;;casi igual (>=0,9);False;False
+61;2;0;0.0;der L27.802;derogado en los dos;True;True
+66;72;72;0.92;sus L27.802;casi igual (>=0,9);True;True
+77;68;68;0.79;;diferencias menores (0,6-0,9);False;False
+78;115;115;0.88;;diferencias menores (0,6-0,9);False;False
+79;122;122;0.96;;casi igual (>=0,9);False;False
+83;63;61;0.83;;diferencias menores (0,6-0,9);False;False
+85;42;42;0.83;;diferencias menores (0,6-0,9);False;False
+94;100;100;0.96;;casi igual (>=0,9);False;False
+97;92;92;0.96;;casi igual (>=0,9);False;False
+98;126;112;0.83;sus L24.013;diferencias menores (0,6-0,9);True;True
+102 bis;118;98;0.92;inc L27.555;casi igual (>=0,9);True;True
+107;40;40;0.92;;casi igual (>=0,9);False;False
+113;2;0;0.0;der L27.802;derogado en los dos;True;True
+114;56;59;0.5;;diferencia sustantiva (<0,6);False;False
+122;146;143;1.0;sus L27.073;casi igual (>=0,9);True;True
+123;63;62;0.83;;diferencias menores (0,6-0,9);False;False
+125;26;26;0.88;;diferencias menores (0,6-0,9);False;False
+129;308;312;0.92;;casi igual (>=0,9);False;False
+134;137;137;0.96;;casi igual (>=0,9);False;False
+138;52;52;0.67;;diferencias menores (0,6-0,9);False;False
+141;98;98;0.96;;casi igual (>=0,9);False;False
+147;75;274;0.33;Der L27.444;diferencia sustantiva (<0,6);True;True
+149;41;40;0.67;;diferencias menores (0,6-0,9);False;False
+150;126;126;0.92;;casi igual (>=0,9);False;False
+151;125;125;0.88;;diferencias menores (0,6-0,9);False;False
+153;142;142;0.96;;casi igual (>=0,9);False;False
+155;280;280;1.0;;casi igual (>=0,9);False;False
+156;65;64;0.71;;diferencias menores (0,6-0,9);False;False
+158;93;93;0.88;;diferencias menores (0,6-0,9);False;False
+163;42;41;0.83;;diferencias menores (0,6-0,9);False;False
+166;66;66;0.75;;diferencias menores (0,6-0,9);False;False
+173;4;0;0.0;der L24.013;derogado en los dos;True;True
+174;2;0;0.0;der L27.802;derogado en los dos;True;True
+175;2;0;0.0;der L27.802;derogado en los dos;True;True
+176;2;0;0.0;der L27.802;derogado en los dos;True;True
+178;97;98;1.0;;casi igual (>=0,9);False;False
+179;101;102;0.92;;casi igual (>=0,9);False;False
+181;75;75;0.83;;diferencias menores (0,6-0,9);False;False
+183;259;260;0.96;;casi igual (>=0,9);False;False
+184;112;112;0.88;;diferencias menores (0,6-0,9);False;False
+185;32;32;0.71;;diferencias menores (0,6-0,9);False;False
+188;51;51;0.88;;diferencias menores (0,6-0,9);False;False
+192;1;0;0.0;der L26.390;derogado en los dos;True;True
+193;4;0;0.0;der L26.390;derogado en los dos;True;True
+196;42;44;0.67;;diferencias menores (0,6-0,9);False;False
+197;147;146;0.96;;casi igual (>=0,9);False;False
+200;317;317;1.0;;casi igual (>=0,9);False;False
+201;58;58;0.83;;diferencias menores (0,6-0,9);False;False
+202;99;100;0.67;;diferencias menores (0,6-0,9);False;False
+203;60;60;0.96;;casi igual (>=0,9);False;False
+207;122;122;0.83;;diferencias menores (0,6-0,9);False;False
+208;296;296;1.0;;casi igual (>=0,9);False;False
+212;173;173;1.0;;casi igual (>=0,9);False;False
+216;2;0;0.0;der L27.802;derogado en los dos;True;True
+220;71;71;0.92;;casi igual (>=0,9);False;False
+221;91;92;0.79;;diferencias menores (0,6-0,9);False;False
+222;84;84;0.96;;casi igual (>=0,9);False;False
+230;49;49;0.71;;diferencias menores (0,6-0,9);False;False
+231;149;123;0.79;sus L25.877;diferencias menores (0,6-0,9);True;True
+232;38;38;0.92;;casi igual (>=0,9);False;False
+233;114;100;0.92;sus L25.877;casi igual (>=0,9);True;True
+249;62;62;0.88;;diferencias menores (0,6-0,9);False;False
+251;99;81;0.63;sus L24.522;diferencias menores (0,6-0,9);False;True
+252;206;199;0.96;sus L27.426;casi igual (>=0,9);True;True
+254;103;103;0.92;;casi igual (>=0,9);False;False
+264;1;10;0.0;der L24.522;InfoLEG derogado, consolidado vigente;False;True
+265;5;132;0.04;der L24.522;InfoLEG derogado, consolidado vigente;False;True
+266;2;228;0.0;der L24.522;InfoLEG derogado, consolidado vigente;True;True
+271;123;123;0.92;;casi igual (>=0,9);False;False
+272;66;66;0.92;;casi igual (>=0,9);False;False
+273;74;74;0.92;;casi igual (>=0,9);False;False
+275;2;0;0.0;der L27.802;derogado en los dos;True;True
+132;332;332;1.0;sus L27.802;casi igual (>=0,9);True;True
+105 bis;10;0;0.0;der D773/1996;derogado en los dos;True;True
+223 bis;88;88;0.92;inc L24.700;casi igual (>=0,9);True;True

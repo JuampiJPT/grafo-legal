@@ -25,7 +25,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 | F3 · Parser de reglas y evaluación | **Cerrada** | Reglas v2 diseñadas sobre dev y congeladas: F1 0,733 en dev y 0,828 en test (B36). Revisión de 30 falsos positivos. Clasificador de referencia: F1 0,823 en test (B37). Reglas v3 como experimento: dev 0,750, test 0,826 (B52). |
 | F4 · Parser LLM puro | **Cerrada** | `extractores/llm.py` y scripts 14 y 15 (`docs/parser_llm.md`). `claude-sonnet-5-5`, USD 14. F1 0,841 en test, R 0,938, alucinación del 0,1 %, tipo con macro-F1 0,883. Grafo en `data/grafo_llm/` (B54). |
 | F5 · Parser híbrido | **En curso** | Híbrido reglas + modelo contextual: F1 0,839 en test (B46). Híbrido reglas ∩ LLM: F1 0,838, la única mejora significativa sobre las reglas (B54). **Parser híbrido en cascada** (`docs/parser_hibrido.md`): F1 0,758 en dev y 0,829 en test (B55). |
-| F6 · Grafo en Neo4j | **En curso** | Modelo genérico con relaciones tipadas, armado desde la salida estándar (B41, B42). Evaluación leyendo el grafo: ida y vuelta idéntica y F1 0,828 contra InfoLEG en test (B43). Falta correr la evaluación sobre el Neo4j del equipo. |
+| F6 · Grafo en Neo4j | **Cerrada** | Modelo genérico con relaciones tipadas, armado desde la salida estándar (B41, B42). Evaluación leyendo el grafo: ida y vuelta idéntica y F1 0,828 contra InfoLEG en test (B43). Evaluada también sobre el Neo4j del equipo, con las cuatro fuentes: ida y vuelta idéntica (B60). Texto consolidado de la LCT armado desde el grafo: coincide con InfoLEG en el 92 % de los artículos que cambian (B61). |
 | F7 · Text-to-Cypher | No empezada | Hay cinco consultas de ejemplo con su pregunta en lenguaje natural (`docs/grafo.md`). |
 | F8 · Errores, informe y defensa | **En curso** | Evaluación por subtareas y taxonomía de errores (B45), tipos sobre 78 casos (B47), tabla final con intervalos de confianza (B49), comparación con el gold (`docs/comparacion_con_el_gold.md`) y guía del código para la presentación (`docs/guia_codigo.md`, B50). Análisis de fallos y explicación del pipeline (B52). La bitácora (B01 a B53) y los documentos 01 a 03 y 06 a 08 alimentan el artículo. Falta escribir el artículo LNCS. |
 
@@ -52,6 +52,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 18. **El híbrido en cascada es el mejor en dev, pero empata en test.** Las reglas filtran y el LLM decide solo la zona gris: F1 0,758 en dev (el mejor del trabajo) y 0,829 en test, con recall 0,911 y a un cuarto del costo del LLM puro. Sobre los pares que la regla no sabe decidir, el LLM agrega y saca con confianza. El VISTO sigue siendo el límite (B55).
 19. **PI4: el pipeline se transfiere al digesto de la UNNOBA si el adaptador lleva el vocabulario.** Se probó con 70 documentos anotados, cambiando solo el adaptador. El híbrido en cascada da F1 0,958 y las reglas 0,917; la diferencia no es significativa. Con el prompt de InfoLEG, el LLM ignora las resoluciones y cae a 0,405; con tres frases nuevas en el prompt sube a 0,864. El léxico de verbos de InfoLEG no tiene «Ratificar» ni «Dejar sin efecto». El gold es de Claude y está revisado (revisión 2): las remisiones que definen a quién alcanza la resolución son APLICA. Falta un segundo anotador (B57, B58).
 
+20. **El grafo alcanza para reconstruir el texto vigente.** La LCT consolidada desde Neo4j coincide con el texto actualizado de InfoLEG en 242 de 293 artículos (82,6 %, idénticos o casi). Sobre los 102 artículos que cambian en alguno de los dos lados, coincide en el 92 %. Los errores vienen del recall del grafo (Ley 24.522), de la verificación literal y de la derogación de normas modificatorias (B61).
 ## Pendientes
 
 **Del equipo:**
@@ -65,7 +66,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 **Técnicos, en este orden:**
 
 1. Cargar los grafos de la v3 y del LLM en Neo4j sin `--borrar` y comparar las fuentes con consultas (B54).
-2. Correr `bash cargar_y_evaluar_grafo.sh` sobre el Neo4j del equipo y probar las consultas de `docs/grafo.md` (F6).
+2. Probar las consultas de `docs/grafo.md` en el Neo4j Browser (la evaluación sobre Neo4j ya está, B60).
 3. Figuras del artículo: embudo de pérdidas, matriz de confusión de tipos, tabla de métodos con intervalos y diagrama del pipeline.
 4. Artículo LNCS y guion de la defensa.
 5. Para trabajo futuro: text-to-Cypher (F7), mejoras del tipado sobre otra muestra de dev (E3). La transferencia al digesto UNNOBA ya está hecha (PI4, B57).
@@ -83,6 +84,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 | Evaluación completa, parser LLM y guía del código | 07 - Evaluación completa, parser LLM y guía del código | `docs/comparacion_con_el_gold.md`, `docs/parser_llm.md`, `docs/guia_codigo.md`, `results/subtareas/`, `results/modelo_contextual/`, `results/tipos/`, `results/comparacion/` |
 | Análisis de fallos y cómo se detecta una relación | 08 - Análisis de fallos y cómo se detecta una relación | `docs/analisis_de_fallos.md`, `docs/como_se_detecta_una_relacion.md`, `results/reglas_v3/RESULTADOS.md`, `results/subtareas_v3/`, `results/errores_explicados_v3/` |
 | Parser híbrido en cascada | 09 - Parser híbrido en cascada | `docs/parser_hibrido.md`, `results/hibrido/` |
+| Texto consolidado (LCT) | 11 - Texto consolidado LCT | `docs/consolidado_lct.md`, `results/consolidado/` |
 | PI4 · Digesto UNNOBA | 10 - PI4 digesto UNNOBA | `docs/pi4_digesto_unnoba.md`, `results/pi4_unnoba/`, grafos en `data/grafo_unnoba_{reglas,llm,hibrido}/` |
 | Roadmap | 05 - Roadmap del TP (copia; la versión editable es el artefacto de Claude) | `docs/drive/roadmap.md` |
 | Datos, textos, dataset, grafo y código | Solo los del corpus v1 histórico | Todo |

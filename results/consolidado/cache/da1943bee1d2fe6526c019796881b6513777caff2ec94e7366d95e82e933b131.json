@@ -1,0 +1,1 @@
+{"modelo": "claude-sonnet-5-5", "version_prompt": "consolidado-v1-2026-11-20-extraer", "respuesta": "```json\n{\"operaciones\": []}\n```", "tokens_entrada": 951, "tokens_salida": 16, "stop_reason": "end_turn"}
