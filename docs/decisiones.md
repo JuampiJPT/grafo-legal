@@ -155,10 +155,11 @@ La revisión de tipos pasa de 36 a 78 casos, 13 por tipo predicho (`docs/revisio
 El digesto de la UNNOBA se lee con un adaptador nuevo, `fuentes/unnoba.py`, que se encarga del texto del PDF, las partes, las menciones y las claves. Las reglas, el parser LLM y el híbrido corren sin cambios.
 
 - Se evalúa sobre una muestra de 70 documentos anotada en tres clases (MOD, APLICA, CITA). El vínculo es MOD ∪ APLICA y las claves se comparan sin emisor.
-- Los prompts se informan tal cual y en una variante «vocab», que solo enumera también resoluciones, ordenanzas y el estatuto. Esto mide cuánto del parser LLM depende de la fuente.
-- El resultado principal es el del híbrido con el prompt tal cual: F1 0,854. Supera a las reglas en forma significativa.
+- El gold vigente es el de la revisión 2 (B58): las remisiones que definen a quién alcanza la resolución son APLICA. Los números con la revisión 1 se informan como sensibilidad.
+- Los prompts se informan tal cual y en una variante «vocab», que solo enumera también resoluciones, ordenanzas y el estatuto.
+- Resultado principal: el híbrido da F1 0,958 y las reglas 0,917. La diferencia no es significativa con 70 documentos. El LLM con el prompt de InfoLEG da 0,405.
 
-Detalle en `docs/pi4_digesto_unnoba.md`, `results/pi4_unnoba/RESULTADOS.md` y B57.
+Detalle en `docs/pi4_digesto_unnoba.md`, `docs/pi4_revision_gold.md`, `results/pi4_unnoba/RESULTADOS.md`, B57 y B58.
 
 ## D27. Parser híbrido en cascada (18/11/2026)
 

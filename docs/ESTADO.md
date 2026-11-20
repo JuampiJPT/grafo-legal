@@ -50,7 +50,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 16. **Corregir la normalización no mueve el F1 de test.** La v3 lee el año escrito como fecha: las vinculaciones erróneas verificables pasan de 31 a 0 y la normalización deja de perder pares. Aun así empata en test (0,826 contra 0,828), porque gana 3 pares del gold y pierde 2 por una regresión del filtro de procedencia. Lo que limita es la decisión de la regla: el 80 % de los falsos positivos de test son citas del VISTO y remisiones desde leyes (B52).
 17. **El LLM lee mejor la oración, pero no resuelve el VISTO.** Recupera 12 de los 24 pares de test que pierden las reglas: decretos sin verbo en la oración, el CONSIDERANDO y nombres propios. Mejora mucho el tipo de relación: macro-F1 de 0,672 a 0,883. Los falsos positivos del VISTO siguen ahí, y el híbrido por intersección es la única mejora significativa en F1: +1,0 puntos, intervalo de +0,2 a +2,5 (B54).
 18. **El híbrido en cascada es el mejor en dev, pero empata en test.** Las reglas filtran y el LLM decide solo la zona gris: F1 0,758 en dev (el mejor del trabajo) y 0,829 en test, con recall 0,911 y a un cuarto del costo del LLM puro. Sobre los pares que la regla no sabe decidir, el LLM agrega y saca con confianza. El VISTO sigue siendo el límite (B55).
-19. **PI4: el pipeline se transfiere al digesto de la UNNOBA si el adaptador lleva el vocabulario.** Se probó con 70 documentos anotados, cambiando solo el adaptador. El híbrido en cascada da F1 0,854, contra 0,788 de las reglas, y la diferencia es significativa. Con el prompt de InfoLEG, el LLM ignora las resoluciones y cae a 0,286; con tres frases nuevas en el prompt sube a 0,706. El léxico de verbos de InfoLEG no tiene «Ratificar» ni «Dejar sin efecto». El gold es de Claude y falta validarlo (B57).
+19. **PI4: el pipeline se transfiere al digesto de la UNNOBA si el adaptador lleva el vocabulario.** Se probó con 70 documentos anotados, cambiando solo el adaptador. El híbrido en cascada da F1 0,958 y las reglas 0,917; la diferencia no es significativa. Con el prompt de InfoLEG, el LLM ignora las resoluciones y cae a 0,405; con tres frases nuevas en el prompt sube a 0,864. El léxico de verbos de InfoLEG no tiene «Ratificar» ni «Dejar sin efecto». El gold es de Claude y está revisado (revisión 2): las remisiones que definen a quién alcanza la resolución son APLICA. Falta un segundo anotador (B57, B58).
 
 ## Pendientes
 
@@ -59,7 +59,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 - Validar las cuatro revisiones manuales que hizo Claude (`docs/revision_manual/`) y que un segundo anotador repita parte, para el kappa.
 - Subir los commits al repositorio (`git push`): desde la sesión de Claude no hay acceso de escritura a GitHub.
 - Consultar con la cátedra: supervisión distante, si se evalúa también la modificación estricta y la clasificación fina (B02, B14, B27).
-- Validar el gold de la PI4 sobre el digesto UNNOBA (B57).
+- Segundo anotador sobre una parte del gold de la PI4, para el kappa (B58).
 - Decidir si el grafo lleva embeddings (B38).
 
 **Técnicos, en este orden:**

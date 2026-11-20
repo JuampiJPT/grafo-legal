@@ -4,12 +4,12 @@
 
 **Respuesta corta.** Funciona, con dos condiciones.
 
-1. Corriendo los tres parsers sin ajustarlos, el **híbrido** es el mejor, con F1 0,854 para el vínculo. Las reglas dan 0,788.
+1. Corriendo los tres parsers sin ajustarlos, el **híbrido** es el mejor, con F1 0,958 para el vínculo. Las reglas dan 0,917, pero la diferencia entre los dos no es significativa con 70 documentos.
 2. El **vocabulario** de los tipos de norma y de los verbos depende de la fuente, así que tiene que ser parte del adaptador:
-   - el LLM con el prompt de InfoLEG ignora las resoluciones y cae a 0,286;
+   - el LLM con el prompt de InfoLEG ignora las resoluciones y cae a 0,405;
    - el léxico de verbos de InfoLEG no tiene «Ratificar» ni «Dejar sin efecto», y las reglas pierden la mitad del tipo MOD.
 
-Números, errores y límites: `results/pi4_unnoba/RESULTADOS.md`. Bitácora B57, decisión D28.
+Números, errores y límites: `results/pi4_unnoba/RESULTADOS.md`. Revisión del gold: `docs/pi4_revision_gold.md`. Bitácora B57 y B58, decisión D28.
 
 ## Cómo funciona
 
@@ -50,7 +50,14 @@ PDF del digesto ──pdftotext / OCR (tesseract spa)──► texto ──► f
 3. **Comparar sin emisor.** «Res. 44/08» y «Resolución (CS) 44/2008» son la misma norma. El costo es un caso: el doc 10 cita una resolución de otro órgano con el mismo número que la propia, y se toma como autocita.
 4. **Los prompts tal cual, y una variante «vocab» aparte.** Así se mide cuánto pesa el vocabulario. La variante cambia solo las frases que enumeran tipos de norma (tres en el prompt del LLM y dos en el del híbrido) y deja igual el criterio y los ejemplos.
 5. **Sin ajuste.** No se tocaron las reglas, los umbrales ni la política del híbrido. El detector es lo único nuevo, y es el adaptador.
-6. **Correcciones del gold.** Después de la primera corrida se agregaron 9 pares CITA que la anotación había salteado. Quedan marcados con `[revision: omision de anotacion]`. No cambian el vínculo. Un posible faltante más, el Estatuto del doc 15, se dejó sin corregir.
+6. **Correcciones del gold.** Hubo dos revisiones.
+   - **Revisión 1** (B57): se agregaron 9 pares CITA que la anotación había salteado.
+   - **Revisión 2** (B58): se releyeron los 108 pares en contexto.
+     - 14 remisiones pasaron a APLICA, por coherencia con los docs 25 y 26: el articulado usa la norma para definir a quién alcanza.
+     - Una exigencia de formato pasó a APLICA y una ratificación implícita a MOD.
+     - Se agregó el Estatuto del doc 15.
+
+   Todo está marcado en el TSV, y los números con la revisión 1 se informan como sensibilidad.
 7. **Datos personales.** Los textos, el OCR y la cache del LLM traen nombres y DNI, y no van a git. Las salidas CSV no tienen texto libre del LLM.
 
 ## Cómo se repite

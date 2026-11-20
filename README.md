@@ -2,7 +2,7 @@
 
 TP Integrador de Sistemas Inteligentes (UNNOBA, Ingeniería en Informática), Problemática III.
 
-El TP extrae automáticamente las relaciones entre normas (modifica, sustituye, deroga, reglamenta…) a partir del texto de InfoLEG. Las evalúa contra las relaciones estructuradas que publica InfoLEG, que funcionan como gold standard, y arma un grafo trazable en Neo4j que se consulta en lenguaje natural (text-to-Cypher). Se comparan tres parsers: reglas (regex/AST), LLM puro e híbrido. La transferencia al digesto de la UNNOBA (PI4) se probó cambiando solo el adaptador: con 70 documentos anotados, el híbrido da F1 0,854 y las reglas 0,788 (`docs/pi4_digesto_unnoba.md`).
+El TP extrae automáticamente las relaciones entre normas (modifica, sustituye, deroga, reglamenta…) a partir del texto de InfoLEG. Las evalúa contra las relaciones estructuradas que publica InfoLEG, que funcionan como gold standard, y arma un grafo trazable en Neo4j que se consulta en lenguaje natural (text-to-Cypher). Se comparan tres parsers: reglas (regex/AST), LLM puro e híbrido. La transferencia al digesto de la UNNOBA (PI4) se probó cambiando solo el adaptador: con 70 documentos anotados, el híbrido da F1 0,958 y las reglas 0,917 (`docs/pi4_digesto_unnoba.md`).
 
 ## Estado
 
