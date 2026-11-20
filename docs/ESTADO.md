@@ -1,4 +1,4 @@
-# Estado del TP al 16/11/2026
+# Estado del TP al 20/11/2026
 
 TP Integrador de Sistemas Inteligentes (UNNOBA), Problemática III: extracción de relaciones entre normas de InfoLEG y grafo trazable en Neo4j.
 
@@ -50,6 +50,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 16. **Corregir la normalización no mueve el F1 de test.** La v3 lee el año escrito como fecha: las vinculaciones erróneas verificables pasan de 31 a 0 y la normalización deja de perder pares. Aun así empata en test (0,826 contra 0,828), porque gana 3 pares del gold y pierde 2 por una regresión del filtro de procedencia. Lo que limita es la decisión de la regla: el 80 % de los falsos positivos de test son citas del VISTO y remisiones desde leyes (B52).
 17. **El LLM lee mejor la oración, pero no resuelve el VISTO.** Recupera 12 de los 24 pares de test que pierden las reglas: decretos sin verbo en la oración, el CONSIDERANDO y nombres propios. Mejora mucho el tipo de relación: macro-F1 de 0,672 a 0,883. Los falsos positivos del VISTO siguen ahí, y el híbrido por intersección es la única mejora significativa en F1: +1,0 puntos, intervalo de +0,2 a +2,5 (B54).
 18. **El híbrido en cascada es el mejor en dev, pero empata en test.** Las reglas filtran y el LLM decide solo la zona gris: F1 0,758 en dev (el mejor del trabajo) y 0,829 en test, con recall 0,911 y a un cuarto del costo del LLM puro. Sobre los pares que la regla no sabe decidir, el LLM agrega y saca con confianza. El VISTO sigue siendo el límite (B55).
+19. **PI4: el pipeline se transfiere al digesto de la UNNOBA si el adaptador lleva el vocabulario.** Se probó con 70 documentos anotados, cambiando solo el adaptador. El híbrido en cascada da F1 0,854, contra 0,788 de las reglas, y la diferencia es significativa. Con el prompt de InfoLEG, el LLM ignora las resoluciones y cae a 0,286; con tres frases nuevas en el prompt sube a 0,706. El léxico de verbos de InfoLEG no tiene «Ratificar» ni «Dejar sin efecto». El gold es de Claude y falta validarlo (B57).
 
 ## Pendientes
 
@@ -58,7 +59,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 - Validar las cuatro revisiones manuales que hizo Claude (`docs/revision_manual/`) y que un segundo anotador repita parte, para el kappa.
 - Subir los commits al repositorio (`git push`): desde la sesión de Claude no hay acceso de escritura a GitHub.
 - Consultar con la cátedra: supervisión distante, si se evalúa también la modificación estricta y la clasificación fina (B02, B14, B27).
-- Elegir cómo obtener la muestra del digesto UNNOBA (B19, B22).
+- Validar el gold de la PI4 sobre el digesto UNNOBA (B57).
 - Decidir si el grafo lleva embeddings (B38).
 
 **Técnicos, en este orden:**
@@ -67,7 +68,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 2. Correr `bash cargar_y_evaluar_grafo.sh` sobre el Neo4j del equipo y probar las consultas de `docs/grafo.md` (F6).
 3. Figuras del artículo: embudo de pérdidas, matriz de confusión de tipos, tabla de métodos con intervalos y diagrama del pipeline.
 4. Artículo LNCS y guion de la defensa.
-5. Para trabajo futuro: text-to-Cypher (F7), mejoras del tipado sobre otra muestra de dev y el digesto UNNOBA cambiando solo el adaptador (E3).
+5. Para trabajo futuro: text-to-Cypher (F7), mejoras del tipado sobre otra muestra de dev (E3). La transferencia al digesto UNNOBA ya está hecha (PI4, B57).
 
 ## Dónde está cada cosa
 
@@ -82,6 +83,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 | Evaluación completa, parser LLM y guía del código | 07 - Evaluación completa, parser LLM y guía del código | `docs/comparacion_con_el_gold.md`, `docs/parser_llm.md`, `docs/guia_codigo.md`, `results/subtareas/`, `results/modelo_contextual/`, `results/tipos/`, `results/comparacion/` |
 | Análisis de fallos y cómo se detecta una relación | 08 - Análisis de fallos y cómo se detecta una relación | `docs/analisis_de_fallos.md`, `docs/como_se_detecta_una_relacion.md`, `results/reglas_v3/RESULTADOS.md`, `results/subtareas_v3/`, `results/errores_explicados_v3/` |
 | Parser híbrido en cascada | 09 - Parser híbrido en cascada | `docs/parser_hibrido.md`, `results/hibrido/` |
+| PI4 · Digesto UNNOBA | 10 - PI4 digesto UNNOBA | `docs/pi4_digesto_unnoba.md`, `results/pi4_unnoba/` |
 | Roadmap | 05 - Roadmap del TP (copia; la versión editable es el artefacto de Claude) | `docs/drive/roadmap.md` |
 | Datos, textos, dataset, grafo y código | Solo los del corpus v1 histórico | Todo |
 

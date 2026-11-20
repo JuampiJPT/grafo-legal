@@ -1,0 +1,109 @@
+doc,destino,clase,nota,id_destino
+0,RES-HCS-32-2007,APLICA,tablas de equivalencia del plan aprobado por esa res (visto/considerando),RES-32-2007
+0,RES-HCS-92-2008,APLICA,idem,RES-92-2008
+0,RES-HCS-253-2009,APLICA,idem,RES-253-2009
+0,RES-HCS-252-2009,APLICA,idem,RES-252-2009
+0,RES-HCS-38-2007,APLICA,idem,RES-38-2007
+0,RES-HCS-76-2008,APLICA,idem,RES-76-2008
+0,RES-HCS-77-2008,APLICA,idem,RES-77-2008
+1,ESTATUTO,CITA,"art 70 inc 14, competencia",ESTATUTO
+5,ESTATUTO,CITA,"art 70 inc 25, competencia",ESTATUTO
+7,RES-HCS-531-2012,APLICA,otorga beneficio Tipo I B de la Res 531/2012,RES-531-2012
+7,ESTATUTO,CITA,competencia,ESTATUTO
+9,RES-REC-3565-2011,MOD,ratifica resolucion del Rector ad referendum,RES-3565-2011
+9,ESTATUTO,CITA,competencia,ESTATUTO
+10,RES-DET-313-2016,CITA,resolucion ad referendum mencionada en considerando,RES-313-2016
+11,RES-REC-3158-2010,APLICA,fija requisitos previstos en art 2 anexo I de esa res,RES-3158-2010
+12,RES-CDET-278-2016,CITA,"remision al formato aprobado (articulado, sin accion)",RES-278-2016
+15,RES-REC-3800-2011,MOD,ratifica,RES-3800-2011
+15,ORD-HCS-14-2009,MOD,ratifica la modificatoria de la Ord 14/09,ORD-14-2009
+16,ORD-HCS-14-2009,MOD,modifica parcialmente,ORD-14-2009
+17,ORD-HCS-12-2009,MOD,reemplaza el procedimiento aprobado por esa ordenanza,ORD-12-2009
+17,ESTATUTO,CITA,competencia,ESTATUTO
+18,ORD-HCS-23-2009,MOD,modifica art 13 del Reglamento General de Alumnos,ORD-23-2009
+19,ESTATUTO,MOD,reglamenta el art 35 del Estatuto,ESTATUTO
+20,RES-?-439-2006,MOD,modifica parcialmente el Reglamento General de Alumnos y Examenes,RES-439-2006
+20,ESTATUTO,CITA,competencia,ESTATUTO
+21,DEC-NAC-499-1995,APLICA,establece los mecanismos que exige el art 3 del decreto,DEC-NAC-499-1995
+21,LEY-NAC-24521-1995,APLICA,ingreso de mayores de 25 del art 7 LES,LEY-24521
+21,RES-?-556-1998,CITA,marco citado en el visto,RES-556-1998
+21,ESTATUTO,CITA,competencia,ESTATUTO
+22,RES-HCS-44-2008,MOD,extiende la aplicacion de los arts 2 y 3,RES-44-2008
+22,ESTATUTO,CITA,competencia,ESTATUTO
+23,ESTATUTO,CITA,competencia,ESTATUTO
+24,RES-REC-312-2007,MOD,ratifica,RES-312-2007
+24,ESTATUTO,CITA,competencia,ESTATUTO
+25,RES-REC-1122-2008,MOD,prorroga las regularidades extendidas por esa resolucion,RES-1122-2008
+25,RES-HCS-97-2008,APLICA,alumnos contemplados (ratificatoria),RES-97-2008
+25,RES-HCS-106-2008,APLICA,alumnos contemplados,RES-106-2008
+25,ESTATUTO,CITA,competencia,ESTATUTO
+26,RES-REC-1122-2008,MOD,prorroga las regularidades extendidas por esa resolucion,RES-1122-2008
+26,RES-HCS-97-2008,APLICA,alumnos contemplados (ratificatoria),RES-97-2008
+26,RES-HCS-106-2008,APLICA,alumnos contemplados,RES-106-2008
+26,ESTATUTO,CITA,competencia,ESTATUTO
+27,RES-REC-1122-2008,APLICA,instancia de evaluacion para los alumnos contemplados en esa resolucion,RES-1122-2008
+27,RES-HCS-97-2008,APLICA,ratificatoria de la 1122/08,RES-97-2008
+27,ESTATUTO,CITA,competencia,ESTATUTO
+28,RES-REC-1122-2008,MOD,ratifica,RES-1122-2008
+28,ESTATUTO,CITA,competencia,ESTATUTO
+29,ESTATUTO,CITA,competencia,ESTATUTO
+30,RES-REC-228-2007,MOD,ratifica,RES-228-2007
+30,ESTATUTO,CITA,competencia,ESTATUTO
+31,RES-CDET-64-2013,MOD,deja sin efecto,RES-64-2013
+33,ESTATUTO,CITA,competencia,ESTATUTO
+34,ESTATUTO,CITA,competencia,ESTATUTO
+35,ESTATUTO,CITA,competencia,ESTATUTO
+35,RES-MIN-1523-1990,CITA,remision en el articulado,RES-1523-1990
+35,LEY-NAC-25871-2004,CITA,en el modelo de constancia,LEY-25871
+37,ORD-HCS-16-2009,MOD,"modifica arts 4, 14 y 18 del Reglamento de Pases y Equivalencias",ORD-16-2009
+37,RES-HCS-970-2015,CITA,"creacion del Instituto, antecedente",RES-970-2015
+38,RES-MIN-1523-1990,CITA,remision en el articulado,RES-1523-1990
+38,LEY-NAC-25871-2004,CITA,en el modelo de constancia,LEY-25871
+39,RES-MIN-1523-1990,CITA,remision en el articulado,RES-1523-1990
+39,LEY-NAC-25871-2004,CITA,en el modelo de constancia,LEY-25871
+40,RES-HCS-234-2009,MOD,modifica parcialmente el Calendario Academico 2010,RES-234-2009
+40,RES-REC-41-2007,CITA,delegacion de funciones,RES-41-2007
+40,ESTATUTO,CITA,competencia,ESTATUTO
+40,RES-MIN-1523-1990,CITA,remision en el articulado,RES-1523-1990
+40,LEY-NAC-25871-2004,CITA,en el modelo de constancia,LEY-25871
+41,RES-REC-1953-2009,MOD,ratifica,RES-1953-2009
+41,ESTATUTO,CITA,competencia,ESTATUTO
+42,ESTATUTO,CITA,competencia,ESTATUTO
+43,ESTATUTO,CITA,competencia,ESTATUTO
+44,ORD-HCS-2-2007,APLICA,admite el ingreso en base a esa ordenanza,ORD-2-2007
+44,RES-HCS-47-2008,APLICA,admite el ingreso en base a esa resolucion,RES-47-2008
+44,ESTATUTO,CITA,competencia,ESTATUTO
+45,ESTATUTO,CITA,competencia,ESTATUTO
+46,ESTATUTO,CITA,competencia,ESTATUTO
+47,RES-HCS-531-2012,APLICA,otorga beneficio previsto en esa res,RES-531-2012
+47,ESTATUTO,CITA,competencia,ESTATUTO
+48,RES-HCS-531-2012,APLICA,otorga beneficio previsto en esa res,RES-531-2012
+48,ESTATUTO,CITA,competencia,ESTATUTO
+49,RES-HCS-531-2012,APLICA,otorga beneficio previsto en esa res,RES-531-2012
+49,ESTATUTO,CITA,competencia,ESTATUTO
+50,RES-HCS-633-2013,MOD,revisa el beneficio otorgado por esa resolucion,RES-633-2013
+50,RES-HCS-531-2012,APLICA,programa en cuyo marco se otorga,RES-531-2012
+50,ESTATUTO,CITA,competencia,ESTATUTO
+51,RES-HCS-531-2012,APLICA,otorga beneficio previsto en esa res,RES-531-2012
+51,ESTATUTO,CITA,competencia,ESTATUTO
+52,LEY-NAC-24521-1995,APLICA,establece los criterios del art 39 bis LES,LEY-24521
+53,ORD-HCS-14-2009,APLICA,reglamenta las actividades de posgrado previstas en el art 8 de esa ordenanza,ORD-14-2009
+57,RES-HCS-368-2010,CITA,formulario del anexo de esa res (considerando),RES-368-2010
+58,RES-HCS-368-2010,CITA,formulario del anexo de esa res (considerando),RES-368-2010
+59,RES-HCS-368-2010,CITA,formulario del anexo de esa res (considerando),RES-368-2010
+60,RES-HCS-368-2010,CITA,formulario del anexo de esa res (considerando),RES-368-2010
+61,RES-HCS-368-2010,CITA,formulario del anexo de esa res (considerando),RES-368-2010
+62,RES-HCS-368-2010,CITA,formulario del anexo de esa res (considerando),RES-368-2010
+63,RES-HCS-368-2010,CITA,formulario del anexo de esa res (considerando),RES-368-2010
+64,RES-HCS-368-2010,CITA,formulario del anexo de esa res (considerando),RES-368-2010
+65,RES-HCS-368-2010,CITA,formulario del anexo de esa res (considerando),RES-368-2010
+66,RES-HCS-368-2010,CITA,formulario del anexo de esa res (considerando),RES-368-2010
+2,RES-HCS-657-2013,CITA,"plan estrategico, mencion incidental [revision: omision de anotacion]",RES-657-2013
+12,LEY-PROV-13016,CITA,bibliografia del programa [revision: omision de anotacion],LEY-13016
+17,RES-HCS-1-2001,CITA,sello de copia fiel [revision: omision de anotacion],RES-1-2001
+33,RES-MIN-1523-1990,CITA,remision en el articulado [revision: omision de anotacion],RES-1523-1990
+33,LEY-NAC-25871-2004,CITA,en el modelo de constancia [revision: omision de anotacion],LEY-25871
+34,RES-MIN-1523-1990,CITA,remision en el articulado [revision: omision de anotacion],RES-1523-1990
+34,LEY-NAC-25871-2004,CITA,en el modelo de constancia [revision: omision de anotacion],LEY-25871
+36,RES-MIN-1523-1990,CITA,remision en el articulado [revision: omision de anotacion],RES-1523-1990
+36,LEY-NAC-25871-2004,CITA,en el modelo de constancia [revision: omision de anotacion],LEY-25871

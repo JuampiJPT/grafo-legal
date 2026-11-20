@@ -1,0 +1,205 @@
+doc,id_origen,id_destino,clave,parte,zona,articulo,metodo,superficie,inicio,fin,verbo_oracion,tipo_por_verbo,temporal_ok,procedencia,tipo_origen
+0,RES-HCS-312-2010,RES-32-2007,RES-HCS-32-2007,visto,encabezado,0,regex_numero,Resoluciones (CS) 32/2007,614,639,,CITA,True,False,resolucion
+0,RES-HCS-312-2010,RES-92-2008,RES-HCS-92-2008,visto,encabezado,0,regex_lista,", 92/2008",639,648,,CITA,True,False,resolucion
+0,RES-HCS-312-2010,RES-253-2009,RES-HCS-253-2009,visto,encabezado,0,regex_lista,", 253/2009",648,658,,CITA,True,False,resolucion
+0,RES-HCS-312-2010,RES-252-2009,RES-HCS-252-2009,visto,encabezado,0,regex_lista,", 252/2009",658,668,,CITA,True,False,resolucion
+0,RES-HCS-312-2010,RES-38-2007,RES-HCS-38-2007,visto,encabezado,0,regex_lista,", 38/2007",668,677,,CITA,True,False,resolucion
+0,RES-HCS-312-2010,RES-76-2008,RES-HCS-76-2008,visto,encabezado,0,regex_lista,", 76/2008",677,686,,CITA,True,False,resolucion
+0,RES-HCS-312-2010,RES-77-2008,RES-HCS-77-2008,visto,encabezado,0,regex_lista,y 77/2008,686,696,,CITA,True,False,resolucion
+0,RES-HCS-312-2010,RES-32-2007,RES-HCS-32-2007,considerando,encabezado,0,regex_numero,Resolución (CS) 32/2007,724,747,,CITA,True,False,resolucion
+0,RES-HCS-312-2010,RES-92-2008,RES-HCS-92-2008,considerando,encabezado,0,regex_numero,Resolución (CS) 92/2008,953,976,,CITA,True,False,resolucion
+0,RES-HCS-312-2010,RES-253-2009,RES-HCS-253-2009,considerando,encabezado,0,regex_numero,Resolución (CS) 253/2009,1078,1102,,CITA,True,False,resolucion
+0,RES-HCS-312-2010,RES-252-2009,RES-HCS-252-2009,considerando,encabezado,0,regex_numero,Resolución (CS) 252/2009,1228,1252,,CITA,True,False,resolucion
+0,RES-HCS-312-2010,RES-38-2007,RES-HCS-38-2007,considerando,encabezado,0,regex_numero,Resolución (CS) 38/2007,1461,1484,,CITA,True,False,resolucion
+0,RES-HCS-312-2010,RES-76-2008,RES-HCS-76-2008,considerando,encabezado,0,regex_numero,Resolución (CS) 76/2008,1988,2011,,CITA,True,False,resolucion
+0,RES-HCS-312-2010,RES-77-2008,RES-HCS-77-2008,considerando,encabezado,0,regex_numero,Resolución (CS) 77/2008,2258,2281,,CITA,True,False,resolucion
+1,RES-HCS-722-2014,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto de la Universidad,2072,2098,,CITA,True,False,resolucion
+2,RES-HCS-1100-2016,RES-657-2013,RES-HCS-657-2013,articulado,articulado,2,regex_numero,Resolución (eS) N° 657/2013,2847,2874,,CITA,True,False,resolucion
+5,RES-HCS-884-2014,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto de la Universidad,1318,1344,,CITA,True,False,resolucion
+7,RES-HCS-906-2014,RES-531-2012,RES-HCS-531-2012,considerando,encabezado,0,regex_numero,Resolución (CS) 531/2012,552,576,,CITA,True,False,resolucion
+7,RES-HCS-906-2014,RES-531-2012,RES-HCS-531-2012,considerando,encabezado,0,regex_numero,Resolución (CS) 531/2012,920,944,,CITA,True,False,resolucion
+7,RES-HCS-906-2014,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto de la Universidad,1158,1184,,CITA,True,False,resolucion
+9,RES-HCS-382-2011,RES-3565-2011,RES-REC-3565-2011,visto,encabezado,0,regex_numero,Resolución Nro. 3565/2011,170,195,,CITA,True,False,resolucion
+9,RES-HCS-382-2011,RES-3565-2011,RES-REC-3565-2011,considerando,encabezado,0,regex_numero,"Resolución Nro, 3565/2011",289,314,,CITA,True,False,resolucion
+9,RES-HCS-382-2011,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto Universitario,834,856,,CITA,True,False,resolucion
+9,RES-HCS-382-2011,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,964,972,,CITA,True,False,resolucion
+9,RES-HCS-382-2011,RES-3565-2011,RES-REC-3565-2011,articulado,articulado,0,regex_numero,"Resolución Nro, 3565/2011",1652,1677,,CITA,True,False,resolucion
+11,RES-DET-64-2011,RES-3158-2010,RES-REC-3158-2010,visto,encabezado,0,regex_numero,Resolución Nro. 3158/2010,180,205,Incorporación,INCORPORA,True,False,resolucion
+11,RES-DET-64-2011,RES-3158-2010,RES-REC-3158-2010,considerando,encabezado,0,regex_numero,Resolución Nro. 3158/2010,649,674,Incorporación,INCORPORA,True,False,resolucion
+12,RES-CDET-284-2016,RES-278-2016,RES-?-278-2016,articulado,articulado,2,regex_numero,resolución 278/2016,1357,1376,,CITA,True,False,resolucion
+12,RES-CDET-284-2016,LEY-13016,LEY-NAC-13016,articulado,articulado,3,regex_numero,Ley 13016,4808,4817,,CITA,True,False,resolucion
+15,ORD-HCS-30-2011,RES-3800-2011,RES-REC-3800-2011,visto,encabezado,0,regex_numero,Resolución Nro. 3800/2011,216,241,,CITA,True,False,resolucion
+15,ORD-HCS-30-2011,RES-3800-2011,RES-REC-3800-2011,considerando,encabezado,0,regex_numero,Resolución Nro. 3800/2011,337,362,,CITA,True,False,resolucion
+15,ORD-HCS-30-2011,ORD-14-2009,ORD-HCS-14-2009,considerando,encabezado,0,regex_numero,Ordenanza (CS) 14/09,489,509,,CITA,True,False,resolucion
+15,ORD-HCS-30-2011,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,2812,2820,,CITA,True,False,resolucion
+15,ORD-HCS-30-2011,RES-3800-2011,RES-REC-3800-2011,articulado,articulado,1,regex_numero,Resolución Nro. 3800/2011,3258,3283,,CITA,True,False,resolucion
+16,ORD-HCS-27-2010,ORD-14-2009,ORD-HCS-14-2009,visto,encabezado,0,regex_numero,Ordenanza (CS) 14/2009,296,318,modificación,MODIFICA,True,False,resolucion
+16,ORD-HCS-27-2010,ORD-14-2009,ORD-HCS-14-2009,considerando,encabezado,0,regex_numero,Ordenanza (CS) 14/2009,564,586,modificación,MODIFICA,True,False,resolucion
+16,ORD-HCS-27-2010,ORD-14-2009,ORD-HCS-14-2009,considerando,encabezado,0,regex_numero,Ordenanza (CS) 14/2009,791,813,modificar,MODIFICA,True,False,resolucion
+16,ORD-HCS-27-2010,ORD-14-2009,ORD-HCS-14-2009,articulado,articulado,1,regex_numero,Ordenanza (CS) 14/2009,3764,3786,Modificar,MODIFICA,True,False,resolucion
+16,ORD-HCS-27-2010,ORD-14-2009,ORD-HCS-14-2009,articulado,articulado,2,regex_numero,Ordenanza (CS) 14/2009,5971,5993,Modificar,MODIFICA,True,False,resolucion
+16,ORD-HCS-27-2010,ORD-14-2009,ORD-HCS-14-2009,articulado,articulado,3,regex_numero,Ordenanza (CS) 14/2009,6196,6218,Modificar,MODIFICA,True,False,resolucion
+17,ORD-HCS-40-2014,ORD-12-2009,ORD-?-12-2009,considerando,encabezado,0,regex_numero,Ordenanza 12/2009,428,445,,CITA,True,False,resolucion
+17,ORD-HCS-40-2014,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto Universitario,948,970,,CITA,True,False,resolucion
+17,ORD-HCS-40-2014,RES-1-2001,RES-HCS-1-2001,articulado,articulado,10,regex_numero,RESOLUCION(CS) 1/2001,3486,3507,,CITA,True,False,resolucion
+18,ORD-HCS-35-2012,ORD-23-2009,ORD-HCS-23-2009,visto,encabezado,0,regex_numero,Ordenanza (CS) Nro. 23/09,228,253,modifique,MODIFICA,True,False,resolucion
+18,ORD-HCS-35-2012,ORD-23-2009,ORD-HCS-23-2009,articulado,articulado,13,regex_numero,Ordenanza (CS) Nro. 23/09,1194,1219,Modificar,MODIFICA,True,False,resolucion
+19,ORD-HCS-29-2010,ESTATUTO,ESTATUTO,visto,encabezado,0,alias,Estatuto Universitario,357,379,reglamentación,REGLAMENTA,True,False,resolucion
+19,ORD-HCS-29-2010,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto Universitario,569,591,reglamentación,REGLAMENTA,True,False,resolucion
+19,ORD-HCS-29-2010,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,713,721,incorporación,INCORPORA,True,False,resolucion
+19,ORD-HCS-29-2010,ESTATUTO,ESTATUTO,articulado,articulado,35,alias,Estatuto Universitario,2087,2109,reglamentación,REGLAMENTA,True,False,resolucion
+20,ORD-HCS-1-2007,RES-439-2006,RES-?-439-2006,considerando,encabezado,0,regex_numero,Resolución Nro. 439/ 2006,822,847,modificación,MODIFICA,True,False,resolucion
+20,ORD-HCS-1-2007,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto Universitario,923,945,,CITA,True,False,resolucion
+20,ORD-HCS-1-2007,RES-439-2006,RES-?-439-2006,articulado,articulado,1,regex_numero,Resolución Nro. 439/ 2006,1372,1397,Modificar,MODIFICA,True,False,resolucion
+21,ORD-HCS-2-2007,DEC-NAC-499-1995,DEC-NAC-499-1995,visto,encabezado,0,regex_numero,Decreto del Poder Ejecutivo Nacional N* 499/95,196,242,,CITA,True,False,resolucion
+21,ORD-HCS-2-2007,LEY-24521,LEY-NAC-24521,visto,encabezado,0,regex_numero,Ley de Educación Superior N* 24321,500,534,,CITA,True,False,resolucion
+21,ORD-HCS-2-2007,RES-556-1998,RES-?-556-1998,visto,encabezado,0,regex_numero,Resolución 556/98,554,571,,CITA,True,False,resolucion
+21,ORD-HCS-2-2007,LEY-24521,LEY-NAC-24521,considerando,encabezado,0,alias,Ley de Educación Superior,1370,1395,,CITA,True,False,resolucion
+21,ORD-HCS-2-2007,LEY-24521,LEY-NAC-24521,considerando,encabezado,0,alias,Ley de Educación Superior,2483,2508,,CITA,True,False,resolucion
+21,ORD-HCS-2-2007,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto Universitario,2834,2856,,CITA,True,False,resolucion
+21,ORD-HCS-2-2007,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,3290,3298,,CITA,True,False,resolucion
+21,ORD-HCS-2-2007,LEY-24521,LEY-NAC-24521,articulado,articulado,5,regex_numero,Ley 24.521,4477,4487,,CITA,True,False,resolucion
+22,RES-HCS-96-2008,RES-44-2008,RES-HCS-44-2008,visto,encabezado,0,regex_numero,Resolución (CS) Nro. 44/08,168,194,,CITA,True,False,resolucion
+22,RES-HCS-96-2008,RES-44-2008,RES-HCS-44-2008,considerando,encabezado,0,regex_numero,Resolución (CS) Nro. 44/08,229,255,,CITA,True,False,resolucion
+22,RES-HCS-96-2008,RES-44-2008,RES-HCS-44-2008,considerando,encabezado,0,regex_numero,Resolución (CS) Nro. 44/08,1939,1965,,CITA,True,False,resolucion
+22,RES-HCS-96-2008,RES-44-2008,RES-HCS-44-2008,considerando,encabezado,0,regex_numero,Resolución (CS) Nro. 44/08,2232,2258,,CITA,True,False,resolucion
+22,RES-HCS-96-2008,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,2535,2543,,CITA,True,False,resolucion
+22,RES-HCS-96-2008,RES-44-2008,RES-HCS-44-2008,articulado,articulado,2,regex_numero,Resolución (CS) Nro. 44/08,2635,2661,,CITA,True,False,resolucion
+22,RES-HCS-96-2008,RES-44-2008,RES-HCS-44-2008,articulado,articulado,2,regex_numero,Resolución (CS) Nro. 44/08,2822,2848,,CITA,True,False,resolucion
+23,RES-HCS-44-2008,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,655,663,,CITA,True,False,resolucion
+24,RES-HCS-28-2007,RES-312-2007,RES-?-312-2007,visto,encabezado,0,regex_numero,Resolución Nro. 312/2007,185,209,,CITA,True,False,resolucion
+24,RES-HCS-28-2007,RES-312-2007,RES-?-312-2007,considerando,encabezado,0,regex_numero,Resolución Nro. 312/07,2253,2275,,CITA,True,False,resolucion
+24,RES-HCS-28-2007,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,2900,2908,,CITA,True,False,resolucion
+24,RES-HCS-28-2007,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,3009,3017,,CITA,True,False,resolucion
+24,RES-HCS-28-2007,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,3166,3174,,CITA,True,False,resolucion
+24,RES-HCS-28-2007,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,3480,3488,,CITA,True,False,resolucion
+24,RES-HCS-28-2007,RES-312-2007,RES-?-312-2007,articulado,articulado,1,regex_numero,Resolución Nro. 312/2007,3525,3549,,CITA,True,False,resolucion
+24,RES-HCS-28-2007,ESTATUTO,ESTATUTO,articulado,articulado,76,alias,Estatuto,3706,3714,,CITA,True,False,resolucion
+25,RES-HCS-176-2009,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto Universitario,958,980,,CITA,True,False,resolucion
+25,RES-HCS-176-2009,RES-1122-2008,RES-REC-1122-2008,articulado,articulado,1,regex_numero,Resolución Nro. 1122/08,1577,1600,Prórroga,MODIFICA,True,False,resolucion
+25,RES-HCS-176-2009,RES-97-2008,RES-HCS-97-2008,articulado,articulado,1,regex_numero,Resolución (CS) 97/2008,1617,1640,,CITA,True,False,resolucion
+25,RES-HCS-176-2009,RES-106-2008,RES-HCS-106-2008,articulado,articulado,1,regex_numero,Resolución (CS) 106/2008,1643,1667,,CITA,True,False,resolucion
+26,RES-HCS-146-2009,RES-97-2008,RES-HCS-97-2008,visto,encabezado,0,regex_numero,Resoluciones (CS) Nros. 97/08,354,383,Reglamentación,REGLAMENTA,True,False,resolucion
+26,RES-HCS-146-2009,RES-106-2008,RES-HCS-106-2008,visto,encabezado,0,regex_lista,y 106/08,383,392,,CITA,True,False,resolucion
+26,RES-HCS-146-2009,RES-97-2008,RES-HCS-97-2008,considerando,encabezado,0,regex_numero,"Resolución (CS) Nro, 97/08",427,453,,CITA,True,False,resolucion
+26,RES-HCS-146-2009,RES-1122-2008,RES-REC-1122-2008,considerando,encabezado,0,regex_numero,Resolución Nro. 1122/2008,469,494,,CITA,True,False,resolucion
+26,RES-HCS-146-2009,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,653,661,,CITA,True,False,resolucion
+26,RES-HCS-146-2009,RES-1122-2008,RES-REC-1122-2008,considerando,encabezado,0,regex_numero,Resolución Nro. 1122/2008,674,699,,CITA,True,False,resolucion
+26,RES-HCS-146-2009,RES-106-2008,RES-HCS-106-2008,considerando,encabezado,0,regex_numero,Resolución (CS) Nro. 106/08,1050,1077,,CITA,True,False,resolucion
+26,RES-HCS-146-2009,RES-1122-2008,RES-REC-1122-2008,considerando,encabezado,0,regex_numero,"Resolución Nro, 1122/08",1218,1241,,CITA,True,False,resolucion
+26,RES-HCS-146-2009,RES-97-2008,RES-HCS-97-2008,considerando,encabezado,0,regex_numero,Resolución (CS) 97/08,1258,1279,,CITA,True,False,resolucion
+26,RES-HCS-146-2009,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto Universitario,2813,2835,,CITA,True,False,resolucion
+26,RES-HCS-146-2009,RES-1122-2008,RES-REC-1122-2008,articulado,articulado,1,regex_numero,Resolución Nro. 1122/08,3194,3217,prórroga,MODIFICA,True,False,resolucion
+26,RES-HCS-146-2009,RES-97-2008,RES-HCS-97-2008,articulado,articulado,1,regex_numero,Resolución C.S. 97/08,3234,3255,,CITA,True,False,resolucion
+26,RES-HCS-146-2009,RES-106-2008,RES-HCS-106-2008,articulado,articulado,1,regex_numero,Resolución C.S. 106/08,3258,3280,,CITA,True,False,resolucion
+27,RES-HCS-106-2008,RES-1122-2008,RES-REC-1122-2008,visto,encabezado,0,regex_numero,Resolución del Rector Nro. 1122/08,256,290,,CITA,True,False,resolucion
+27,RES-HCS-106-2008,RES-97-2008,RES-HCS-97-2008,visto,encabezado,0,regex_numero,Resolución (CS) 97/08,314,335,,CITA,True,False,resolucion
+27,RES-HCS-106-2008,RES-1122-2008,RES-REC-1122-2008,considerando,encabezado,0,regex_numero,Resolución del Rector Nro. 1122/08,362,396,,CITA,True,False,resolucion
+27,RES-HCS-106-2008,RES-97-2008,RES-HCS-97-2008,considerando,encabezado,0,regex_numero,Resolución del Consejo Superior 97/08,413,450,,CITA,True,False,resolucion
+27,RES-HCS-106-2008,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto Universitario,1209,1231,,CITA,True,False,resolucion
+27,RES-HCS-106-2008,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,1604,1612,,CITA,True,False,resolucion
+27,RES-HCS-106-2008,RES-1122-2008,RES-REC-1122-2008,articulado,articulado,1,regex_numero,Resolución Nro. 1122/08,1774,1797,,CITA,True,False,resolucion
+27,RES-HCS-106-2008,RES-97-2008,RES-HCS-97-2008,articulado,articulado,1,regex_numero,Resolución (CS) 97/08,1814,1835,,CITA,True,False,resolucion
+28,RES-HCS-97-2008,RES-1122-2008,RES-REC-1122-2008,visto,encabezado,0,regex_numero,Resolución Nro. 1122/08,123,146,,CITA,True,False,resolucion
+28,RES-HCS-97-2008,RES-1122-2008,RES-REC-1122-2008,considerando,encabezado,0,regex_numero,Resolución Nro. 1122/08,907,930,,CITA,True,False,resolucion
+28,RES-HCS-97-2008,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,1360,1368,,CITA,True,False,resolucion
+28,RES-HCS-97-2008,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,1608,1616,,CITA,True,False,resolucion
+28,RES-HCS-97-2008,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,1958,1966,,CITA,True,False,resolucion
+28,RES-HCS-97-2008,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,2298,2306,,CITA,True,False,resolucion
+28,RES-HCS-97-2008,RES-1122-2008,RES-REC-1122-2008,articulado,articulado,1,regex_numero,Resolución Nro. 1122/2008,2343,2368,,CITA,True,False,resolucion
+28,RES-HCS-97-2008,ESTATUTO,ESTATUTO,articulado,articulado,76,alias,Estatuto,2527,2535,,CITA,True,False,resolucion
+29,RES-HCS-56-2008,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto de la Universidad,1228,1254,,CITA,True,False,resolucion
+29,RES-HCS-56-2008,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,1608,1616,,CITA,True,False,resolucion
+30,RES-HCS-27-2007,RES-228-2007,RES-?-228-2007,visto,encabezado,0,regex_numero,Resolución Nro. 228/2007,259,283,,CITA,True,False,resolucion
+30,RES-HCS-27-2007,RES-228-2007,RES-?-228-2007,considerando,encabezado,0,regex_numero,"Resolución Nro, 228/2007",406,430,,CITA,True,False,resolucion
+30,RES-HCS-27-2007,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,728,736,,CITA,True,False,resolucion
+30,RES-HCS-27-2007,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,848,856,,CITA,True,False,resolucion
+30,RES-HCS-27-2007,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,1606,1614,,CITA,True,False,resolucion
+30,RES-HCS-27-2007,RES-228-2007,RES-?-228-2007,articulado,articulado,1,regex_numero,Resolución Nro. 228 / 2007,1652,1678,,CITA,True,False,resolucion
+31,RES-CDET-119-2013,RES-64-2013,RES-?-64-2013,visto,encabezado,0,regex_numero,resolución 64/2013,268,286,,CITA,True,False,resolucion
+31,RES-CDET-119-2013,RES-64-2013,RES-CDET-64-2013,considerando,encabezado,0,regex_numero,Resolución (C.D) 64/2013,714,738,incorporación,INCORPORA,True,False,resolucion
+31,RES-CDET-119-2013,RES-64-2013,RES-CDET-64-2013,articulado,articulado,1,regex_numero,Resolución (C.D) 64/2013,1568,1592,incorporación,INCORPORA,True,False,resolucion
+33,RES-HCS-1320-2017,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto de la Universidad,847,873,,CITA,True,False,resolucion
+33,RES-HCS-1320-2017,RES-1523-1990,RES-MIN-1523-1990,articulado,articulado,2,regex_numero,Resolución Ministerial N° 1523/90,3778,3811,,CITA,True,False,resolucion
+33,RES-HCS-1320-2017,LEY-25871,LEY-NAC-25871,articulado,articulado,2,regex_numero,Ley de Migraciones N° 25.871,4424,4452,,CITA,True,False,resolucion
+34,RES-HCS-1002-2015,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto de la Universidad,828,854,,CITA,True,False,resolucion
+34,RES-HCS-1002-2015,RES-1523-1990,RES-MIN-1523-1990,articulado,articulado,2,regex_numero,Resolución Ministerial N° 1523/90,4351,4384,,CITA,True,False,resolucion
+34,RES-HCS-1002-2015,LEY-25871,LEY-NAC-25871,articulado,articulado,2,regex_numero,Ley de Migraciones N° 25.871,4910,4938,,CITA,True,False,resolucion
+35,RES-HCS-826-2014,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto de la Universidad,828,854,,CITA,True,False,resolucion
+35,RES-HCS-826-2014,RES-1523-1990,RES-MIN-1523-1990,articulado,articulado,8,regex_numero,Resolución Ministerial N° 1523/90,4098,4131,,CITA,True,False,resolucion
+35,RES-HCS-826-2014,LEY-25871,LEY-NAC-25871,articulado,articulado,9,regex_numero,Ley de Migraciones N° 25.871,4823,4851,,CITA,True,False,resolucion
+36,RES-HCS-666-2013,LEY-25871,LEY-NAC-25871,articulado,articulado,2,regex_numero,Ley de Migraciones N° 25.871,4574,4602,,CITA,True,False,resolucion
+37,RES-HCS-1057-2015,ORD-16-2009,ORD-HCS-16-2009,visto,encabezado,0,regex_numero,Ordenanza (CS) 16/2009,224,246,modificación,MODIFICA,True,False,resolucion
+37,RES-HCS-1057-2015,ORD-16-2009,ORD-HCS-16-2009,considerando,encabezado,0,regex_numero,Ordenanza (CS) 16/2009,273,295,,CITA,True,False,resolucion
+37,RES-HCS-1057-2015,RES-970-2015,RES-HCS-970-2015,considerando,encabezado,0,regex_numero,Resolución (CS) 970/2015,558,582,reglamentación,REGLAMENTA,True,False,resolucion
+37,RES-HCS-1057-2015,ORD-16-2009,ORD-HCS-16-2009,considerando,encabezado,0,regex_numero,Ordenanza (CS) 16/2009,757,779,modificación,MODIFICA,True,False,resolucion
+37,RES-HCS-1057-2015,ORD-16-2009,ORD-HCS-16-2009,articulado,articulado,4,regex_numero,Ordenanza (eS) 1612009,1261,1283,Modificar,MODIFICA,True,False,resolucion
+37,RES-HCS-1057-2015,ORD-16-2009,ORD-?-16-2009,articulado,articulado,14,regex_numero,Ordenanza 16/2009,2172,2189,Modificar,MODIFICA,True,False,resolucion
+37,RES-HCS-1057-2015,ORD-16-2009,ORD-?-16-2009,articulado,articulado,18,regex_numero,Ordenanza 16/2009,2700,2717,Modificar,MODIFICA,True,False,resolucion
+38,RES-HCS-496-2012,RES-1523-1990,RES-MIN-1523-1990,articulado,articulado,8,regex_numero,Resolución Ministerial N” 1523/90,4141,4174,,CITA,True,False,resolucion
+38,RES-HCS-496-2012,LEY-25871,LEY-NAC-25871,articulado,articulado,9,regex_numero,Ley de Migraciones N? 25.871,4907,4935,,CITA,True,False,resolucion
+39,RES-HCS-407-2011,RES-1523-1990,RES-MIN-1523-1990,articulado,articulado,7,regex_numero,Resolución Ministerial N* 1523/90,3453,3486,,CITA,True,False,resolucion
+39,RES-HCS-407-2011,LEY-25871,LEY-NAC-25871,articulado,articulado,8,regex_numero,"Ley de Migraciones N* 25,871",4051,4079,,CITA,True,False,resolucion
+40,RES-HCS-281-2010,RES-234-2009,RES-HCS-234-2009,visto,encabezado,0,regex_numero,Resolución (CS) 234/2009,305,329,modificación,MODIFICA,True,False,resolucion
+40,RES-HCS-281-2010,RES-41-2007,RES-?-41-2007,considerando,encabezado,0,regex_numero,Resolución Nro. 41/2007,716,739,,CITA,True,False,resolucion
+40,RES-HCS-281-2010,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,801,809,,CITA,True,False,resolucion
+40,RES-HCS-281-2010,RES-234-2009,RES-HCS-234-2009,articulado,articulado,2,regex_numero,Resolución (CS) 234/2009,1886,1910,Modificar,MODIFICA,True,False,resolucion
+40,RES-HCS-281-2010,RES-1523-1990,RES-MIN-1523-1990,articulado,articulado,7,regex_numero,Resolución Ministerial Número 1523/90,4200,4237,,CITA,True,False,resolucion
+40,RES-HCS-281-2010,LEY-25871,LEY-NAC-25871,articulado,articulado,8,regex_numero,Ley de Migraciones N* 25.871,4776,4804,,CITA,True,False,resolucion
+41,RES-HCS-200-2009,RES-1953-2009,RES-REC-1953-2009,visto,encabezado,0,regex_numero,Resolución Nro.1953/09,187,209,Reglamentación,REGLAMENTA,True,False,resolucion
+41,RES-HCS-200-2009,RES-1953-2009,RES-REC-1953-2009,considerando,encabezado,0,regex_numero,Resolución Nro. 1953/09,355,378,,CITA,True,False,resolucion
+41,RES-HCS-200-2009,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,716,724,,CITA,True,False,resolucion
+41,RES-HCS-200-2009,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,964,972,,CITA,True,False,resolucion
+41,RES-HCS-200-2009,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,1122,1130,,CITA,True,False,resolucion
+41,RES-HCS-200-2009,RES-1953-2009,RES-REC-1953-2009,considerando,encabezado,0,regex_numero,Resolución Nro. 1953/09,1268,1291,agregado,INCORPORA,True,False,resolucion
+41,RES-HCS-200-2009,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,1823,1831,,CITA,True,False,resolucion
+41,RES-HCS-200-2009,RES-1953-2009,RES-REC-1953-2009,articulado,articulado,1,regex_numero,Resolución Nro. 1953/09,1869,1892,,CITA,True,False,resolucion
+42,RES-HCS-107-2008,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,1344,1352,,CITA,True,False,resolucion
+43,RES-HCS-84-2008,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,658,666,,CITA,True,False,resolucion
+44,RES-HCS-57-2008,RES-47-2008,RES-HCS-47-2008,considerando,encabezado,0,regex_numero,Resolución (CS) Nro. 47/ 08,869,896,,CITA,True,False,resolucion
+44,RES-HCS-57-2008,ORD-2-2007,ORD-HCS-2-2007,considerando,encabezado,0,regex_numero,Ordenanza CS N” 2/07,1473,1493,,CITA,True,False,resolucion
+44,RES-HCS-57-2008,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,2281,2289,,CITA,True,False,resolucion
+44,RES-HCS-57-2008,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,2442,2450,,CITA,True,False,resolucion
+44,RES-HCS-57-2008,ORD-2-2007,ORD-HCS-2-2007,articulado,articulado,1,regex_numero,Ordenanza de Consejo Superior Nro. 2/07,2693,2732,,CITA,True,False,resolucion
+44,RES-HCS-57-2008,RES-47-2008,RES-HCS-47-2008,articulado,articulado,1,regex_numero,Resolución (CS) Nro. 47/08,2842,2868,,CITA,True,False,resolucion
+45,RES-HCS-47-2008,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto Universitario,945,967,,CITA,True,False,resolucion
+45,RES-HCS-47-2008,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,1620,1628,,CITA,True,False,resolucion
+46,RES-HCS-41-2007,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto Universitario,1769,1791,,CITA,True,False,resolucion
+46,RES-HCS-41-2007,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,2287,2295,,CITA,True,False,resolucion
+47,RES-HCS-694-2013,RES-531-2012,RES-HCS-531-2012,considerando,encabezado,0,regex_numero,Resolución (CS) 53112012,420,444,,CITA,True,False,resolucion
+47,RES-HCS-694-2013,RES-531-2012,RES-HCS-531-2012,considerando,encabezado,0,regex_numero,Resolución (CS) 53112012,830,854,,CITA,True,False,resolucion
+47,RES-HCS-694-2013,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto de la Universidad,1070,1096,,CITA,True,False,resolucion
+47,RES-HCS-694-2013,RES-531-2012,RES-HCS-531-2012,articulado,articulado,1,regex_numero,Resolución (CS) 531/2012,1626,1650,,CITA,True,False,resolucion
+48,RES-HCS-693-2013,RES-531-2012,RES-HCS-531-2012,considerando,encabezado,0,regex_numero,Resolución (CS) 53112012,393,417,,CITA,True,False,resolucion
+48,RES-HCS-693-2013,RES-531-2012,RES-HCS-531-2012,considerando,encabezado,0,regex_numero,Resolución (CS) 53112012,803,827,,CITA,True,False,resolucion
+48,RES-HCS-693-2013,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto de la Universidad,1042,1068,,CITA,True,False,resolucion
+48,RES-HCS-693-2013,RES-531-2012,RES-HCS-531-2012,articulado,articulado,1,regex_numero,Resolución (CS) 53112012,1540,1564,,CITA,True,False,resolucion
+49,RES-HCS-692-2013,RES-531-2012,RES-HCS-531-2012,considerando,encabezado,0,regex_numero,Resolución (CS) 531/2012,476,500,,CITA,True,False,resolucion
+49,RES-HCS-692-2013,RES-531-2012,RES-HCS-531-2012,considerando,encabezado,0,regex_numero,Resolución (CS) 531/2012,892,916,,CITA,True,False,resolucion
+49,RES-HCS-692-2013,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto,1131,1139,,CITA,True,False,resolucion
+49,RES-HCS-692-2013,RES-531-2012,RES-HCS-531-2012,articulado,articulado,1,regex_numero,Resolución (CS) 531/2012,1687,1711,,CITA,True,False,resolucion
+50,RES-HCS-691-2013,RES-633-2013,RES-HCS-633-2013,visto,encabezado,0,regex_numero,Resolución (CS) 63312013,272,296,,CITA,True,False,resolucion
+50,RES-HCS-691-2013,RES-531-2012,RES-HCS-531-2012,considerando,encabezado,0,regex_numero,Resolución (CS) 53112012,323,347,,CITA,True,False,resolucion
+50,RES-HCS-691-2013,RES-633-2013,RES-HCS-633-2013,considerando,encabezado,0,regex_numero,Resolución (CS) 63312013,521,545,,CITA,True,False,resolucion
+50,RES-HCS-691-2013,ESTATUTO,ESTATUTO,considerando,encabezado,0,alias,Estatuto de la Universidad,1666,1692,,CITA,True,False,resolucion
+51,RES-HCS-675-2013,RES-531-2012,RES-HCS-531-2012,considerando,encabezado,0,regex_numero,Resolución (CS) 531/2012,431,455,,CITA,True,False,resolucion
+51,RES-HCS-675-2013,RES-531-2012,RES-HCS-531-2012,considerando,encabezado,0,regex_numero,Resolución (CS) 531/2012,842,866,,CITA,True,False,resolucion
+51,RES-HCS-675-2013,RES-531-2012,RES-HCS-531-2012,articulado,articulado,1,regex_numero,Resolución (CS) 53112012,1613,1637,,CITA,True,False,resolucion
+52,RES-HCS-218-2009,LEY-24521,LEY-NAC-24521,visto,encabezado,0,regex_numero,Ley N” 24.521,181,194,,CITA,True,False,resolucion
+52,RES-HCS-218-2009,LEY-24521,LEY-NAC-24521,considerando,encabezado,0,alias,Ley de Educación Superior,437,462,,CITA,True,False,resolucion
+53,RES-HCS-217-2009,ORD-14-2009,ORD-HCS-14-2009,visto,encabezado,0,regex_numero,Ordenanza (CS) 14/2009,152,174,,CITA,True,False,resolucion
+53,RES-HCS-217-2009,ORD-14-2009,ORD-HCS-14-2009,considerando,encabezado,0,regex_numero,Ordenanza (CS) 14/09,584,604,,CITA,True,False,resolucion
+57,RES-CDET-271-2016,RES-368-2010,RES-HCS-368-2010,considerando,encabezado,0,regex_numero,resolución (CS) 368/2010,386,410,,CITA,True,False,resolucion
+58,RES-CDET-270-2016,RES-368-2010,RES-HCS-368-2010,considerando,encabezado,0,regex_numero,resolución (CS) 368/2010,389,413,,CITA,True,False,resolucion
+59,RES-CDET-269-2016,RES-368-2010,RES-HCS-368-2010,considerando,encabezado,0,regex_numero,resolución (CS) 368/2010,388,412,,CITA,True,False,resolucion
+59,RES-CDET-269-2016,RES-368-2010,RES-HCS-368-2010,considerando,encabezado,0,regex_numero,resolución (CS) 368/2010,518,542,,CITA,True,False,resolucion
+60,RES-CDET-268-2016,RES-368-2010,RES-HCS-368-2010,considerando,encabezado,0,regex_numero,resolución (CS) 368/2010,420,444,,CITA,True,False,resolucion
+61,RES-CDET-267-2016,RES-368-2010,RES-HCS-368-2010,considerando,encabezado,0,regex_numero,resolución (CS) 368/2010,393,417,,CITA,True,False,resolucion
+62,RES-CDET-266-2016,RES-368-2010,RES-HCS-368-2010,considerando,encabezado,0,regex_numero,resolución (CS) 368/2010,388,412,,CITA,True,False,resolucion
+63,RES-CDET-265-2016,RES-368-2010,RES-HCS-368-2010,considerando,encabezado,0,regex_numero,resolución (CS) 368/2010,389,413,,CITA,True,False,resolucion
+64,RES-CDET-264-2016,RES-368-2010,RES-HCS-368-2010,considerando,encabezado,0,regex_numero,resolución (CS) 368/2010,395,419,,CITA,True,False,resolucion
+64,RES-CDET-264-2016,RES-368-2010,RES-HCS-368-2010,considerando,encabezado,0,regex_numero,resolución (CS) 368/2010,568,592,,CITA,True,False,resolucion
+65,RES-CDET-263-2016,RES-368-2010,RES-HCS-368-2010,considerando,encabezado,0,regex_numero,resolución (CS) 368/2010,387,411,,CITA,True,False,resolucion
+65,RES-CDET-263-2016,RES-368-2010,RES-HCS-368-2010,considerando,encabezado,0,regex_numero,resolución (CS) 368/2010,518,542,,CITA,True,False,resolucion
+66,RES-CDET-262-2016,RES-368-2010,RES-HCS-368-2010,considerando,encabezado,0,regex_numero,resolución (CS) 368/2010,385,409,,CITA,True,False,resolucion
+66,RES-CDET-262-2016,RES-368-2010,RES-HCS-368-2010,considerando,encabezado,0,regex_numero,resolución (CS) 368/2010,512,536,,CITA,True,False,resolucion

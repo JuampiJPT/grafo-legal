@@ -150,6 +150,16 @@ La revisión de tipos pasa de 36 a 78 casos, 13 por tipo predicho (`docs/revisio
 
 `scripts/17_comparar_metodos.py` compara todos los métodos en test con bootstrap pareado por norma origen (2.000 réplicas). Se remuestrean normas, no pares, porque los pares de una misma norma no son independientes. Una diferencia con las reglas se considera significativa solo si su intervalo del 95 % no contiene al 0.
 
+## D28. PI4: transferencia al digesto con el vocabulario en el adaptador (20/11/2026)
+
+El digesto de la UNNOBA se lee con un adaptador nuevo, `fuentes/unnoba.py`, que se encarga del texto del PDF, las partes, las menciones y las claves. Las reglas, el parser LLM y el híbrido corren sin cambios.
+
+- Se evalúa sobre una muestra de 70 documentos anotada en tres clases (MOD, APLICA, CITA). El vínculo es MOD ∪ APLICA y las claves se comparan sin emisor.
+- Los prompts se informan tal cual y en una variante «vocab», que solo enumera también resoluciones, ordenanzas y el estatuto. Esto mide cuánto del parser LLM depende de la fuente.
+- El resultado principal es el del híbrido con el prompt tal cual: F1 0,854. Supera a las reglas en forma significativa.
+
+Detalle en `docs/pi4_digesto_unnoba.md`, `results/pi4_unnoba/RESULTADOS.md` y B57.
+
 ## D27. Parser híbrido en cascada (18/11/2026)
 
 Es un parser propio y no una combinación de salidas:
