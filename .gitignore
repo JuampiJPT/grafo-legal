@@ -13,3 +13,6 @@ data/verificacion/
 
 # clave de la API de Anthropic para el parser LLM (docs/parser_llm.md)
 .anthropic_key
+
+# digesto UNNOBA: resumenes con nombres y DNI (B56)
+data/corpus_unnoba/posgrado_lista.csv

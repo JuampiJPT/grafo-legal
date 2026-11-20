@@ -69,6 +69,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B53 | 16/11 | Dificultad | La API no respondía desde el entorno de la Mac; se saca la temperatura | Cerrada |
 | B54 | 16/11 | Hallazgo | El parser LLM sube el recall y el tipado; la intersección con las reglas es la única mejora significativa | Abierta |
 | B55 | 18/11 | Decisión | Parser híbrido en cascada: las reglas filtran y el LLM decide la zona gris | Cerrada |
+| B56 | 20/11 | Dificultad | Descarga del digesto de la UNNOBA para la PI4 | Abierta |
 
 ## Entradas
 
@@ -695,6 +696,43 @@ El LLM nunca inventa destinos: solo juzga lo que el catálogo resolvió.
 - **Costo:** USD 3,6 por corrida, contra USD 14 del LLM puro. Más USD 3,4 del prompt v1 descartado.
 
 **Decisión.** Ver D27. El híbrido en cascada se informa como tercer parser. El cuello de botella vuelve a ser el VISTO: el criterio de InfoLEG para vincular una norma citada como fundamento no está en el texto. Grafo en `data/grafo_hibrido/`, con `fuente = 'hibrido'`.
+
+### B56 · 20/11/2026 · Dificultad · Descarga del digesto de la UNNOBA para la PI4
+
+**Contexto.** Para la PI4 hace falta un corpus normativo distinto de InfoLEG, sin relaciones estructuradas. El candidato es el digesto de la UNNOBA (B19, B22). Su robots.txt prohíbe todo acceso automático (`Disallow: /`) y la página de transparencia de la UNNOBA no publica la normativa: solo enlaza al Estatuto y al digesto. Desde los entornos de Claude y de ChatGPT el sitio no responde.
+
+**Qué se hizo** (el 20/11, en parte en una sesión de ChatGPT del equipo):
+
+1. Se guardaron a mano los HTML de once secciones del digesto, entre ellas Posgrado, Cursadas y Escuela de Tecnología.
+2. En cada documento hay dos enlaces: `documento.frame.php?cod=N` (versión normal) y `documento.frameim.php?cod=N&arch=ARCHIVO.pdf` (versión con firmas). Se eligió **la versión con firmas**.
+3. Las secciones dieron 1.254 apariciones. Deduplicadas por `cod`, quedan **898 documentos únicos**: muchos aparecen en varias secciones (por ejemplo Cursos, Alumnos, Posgrado y Aranceles).
+4. ChatGPT armó dos descargadores:
+   - `kit_descargador_unnoba_237`, la primera versión, solo para Posgrado, que generaba un ZIP;
+   - `Descargar_PDFs_UNNOBA.command`, la versión final, con el catálogo de 898 documentos incorporado. Baja cada PDF por separado, omite los que ya están, reintenta tres veces y registra los fallos.
+
+   No se pudieron probar contra el servidor desde ChatGPT.
+5. El equipo corrió el descargador desde su propia computadora y copió los PDF a `data/textos/unnoba/pdf/`.
+
+**Verificación (Claude, 20/11).** Había 941 archivos y todos eran PDF válidos: empiezan con `%PDF` y ninguno pesa menos de 2 KB. Ocupan 390 MB.
+
+- **898** son los del catálogo, con el nombre original del digesto (por ejemplo `RESOLUCIONHCS20181462.pdf`).
+- **43** vienen de bajadas anteriores hechas con el navegador, con otro formato de nombre (`RES_HCS_Nº_004_07.pdf`). De esos:
+  - las copias «(1)» o «(2)» son idénticas byte por byte. Al copiar, Finder avisó de nombres repetidos, y elegir «omitir» dejó el archivo que ya estaba.
+  - otros tienen el mismo contenido que uno del catálogo, con el otro nombre (`ORDENANZA200701.pdf` y `ORD_HCS_Nº_001_07.pdf`).
+  - 14 son documentos que no están entre los 898 (por ejemplo RES HCS 1407/18, 872/14 y 880/14).
+- En total hay **912 documentos distintos**.
+
+**Datos personales.** Muchas resoluciones (becas, designaciones) traen nombres y DNI. Los PDF no van al repositorio: `*.pdf` ya está en `.gitignore`. Las listas con resúmenes tampoco deberían publicarse sin anonimizar.
+
+**Ordenamiento (con el acuerdo del equipo).**
+
+- Las 29 copias (el mismo contenido con otro nombre, o «(n)») pasaron a `pdf/_duplicados/`, con el motivo de cada una en `LEEME.csv`. Quedaron 912 PDF, uno por documento.
+- Los descargadores y un ejemplo del visor se copiaron a `tools/digesto_unnoba/`; la primera versión, a `historico_kit_237/`.
+- El catálogo, que estaba dentro del `.command`, se pasó a `data/corpus_unnoba/catalogo.csv` y se le sumaron los 14 documentos que no estaban: 912 filas.
+- En Descargas se borraron los duplicados (`PDF_UNNOBA/`, el kit y sus ZIP), después de verificar que cada PDF estaba en el proyecto.
+- La lista de Posgrado con resúmenes, que trae nombres y DNI, quedó fuera de git.
+
+**Pendiente.** Elegir la muestra a anotar para la PI4: reglamentos y sus modificaciones, más casos negativos.
 
 ## Cuestiones abiertas
 

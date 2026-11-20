@@ -1,0 +1,13 @@
+DESCARGADOR DE DOCUMENTOS - DIGESTO UNNOBA
+
+El archivo documentos.csv contiene los enlaces de los documentos detectados en la página enviada.
+
+En Mac:
+1) Descomprimí este kit.
+2) Abrí la Terminal en la carpeta.
+3) Ejecutá: python3 descargar_unnoba.py
+
+El programa descargará los PDF y creará UNNOBA_documentos.zip con los documentos que haya podido obtener.
+La descarga requiere conexión a digesto.unnoba.edu.ar desde tu computadora.
+
+Importante: este kit todavía NO contiene los PDF, solo el descargador y los enlaces. El acceso desde el entorno de ChatGPT al Digesto está bloqueado; por eso los originales deben recuperarse desde la red donde el sitio sí carga.
