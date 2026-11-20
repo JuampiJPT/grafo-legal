@@ -1,0 +1,108 @@
+articulo,operacion,parte,norma,aplicado_en_consolidado
+2,SUSTITUYE,artículo,Ley 27802,False
+4,SUSTITUYE,artículo,Ley 27802,True
+9,SUSTITUYE,artículo,Ley 27802,True
+11,SUSTITUYE,artículo,Ley 27802,True
+11 bis,INCORPORA,artículo,Ley 27802,True
+12,SUSTITUYE,artículo,Ley 27802,True
+15,SUSTITUYE,artículo,Ley 27802,True
+16,SUSTITUYE,artículo,Ley 27802,True
+17 bis,INCORPORA,artículo,Ley 26592,True
+18,SUSTITUYE,artículo,Ley 27802,True
+20,SUSTITUYE,artículo,Ley 27802,True
+21,SUSTITUYE,artículo,Ley 27802,True
+22,SUSTITUYE,artículo,Ley 27802,True
+23,SUSTITUYE,artículo,Ley 27802,True
+26,SUSTITUYE,artículo,Ley 27802,True
+27,SUSTITUYE,artículo,Ley 27802,True
+28,DEROGA,artículo,Ley 27802,True
+29,SUSTITUYE,artículo,Ley 27802,True
+29 bis,SUSTITUYE,artículo,Ley 27802,True
+30,SUSTITUYE,artículo,Ley 27802,True
+31,SUSTITUYE,artículo,Ley 27802,True
+32,SUSTITUYE,artículo,Ley 26390,True
+33,SUSTITUYE,artículo,Ley 26390,True
+52,SUSTITUYE,artículo,Ley 27802,True
+53,SUSTITUYE,artículo,Ley 27802,True
+54,DEROGA,artículo,Ley 27802,True
+55,SUSTITUYE,artículo,Ley 27802,True
+61,DEROGA,artículo,Ley 27802,True
+66,SUSTITUYE,artículo,Ley 27802,True
+68,SUSTITUYE,artículo,Ley 27802,True
+71,SUSTITUYE,artículo,Ley 27322,True
+73,SUSTITUYE,artículo,Ley 26911,True
+75,SUSTITUYE,artículo,Ley 27323,True
+80,SUSTITUYE,artículo,Ley 27802,True
+89,DEROGA,artículo,Ley 27802,False
+92 bis,SUSTITUYE,artículo,Ley 27742,True
+92 ter,SUSTITUYE,artículo,Ley 27802,True
+95,SUSTITUYE,artículo,Ley 27802,True
+96,SUSTITUYE,artículo,Ley 24013,True
+98,SUSTITUYE,artículo,Ley 24013,True
+99,SUSTITUYE,artículo,Ley 27802,True
+102,SUSTITUYE,artículo,Ley 27802,True
+102 bis,MODIFICA_PARCIAL,capítulo,Ley 27555,True
+103 bis,SUSTITUYE,artículo,Ley 27802,True
+104,SUSTITUYE,artículo,Ley 27802,True
+104 bis,INCORPORA,artículo,Ley 27802,True
+105,SUSTITUYE,artículo,Ley 27802,True
+105 bis,DEROGA,artículo,Decreto 773,True
+113,DEROGA,artículo,Ley 27802,True
+119,SUSTITUYE,artículo,Ley 26390,True
+122,SUSTITUYE,artículo,Ley 27073,True
+124,SUSTITUYE,artículo,Ley 27802,True
+132,MODIFICA_PARCIAL,inciso,Decreto 70,True
+132,MODIFICA_PARCIAL,inciso,Ley 27802,True
+132 bis,INCORPORA,artículo,Ley 25345,True
+132 bis,DEROGA,artículo,Decreto 70,False
+133,SUSTITUYE,artículo,Ley 27802,True
+136,SUSTITUYE,artículo,Ley 27742,True
+139,SUSTITUYE,artículo,Ley 27802,True
+140,SUSTITUYE,artículo,Ley 27802,True
+143,SUSTITUYE,artículo,Ley 27802,True
+147,MODIFICA_PARCIAL,párrafo,Decreto 27,True
+147,DEROGA,artículo,Ley 27444,False
+154,SUSTITUYE,artículo,Ley 27802,True
+173,DEROGA,artículo,Ley 24013,True
+174,DEROGA,artículo,Ley 27802,True
+175,DEROGA,artículo,Ley 27802,True
+176,DEROGA,artículo,Ley 27802,True
+177,SUSTITUYE,artículo,Ley 27742,True
+187,SUSTITUYE,artículo,Ley 26390,True
+189,SUSTITUYE,artículo,Ley 26390,True
+189 bis,SUSTITUYE,artículo,Ley 26390,True
+190,SUSTITUYE,artículo,Ley 26390,True
+191,SUSTITUYE,artículo,Ley 26390,True
+192,DEROGA,artículo,Ley 26390,True
+193,DEROGA,artículo,Ley 26390,True
+194,SUSTITUYE,artículo,Ley 26390,True
+195,SUSTITUYE,artículo,Ley 26390,True
+197 bis,SUSTITUYE,artículo,Ley 27802,True
+198,SUSTITUYE,artículo,Ley 27802,True
+209,SUSTITUYE,artículo,Ley 27802,True
+210,SUSTITUYE,artículo,Ley 27802,True
+216,DEROGA,artículo,Ley 27802,True
+223 bis,INCORPORA,artículo,Ley 24700,True
+225,SUSTITUYE,artículo,Ley 27802,True
+228,SUSTITUYE,artículo,Ley 27802,True
+231,SUSTITUYE,artículo,Ley 25877,True
+233,SUSTITUYE,artículo,Ley 25877,True
+240,SUSTITUYE,artículo,Ley 27802,True
+241,SUSTITUYE,artículo,Ley 27802,True
+242,SUSTITUYE,artículo,Ley 27742,True
+245,SUSTITUYE,artículo,Ley 27802,True
+245 bis,SUSTITUYE,artículo,Ley 27742,True
+248,SUSTITUYE,artículo,Ley 27802,True
+251,SUSTITUYE,artículo,Ley 24522,False
+252,SUSTITUYE,artículo,Ley 27426,True
+253,MODIFICA_PARCIAL,párrafo,Ley 24347,True
+253,MODIFICA_PARCIAL,párrafo,Ley 27426,True
+255,SUSTITUYE,artículo,Ley 27802,True
+255 bis,INCORPORA,artículo,Ley 26593,True
+264,DEROGA,artículo,Ley 24522,False
+265,DEROGA,artículo,Ley 24522,False
+266,DEROGA,artículo,Ley 24522,False
+275,DEROGA,artículo,Ley 27802,True
+276,SUSTITUYE,artículo,Ley 27802,True
+277,SUSTITUYE,artículo,Ley 27802,True
+278,INCORPORA,artículo,Ley 27802,True
