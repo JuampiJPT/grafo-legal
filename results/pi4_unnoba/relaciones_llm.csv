@@ -1,0 +1,38 @@
+doc,id_destino,parte_origen,tipo,verificada,cita
+12,LEY-13016,articulado,CITA,True,Ley 13016
+16,ORD-14-2009,visto,CITA,True,Ordenanza (CS) 14/2009
+16,ORD-14-2009,articulado,MODIFICA,True,Ordenanza (CS) 14/2009
+16,ORD-14-2009,articulado,SUSTITUYE,True,citada Ordenanza
+16,ORD-14-2009,articulado,MODIFICA,True,Ordenanza (CS) 14/2009
+16,ORD-14-2009,articulado,INCORPORA,True,citada Ordenanza
+16,ORD-14-2009,articulado,MODIFICA,True,Ordenanza (CS) 14/2009
+16,ORD-14-2009,articulado,SUSTITUYE,True,citada Ordenanza
+17,ORD-12-2009,considerando,CITA,True,Ordenanza 12/2009
+20,RES-439-2006,considerando,CITA,True,Resolución Nro. 439/ 2006
+20,RES-439-2006,articulado,MODIFICA,True,Resolución Nro. 439/ 2006
+21,DEC-NAC-499-1995,visto,CITA,True,Decreto del Poder Ejecutivo Nacional N* 499/95
+21,LEY-24521,visto,CITA,True,Ley de Educación Superior N* 24321
+21,LEY-24521,considerando,CITA,True,"Ley de Educación Superior,"
+21,LEY-24521,articulado,CITA,True,Ley 24.521
+24,RES-312-2007,visto,CITA,True,Resolución Nro. 312/2007
+24,RES-312-2007,articulado,MODIFICA,True,Resolución Nro. 312/2007
+28,RES-1122-2008,visto,CITA,True,Resolución Nro. 1122/08
+28,RES-1122-2008,articulado,MODIFICA,True,Resolución Nro. 1122/2008
+33,LEY-25871,articulado,CITA,True,Ley de Migraciones N° 25.871
+34,LEY-25871,articulado,CITA,True,Ley de Migraciones N° 25.871
+35,LEY-25871,articulado,CITA,True,Art. 7° de la Ley de Migraciones N° 25.871
+36,LEY-25871,articulado,CITA,True,Ley de Migraciones N° 25.871
+37,ORD-16-2009,visto,CITA,True,Ordenanza (CS) 16/2009
+37,RES-970-2015,considerando,CITA,True,Resolución (CS) 970/2015
+37,ORD-16-2009,articulado,SUSTITUYE,True,Ordenanza (eS) 1612009
+37,ORD-16-2009,articulado,SUSTITUYE,True,Ordenanza 16/2009
+37,ORD-16-2009,articulado,SUSTITUYE,True,Ordenanza 16/2009
+38,LEY-25871,articulado,CITA,True,Ley de Migraciones N? 25.871
+39,LEY-25871,articulado,CITA,True,"Ley de Migraciones N* 25,871"
+40,DEC-NAC-234-2009,visto,CITA,True,Resolución (CS) 234/2009
+40,LEY-25871,articulado,CITA,True,Ley de Migraciones N* 25.871
+41,RES-1953-2009,visto,CITA,True,Resolución Nro.1953/09
+41,RES-1953-2009,articulado,MODIFICA,True,Resolución Nro. 1953/09
+52,LEY-24521,visto,CITA,True,Artículo 39 bis de la Ley N” 24.521 de Educación Superior
+52,LEY-24521,considerando,CITA,True,articulo 39 bis de la Ley de Educación Superior
+63,DEC-NAC-368-2010,considerando,CITA,True,resolución (CS) 368/2010

@@ -16,3 +16,8 @@ data/verificacion/
 
 # digesto UNNOBA: resumenes con nombres y DNI (B56)
 data/corpus_unnoba/posgrado_lista.csv
+data/textos/unnoba/txt/
+# PI4: textos de la muestra y respuestas del LLM sobre ellos (nombres y DNI) (B57)
+data/textos/unnoba/muestra_pi4_textos.jsonl
+results/pi4_unnoba/cache_llm/
+results/pi4_unnoba/cache_hibrido/

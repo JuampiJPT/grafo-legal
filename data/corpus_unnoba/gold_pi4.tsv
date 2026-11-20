@@ -1,0 +1,109 @@
+doc	destino	clase	nota
+00	RES-HCS-32-2007	APLICA	tablas de equivalencia del plan aprobado por esa res (visto/considerando)
+00	RES-HCS-92-2008	APLICA	idem
+00	RES-HCS-253-2009	APLICA	idem
+00	RES-HCS-252-2009	APLICA	idem
+00	RES-HCS-38-2007	APLICA	idem
+00	RES-HCS-76-2008	APLICA	idem
+00	RES-HCS-77-2008	APLICA	idem
+01	ESTATUTO	CITA	art 70 inc 14, competencia
+05	ESTATUTO	CITA	art 70 inc 25, competencia
+07	RES-HCS-531-2012	APLICA	otorga beneficio Tipo I B de la Res 531/2012
+07	ESTATUTO	CITA	competencia
+09	RES-REC-3565-2011	MOD	ratifica resolucion del Rector ad referendum
+09	ESTATUTO	CITA	competencia
+10	RES-DET-313-2016	CITA	resolucion ad referendum mencionada en considerando
+11	RES-REC-3158-2010	APLICA	fija requisitos previstos en art 2 anexo I de esa res
+12	RES-CDET-278-2016	CITA	remision al formato aprobado (articulado, sin accion)
+15	RES-REC-3800-2011	MOD	ratifica
+15	ORD-HCS-14-2009	MOD	ratifica la modificatoria de la Ord 14/09
+16	ORD-HCS-14-2009	MOD	modifica parcialmente
+17	ORD-HCS-12-2009	MOD	reemplaza el procedimiento aprobado por esa ordenanza
+17	ESTATUTO	CITA	competencia
+18	ORD-HCS-23-2009	MOD	modifica art 13 del Reglamento General de Alumnos
+19	ESTATUTO	MOD	reglamenta el art 35 del Estatuto
+20	RES-?-439-2006	MOD	modifica parcialmente el Reglamento General de Alumnos y Examenes
+20	ESTATUTO	CITA	competencia
+21	DEC-NAC-499-1995	APLICA	establece los mecanismos que exige el art 3 del decreto
+21	LEY-NAC-24521-1995	APLICA	ingreso de mayores de 25 del art 7 LES
+21	RES-?-556-1998	CITA	marco citado en el visto
+21	ESTATUTO	CITA	competencia
+22	RES-HCS-44-2008	MOD	extiende la aplicacion de los arts 2 y 3
+22	ESTATUTO	CITA	competencia
+23	ESTATUTO	CITA	competencia
+24	RES-REC-312-2007	MOD	ratifica
+24	ESTATUTO	CITA	competencia
+25	RES-REC-1122-2008	MOD	prorroga las regularidades extendidas por esa resolucion
+25	RES-HCS-97-2008	APLICA	alumnos contemplados (ratificatoria)
+25	RES-HCS-106-2008	APLICA	alumnos contemplados
+25	ESTATUTO	CITA	competencia
+26	RES-REC-1122-2008	MOD	prorroga las regularidades extendidas por esa resolucion
+26	RES-HCS-97-2008	APLICA	alumnos contemplados (ratificatoria)
+26	RES-HCS-106-2008	APLICA	alumnos contemplados
+26	ESTATUTO	CITA	competencia
+27	RES-REC-1122-2008	APLICA	instancia de evaluacion para los alumnos contemplados en esa resolucion
+27	RES-HCS-97-2008	APLICA	ratificatoria de la 1122/08
+27	ESTATUTO	CITA	competencia
+28	RES-REC-1122-2008	MOD	ratifica
+28	ESTATUTO	CITA	competencia
+29	ESTATUTO	CITA	competencia
+30	RES-REC-228-2007	MOD	ratifica
+30	ESTATUTO	CITA	competencia
+31	RES-CDET-64-2013	MOD	deja sin efecto
+33	ESTATUTO	CITA	competencia
+34	ESTATUTO	CITA	competencia
+35	ESTATUTO	CITA	competencia
+35	RES-MIN-1523-1990	CITA	remision en el articulado
+35	LEY-NAC-25871-2004	CITA	en el modelo de constancia
+37	ORD-HCS-16-2009	MOD	modifica arts 4, 14 y 18 del Reglamento de Pases y Equivalencias
+37	RES-HCS-970-2015	CITA	creacion del Instituto, antecedente
+38	RES-MIN-1523-1990	CITA	remision en el articulado
+38	LEY-NAC-25871-2004	CITA	en el modelo de constancia
+39	RES-MIN-1523-1990	CITA	remision en el articulado
+39	LEY-NAC-25871-2004	CITA	en el modelo de constancia
+40	RES-HCS-234-2009	MOD	modifica parcialmente el Calendario Academico 2010
+40	RES-REC-41-2007	CITA	delegacion de funciones
+40	ESTATUTO	CITA	competencia
+40	RES-MIN-1523-1990	CITA	remision en el articulado
+40	LEY-NAC-25871-2004	CITA	en el modelo de constancia
+41	RES-REC-1953-2009	MOD	ratifica
+41	ESTATUTO	CITA	competencia
+42	ESTATUTO	CITA	competencia
+43	ESTATUTO	CITA	competencia
+44	ORD-HCS-2-2007	APLICA	admite el ingreso en base a esa ordenanza
+44	RES-HCS-47-2008	APLICA	admite el ingreso en base a esa resolucion
+44	ESTATUTO	CITA	competencia
+45	ESTATUTO	CITA	competencia
+46	ESTATUTO	CITA	competencia
+47	RES-HCS-531-2012	APLICA	otorga beneficio previsto en esa res
+47	ESTATUTO	CITA	competencia
+48	RES-HCS-531-2012	APLICA	otorga beneficio previsto en esa res
+48	ESTATUTO	CITA	competencia
+49	RES-HCS-531-2012	APLICA	otorga beneficio previsto en esa res
+49	ESTATUTO	CITA	competencia
+50	RES-HCS-633-2013	MOD	revisa el beneficio otorgado por esa resolucion
+50	RES-HCS-531-2012	APLICA	programa en cuyo marco se otorga
+50	ESTATUTO	CITA	competencia
+51	RES-HCS-531-2012	APLICA	otorga beneficio previsto en esa res
+51	ESTATUTO	CITA	competencia
+52	LEY-NAC-24521-1995	APLICA	establece los criterios del art 39 bis LES
+53	ORD-HCS-14-2009	APLICA	reglamenta las actividades de posgrado previstas en el art 8 de esa ordenanza
+57	RES-HCS-368-2010	CITA	formulario del anexo de esa res (considerando)
+58	RES-HCS-368-2010	CITA	formulario del anexo de esa res (considerando)
+59	RES-HCS-368-2010	CITA	formulario del anexo de esa res (considerando)
+60	RES-HCS-368-2010	CITA	formulario del anexo de esa res (considerando)
+61	RES-HCS-368-2010	CITA	formulario del anexo de esa res (considerando)
+62	RES-HCS-368-2010	CITA	formulario del anexo de esa res (considerando)
+63	RES-HCS-368-2010	CITA	formulario del anexo de esa res (considerando)
+64	RES-HCS-368-2010	CITA	formulario del anexo de esa res (considerando)
+65	RES-HCS-368-2010	CITA	formulario del anexo de esa res (considerando)
+66	RES-HCS-368-2010	CITA	formulario del anexo de esa res (considerando)
+2	RES-HCS-657-2013	CITA	plan estrategico, mencion incidental [revision: omision de anotacion]
+12	LEY-PROV-13016	CITA	bibliografia del programa [revision: omision de anotacion]
+17	RES-HCS-1-2001	CITA	sello de copia fiel [revision: omision de anotacion]
+33	RES-MIN-1523-1990	CITA	remision en el articulado [revision: omision de anotacion]
+33	LEY-NAC-25871-2004	CITA	en el modelo de constancia [revision: omision de anotacion]
+34	RES-MIN-1523-1990	CITA	remision en el articulado [revision: omision de anotacion]
+34	LEY-NAC-25871-2004	CITA	en el modelo de constancia [revision: omision de anotacion]
+36	RES-MIN-1523-1990	CITA	remision en el articulado [revision: omision de anotacion]
+36	LEY-NAC-25871-2004	CITA	en el modelo de constancia [revision: omision de anotacion]

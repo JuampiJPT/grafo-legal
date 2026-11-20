@@ -69,7 +69,8 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B53 | 16/11 | Dificultad | La API no respondía desde el entorno de la Mac; se saca la temperatura | Cerrada |
 | B54 | 16/11 | Hallazgo | El parser LLM sube el recall y el tipado; la intersección con las reglas es la única mejora significativa | Abierta |
 | B55 | 18/11 | Decisión | Parser híbrido en cascada: las reglas filtran y el LLM decide la zona gris | Cerrada |
-| B56 | 20/11 | Dificultad | Descarga del digesto de la UNNOBA para la PI4 | Abierta |
+| B56 | 20/11 | Dificultad | Descarga del digesto de la UNNOBA para la PI4 | Cerrada |
+| B57 | 20/11 | Hallazgo | PI4: el pipeline se transfiere al digesto de la UNNOBA si el adaptador lleva el vocabulario de la fuente | Abierta |
 
 ## Entradas
 
@@ -732,7 +733,69 @@ El LLM nunca inventa destinos: solo juzga lo que el catálogo resolvió.
 - En Descargas se borraron los duplicados (`PDF_UNNOBA/`, el kit y sus ZIP), después de verificar que cada PDF estaba en el proyecto.
 - La lista de Posgrado con resúmenes, que trae nombres y DNI, quedó fuera de git.
 
-**Pendiente.** Elegir la muestra a anotar para la PI4: reglamentos y sus modificaciones, más casos negativos.
+**Pendiente.** Elegir la muestra a anotar para la PI4: reglamentos y sus modificaciones, más casos negativos. *(Hecho en B57.)*
+
+### B57 · 20/11/2026 · Hallazgo · PI4: el pipeline se transfiere al digesto de la UNNOBA si el adaptador lleva el vocabulario de la fuente
+
+**Contexto.** La PI4 pregunta si el pipeline funciona sobre otro corpus cambiando solo el adaptador. Con los 912 PDF del digesto (B56) se armó una muestra, se anotó a mano y se corrieron los tres parsers sin ajustarlos.
+
+**Qué se hizo.**
+
+1. **Muestra.** 70 documentos, con semilla 20261120 (`data/corpus_unnoba/muestra_pi4.csv`):
+   - 7 ordenanzas;
+   - 48 resoluciones de los temas de reglamentos;
+   - 15 al azar.
+2. **Texto.** `pdftotext` para todos. 38 son escaneados y se pasaron por OCR con tesseract en español; los datos de idioma se bajaron a la VM.
+3. **Gold.** Claude leyó los 70 documentos y anotó 108 pares (documento, norma) en tres clases:
+   - MOD (19): modifica, ratifica, deja sin efecto, prorroga, reglamenta…;
+   - APLICA (26): el dispositivo aplica la norma o se dicta en su marco;
+   - CITA (63): antecedente, competencia o remisión.
+
+   Está en `data/corpus_unnoba/gold_pi4.tsv` y queda **pendiente de validación del equipo**.
+4. **Adaptador** (`src/grafo_legal/fuentes/unnoba.py`):
+   - une las líneas del PDF;
+   - separa VISTO, CONSIDERANDO y articulado;
+   - detecta las formas de cita propias del digesto: «Resolución (CS) Nro. 44/08», «Res. (CD.ET)», «Ordenanza (CS) 14/09», resoluciones del Rector, listas y la barra que el OCR lee como «1»;
+   - normaliza a claves `TIPO-EMISOR-NÚMERO-AÑO`, en mundo abierto.
+
+   Tiene 3 tests (`tests/test_unnoba.py`).
+5. **Corrida** (`scripts/21_pi4_unnoba.py`): las reglas F y F3, el parser LLM y el híbrido en cascada, con sus prompts tal cual. Además, la variante «vocab», que cambia solo las frases de los prompts que enumeran tipos de norma. Fueron 252 pedidos, unos USD 3.
+
+**Resultados** (vínculo = MOD ∪ APLICA, 45 pares):
+
+| Método | P | R | F1 |
+|---|---|---|---|
+| Reglas F = F3 | 0,695 | 0,911 | 0,788 |
+| LLM, prompt de InfoLEG | 0,500 | 0,200 | 0,286 |
+| LLM, prompt «vocab» | 0,632 | 0,800 | 0,706 |
+| **Híbrido** | **0,759** | **0,978** | **0,854** |
+| Híbrido «vocab» | 0,738 | 1,000 | 0,849 |
+
+- El híbrido supera a F3 por +0,066 de F1 (IC 95 % +0,018 a +0,137). Es significativo, a diferencia de InfoLEG.
+- La detección de menciones del adaptador da F1 0,981. Es optimista, porque el detector se escribió leyendo los mismos documentos.
+- Solo MOD: las reglas dan R 0,526 y el LLM «vocab», 0,684 con P 1,0.
+
+**Qué se pierde al cambiar de corpus.**
+
+1. **El prompt del LLM nombra leyes y decretos.** Con él, el LLM ignora las resoluciones y encuentra 19 de las 108 menciones. Al cambiar tres frases, encuentra 98. El vocabulario de los prompts es parte del adaptador.
+2. **El léxico de verbos es el de InfoLEG.** InfoLEG usa la forma impersonal («Sustitúyese»). La UNNOBA usa el infinitivo: «Ratificar», «Dejar sin efecto», «Extender la aplicación». 9 de los 19 MOD quedan sin verbo, y solo 9 pares caen en la zona segura del híbrido.
+3. **Lo que agrega la v3 no aparece en este corpus:** F y F3 dan lo mismo.
+4. **Un solo criterio de anotación explica casi todos los falsos positivos.** En ocho resoluciones de inscripción, la remisión a la Res. Ministerial 1523/90 y a la Ley 25.871 se anotó como CITA. Son 14 de los 18 falsos positivos de las reglas y los 14 del híbrido.
+   - Si se anotan como APLICA, F3 da 0,915 y el híbrido 0,957.
+   - La política «cascada» dejaría afuera esas remisiones: 0,944 con el gold actual.
+   - El orden de los métodos no cambia: el híbrido queda primero y el LLM con el prompt de InfoLEG, último.
+
+**Correcciones del gold.** Al revisar la primera corrida aparecieron 9 menciones reales que la anotación había salteado: los modelos de constancia de los docs 33, 34 y 36, una cita incidental, una bibliografía y un sello. Se agregaron como CITA, marcadas `[revision: omision de anotacion]`. No cambian el vínculo. El Estatuto del doc 15 se dejó sin corregir, para no seguir ajustando el gold.
+
+**Datos personales.** Los textos de la muestra, el OCR y la cache del LLM traen nombres y DNI, y quedan fuera de git (`.gitignore`). Los CSV de salida no tienen el «motivo» del LLM.
+
+**Pendiente.**
+
+- Que el equipo valide el gold, sobre todo la clase de las remisiones.
+- Que un segundo anotador repita una parte, para el kappa.
+- Decidir si «ratificar» y el infinitivo de «dejar sin efecto» entran en una v4 de los verbos, diseñada sobre dev de InfoLEG y no sobre esta muestra.
+
+Detalle en `results/pi4_unnoba/RESULTADOS.md` y `docs/pi4_digesto_unnoba.md`. Decisión D28.
 
 ## Cuestiones abiertas
 
@@ -744,4 +807,5 @@ El LLM nunca inventa destinos: solo juzga lo que el catálogo resolvió.
 - Validar las revisiones manuales de cobertura, de la Ley 14.250, de los 30 falsos positivos, de los 78 tipos y de las 60 menciones, y que un segundo anotador repita parte para el kappa (B12, B26, B30, B36, B45, B47).
 - Consultar con la cátedra la supervisión distante, la clasificación fina y si se evalúa también la modificación estricta (B02, B14, B27).
 - Armar la muestra independiente del gold (B15).
-- Elegir cómo obtener el corpus del digesto y probar el parser ahí cambiando solo el adaptador (B19, B41).
+- Validar el gold de la PI4 (70 documentos del digesto), sobre todo la clase de las remisiones, y un segundo anotador para el kappa (B57).
+- Decidir si «ratificar» y el infinitivo de «dejar sin efecto» entran en una v4 de los verbos, diseñada sobre dev de InfoLEG (B57).

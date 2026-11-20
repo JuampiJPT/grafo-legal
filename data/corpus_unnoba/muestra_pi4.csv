@@ -1,0 +1,71 @@
+archivo,titulo,cod,criterio,secciones,tiene_texto
+RESOLUCION2010312.pdf,Resolución HCS Nº 312/10,542,negativo_aleatorio,Escuela de Tecnología,False
+RESOLUCIONHCS2014722.pdf,Resolución HCS Nº 722/14,1243,negativo_aleatorio,Cursos | Alumnos | Posgrado,True
+RESOLUCIONHCS20161100.pdf,Resolución HCS Nº 1100/16,2398,negativo_aleatorio,Carreras | Alumnos | Posgrado,True
+RESOLUCIONET2011105.pdf,Resolución DET Nº 105/11,963,negativo_aleatorio,Escuela de Tecnología,False
+RESOLUCIONCDET2013118.pdf,Resolución CDET Nº 118/13,1202,negativo_aleatorio,Escuela de Tecnología,False
+RESOLUCIONHCS2014884.pdf,Resolución HCS Nº 884/14,1478,negativo_aleatorio,Alumnos,True
+RESOLUCIONCDET2015195.pdf,Resolución CDET Nº 195/15,1663,negativo_aleatorio,Escuela de Tecnología,False
+RESOLUCIONHCS2014906.pdf,Resolución HCS Nº 906/14,1471,negativo_aleatorio,Alumnos | Posgrado,True
+RESOLUCIONCDET2016280.pdf,Resolución CDET Nº 280/16,2464,negativo_aleatorio,Escuela de Tecnología,True
+RESOLUCIONHCS2011382.pdf,Resolución HCS Nº 382/11,682,negativo_aleatorio,Escuela de Tecnología,False
+RESOLUCIONCDET2016313.pdf,Resolución CDET Nº 313/16,2499,negativo_aleatorio,Escuela de Tecnología,True
+RESOLUCIONDET201164.pdf,Resolución DET Nº 064/11,948,negativo_aleatorio,Escuela de Tecnología,False
+RESOLUCIONCDET2016284.pdf,Resolución CDET Nº 284/16,2470,negativo_aleatorio,Escuela de Tecnología,True
+RESOLUCIONCDET2016292.pdf,Resolución CDET Nº 292/16,2473,negativo_aleatorio,Escuela de Tecnología,True
+RESOLUCIONCDET2013101.pdf,Resolución CDET Nº 101/13,1180,negativo_aleatorio,Escuela de Tecnología,False
+ORDENANZAHCS201130.pdf,Ordenanza HCS Nº 030/11,752,ordenanza,Reglamentación | Posgrado,False
+ORDENANZA201027.pdf,Ordenanza HCS Nº 027/10,617,ordenanza,Reglamentación | Posgrado,False
+ORDENANZAHCS201440.pdf,Ordenanza HCS Nº 040/14,1379,ordenanza,Alumnos | Posgrado,True
+ORDENANZAHCS201235.pdf,Ordenanza HCS Nº 035/12,845,ordenanza,Alumnos,False
+ORDENANZA201029.pdf,Ordenanza HCS Nº 029/10,615,ordenanza,Alumnos,False
+ORDENANZA200701.pdf,Ordenanza HCS Nº 001/07,307,ordenanza,Alumnos,False
+ORDENANZA200702.pdf,Ordenanza HCS Nº 002/07,225,ordenanza,Ingreso,False
+RESOLUCION200896.pdf,Resolución HCS Nº 096/08,327,tema:Cursadas,Cursadas,False
+RESOLUCION200844.pdf,Resolución HCS Nº 044/08,315,tema:Cursadas,Cursadas,False
+RESOLUCION200728.pdf,Resolución HCS Nº 028/07,290,tema:Cursadas,Cursadas,False
+RESOLUCION2009176.pdf,Resolución HCS Nº 176/09,498,tema:Cursadas/Regularidades,Regularidades | Cursadas,False
+RESOLUCIONHCS2009146.pdf,Resolución HCS Nº 146/09,702,tema:Cursadas/Regularidades,Regularidades | Cursadas,False
+RESOLUCION2008106.pdf,Resolución HCS Nº 106/08,400,tema:Cursadas/Regularidades,Regularidades | Cursadas,False
+RESOLUCION200897.pdf,Resolución HCS Nº 097/08,337,tema:Cursadas/Regularidades,Regularidades | Cursadas,False
+RESOLUCION200856.pdf,Resolución HCS Nº 056/08,325,tema:Cursadas/Regularidades,Regularidades | Cursadas,False
+RESOLUCION200727.pdf,Resolución HCS Nº 027/07,247,tema:Cursadas/Regularidades,Regularidades | Cursadas,False
+RESOLUCIONCDET2013119.pdf,Resolución CDET Nº 119/13,1200,tema:Ingreso,Escuela de Tecnología | Ingreso,False
+RESOLUCIONCDET201364.pdf,Resolución CDET Nº 064/13,1142,tema:Ingreso,Escuela de Tecnología | Ingreso,False
+RESOLUCIONHCS20171320.pdf,Resolución HCS Nº 1320/17,2981,tema:Ingreso,Alumnos | Ingreso,True
+RESOLUCIONHCS20151002.pdf,Resolución HCS Nº 1002/15,1598,tema:Ingreso,Alumnos | Ingreso,True
+RESOLUCIONHCS2014826.pdf,Resolución HCS Nº 826/14,1308,tema:Ingreso,Alumnos | Ingreso,True
+RESOLUCIONHCS2013666.pdf,Resolución HCS Nº 666/13,1085,tema:Ingreso,Alumnos | Ingreso,True
+RESOLUCIONHCS20151057.pdf,Resolución HCS Nº 1057/15,1628,tema:Ingreso,Ingreso,True
+RESOLUCIONHCS2012496.pdf,Resolución HCS Nº 496/12,813,tema:Ingreso,Ingreso,False
+RESOLUCIONHCS2011407.pdf,Resolución HCS Nº 407/11,714,tema:Ingreso,Ingreso,False
+RESOLUCION2010281.pdf,Resolución HCS Nº 281/10,536,tema:Ingreso,Ingreso,False
+RESOLUCION2009200.pdf,Resolución HCS Nº 200/09,481,tema:Ingreso,Ingreso,False
+RESOLUCION2008107.pdf,Resolución HCS Nº 107/08,397,tema:Ingreso,Ingreso,False
+RESOLUCION200884.pdf,Resolución HCS Nº 084/08,339,tema:Ingreso,Ingreso,False
+RESOLUCION200857.pdf,Resolución HCS Nº 057/08,343,tema:Ingreso,Ingreso,False
+RESOLUCION200847.pdf,Resolución HCS Nº 047/08,319,tema:Ingreso,Ingreso,False
+RESOLUCION200841.pdf,Resolución HCS Nº 041/07,308,tema:Ingreso,Ingreso,False
+RESOLUCIONHCS2013694.pdf,Resolución HCS Nº 694/13,1091,tema:Reglamentación,Cursos | Reglamentación | Posgrado,True
+RESOLUCIONHCS2013693.pdf,Resolución HCS Nº 693/13,1090,tema:Reglamentación,Cursos | Reglamentación | Posgrado,True
+RESOLUCIONHCS2013692.pdf,Resolución HCS Nº 692/13,1086,tema:Reglamentación,Cursos | Reglamentación | Posgrado,True
+RESOLUCIONHCS2013691.pdf,Resolución HCS Nº 691/13,1102,tema:Reglamentación,Cursos | Reglamentación | Posgrado,True
+RESOLUCIONHCS2013675.pdf,Resolución HCS Nº 675/13,1070,tema:Reglamentación,Cursos | Reglamentación | Posgrado,True
+RESOLUCION2009218.pdf,Resolución HCS Nº 218/09,449,tema:Reglamentación,Reglamentación | Posgrado,False
+RESOLUCION2009217.pdf,Resolución HCS Nº 217/09,502,tema:Reglamentación,Reglamentación | Posgrado,False
+RESOLUCIONCDET2017424.pdf,Resolución CDET Nº 424/17,3270,tema:Reglamento Trabajo Final,Escuela de Tecnología | Reglamento Trabajo Final,True
+RESOLUCIONCDET2017361.pdf,Resolución CDET Nº 361/17,3208,tema:Reglamento Trabajo Final,Escuela de Tecnología | Reglamento Trabajo Final,True
+RESOLUCIONCDET2017360.pdf,Resolución CDET Nº 360/17,3213,tema:Reglamento Trabajo Final,Escuela de Tecnología | Reglamento Trabajo Final,True
+RESOLUCIONCDET2016271.pdf,Resolución CDET Nº 271/16,2456,tema:Reglamento Trabajo Final,Escuela de Tecnología | Reglamento Trabajo Final,True
+RESOLUCIONCDET2016270.pdf,Resolución CDET Nº 270/16,2455,tema:Reglamento Trabajo Final,Escuela de Tecnología | Reglamento Trabajo Final,True
+RESOLUCIONCDET2016269.pdf,Resolución CDET Nº 269/16,2444,tema:Reglamento Trabajo Final,Escuela de Tecnología | Reglamento Trabajo Final,True
+RESOLUCIONCDET2016268.pdf,Resolución CDET Nº 268/16,2452,tema:Reglamento Trabajo Final,Escuela de Tecnología | Reglamento Trabajo Final,True
+RESOLUCIONCDET2016267.pdf,Resolución CDET Nº 267/16,2449,tema:Reglamento Trabajo Final,Escuela de Tecnología | Reglamento Trabajo Final,True
+RESOLUCIONCDET2016266.pdf,Resolución CDET Nº 266/16,2445,tema:Reglamento Trabajo Final,Escuela de Tecnología | Reglamento Trabajo Final,True
+RESOLUCIONCDET2016265.pdf,Resolución CDET Nº 265/16,2447,tema:Reglamento Trabajo Final,Escuela de Tecnología | Reglamento Trabajo Final,True
+RESOLUCIONCDET2016264.pdf,Resolución CDET Nº 264/16,2450,tema:Reglamento Trabajo Final,Escuela de Tecnología | Reglamento Trabajo Final,True
+RESOLUCIONCDET2016263.pdf,Resolución CDET Nº 263/16,2451,tema:Reglamento Trabajo Final,Escuela de Tecnología | Reglamento Trabajo Final,True
+RESOLUCIONCDET2016262.pdf,Resolución CDET Nº 262/16,2448,tema:Reglamento Trabajo Final,Escuela de Tecnología | Reglamento Trabajo Final,True
+RESOLUCIONCDET2015187.pdf,Resolución CDET Nº 187/15,1659,tema:Reglamento Trabajo Final,Escuela de Tecnología | Reglamento Trabajo Final,False
+RESOLUCIONCDET201125.pdf,Resolución CDET Nº 025/11,988,tema:Reglamento Trabajo Final,Escuela de Tecnología | Reglamento Trabajo Final,False
+RESOLUCION2009191.pdf,Resolución HCS Nº 191/09,466,tema:Reglamento Trabajo Final,Escuela de Tecnología | Reglamento Trabajo Final,False
