@@ -21,3 +21,5 @@ data/textos/unnoba/txt/
 data/textos/unnoba/muestra_pi4_textos.jsonl
 results/pi4_unnoba/cache_llm/
 results/pi4_unnoba/cache_hibrido/
+# PI4: los fragmentos de las relaciones del digesto pueden traer nombres (B59)
+data/grafo_unnoba_*/relaciones.csv

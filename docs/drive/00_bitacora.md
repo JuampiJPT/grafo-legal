@@ -72,6 +72,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B56 | 20/11 | Dificultad | Descarga del digesto de la UNNOBA para la PI4 | Cerrada |
 | B57 | 20/11 | Hallazgo | PI4: el pipeline se transfiere al digesto de la UNNOBA si el adaptador lleva el vocabulario de la fuente | Cerrada |
 | B58 | 20/11 | Decisión | Revisión del gold de la PI4: las remisiones que definen a quién alcanza la resolución son APLICA | Abierta |
+| B59 | 20/11 | Decisión | Grafos del digesto de la UNNOBA, con el mismo modelo y código que los de InfoLEG | Cerrada |
 
 ## Entradas
 
@@ -842,6 +843,27 @@ Se mantuvieron como CITA los formularios de la Res. 368/2010, el Estatuto como c
 - `metricas.json` guarda también los números con la revisión 1. Con ella, el orden de los métodos es el mismo: el híbrido primero y el LLM con el prompt de InfoLEG último.
 
 **Pendiente.** Que un segundo anotador repita una parte, para el kappa.
+
+### B59 · 20/11/2026 · Decisión · Grafos del digesto de la UNNOBA, con el mismo modelo y código que los de InfoLEG
+
+**Contexto.** La PI4 se había evaluado sobre las relaciones (B57, B58), pero los grafos del digesto no se habían armado.
+
+**Qué se hizo.** `scripts/22_grafo_unnoba.py` arma un grafo por parser: `data/grafo_unnoba_reglas`, `data/grafo_unnoba_llm` (prompt «vocab») y `data/grafo_unnoba_hibrido`. No se tocó el modelo ni el código del grafo: se usan la salida estándar, `relaciones.desde_evidencias` y `grafo.construir`/`cargar_neo4j`.
+
+Lo único propio de la fuente es la traducción de las claves:
+- las normas del digesto reciben `id_norma` desde 9.000.001 (el grafo usa enteros, y así no chocan con los de InfoLEG);
+- el nombre del nodo es legible («Resolución HCS 44/2008»);
+- la clave de comparación queda en el sumario.
+
+**Resultado.**
+- **Nodos:** 104 normas, 70 de la muestra con texto y 34 citadas sin texto; 342 artículos en el grafo de reglas.
+- **Pares con una relación que no es CITA:** 9 en el de reglas, 13 en el del LLM y 58 en el del híbrido.
+- **Coherencia con la evaluación:** el grafo de reglas, proyectado con la regla F3, da los mismos 59 pares que la evaluación. Los 58 pares del híbrido son los que aceptó.
+- **Neo4j:** los tres se cargaron en el Neo4j local (`bolt://localhost:7688`), sin `--borrar`, con `fuente` = `unnoba_*`. Después de la carga, la base tiene 444 normas en total: 340 de InfoLEG y 104 del digesto.
+
+**Datos personales.** Los DNI se tapan en el texto y en los fragmentos. `relaciones.csv` no va a git, porque los fragmentos pueden traer nombres.
+
+Ejemplo de consulta en `docs/pi4_digesto_unnoba.md`.
 
 ## Cuestiones abiertas
 

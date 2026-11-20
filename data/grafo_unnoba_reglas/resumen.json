@@ -1,0 +1,18 @@
+{
+  "fuente": "unnoba_reglas_v3",
+  "nodos": {
+    "Norma": 104,
+    "Norma_con_texto": 70,
+    "Articulo": 342,
+    "Articulo_sin_texto": 13
+  },
+  "aristas": {
+    "CONTIENE": 342,
+    "CITA": 137,
+    "MODIFICA": 11,
+    "REGLAMENTA": 1,
+    "INCORPORA": 1
+  },
+  "pares_con_relacion_no_cita": 9,
+  "relaciones_a_articulo": 39
+}

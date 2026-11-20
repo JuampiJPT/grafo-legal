@@ -83,7 +83,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 | Evaluación completa, parser LLM y guía del código | 07 - Evaluación completa, parser LLM y guía del código | `docs/comparacion_con_el_gold.md`, `docs/parser_llm.md`, `docs/guia_codigo.md`, `results/subtareas/`, `results/modelo_contextual/`, `results/tipos/`, `results/comparacion/` |
 | Análisis de fallos y cómo se detecta una relación | 08 - Análisis de fallos y cómo se detecta una relación | `docs/analisis_de_fallos.md`, `docs/como_se_detecta_una_relacion.md`, `results/reglas_v3/RESULTADOS.md`, `results/subtareas_v3/`, `results/errores_explicados_v3/` |
 | Parser híbrido en cascada | 09 - Parser híbrido en cascada | `docs/parser_hibrido.md`, `results/hibrido/` |
-| PI4 · Digesto UNNOBA | 10 - PI4 digesto UNNOBA | `docs/pi4_digesto_unnoba.md`, `results/pi4_unnoba/` |
+| PI4 · Digesto UNNOBA | 10 - PI4 digesto UNNOBA | `docs/pi4_digesto_unnoba.md`, `results/pi4_unnoba/`, grafos en `data/grafo_unnoba_{reglas,llm,hibrido}/` |
 | Roadmap | 05 - Roadmap del TP (copia; la versión editable es el artefacto de Claude) | `docs/drive/roadmap.md` |
 | Datos, textos, dataset, grafo y código | Solo los del corpus v1 histórico | Todo |
 
