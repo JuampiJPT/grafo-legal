@@ -1,0 +1,1 @@
+{"modelo": "claude-sonnet-5-5", "version_prompt": "consolidado-v1-2026-11-20-extraer", "respuesta": "```json\n{\"operaciones\": [{\"articulo\": \"173\", \"operacion\": \"DEROGA\", \"parte\": \"\", \"texto_nuevo\": \"\"}]}\n```", "tokens_entrada": 882, "tokens_salida": 56, "stop_reason": "end_turn"}

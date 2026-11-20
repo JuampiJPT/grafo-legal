@@ -73,6 +73,8 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B57 | 20/11 | Hallazgo | PI4: el pipeline se transfiere al digesto de la UNNOBA si el adaptador lleva el vocabulario de la fuente | Cerrada |
 | B58 | 20/11 | Decisión | Revisión del gold de la PI4: las remisiones que definen a quién alcanza la resolución son APLICA | Abierta |
 | B59 | 20/11 | Decisión | Grafos del digesto de la UNNOBA, con el mismo modelo y código que los de InfoLEG | Cerrada |
+| B60 | 20/11 | Hallazgo | Evaluación de los grafos leyéndolos desde Neo4j: ida y vuelta idéntica en las cuatro fuentes | Cerrada |
+| B61 | 20/11 | Hallazgo | Texto consolidado de la LCT desde el grafo: coincide con InfoLEG en el 92 % de los artículos que cambian | Abierta |
 
 ## Entradas
 
@@ -865,10 +867,78 @@ Lo único propio de la fuente es la traducción de las claves:
 
 Ejemplo de consulta en `docs/pi4_digesto_unnoba.md`.
 
+### B60 · 20/11/2026 · Hallazgo · Evaluación de los grafos leyéndolos desde Neo4j: ida y vuelta idéntica en las cuatro fuentes
+
+**Contexto.** Hasta ahora el grafo se había evaluado sobre una copia en memoria (B43). Faltaba hacerlo sobre el Neo4j del equipo (F6).
+
+**Qué se hizo.**
+- Se cargaron los cuatro grafos de InfoLEG (reglas v2, reglas v3, LLM e híbrido) en el Neo4j local (`bolt://localhost:7688`).
+  - **Sin `--borrar`:** la carga es idempotente (MERGE por fuente), así que no pisa nada de lo que ya estaba, incluidos los grafos del digesto.
+  - **Por qué no se usó `cargar_y_evaluar_grafo.sh`:** usa `--borrar` y habría vaciado la base.
+- Después, `11_evaluar_grafo.py --uri` corrió una vez por fuente, filtrando por `fuente`.
+- Salidas en `results/evaluacion_grafo_neo4j/{reglas_v2,reglas_v3,llm,hibrido}/` y el log en `log.txt`.
+
+**Resultados.**
+
+| Fuente | Ida y vuelta | Test P | Test R | Test F1 |
+|---|---|---|---|---|
+| reglas_v2 | 3.277 = 3.277, idénticas | 0,785 | 0,875 | 0,828 |
+| reglas_v3 | 3.149 = 3.149, idénticas | 0,788 | 0,870 | 0,827 |
+| llm | 3.247 = 3.247, idénticas | 0,756 | 0,938 | 0,837 |
+| hibrido | 3.147 = 3.147, idénticas | 0,771 | 0,911 | 0,835 |
+
+- En las cuatro fuentes, el grafo devuelve exactamente las relaciones que se cargaron.
+- Los F1 que se leen desde Neo4j coinciden con la evaluación sobre los CSV.
+  - **reglas_v2:** 0,828, como en B36.
+  - **LLM:** 0,837 contra 0,841. La diferencia sale de que la proyección del script 11 es la regla F de la v2 sobre las aristas.
+  - **Híbrido:** 0,835 con la regla F sobre sus aristas, contra 0,829 con su propia proyección (pares que no son CITA).
+- Después de la carga, la base tiene 444 normas: 340 de InfoLEG y 104 del digesto.
+
+**Pendiente.** Probar las consultas de ejemplo de `docs/grafo.md` en el Neo4j Browser.
+
+### B61 · 20/11/2026 · Hallazgo · Texto consolidado de la LCT desde el grafo: coincide con InfoLEG en el 92 % de los artículos que cambian
+
+**Contexto.** El equipo pidió armar, a partir del grafo, el texto completo de una ley con todas sus modificaciones. La ley elegida fue la de más profundidad. Después había que analizar qué tan verídico es el resultado.
+
+**Qué se hizo** (detalle en `docs/consolidado_lct.md`):
+1. **Elegir la ley.** Una consulta Cypher mide la profundidad de cada norma: normas modificatorias, artículos afectados y largo de la cadena de modificaciones. Gana la LCT: 105 normas modificatorias, 107 artículos afectados y profundidad 16 con el híbrido.
+2. **Sacar el manifiesto.** Otra consulta Cypher trae los artículos de la ley y todas las relaciones que llegan a ella, con el texto del artículo de origen y qué parsers las vieron. Son 943 relaciones de 107 normas.
+3. **Fijar el texto base.** Es el t.o. del Decreto 390/76 (277 artículos), no el texto de 1974: desde 1976 las modificaciones usan la numeración del t.o.
+4. **Consolidar** (`scripts/24_consolidar.py`):
+   - 235 artículos modificatorios.
+   - El LLM extrae las operaciones y el texto nuevo, con verificación literal: salen 172 operaciones.
+   - Las sustituciones, incorporaciones y derogaciones se aplican sin LLM. Los cambios parciales los reescribe el LLM, con verificación de cobertura.
+   - Se aplicaron 164 operaciones; 8 quedaron afuera con su motivo.
+   - Resultado: 293 artículos con historia por artículo. Costo: unos USD 2,4.
+5. **Evaluar contra el texto actualizado de InfoLEG.**
+   - InfoLEG no se puede descargar desde el entorno de Claude. Por eso se compararon firmas calculadas en el navegador: hash del texto normalizado y MinHash de 4-gramas.
+   - Del navegador solo salieron las firmas y los resultados.
+
+**Resultados.**
+- **En general:** 206 artículos idénticos y 36 casi idénticos, el 82,6 %.
+- **Diferencias menores:** son 31. Casi todas (28) están en artículos que nadie modificó, así que son variantes de redacción del t.o. entre la publicación del Decreto 390/76 y el texto actualizado.
+- **Sobre los artículos que cambian:** son 102 en alguno de los dos lados, y el 92 % termina bien (94). Eso incluye las cadenas largas (art. 245: seis versiones; art. 92 bis: seis) y la reforma de la Ley 27.802 de 2026.
+- **Errores reales: 7 artículos.**
+  - 251, 264, 265 y 266: la Ley 24.522 (Concursos) no está vinculada a la LCT en el grafo. Es recall del parser.
+  - 2: la última sustitución de la Ley 27.802 no pasó la verificación literal.
+  - 147: no se modela la derogación de una norma modificatoria («no se revive el texto»).
+  - 231: un cambio parcial quedó incompleto.
+
+**Qué tan verídico es.**
+- Es fiel en las sustituciones completas.
+- Su techo es el recall del grafo.
+- Los cambios parciales son el punto débil.
+- No sabe de vigencias diferidas, suspensiones judiciales ni vetos.
+
+Sirve para mostrar que el grafo alcanza para reconstruir el texto vigente y para medir dónde se pierde. No reemplaza al texto oficial.
+
+**Pendiente.** Que el equipo revise `results/consolidado/lct_consolidada.md`, sobre todo los 8 cambios no aplicados y los 7 errores.
+
 ## Cuestiones abiertas
 
 - Cargar los grafos de la v3, del LLM y del híbrido en Neo4j sin `--borrar` (B54, B55); actualizar la tabla final con el LLM y sus híbridos (B48, B49).
-- Correr la evaluación del grafo sobre el Neo4j del equipo, cargar el grafo del LLM sin `--borrar` y probar las consultas de ejemplo (B38, B43, B48).
+- Probar las consultas de ejemplo de `docs/grafo.md` en el Neo4j Browser (la evaluación sobre Neo4j ya está, B60).
+- Revisar el texto consolidado de la LCT (`results/consolidado/lct_consolidada.md`), los 8 cambios no aplicados y los 7 errores (B61).
 - Mejorar el tipado de las reglas sobre otra muestra de dev, sin tocar los 78 casos de medición (B43, B47).
 - Reglas v4, diseñadas sobre dev: sacar «texto sustituido por» del filtro de procedencia, escribir «l.c.t» sin punto, agregar «creado por» e «inclúyense», y exigir el verbo antes de la mención en F3 (B52).
 - Decidir si el grafo lleva embeddings (B38).

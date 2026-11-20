@@ -1,0 +1,1 @@
+{"modelo": "claude-sonnet-5-5", "version_prompt": "consolidado-v1-2026-11-20-extraer", "respuesta": "{\"operaciones\": []}", "tokens_entrada": 888, "tokens_salida": 329, "stop_reason": "end_turn"}

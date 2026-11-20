@@ -72,6 +72,12 @@ python scripts/10_armar_grafo.py --relaciones results/hibrido/relaciones_hibrido
 python scripts/16_evaluar_tipos.py
 python scripts/17_comparar_metodos.py
 
+# Texto consolidado de la LCT (B61): el manifiesto sale de Neo4j (script 23, con NEO4J_PASSWORD);
+# la consolidacion usa la cache del LLM (sin clave no llama a la API)
+if [ -f results/consolidado/manifiesto_25552_relaciones.json ]; then
+  python scripts/24_consolidar.py
+fi
+
 # PI4: digesto UNNOBA (necesita el texto local de la muestra, que no va a git; usa la cache del LLM)
 if [ -f data/textos/unnoba/muestra_pi4_textos.jsonl ]; then
   python scripts/21_pi4_unnoba.py

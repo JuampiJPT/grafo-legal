@@ -1,0 +1,81 @@
+===== reglas_v2
+}
+Neo4j: {"nodos": {"Articulo": 8528, "Norma": 444}, "aristas": {"DEROGA": 469, "CITA": 7216, "MODIFICA": 561, "SUSTITUYE": 1141, "REGLAMENTA": 327, "INCORPORA": 415}}
+backend: neo4j bolt://localhost:7688
+ida y vuelta: {"cargadas": 3277, "devueltas": 3277, "faltan_en_el_grafo": 0, "sobran_en_el_grafo": 0, "identicas": true}
+dev: vinculos P=0.750 R=0.717 F1=0.733 | cualquier relacion P=0.616 R=0.804 | sin v1 F1=0.668
+test: vinculos P=0.785 R=0.875 F1=0.828 | cualquier relacion P=0.669 R=0.958 | sin v1 F1=0.671
+  SUSTITUYE  dev: 73 pares, 0.9452  test: 41 pares, 1.0
+  INCORPORA  dev: 73 pares, 0.7671  test: 28 pares, 0.8571
+  DEROGA     dev: 38 pares, 0.8947  test: 37 pares, 1.0
+  REGLAMENTA dev: 26 pares, 0.8077  test: 12 pares, 0.6667
+  MODIFICA   dev: 78 pares, 0.8077  test: 25 pares, 0.8
+  CITA       dev: 696 pares, 0.6193  test: 241 pares, 0.6515
+  Ley 20.744 (LCT)   InfoLEG 130  grafo 104  R=0.723 P=0.904
+  Ley 27.802         InfoLEG   7  grafo   8  R=1.000 P=0.875
+  Ley 24.013         InfoLEG 105  grafo  79  R=0.667 P=0.886
+  Ley 24.557         InfoLEG  67  grafo  62  R=0.866 P=0.935
+  Ley 23.551         InfoLEG  24  grafo  22  R=0.750 P=0.818
+  Ley 14.250         InfoLEG  12  grafo  21  R=0.833 P=0.476
+  Ley 27.742         InfoLEG   1  grafo   4  R=1.000 P=0.250
+===== reglas_v3
+}
+Neo4j: {"nodos": {"Articulo": 8528, "Norma": 444}, "aristas": {"DEROGA": 469, "CITA": 7216, "MODIFICA": 561, "SUSTITUYE": 1141, "REGLAMENTA": 327, "INCORPORA": 415}}
+backend: neo4j bolt://localhost:7688
+ida y vuelta: {"cargadas": 3149, "devueltas": 3149, "faltan_en_el_grafo": 0, "sobran_en_el_grafo": 0, "identicas": true}
+dev: vinculos P=0.764 R=0.727 F1=0.745 | cualquier relacion P=0.638 R=0.804 | sin v1 F1=0.690
+test: vinculos P=0.788 R=0.870 F1=0.827 | cualquier relacion P=0.682 R=0.948 | sin v1 F1=0.683
+  SUSTITUYE  dev: 72 pares, 0.9583  test: 40 pares, 1.0
+  INCORPORA  dev: 51 pares, 0.9608  test: 23 pares, 0.9565
+  DEROGA     dev: 38 pares, 0.8947  test: 36 pares, 1.0
+  REGLAMENTA dev: 25 pares, 0.88  test: 11 pares, 0.7273
+  MODIFICA   dev: 77 pares, 0.8182  test: 25 pares, 0.84
+  CITA       dev: 683 pares, 0.631  test: 239 pares, 0.6569
+  Ley 20.744 (LCT)   InfoLEG 130  grafo 104  R=0.723 P=0.904
+  Ley 27.802         InfoLEG   7  grafo   8  R=1.000 P=0.875
+  Ley 24.013         InfoLEG 105  grafo  79  R=0.667 P=0.886
+  Ley 24.557         InfoLEG  67  grafo  62  R=0.866 P=0.935
+  Ley 23.551         InfoLEG  24  grafo  22  R=0.750 P=0.818
+  Ley 14.250         InfoLEG  12  grafo  21  R=0.833 P=0.476
+  Ley 27.742         InfoLEG   1  grafo   4  R=1.000 P=0.250
+===== llm
+}
+Neo4j: {"nodos": {"Articulo": 8528, "Norma": 444}, "aristas": {"DEROGA": 469, "CITA": 7216, "MODIFICA": 561, "SUSTITUYE": 1141, "REGLAMENTA": 327, "INCORPORA": 415}}
+backend: neo4j bolt://localhost:7688
+ida y vuelta: {"cargadas": 3247, "devueltas": 3247, "faltan_en_el_grafo": 0, "sobran_en_el_grafo": 0, "identicas": true}
+dev: vinculos P=0.725 R=0.756 F1=0.741 | cualquier relacion P=0.633 R=0.801 | sin v1 F1=0.658
+test: vinculos P=0.756 R=0.938 F1=0.837 | cualquier relacion P=0.670 R=0.964 | sin v1 F1=0.670
+  SUSTITUYE  dev: 81 pares, 0.963  test: 41 pares, 1.0
+  INCORPORA  dev: 50 pares, 0.96  test: 21 pares, 1.0
+  DEROGA     dev: 50 pares, 0.98  test: 40 pares, 1.0
+  REGLAMENTA dev: 30 pares, 0.9667  test: 6 pares, 1.0
+  MODIFICA   dev: 74 pares, 0.8784  test: 24 pares, 0.8333
+  CITA       dev: 662 pares, 0.6042  test: 240 pares, 0.625
+  Ley 20.744 (LCT)   InfoLEG 130  grafo 113  R=0.761 P=0.876
+  Ley 27.802         InfoLEG   7  grafo   8  R=1.000 P=0.875
+  Ley 24.013         InfoLEG 105  grafo  77  R=0.648 P=0.883
+  Ley 24.557         InfoLEG  67  grafo  61  R=0.866 P=0.951
+  Ley 23.551         InfoLEG  24  grafo  22  R=0.750 P=0.818
+  Ley 14.250         InfoLEG  12  grafo  21  R=0.833 P=0.476
+  Ley 27.742         InfoLEG   1  grafo   4  R=1.000 P=0.250
+===== hibrido
+}
+Neo4j: {"nodos": {"Articulo": 8545, "Norma": 444}, "aristas": {"SUSTITUYE": 1524, "DEROGA": 643, "CITA": 9007, "MODIFICA": 1149, "REGLAMENTA": 426, "INCORPORA": 527}}
+backend: neo4j bolt://localhost:7688
+ida y vuelta: {"cargadas": 3147, "devueltas": 3147, "faltan_en_el_grafo": 0, "sobran_en_el_grafo": 0, "identicas": true}
+dev: vinculos P=0.754 R=0.746 F1=0.750 | cualquier relacion P=0.636 R=0.806 | sin v1 F1=0.692
+test: vinculos P=0.771 R=0.911 F1=0.835 | cualquier relacion P=0.684 R=0.958 | sin v1 F1=0.693
+  SUSTITUYE  dev: 86 pares, 0.9767  test: 42 pares, 1.0
+  INCORPORA  dev: 51 pares, 0.9804  test: 24 pares, 0.9583
+  DEROGA     dev: 53 pares, 0.9623  test: 42 pares, 1.0
+  REGLAMENTA dev: 59 pares, 0.8983  test: 14 pares, 0.9286
+  MODIFICA   dev: 388 pares, 0.6907  test: 152 pares, 0.6513
+  CITA       dev: 510 pares, 0.6157  test: 197 pares, 0.6904
+  Ley 20.744 (LCT)   InfoLEG 130  grafo 105  R=0.723 P=0.895
+  Ley 27.802         InfoLEG   7  grafo   8  R=1.000 P=0.875
+  Ley 24.013         InfoLEG 105  grafo  82  R=0.676 P=0.866
+  Ley 24.557         InfoLEG  67  grafo  63  R=0.881 P=0.936
+  Ley 23.551         InfoLEG  24  grafo  22  R=0.750 P=0.818
+  Ley 14.250         InfoLEG  12  grafo  21  R=0.833 P=0.476
+  Ley 27.742         InfoLEG   1  grafo   4  R=1.000 P=0.250
+EXIT=0

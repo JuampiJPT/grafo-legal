@@ -1,0 +1,30 @@
+{
+ "eventos": 235,
+ "operaciones": 172,
+ "por_operacion": {
+  "SUSTITUYE": 120,
+  "MODIFICA_PARCIAL": 23,
+  "INCORPORA": 16,
+  "DEROGA": 13
+ },
+ "verificadas": 168,
+ "no_aplicadas": 8,
+ "articulos": 293,
+ "derogados": 13,
+ "modificados": 89,
+ "incorporados": 16,
+ "uso": {
+  "extraer": {
+   "llamadas_api": 0,
+   "desde_cache": 235,
+   "tokens_entrada": 0,
+   "tokens_salida": 0
+  },
+  "aplicar": {
+   "llamadas_api": 0,
+   "desde_cache": 23,
+   "tokens_entrada": 0,
+   "tokens_salida": 0
+  }
+ }
+}

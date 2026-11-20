@@ -1,0 +1,1 @@
+{"modelo": "claude-sonnet-5-5", "version_prompt": "consolidado-v1-2026-11-20-extraer", "respuesta": "```json\n{\"operaciones\": [{\"articulo\": \"103 bis\", \"operacion\": \"MODIFICA_PARCIAL\", \"parte\": \"incisos b) y c) (derogados)\", \"texto_nuevo\": \"\"}]}\n```", "tokens_entrada": 780, "tokens_salida": 80, "stop_reason": "end_turn"}
