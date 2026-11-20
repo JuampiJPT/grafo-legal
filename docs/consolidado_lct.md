@@ -124,7 +124,7 @@ Antes de tener el archivo, la misma comparación se había hecho con firmas (has
 
 - **Fuerte en las sustituciones completas.** Las sustituciones de artículos enteros, que son la mayoría (120 de 172), salen literales de la norma modificatoria y coinciden con InfoLEG. Las cadenas largas también se reconstruyen bien: el art. 245 pasa por las Leyes 23.697, 24.013 y 25.877, el DNU 70/2023 y la Ley 27.802; el art. 92 bis tiene seis versiones.
 - **El techo es el recall del grafo.** Lo que el grafo no tiene no se aplica: es el caso de la Ley 24.522. La consolidación no agrega errores propios donde el grafo está completo, pero tampoco puede inventar relaciones que faltan.
-- **Los cambios parciales son el punto débil.** Incisos, párrafos y montos: hay 23, 3 no se pudieron aplicar y 1 quedó distinto. Son los casos donde hace falta el LLM y la verificación es más débil (cobertura de 4-gramas, no igualdad literal).
+- **Los cambios parciales son el punto débil.** Incisos, párrafos y montos: hay 23, 3 no se pudieron aplicar y los que se aplicaron coinciden con InfoLEG (por ejemplo, el inciso b) del art. 231). Son los casos donde hace falta el LLM y la verificación es más débil (cobertura de 4-gramas, no igualdad literal).
 - **No sabe nada fuera del texto de las normas.**
   - **Derogaciones de normas modificatorias:** el art. 147 muestra que no se modelan.
   - **Vigencias diferidas:** el método usa la fecha de publicación, no la fecha en que la norma empieza a regir.
