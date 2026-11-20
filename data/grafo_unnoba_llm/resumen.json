@@ -1,0 +1,20 @@
+{
+  "fuente": "unnoba_llm",
+  "nodos": {
+    "Norma": 104,
+    "Norma_con_texto": 70,
+    "Articulo": 353,
+    "Articulo_sin_texto": 24
+  },
+  "aristas": {
+    "CONTIENE": 353,
+    "CITA": 133,
+    "MODIFICA": 12,
+    "SUSTITUYE": 6,
+    "INCORPORA": 3,
+    "REGLAMENTA": 1,
+    "DEROGA": 1
+  },
+  "pares_con_relacion_no_cita": 13,
+  "relaciones_a_articulo": 77
+}

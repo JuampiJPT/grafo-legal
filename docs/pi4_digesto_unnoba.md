@@ -60,10 +60,41 @@ PDF del digesto ──pdftotext / OCR (tesseract spa)──► texto ──► f
    Todo está marcado en el TSV, y los números con la revisión 1 se informan como sensibilidad.
 7. **Datos personales.** Los textos, el OCR y la cache del LLM traen nombres y DNI, y no van a git. Las salidas CSV no tienen texto libre del LLM.
 
+## Grafos del digesto
+
+`scripts/22_grafo_unnoba.py` arma un grafo por parser con el mismo modelo y el mismo código que los de InfoLEG: la salida estándar (`salida.py`), las relaciones por artículo (`relaciones.desde_evidencias`) y `grafo.construir`/`cargar_neo4j`. Están en `data/grafo_unnoba_reglas/`, `data/grafo_unnoba_llm/` y `data/grafo_unnoba_hibrido/`, y no tocan los grafos de InfoLEG. En Neo4j se cargan sin `--borrar`, con `fuente` = `unnoba_reglas_v3`, `unnoba_llm` o `unnoba_hibrido`.
+
+- **Nodos `:Norma`:** 104.
+  - Las 70 de la muestra tienen `split = 'unnoba_muestra'` y texto.
+  - Las 34 que ellas citan tienen `split = 'unnoba_citada'`, sin texto. Entre ellas están la Ordenanza 14/2009, la Res. 531/2012, la Ley 24.521 y el Estatuto.
+  - El grafo usa `id_norma` enteros, así que a las normas del digesto se les asigna un id desde 9.000.001, que no choca con los de InfoLEG.
+  - `nombre` es legible (por ejemplo «Resolución HCS 44/2008») y `sumario` empieza con la clave de comparación («clave RES-44-2008»).
+- **Nodos `:Articulo`:** el encabezado de cada documento (#0) y un nodo por artículo del dispositivo. Además, los artículos destino que se nombran («artículos 2 y 3 de la Res. 44/08») se crean como nodos sin texto.
+- **Aristas:** las mismas que en InfoLEG.
+
+  | Grafo | Pares con relación que no es CITA | Aristas |
+  |---|---|---|
+  | Reglas | 9 | 137 CITA, 11 MODIFICA, 1 REGLAMENTA, 1 INCORPORA |
+  | LLM («vocab») | 13 | 133 CITA y 23 con otro tipo |
+  | Híbrido | 58 | 88 CITA, 56 MODIFICA, 5 REGLAMENTA, 1 INCORPORA |
+
+  - En el **grafo de reglas**, como en InfoLEG, el tipo sale del verbo, y todo lo del VISTO y del CONSIDERANDO es CITA. El vínculo de la regla F3 se obtiene proyectando ese grafo: da los mismos 59 pares que la evaluación.
+  - El **grafo del híbrido** marca con su tipo los 58 pares que acepta. Sin un verbo de la regla, el tipo es MODIFICA, que en el modelo de InfoLEG quiere decir «modifica o complementa». Ahí entran los APLICA del gold.
+- **Datos personales:** los DNI se tapan en el texto y en los fragmentos. Igual, `relaciones.csv` no va a git, porque los fragmentos pueden traer nombres. `normas.csv`, `articulos.csv` (sin texto) y `resumen.json` sí van.
+
+Ejemplo de consulta: qué normas del digesto modifican o complementan la Ordenanza 14/2009 (Reglamento de Posgrado), según el híbrido.
+
+```cypher
+MATCH (o:Norma)-[:CONTIENE]->(:Articulo)-[r {fuente:'unnoba_hibrido'}]->(d)
+WHERE type(r) <> 'CITA' AND (d.nombre = 'Ordenanza HCS 14/2009' OR (d)<-[:CONTIENE]-(:Norma {nombre:'Ordenanza HCS 14/2009'}))
+RETURN o.nombre, type(r), r.parte_origen, r.fragmento
+```
+
 ## Cómo se repite
 
 ```bash
 # texto de la muestra: data/textos/unnoba/muestra_pi4_textos.jsonl (local, no está en git)
 python scripts/21_pi4_unnoba.py --estimar     # 252 pedidos
 python scripts/21_pi4_unnoba.py               # con la cache local no llama a la API
+python scripts/22_grafo_unnoba.py             # grafos (agregar --uri bolt://localhost:7688 para cargarlos)
 ```

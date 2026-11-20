@@ -72,6 +72,12 @@ python scripts/10_armar_grafo.py --relaciones results/hibrido/relaciones_hibrido
 python scripts/16_evaluar_tipos.py
 python scripts/17_comparar_metodos.py
 
+# PI4: digesto UNNOBA (necesita el texto local de la muestra, que no va a git; usa la cache del LLM)
+if [ -f data/textos/unnoba/muestra_pi4_textos.jsonl ]; then
+  python scripts/21_pi4_unnoba.py
+  python scripts/22_grafo_unnoba.py     # con --uri bolt://localhost:7688 los carga en Neo4j sin borrar nada
+fi
+
 echo "== Tests"
 pytest -q
 

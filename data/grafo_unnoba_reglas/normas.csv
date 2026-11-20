@@ -1,0 +1,105 @@
+id_norma,tipo,numero,nombre,fecha,titulo,sumario,organismo,split,tiene_texto
+9000001,Resolución,HCS 312/2010,Resolución HCS 312/2010,2010-08-13,Resolución HCS Nº 312/10,clave RES-312-2010 · Escuela de Tecnología,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000002,Resolución,HCS 722/2014,Resolución HCS 722/2014,2014-02-28,Resolución HCS Nº 722/14,clave RES-722-2014 · Cursos | Alumnos | Posgrado,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000003,Resolución,HCS 1100/2016,Resolución HCS 1100/2016,2016-04-04,Resolución HCS Nº 1100/16,clave RES-1100-2016 · Carreras | Alumnos | Posgrado,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000004,Resolución,DET 105/2011,Resolución DET 105/2011,2011-10-20,Resolución DET Nº 105/11,clave RES-105-2011 · Escuela de Tecnología,"UNNOBA - Dirección, Escuela de Tecnología",unnoba_muestra,True
+9000005,Resolución,CDET 118/2013,Resolución CDET 118/2013,2013-08-09,Resolución CDET Nº 118/13,clave RES-118-2013 · Escuela de Tecnología,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000006,Resolución,HCS 884/2014,Resolución HCS 884/2014,2014-11-21,Resolución HCS Nº 884/14,clave RES-884-2014 · Alumnos,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000007,Resolución,CDET 195/2015,Resolución CDET 195/2015,2015-06-23,Resolución CDET Nº 195/15,clave RES-195-2015 · Escuela de Tecnología,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000008,Resolución,HCS 906/2014,Resolución HCS 906/2014,2014-11-21,Resolución HCS Nº 906/14,clave RES-906-2014 · Alumnos | Posgrado,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000009,Resolución,CDET 280/2016,Resolución CDET 280/2016,2016-04-27,Resolución CDET Nº 280/16,clave RES-280-2016 · Escuela de Tecnología,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000010,Resolución,HCS 382/2011,Resolución HCS 382/2011,2011-04-08,Resolución HCS Nº 382/11,clave RES-382-2011 · Escuela de Tecnología,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000011,Resolución,CDET 313/2016,Resolución CDET 313/2016,2016-11-17,Resolución CDET Nº 313/16,clave RES-313-2016 · Escuela de Tecnología,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000012,Resolución,DET 64/2011,Resolución DET 64/2011,2011-02-09,Resolución DET Nº 064/11,clave RES-64-2011 · Escuela de Tecnología,"UNNOBA - Dirección, Escuela de Tecnología",unnoba_muestra,True
+9000013,Resolución,CDET 284/2016,Resolución CDET 284/2016,2016-07-27,Resolución CDET Nº 284/16,clave RES-284-2016 · Escuela de Tecnología,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000014,Resolución,CDET 292/2016,Resolución CDET 292/2016,2016-08-31,Resolución CDET Nº 292/16,clave RES-292-2016 · Escuela de Tecnología,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000015,Resolución,CDET 101/2013,Resolución CDET 101/2013,2013-05-24,Resolución CDET Nº 101/13,clave RES-101-2013 · Escuela de Tecnología,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000016,Ordenanza,HCS 30/2011,Ordenanza HCS 30/2011,2011-06-16,Ordenanza HCS Nº 030/11,clave ORD-30-2011 · Reglamentación | Posgrado,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000017,Ordenanza,HCS 27/2010,Ordenanza HCS 27/2010,2010-11-12,Ordenanza HCS Nº 027/10,clave ORD-27-2010 · Reglamentación | Posgrado,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000018,Ordenanza,HCS 40/2014,Ordenanza HCS 40/2014,2014-08-20,Ordenanza HCS Nº 040/14,clave ORD-40-2014 · Alumnos | Posgrado,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000019,Ordenanza,HCS 35/2012,Ordenanza HCS 35/2012,2012-08-16,Ordenanza HCS Nº 035/12,clave ORD-35-2012 · Alumnos,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000020,Ordenanza,HCS 29/2010,Ordenanza HCS 29/2010,2010-11-12,Ordenanza HCS Nº 029/10,clave ORD-29-2010 · Alumnos,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000021,Ordenanza,HCS 1/2007,Ordenanza HCS 1/2007,2007-10-09,Ordenanza HCS Nº 001/07,clave ORD-1-2007 · Alumnos,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000022,Ordenanza,HCS 2/2007,Ordenanza HCS 2/2007,2007-12-28,Ordenanza HCS Nº 002/07,clave ORD-2-2007 · Ingreso,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000023,Resolución,HCS 96/2008,Resolución HCS 96/2008,2008-10-09,Resolución HCS Nº 096/08,clave RES-96-2008 · Cursadas,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000024,Resolución,HCS 44/2008,Resolución HCS 44/2008,2008-03-19,Resolución HCS Nº 044/08,clave RES-44-2008 · Cursadas,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000025,Resolución,HCS 28/2007,Resolución HCS 28/2007,2007-12-26,Resolución HCS Nº 028/07,clave RES-28-2007 · Cursadas,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000026,Resolución,HCS 176/2009,Resolución HCS 176/2009,2009-05-28,Resolución HCS Nº 176/09,clave RES-176-2009 · Regularidades | Cursadas,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000027,Resolución,HCS 146/2009,Resolución HCS 146/2009,2009-04-27,Resolución HCS Nº 146/09,clave RES-146-2009 · Regularidades | Cursadas,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000028,Resolución,HCS 106/2008,Resolución HCS 106/2008,2008-12-03,Resolución HCS Nº 106/08,clave RES-106-2008 · Regularidades | Cursadas,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000029,Resolución,HCS 97/2008,Resolución HCS 97/2008,2008-10-09,Resolución HCS Nº 097/08,clave RES-97-2008 · Regularidades | Cursadas,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000030,Resolución,HCS 56/2008,Resolución HCS 56/2008,2008-05-28,Resolución HCS Nº 056/08,clave RES-56-2008 · Regularidades | Cursadas,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000031,Resolución,HCS 27/2007,Resolución HCS 27/2007,2007-12-26,Resolución HCS Nº 027/07,clave RES-27-2007 · Regularidades | Cursadas,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000032,Resolución,CDET 119/2013,Resolución CDET 119/2013,2013-08-09,Resolución CDET Nº 119/13,clave RES-119-2013 · Escuela de Tecnología | Ingreso,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000033,Resolución,CDET 64/2013,Resolución CDET 64/2013,2013-03-08,Resolución CDET Nº 064/13,clave RES-64-2013 · Escuela de Tecnología | Ingreso,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000034,Resolución,HCS 1320/2017,Resolución HCS 1320/2017,2017-07-14,Resolución HCS Nº 1320/17,clave RES-1320-2017 · Alumnos | Ingreso,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000035,Resolución,HCS 1002/2015,Resolución HCS 1002/2015,2015-08-08,Resolución HCS Nº 1002/15,clave RES-1002-2015 · Alumnos | Ingreso,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000036,Resolución,HCS 826/2014,Resolución HCS 826/2014,,Resolución HCS Nº 826/14,clave RES-826-2014 · Alumnos | Ingreso,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000037,Resolución,HCS 666/2013,Resolución HCS 666/2013,2013-09-26,Resolución HCS Nº 666/13,clave RES-666-2013 · Alumnos | Ingreso,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000038,Resolución,HCS 1057/2015,Resolución HCS 1057/2015,2015-11-13,Resolución HCS Nº 1057/15,clave RES-1057-2015 · Ingreso,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000039,Resolución,HCS 496/2012,Resolución HCS 496/2012,2012-05-21,Resolución HCS Nº 496/12,clave RES-496-2012 · Ingreso,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000040,Resolución,HCS 407/2011,Resolución HCS 407/2011,2011-06-16,Resolución HCS Nº 407/11,clave RES-407-2011 · Ingreso,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000041,Resolución,HCS 281/2010,Resolución HCS 281/2010,2010-06-23,Resolución HCS Nº 281/10,clave RES-281-2010 · Ingreso,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000042,Resolución,HCS 200/2009,Resolución HCS 200/2009,2009-08-18,Resolución HCS Nº 200/09,clave RES-200-2009 · Ingreso,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000043,Resolución,HCS 107/2008,Resolución HCS 107/2008,2008-12-11,Resolución HCS Nº 107/08,clave RES-107-2008 · Ingreso,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000044,Resolución,HCS 84/2008,Resolución HCS 84/2008,2008-08-26,Resolución HCS Nº 084/08,clave RES-84-2008 · Ingreso,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000045,Resolución,HCS 57/2008,Resolución HCS 57/2008,2008-05-28,Resolución HCS Nº 057/08,clave RES-57-2008 · Ingreso,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000046,Resolución,HCS 47/2008,Resolución HCS 47/2008,2008-03-25,Resolución HCS Nº 047/08,clave RES-47-2008 · Ingreso,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000047,Resolución,HCS 41/2007,Resolución HCS 41/2007,,Resolución HCS Nº 041/07,clave RES-41-2007 · Ingreso,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000048,Resolución,HCS 694/2013,Resolución HCS 694/2013,2013-10-23,Resolución HCS Nº 694/13,clave RES-694-2013 · Cursos | Reglamentación | Posgrado,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000049,Resolución,HCS 693/2013,Resolución HCS 693/2013,2013-10-23,Resolución HCS Nº 693/13,clave RES-693-2013 · Cursos | Reglamentación | Posgrado,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000050,Resolución,HCS 692/2013,Resolución HCS 692/2013,2013-10-23,Resolución HCS Nº 692/13,clave RES-692-2013 · Cursos | Reglamentación | Posgrado,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000051,Resolución,HCS 691/2013,Resolución HCS 691/2013,2013-10-23,Resolución HCS Nº 691/13,clave RES-691-2013 · Cursos | Reglamentación | Posgrado,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000052,Resolución,HCS 675/2013,Resolución HCS 675/2013,2013-09-26,Resolución HCS Nº 675/13,clave RES-675-2013 · Cursos | Reglamentación | Posgrado,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000053,Resolución,HCS 218/2009,Resolución HCS 218/2009,2009-09-25,Resolución HCS Nº 218/09,clave RES-218-2009 · Reglamentación | Posgrado,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000054,Resolución,HCS 217/2009,Resolución HCS 217/2009,2009-09-25,Resolución HCS Nº 217/09,clave RES-217-2009 · Reglamentación | Posgrado,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000055,Resolución,CDET 424/2017,Resolución CDET 424/2017,2017-12-15,Resolución CDET Nº 424/17,clave RES-424-2017 · Escuela de Tecnología | Reglamento Trabajo Final,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000056,Resolución,CDET 361/2017,Resolución CDET 361/2017,2017-07-07,Resolución CDET Nº 361/17,clave RES-361-2017 · Escuela de Tecnología | Reglamento Trabajo Final,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000057,Resolución,CDET 360/2017,Resolución CDET 360/2017,2017-07-07,Resolución CDET Nº 360/17,clave RES-360-2017 · Escuela de Tecnología | Reglamento Trabajo Final,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000058,Resolución,CDET 271/2016,Resolución CDET 271/2016,2016-03-09,Resolución CDET Nº 271/16,clave RES-271-2016 · Escuela de Tecnología | Reglamento Trabajo Final,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000059,Resolución,CDET 270/2016,Resolución CDET 270/2016,2016-03-09,Resolución CDET Nº 270/16,clave RES-270-2016 · Escuela de Tecnología | Reglamento Trabajo Final,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000060,Resolución,CDET 269/2016,Resolución CDET 269/2016,2016-03-09,Resolución CDET Nº 269/16,clave RES-269-2016 · Escuela de Tecnología | Reglamento Trabajo Final,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000061,Resolución,CDET 268/2016,Resolución CDET 268/2016,2016-03-09,Resolución CDET Nº 268/16,clave RES-268-2016 · Escuela de Tecnología | Reglamento Trabajo Final,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000062,Resolución,CDET 267/2016,Resolución CDET 267/2016,2016-03-09,Resolución CDET Nº 267/16,clave RES-267-2016 · Escuela de Tecnología | Reglamento Trabajo Final,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000063,Resolución,CDET 266/2016,Resolución CDET 266/2016,2016-03-09,Resolución CDET Nº 266/16,clave RES-266-2016 · Escuela de Tecnología | Reglamento Trabajo Final,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000064,Resolución,CDET 265/2016,Resolución CDET 265/2016,2016-03-09,Resolución CDET Nº 265/16,clave RES-265-2016 · Escuela de Tecnología | Reglamento Trabajo Final,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000065,Resolución,CDET 264/2016,Resolución CDET 264/2016,2016-03-09,Resolución CDET Nº 264/16,clave RES-264-2016 · Escuela de Tecnología | Reglamento Trabajo Final,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000066,Resolución,CDET 263/2016,Resolución CDET 263/2016,2016-03-09,Resolución CDET Nº 263/16,clave RES-263-2016 · Escuela de Tecnología | Reglamento Trabajo Final,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000067,Resolución,CDET 262/2016,Resolución CDET 262/2016,2016-03-09,Resolución CDET Nº 262/16,clave RES-262-2016 · Escuela de Tecnología | Reglamento Trabajo Final,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000068,Resolución,CDET 187/2015,Resolución CDET 187/2015,2015-04-29,Resolución CDET Nº 187/15,clave RES-187-2015 · Escuela de Tecnología | Reglamento Trabajo Final,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000069,Resolución,CDET 25/2011,Resolución CDET 25/2011,2011-11-29,Resolución CDET Nº 025/11,clave RES-25-2011 · Escuela de Tecnología | Reglamento Trabajo Final,"UNNOBA - Consejo Directivo, Escuela de Tecnología",unnoba_muestra,True
+9000070,Resolución,HCS 191/2009,Resolución HCS 191/2009,2009-07-15,Resolución HCS Nº 191/09,clave RES-191-2009 · Escuela de Tecnología | Reglamento Trabajo Final,UNNOBA - Consejo Superior,unnoba_muestra,True
+9000071,Decreto,499/1995,Decreto 499/1995,1995,Decreto 499/1995,clave DEC-NAC-499-1995,Nación,unnoba_citada,False
+9000072,Estatuto,UNNOBA,Estatuto UNNOBA,,Estatuto UNNOBA,clave ESTATUTO,UNNOBA,unnoba_citada,False
+9000073,Ley,13016,Ley 13016,,Ley 13016,clave LEY-13016,Nación,unnoba_citada,False
+9000074,Ley,24521,Ley 24521,,Ley 24521,clave LEY-24521,Nación,unnoba_citada,False
+9000075,Ley,25871,Ley 25871,,Ley 25871,clave LEY-25871,Nación,unnoba_citada,False
+9000076,Ordenanza,12/2009,Ordenanza 12/2009,2009,Ordenanza 12/2009,clave ORD-12-2009,,unnoba_citada,False
+9000077,Ordenanza,HCS 14/2009,Ordenanza HCS 14/2009,2009,Ordenanza HCS 14/2009,clave ORD-14-2009,UNNOBA - Consejo Superior,unnoba_citada,False
+9000078,Ordenanza,HCS 16/2009,Ordenanza HCS 16/2009,2009,Ordenanza HCS 16/2009,clave ORD-16-2009,UNNOBA - Consejo Superior,unnoba_citada,False
+9000079,Ordenanza,HCS 23/2009,Ordenanza HCS 23/2009,2009,Ordenanza HCS 23/2009,clave ORD-23-2009,UNNOBA - Consejo Superior,unnoba_citada,False
+9000080,Resolución,HCS 1/2001,Resolución HCS 1/2001,2001,Resolución HCS 1/2001,clave RES-1-2001,UNNOBA - Consejo Superior,unnoba_citada,False
+9000081,Resolución,REC 1122/2008,Resolución REC 1122/2008,2008,Resolución REC 1122/2008,clave RES-1122-2008,UNNOBA - Rector,unnoba_citada,False
+9000082,Resolución,MIN 1523/1990,Resolución MIN 1523/1990,1990,Resolución MIN 1523/1990,clave RES-1523-1990,Ministerio de Educación,unnoba_citada,False
+9000083,Resolución,REC 1953/2009,Resolución REC 1953/2009,2009,Resolución REC 1953/2009,clave RES-1953-2009,UNNOBA - Rector,unnoba_citada,False
+9000084,Resolución,228/2007,Resolución 228/2007,2007,Resolución 228/2007,clave RES-228-2007,,unnoba_citada,False
+9000085,Resolución,HCS 234/2009,Resolución HCS 234/2009,2009,Resolución HCS 234/2009,clave RES-234-2009,UNNOBA - Consejo Superior,unnoba_citada,False
+9000086,Resolución,HCS 252/2009,Resolución HCS 252/2009,2009,Resolución HCS 252/2009,clave RES-252-2009,UNNOBA - Consejo Superior,unnoba_citada,False
+9000087,Resolución,HCS 253/2009,Resolución HCS 253/2009,2009,Resolución HCS 253/2009,clave RES-253-2009,UNNOBA - Consejo Superior,unnoba_citada,False
+9000088,Resolución,278/2016,Resolución 278/2016,2016,Resolución 278/2016,clave RES-278-2016,,unnoba_citada,False
+9000089,Resolución,312/2007,Resolución 312/2007,2007,Resolución 312/2007,clave RES-312-2007,,unnoba_citada,False
+9000090,Resolución,REC 3158/2010,Resolución REC 3158/2010,2010,Resolución REC 3158/2010,clave RES-3158-2010,UNNOBA - Rector,unnoba_citada,False
+9000091,Resolución,HCS 32/2007,Resolución HCS 32/2007,2007,Resolución HCS 32/2007,clave RES-32-2007,UNNOBA - Consejo Superior,unnoba_citada,False
+9000092,Resolución,REC 3565/2011,Resolución REC 3565/2011,2011,Resolución REC 3565/2011,clave RES-3565-2011,UNNOBA - Rector,unnoba_citada,False
+9000093,Resolución,HCS 368/2010,Resolución HCS 368/2010,2010,Resolución HCS 368/2010,clave RES-368-2010,UNNOBA - Consejo Superior,unnoba_citada,False
+9000094,Resolución,HCS 38/2007,Resolución HCS 38/2007,2007,Resolución HCS 38/2007,clave RES-38-2007,UNNOBA - Consejo Superior,unnoba_citada,False
+9000095,Resolución,REC 3800/2011,Resolución REC 3800/2011,2011,Resolución REC 3800/2011,clave RES-3800-2011,UNNOBA - Rector,unnoba_citada,False
+9000096,Resolución,439/2006,Resolución 439/2006,2006,Resolución 439/2006,clave RES-439-2006,,unnoba_citada,False
+9000097,Resolución,HCS 531/2012,Resolución HCS 531/2012,2012,Resolución HCS 531/2012,clave RES-531-2012,UNNOBA - Consejo Superior,unnoba_citada,False
+9000098,Resolución,556/1998,Resolución 556/1998,1998,Resolución 556/1998,clave RES-556-1998,,unnoba_citada,False
+9000099,Resolución,HCS 633/2013,Resolución HCS 633/2013,2013,Resolución HCS 633/2013,clave RES-633-2013,UNNOBA - Consejo Superior,unnoba_citada,False
+9000100,Resolución,HCS 657/2013,Resolución HCS 657/2013,2013,Resolución HCS 657/2013,clave RES-657-2013,UNNOBA - Consejo Superior,unnoba_citada,False
+9000101,Resolución,HCS 76/2008,Resolución HCS 76/2008,2008,Resolución HCS 76/2008,clave RES-76-2008,UNNOBA - Consejo Superior,unnoba_citada,False
+9000102,Resolución,HCS 77/2008,Resolución HCS 77/2008,2008,Resolución HCS 77/2008,clave RES-77-2008,UNNOBA - Consejo Superior,unnoba_citada,False
+9000103,Resolución,HCS 92/2008,Resolución HCS 92/2008,2008,Resolución HCS 92/2008,clave RES-92-2008,UNNOBA - Consejo Superior,unnoba_citada,False
+9000104,Resolución,HCS 970/2015,Resolución HCS 970/2015,2015,Resolución HCS 970/2015,clave RES-970-2015,UNNOBA - Consejo Superior,unnoba_citada,False
