@@ -76,9 +76,17 @@ python scripts/17_comparar_metodos.py
 # la consolidacion usa la cache del LLM (sin clave no llama a la API)
 if [ -f results/consolidado/manifiesto_25552_relaciones.json ]; then
   python scripts/24_consolidar.py
+  [ -f data/textos/infoleg/html/25552_texact.html ] && python scripts/25_evaluar_consolidado.py
 fi
 
-# PI4: digesto UNNOBA (necesita el texto local de la muestra, que no va a git; usa la cache del LLM)
+# PI4: digesto UNNOBA. Los PDF los baja el equipo (tools/digesto_unnoba/, robots.txt prohíbe
+# automatizarlo) a data/textos/unnoba/pdf/; no van a git (nombres y DNI).
+if [ -d data/textos/unnoba/pdf ]; then
+  python scripts/26_digesto_catalogo.py --verificar   # catálogo (sin --verificar lo reescribe)
+  python scripts/27_digesto_duplicados.py             # informa copias repetidas (--mover las aparta)
+  python scripts/28_digesto_textos.py                 # pdftotext; --ocr muestra hace el OCR de la muestra
+  python scripts/29_digesto_muestra.py --verificar    # muestra de 70 (sin --verificar la reescribe)
+fi
 if [ -f data/textos/unnoba/muestra_pi4_textos.jsonl ]; then
   python scripts/21_pi4_unnoba.py
   python scripts/22_grafo_unnoba.py     # con --uri bolt://localhost:7688 los carga en Neo4j sin borrar nada

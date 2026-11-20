@@ -92,9 +92,18 @@ RETURN o.nombre, type(r), r.parte_origen, r.fragmento
 
 ## Cómo se repite
 
+Todo está en scripts. Lo único manual es bajar los PDF, porque el robots.txt del digesto prohíbe automatizarlo: lo hace el equipo con `tools/digesto_unnoba/Descargar_PDFs_UNNOBA.command`.
+
 ```bash
-# texto de la muestra: data/textos/unnoba/muestra_pi4_textos.jsonl (local, no está en git)
-python scripts/21_pi4_unnoba.py --estimar     # 252 pedidos
-python scripts/21_pi4_unnoba.py               # con la cache local no llama a la API
-python scripts/22_grafo_unnoba.py             # grafos (agregar --uri bolt://localhost:7688 para cargarlos)
+python scripts/26_digesto_catalogo.py            # catálogo de 912 documentos (898 del descargador + 14 a mano)
+python scripts/27_digesto_duplicados.py --mover  # aparta copias repetidas en pdf/_duplicados/ (con LEEME.csv)
+python scripts/28_digesto_textos.py --ocr muestra   # pdftotext de todo; OCR (tesseract spa) de los escaneados de la muestra
+python scripts/29_digesto_muestra.py --cuerpos   # muestra de 70 (semilla 20261120), JSONL con el texto y lectura para anotar
+python scripts/21_pi4_unnoba.py --estimar        # 252 pedidos
+python scripts/21_pi4_unnoba.py                  # evaluación (con la cache local no llama a la API)
+python scripts/22_grafo_unnoba.py                # grafos (--uri bolt://localhost:7688 para cargarlos)
 ```
+
+`26` y `29` tienen `--verificar`, que comprueba que el catálogo y la muestra del repositorio salen iguales sin escribir nada. Los dos dan iguales, y los textos del JSONL coinciden con `txt/`.
+
+El OCR no es reproducible byte a byte: cambia con la versión de tesseract y con los parámetros. Por eso `28` no rehace un `.txt` que ya existe, salvo con `--rehacer`. Los resultados de la PI4 corresponden a los textos guardados.

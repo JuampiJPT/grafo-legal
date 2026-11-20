@@ -75,6 +75,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B59 | 20/11 | Decisión | Grafos del digesto de la UNNOBA, con el mismo modelo y código que los de InfoLEG | Cerrada |
 | B60 | 20/11 | Hallazgo | Evaluación de los grafos leyéndolos desde Neo4j: ida y vuelta idéntica en las cuatro fuentes | Cerrada |
 | B61 | 20/11 | Hallazgo | Texto consolidado de la LCT desde el grafo: coincide con InfoLEG en el 96 % de los artículos (91 % de los que cambian) | Abierta |
+| B62 | 20/11 | Decisión | Todo lo que se hizo a mano en la sesión queda como script en el repositorio | Cerrada |
 
 ## Entradas
 
@@ -939,6 +940,35 @@ Ejemplo de consulta en `docs/pi4_digesto_unnoba.md`.
 Sirve para mostrar que el grafo alcanza para reconstruir el texto vigente y para medir dónde se pierde. No reemplaza al texto oficial.
 
 **Pendiente.** Que el equipo revise `results/consolidado/lct_consolidada.md`, sobre todo los 8 cambios no aplicados y los 6 errores.
+
+### B62 · 20/11/2026 · Decisión · Todo lo que se hizo a mano en la sesión queda como script en el repositorio
+
+**Contexto.** El equipo pidió que todo lo hecho quede en scripts dentro del repositorio, para que se pueda rastrear y repetir. Varios pasos de la PI4 (B56, B57) y del consolidado (B60, B61) se habían hecho con comandos sueltos en la sesión de Claude:
+- extraer el catálogo del descargador;
+- apartar copias;
+- pdftotext y OCR;
+- sortear la muestra;
+- cargar en Neo4j sin borrar;
+- calcular las firmas en el navegador;
+- hacer push desde la Mac.
+
+**Qué se hizo.**
+
+| Script | Qué hace | Verificación |
+|---|---|---|
+| `scripts/26_digesto_catalogo.py` | Saca el catálogo de 898 documentos que trae embebido el `.command` (base85 + zlib) y suma los 14 PDF bajados a mano | `--verificar`: sale igual al `catalogo.csv` del repositorio |
+| `scripts/27_digesto_duplicados.py` | Agrupa los PDF por SHA-256 y aparta copias en `pdf/_duplicados/` con su motivo (`--mover`) | 912 contenidos distintos en `pdf/`; las 29 copias apartadas tienen su original |
+| `scripts/28_digesto_textos.py` | Corre pdftotext (`-layout`) en todo y hace OCR (pdftoppm a 200 dpi en gris + tesseract spa) de los escaneados, solo de la muestra o de todos. Escribe `data/corpus_unnoba/textos.csv` | Mismo pdftotext que el usado. 336 escaneados, 38 con OCR (los de la muestra) |
+| `scripts/29_digesto_muestra.py` | Arma la muestra de 70: las ordenanzas, los temas de reglamentos y 15 al azar con `random.Random(20261120)`. Escribe el JSONL con el texto y, con `--cuerpos`, la lectura que se usó para anotar | `--verificar`: la muestra sale igual y los textos del JSONL coinciden con `txt/` |
+| `scripts/30_cargar_y_evaluar_neo4j.sh` | Carga y evalúa en Neo4j los cuatro grafos de InfoLEG y los del digesto, sin `--borrar` | Es lo que se corrió en B59 y B60 |
+| `scripts/firma_texto_navegador.js` | Calcula en el navegador las firmas del texto actualizado de InfoLEG que se usaron en B61. Su par en Python es `scripts/firma_texto.py` | Mismos hashes en los artículos sin cambios |
+| `tools/push_github.command` | Hace `git push` desde la Mac con la clave del usuario. El entorno de Claude no llega a GitHub: lo abre con doble clic desde el Finder | Todos los push de B57 a B62 |
+
+Los pasos nuevos están en `correr_pipeline.sh`; el README y `docs/pi4_digesto_unnoba.md` ya los listan.
+
+**Lo que no se puede reproducir exacto.**
+- **El OCR:** cambia con la versión de tesseract y con los parámetros. Por eso `28` no rehace un `.txt` que ya existe, salvo con `--rehacer`, y los resultados de la PI4 corresponden a los textos guardados (`muestra_pi4_textos.jsonl`, fuera de git).
+- **La descarga de los PDF:** sigue siendo manual, porque el robots.txt del digesto prohíbe automatizarla (B56).
 
 ## Cuestiones abiertas
 

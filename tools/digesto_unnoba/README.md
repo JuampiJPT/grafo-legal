@@ -17,3 +17,12 @@ Los PDF están en `data/textos/unnoba/pdf/` y no se suben a git (`*.pdf` está e
 - **29 copias** (el mismo contenido con otro nombre, o copias «(1)») apartadas en `pdf/_duplicados/`, con el motivo de cada una en `LEEME.csv`.
 
 `data/corpus_unnoba/catalogo.csv` tiene una fila por documento: cod, título, archivo, los dos enlaces, las secciones donde aparece y el origen (`catalogo_digesto` o `descarga_manual`).
+
+## Después de la descarga (todo en scripts, B62)
+
+```bash
+python scripts/26_digesto_catalogo.py            # catálogo (el que está embebido en el .command + descargas a mano)
+python scripts/27_digesto_duplicados.py --mover  # aparta copias repetidas en pdf/_duplicados/
+python scripts/28_digesto_textos.py --ocr muestra   # pdftotext y OCR de los escaneados de la muestra
+python scripts/29_digesto_muestra.py             # muestra de la PI4
+```
