@@ -68,6 +68,12 @@ scripts/                01 corpus · 02 textos · 03 extraer · 04 evaluar · 05
                         · 07 dataset · 08 clasificador · 09 relaciones · 10 grafo · 11 evaluar grafo
                         · 12 subtareas · 13 modelo contextual e híbrido · 14 parser LLM · 15 evaluar LLM
                         · 16 tipos · 17 tabla final con intervalos de confianza · 18 explicación de cada error
+                        · 19 ablación v3 · 20 parser híbrido en cascada
+                        · 21 PI4 digesto UNNOBA (evaluación) · 22 grafos del digesto
+                        · 23 consultas Neo4j para el consolidado · 24 consolidar la LCT · 25 evaluar el consolidado
+                        · 26-29 digesto: catálogo, copias repetidas, texto (pdftotext + OCR), muestra
+                        · 30 cargar y evaluar todos los grafos en Neo4j (sin borrar)
+                        · firma_texto.py / firma_texto_navegador.js: comparación de textos por firmas
 results/reglas/         reglas v1: evidencias, métricas y errores
 results/reglas_v2/      reglas v2: evidencias, métricas y errores
 results/clasificador/   clasificador: métricas, predicciones e importancia de atributos
@@ -79,8 +85,12 @@ results/modelo_contextual/ modelo TF-IDF e híbrido reglas + modelo
 results/tipos/          matriz de confusión y macro-F1 del tipo de relación
 results/comparacion/    todos los métodos en test, con intervalos de confianza
 results/relaciones_llm/ salida del parser LLM y caché de sus respuestas (cuando se corre)
+results/hibrido/        parser híbrido en cascada
+results/pi4_unnoba/     PI4: evaluación sobre el digesto de la UNNOBA
+results/evaluacion_grafo_neo4j/ evaluación de los cuatro grafos leídos desde Neo4j
+results/consolidado/    texto consolidado de la LCT desde el grafo y su evaluación
 docs/                   estado, decisiones, ficha del dataset, revisión manual y copia de los documentos del Drive
-tools/                  utilidades (conversión entre Google Docs y Markdown)
+tools/                  utilidades: conversión Google Docs ↔ Markdown, descargadores del digesto, push desde la Mac
 tests/                  tests sin red (pytest)
 ```
 

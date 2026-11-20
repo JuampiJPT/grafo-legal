@@ -10,7 +10,8 @@ Las modificaciones se aplican en orden cronológico y cada artículo guarda su h
 - Scripts:
   - `scripts/23_consultar_consolidado.py`: consultas Cypher.
   - `scripts/24_consolidar.py`: consolidación.
-  - `scripts/firma_texto.py`: comparación.
+  - `scripts/firma_texto.py` y `scripts/firma_texto_navegador.js`: comparación por firmas (Python y navegador).
+  - `scripts/30_cargar_y_evaluar_neo4j.sh`: carga y evalúa todos los grafos en Neo4j sin borrar nada.
 - Resultado: `results/consolidado/lct_consolidada.md`, el texto con trazabilidad, y `lct_consolidada.json`.
 - Detalle: `operaciones.csv` (cada operación aplicada), `no_aplicadas.csv` (lo que quedó afuera y por qué) y `evaluacion/` (`por_articulo.csv`, `eventos.csv`, `metricas.json`).
 - Evaluación: `scripts/25_evaluar_consolidado.py`.
@@ -88,7 +89,7 @@ Resultado: 943 relaciones de 107 normas, sumando las cuatro fuentes (reglas v2, 
 3. Se normaliza: Unicode, minúsculas, sin puntuación y sin el rótulo «Art. N».
 4. Se compara la secuencia de palabras con difflib.
 
-Antes de tener el archivo, la misma comparación se había hecho con firmas (hash y MinHash) calculadas en el navegador (`scripts/firma_texto.py`, `evaluacion/distintos_infoleg.csv`). Llegó a las mismas conclusiones, con umbrales más gruesos.
+Antes de tener el archivo, la misma comparación se había hecho con firmas (hash y MinHash) calculadas en el navegador (`scripts/firma_texto_navegador.js` y `scripts/firma_texto.py`, `evaluacion/distintos_infoleg.csv`). Llegó a las mismas conclusiones, con umbrales más gruesos.
 
 **Resultados** (293 artículos en cada lado, el mismo conjunto de números):
 

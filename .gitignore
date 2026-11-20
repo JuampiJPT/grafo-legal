@@ -23,3 +23,6 @@ results/pi4_unnoba/cache_llm/
 results/pi4_unnoba/cache_hibrido/
 # PI4: los fragmentos de las relaciones del digesto pueden traer nombres (B59)
 data/grafo_unnoba_*/relaciones.csv
+# lectura para anotar el gold de la PI4 (nombres y DNI) (B62)
+data/textos/unnoba/cuerpos_muestra.txt
+.push_log.txt
