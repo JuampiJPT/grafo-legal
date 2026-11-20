@@ -12,7 +12,8 @@ Las modificaciones se aplican en orden cronológico y cada artículo guarda su h
   - `scripts/24_consolidar.py`: consolidación.
   - `scripts/firma_texto.py`: comparación.
 - Resultado: `results/consolidado/lct_consolidada.md`, el texto con trazabilidad, y `lct_consolidada.json`.
-- Detalle: `operaciones.csv` (cada operación aplicada), `no_aplicadas.csv` (lo que quedó afuera y por qué) y `evaluacion/`.
+- Detalle: `operaciones.csv` (cada operación aplicada), `no_aplicadas.csv` (lo que quedó afuera y por qué) y `evaluacion/` (`por_articulo.csv`, `eventos.csv`, `metricas.json`).
+- Evaluación: `scripts/25_evaluar_consolidado.py`.
 
 ## 1. Qué ley: la de más profundidad en el grafo
 
@@ -79,34 +80,34 @@ Resultado: 943 relaciones de 107 normas, sumando las cuatro fuentes (reglas v2, 
 
 ## 4. Qué tan fiel es: comparación con el texto actualizado de InfoLEG
 
-**Referencia.** El texto actualizado de la LCT en InfoLEG (`texact.htm`), consultado el 20/11/2026. Ya incluye la Ley 27.802 de marzo de 2026. Se usa solo para medir, nunca como entrada.
+**Referencia.** El texto actualizado de la LCT en InfoLEG (`texact.htm`), guardado el 20/11/2026 en `data/textos/infoleg/html/25552_texact.html`. Ya incluye la Ley 27.802 de marzo de 2026. Se usa solo para medir, nunca como entrada.
 
-**Cómo se comparó.** Desde el entorno de Claude no se puede descargar InfoLEG. Por eso la comparación se hizo en el navegador, sobre la página de InfoLEG, con firmas en vez de textos:
-1. Se normaliza el texto: Unicode, minúsculas, sin puntuación y sin el rótulo «Art. N». También se sacan las notas de InfoLEG («(Artículo sustituido por…)»).
-2. Se calcula un hash exacto y un MinHash de 32 valores sobre 4-gramas de palabras. La similitud de Jaccard estimada tiene un error de ±0,1.
-3. El mismo código, en Python (`scripts/firma_texto.py`), calcula las firmas del consolidado.
+**Cómo se comparó** (`scripts/25_evaluar_consolidado.py`):
+1. Los dos textos se parten por artículo.
+2. Se sacan las notas editoriales de InfoLEG, como «(Artículo sustituido por art. … B.O. …)» o «(Nota Infoleg: …)».
+3. Se normaliza: Unicode, minúsculas, sin puntuación y sin el rótulo «Art. N».
+4. Se compara la secuencia de palabras con difflib.
 
-Del navegador solo salieron las firmas y los resultados, no el texto.
+Antes de tener el archivo, la misma comparación se había hecho con firmas (hash y MinHash) calculadas en el navegador (`scripts/firma_texto.py`, `evaluacion/distintos_infoleg.csv`). Llegó a las mismas conclusiones, con umbrales más gruesos.
 
 **Resultados** (293 artículos en cada lado, el mismo conjunto de números):
 
 | Resultado | Artículos | % |
 |---|---|---|
-| Idénticos después de normalizar | 206 | 70,3 |
-| Casi idénticos (Jaccard ≥ 0,9) | 36 | 12,3 |
-| Diferencias menores (0,6 a 0,9) | 31 | 10,6 |
+| Idénticos después de normalizar | 207 | 70,6 |
+| Casi idénticos (similitud ≥ 0,95) | 61 | 20,8 |
 | Derogados en los dos | 13 | 4,4 |
-| Diferencia sustantiva (< 0,6) | 4 | 1,4 |
+| Diferencias menores (0,80 a 0,95) | 7 | 2,4 |
+| Diferencia sustantiva (< 0,80) | 2 | 0,7 |
 | Derogado en InfoLEG y vigente en el consolidado | 3 | 1,0 |
 
 **Lectura.**
-- **Lo que coincide.** El 82,6 % de los artículos coincide (idénticos o casi). Y el número no se infla con los artículos que nadie tocó:
-  - **Los que cambió el consolidado:** son 99, y 94 coinciden con InfoLEG (idénticos, casi idénticos o derogados en los dos). Eso incluye las sustituciones de la Ley 27.802 (por ejemplo los arts. 66, 92 bis y 132) y 13 de las 16 derogaciones. De los otros 5, 2 tienen diferencias menores (98 y 231) y 3 están mal (2, 147 y 266).
-  - **Los que cambió solo InfoLEG:** son 3 (251, 264 y 265), y el consolidado no los tocó.
-  - **En total:** sobre los 102 artículos que cambian en alguno de los dos lados, el 92 % termina bien.
-- **Lo que no es error de consolidación.** De las 67 diferencias de los rangos «casi idénticos» y «diferencias menores», 57 están en artículos que ningún lado modificó. Son diferencias entre el t.o. tal como lo publica el Decreto 390/76 en InfoLEG y el texto actualizado: «prohíbe»/«prohibe», «motivo»/«motivos», «sueldo o salario»/«sueldo». Los arts. 17 y 114, que caen como «sustantivos», también son de este tipo: son textos cortos, donde unas pocas palabras pesan mucho en el Jaccard.
+- **Lo que coincide.** 281 de 293 artículos (95,9 %) son idénticos, casi idénticos o están derogados en los dos.
+- **Los casi idénticos** que nadie modificó son variantes de redacción del t.o. entre la publicación del Decreto 390/76 y el texto actualizado: «prohíbe»/«prohibe», «motivo»/«motivos», «sueldo o salario»/«sueldo».
+- **Los artículos que cambian:** son 103 en alguno de los dos lados, y 94 coinciden (91 %). Eso incluye las cadenas largas y las sustituciones y derogaciones de la Ley 27.802.
+- **Eventos.** De los 107 cambios que registran las notas de InfoLEG (artículo y norma), el consolidado aplicó 99 (92,5 %). La precisión de eventos (0,62) no se puede leer como error: las notas de InfoLEG solo guardan la última versión de cada parte, no la historia completa.
 
-**Los errores reales son 7 artículos (2,4 %), y cada uno tiene su causa:**
+**De los 12 artículos que no coinciden, 6 son errores reales:**
 
 | Art. | Qué pasó | Causa |
 |---|---|---|
@@ -114,7 +115,10 @@ Del navegador solo salieron las firmas y los resultados, no el texto.
 | 251 | Sustituido por la Ley 24.522, art. 294; el consolidado tiene el texto de 1976 | La misma causa |
 | 2 | Falta la última sustitución, de la Ley 27.802, art. 1 | El texto que extrajo el LLM no pasó la verificación literal y la operación se descartó. La verificación cuida la precisión a costa del recall |
 | 147 | El consolidado tiene un tercer párrafo de más | El Decreto 27/2018 lo sustituyó y la Ley 27.444 derogó ese artículo del decreto. InfoLEG anota que «no se revive el texto». El método no modela la derogación de una norma modificatoria |
-| 231 | El inciso b) quedó distinto | La modificación parcial de la Ley 27.802 se aplicó, pero el resultado no coincide del todo |
+
+**Los otros 6 son diferencias de forma, no de contenido:**
+- **98, 233 y 231:** InfoLEG conserva el epígrafe del artículo («Comportamiento de las partes…», «Comienzo del plazo…», «Plazos») y la norma modificatoria no lo transcribe. En el 231, el cambio parcial de la Ley 27.802 al inciso b) quedó bien aplicado.
+- **17, 38 y 107:** ni InfoLEG ni el consolidado los modificaron. Son variantes de redacción del t.o. («prohíbe»/«prohibe», «motivo»/«motivos»).
 
 ## 5. Qué tan verídico es, y sus límites
 

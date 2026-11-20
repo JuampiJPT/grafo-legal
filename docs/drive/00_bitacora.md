@@ -74,7 +74,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B58 | 20/11 | Decisión | Revisión del gold de la PI4: las remisiones que definen a quién alcanza la resolución son APLICA | Abierta |
 | B59 | 20/11 | Decisión | Grafos del digesto de la UNNOBA, con el mismo modelo y código que los de InfoLEG | Cerrada |
 | B60 | 20/11 | Hallazgo | Evaluación de los grafos leyéndolos desde Neo4j: ida y vuelta idéntica en las cuatro fuentes | Cerrada |
-| B61 | 20/11 | Hallazgo | Texto consolidado de la LCT desde el grafo: coincide con InfoLEG en el 92 % de los artículos que cambian | Abierta |
+| B61 | 20/11 | Hallazgo | Texto consolidado de la LCT desde el grafo: coincide con InfoLEG en el 96 % de los artículos (91 % de los que cambian) | Abierta |
 
 ## Entradas
 
@@ -896,7 +896,7 @@ Ejemplo de consulta en `docs/pi4_digesto_unnoba.md`.
 
 **Pendiente.** Probar las consultas de ejemplo de `docs/grafo.md` en el Neo4j Browser.
 
-### B61 · 20/11/2026 · Hallazgo · Texto consolidado de la LCT desde el grafo: coincide con InfoLEG en el 92 % de los artículos que cambian
+### B61 · 20/11/2026 · Hallazgo · Texto consolidado de la LCT desde el grafo: coincide con InfoLEG en el 96 % de los artículos (91 % de los que cambian)
 
 **Contexto.** El equipo pidió armar, a partir del grafo, el texto completo de una ley con todas sus modificaciones. La ley elegida fue la de más profundidad. Después había que analizar qué tan verídico es el resultado.
 
@@ -915,14 +915,20 @@ Ejemplo de consulta en `docs/pi4_digesto_unnoba.md`.
    - Del navegador solo salieron las firmas y los resultados.
 
 **Resultados.**
-- **En general:** 206 artículos idénticos y 36 casi idénticos, el 82,6 %.
-- **Diferencias menores:** son 31. Casi todas (28) están en artículos que nadie modificó, así que son variantes de redacción del t.o. entre la publicación del Decreto 390/76 y el texto actualizado.
-- **Sobre los artículos que cambian:** son 102 en alguno de los dos lados, y el 92 % termina bien (94). Eso incluye las cadenas largas (art. 245: seis versiones; art. 92 bis: seis) y la reforma de la Ley 27.802 de 2026.
-- **Errores reales: 7 artículos.**
+- **Con firmas en el navegador (primera pasada):**
+  - 206 artículos idénticos y 36 casi idénticos;
+  - sobre los artículos que cambian, el 92 % termina bien.
+- **Con el texto completo** (el equipo guardó `texact.htm`; `scripts/25_evaluar_consolidado.py`):
+  - 207 artículos idénticos, 61 casi idénticos (similitud ≥ 0,95) y 13 derogados en los dos: 281 de 293 (95,9 %);
+  - sobre los 103 artículos que cambian en alguno de los dos lados, coinciden 94 (91 %). Eso incluye las cadenas largas (art. 245: seis versiones; art. 92 bis: seis) y la reforma de la Ley 27.802 de 2026;
+  - de los 107 cambios que registran las notas de InfoLEG, se aplicaron 99 (92,5 %).
+- **Errores reales: 6 artículos.**
   - 251, 264, 265 y 266: la Ley 24.522 (Concursos) no está vinculada a la LCT en el grafo. Es recall del parser.
   - 2: la última sustitución de la Ley 27.802 no pasó la verificación literal.
   - 147: no se modela la derogación de una norma modificatoria («no se revive el texto»).
-  - 231: un cambio parcial quedó incompleto.
+- **Diferencias de forma, no de contenido: otros 6.**
+  - 98, 231 y 233: epígrafes que la norma modificatoria no transcribe.
+  - 17, 38 y 107: variantes del t.o.
 
 **Qué tan verídico es.**
 - Es fiel en las sustituciones completas.
@@ -932,13 +938,13 @@ Ejemplo de consulta en `docs/pi4_digesto_unnoba.md`.
 
 Sirve para mostrar que el grafo alcanza para reconstruir el texto vigente y para medir dónde se pierde. No reemplaza al texto oficial.
 
-**Pendiente.** Que el equipo revise `results/consolidado/lct_consolidada.md`, sobre todo los 8 cambios no aplicados y los 7 errores.
+**Pendiente.** Que el equipo revise `results/consolidado/lct_consolidada.md`, sobre todo los 8 cambios no aplicados y los 6 errores.
 
 ## Cuestiones abiertas
 
 - Cargar los grafos de la v3, del LLM y del híbrido en Neo4j sin `--borrar` (B54, B55); actualizar la tabla final con el LLM y sus híbridos (B48, B49).
 - Probar las consultas de ejemplo de `docs/grafo.md` en el Neo4j Browser (la evaluación sobre Neo4j ya está, B60).
-- Revisar el texto consolidado de la LCT (`results/consolidado/lct_consolidada.md`), los 8 cambios no aplicados y los 7 errores (B61).
+- Revisar el texto consolidado de la LCT (`results/consolidado/lct_consolidada.md`), los 8 cambios no aplicados y los 6 errores (B61).
 - Mejorar el tipado de las reglas sobre otra muestra de dev, sin tocar los 78 casos de medición (B43, B47).
 - Reglas v4, diseñadas sobre dev: sacar «texto sustituido por» del filtro de procedencia, escribir «l.c.t» sin punto, agregar «creado por» e «inclúyense», y exigir el verbo antes de la mención en F3 (B52).
 - Decidir si el grafo lleva embeddings (B38).

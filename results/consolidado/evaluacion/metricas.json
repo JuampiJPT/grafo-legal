@@ -1,0 +1,20 @@
+{
+ "articulos_infoleg": 293,
+ "articulos_consolidado": 293,
+ "por_clase": {
+  "idéntico": 207,
+  "casi idéntico (>=0,95)": 61,
+  "derogado en los dos": 13,
+  "diferencias menores (0,8-0,95)": 7,
+  "InfoLEG derogado, consolidado vigente": 3,
+  "diferencia sustantiva (<0,8)": 2
+ },
+ "coinciden_idem_o_casi": 281,
+ "articulos_que_cambian": 103,
+ "cambian_y_coinciden": 94,
+ "eventos_infoleg": 107,
+ "eventos_aplicados": 159,
+ "recall_eventos": 0.925,
+ "precision_eventos": 0.623,
+ "nota": "eventos: (artículo, norma) de las notas de InfoLEG; las notas solo guardan la última versión de cada parte, así que el recall es aproximado"
+}
