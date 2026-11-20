@@ -70,7 +70,8 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B54 | 16/11 | Hallazgo | El parser LLM sube el recall y el tipado; la intersección con las reglas es la única mejora significativa | Abierta |
 | B55 | 18/11 | Decisión | Parser híbrido en cascada: las reglas filtran y el LLM decide la zona gris | Cerrada |
 | B56 | 20/11 | Dificultad | Descarga del digesto de la UNNOBA para la PI4 | Cerrada |
-| B57 | 20/11 | Hallazgo | PI4: el pipeline se transfiere al digesto de la UNNOBA si el adaptador lleva el vocabulario de la fuente | Abierta |
+| B57 | 20/11 | Hallazgo | PI4: el pipeline se transfiere al digesto de la UNNOBA si el adaptador lleva el vocabulario de la fuente | Cerrada |
+| B58 | 20/11 | Decisión | Revisión del gold de la PI4: las remisiones que definen a quién alcanza la resolución son APLICA | Abierta |
 
 ## Entradas
 
@@ -761,7 +762,7 @@ El LLM nunca inventa destinos: solo juzga lo que el catálogo resolvió.
    Tiene 3 tests (`tests/test_unnoba.py`).
 5. **Corrida** (`scripts/21_pi4_unnoba.py`): las reglas F y F3, el parser LLM y el híbrido en cascada, con sus prompts tal cual. Además, la variante «vocab», que cambia solo las frases de los prompts que enumeran tipos de norma. Fueron 252 pedidos, unos USD 3.
 
-**Resultados** (vínculo = MOD ∪ APLICA, 45 pares):
+**Resultados** (vínculo = MOD ∪ APLICA, 45 pares; gold de la revisión 1, reemplazado en B58):
 
 | Método | P | R | F1 |
 |---|---|---|---|
@@ -797,6 +798,51 @@ El LLM nunca inventa destinos: solo juzga lo que el catálogo resolvió.
 
 Detalle en `results/pi4_unnoba/RESULTADOS.md` y `docs/pi4_digesto_unnoba.md`. Decisión D28.
 
+### B58 · 20/11/2026 · Decisión · Revisión del gold de la PI4: las remisiones que definen a quién alcanza la resolución son APLICA
+
+**Contexto.** El equipo pidió revisar el gold de la PI4 con una mirada humana y tomar una decisión sobre la duda que más pesaba (B57). En la revisión 1, siete resoluciones de inscripción (docs 33, 34, 35, 36, 38, 39 y 40) tenían dos menciones anotadas como CITA:
+- la Res. Ministerial 1523/90, en un artículo que dice que los aspirantes «no incluidos» en ella quedan comprendidos en la presente;
+- la Ley de Migraciones 25.871, en la constancia de inscripción «en el marco del art. 7°».
+
+Esos 14 pares explicaban 14 de los 18 falsos positivos de las reglas.
+
+**Qué se hizo.** Claude releyó los 108 pares en contexto, con las oraciones donde aparece cada norma, y aplicó las definiciones escritas antes de correr los métodos.
+
+**Decisión.** Las 14 remisiones pasan a **APLICA**, por estas razones:
+1. **Coherencia.** En los docs 25 y 26 ya era APLICA la misma construcción («los alumnos incluidos en las situaciones contempladas por la Resolución…»): la norma sirve para definir a quién alcanza lo que se dispone.
+2. **Ubicación.** Está en el dispositivo («Establecer que…»), no en el considerando.
+3. **La constancia ejecuta el art. 7 de la ley.** Inscribe al aspirante en el marco de ese artículo, y el modelo de constancia lo aprueba el articulado.
+4. **Criterio de InfoLEG.** Coincide con el «complementa» de InfoLEG que usa el TP: se usa la norma para definir a quiénes alcanza la medida.
+
+Además:
+- la Res. (CD.ET) 278/2016 del doc 12 pasa a APLICA, porque el art. 2 exige el formato que aprobó esa resolución;
+- la Res. (D.ET) 313/2016 del doc 10 pasa a MOD, porque el Consejo aprueba lo actuado ad referéndum: es una ratificación implícita;
+- se agrega el Estatuto del doc 15 como CITA.
+
+Se mantuvieron como CITA los formularios de la Res. 368/2010, el Estatuto como competencia y las menciones incidentales. Detalle en `docs/pi4_revision_gold.md`.
+
+**Resultados con la revisión 2** (vínculo, 61 pares):
+
+| Método | P | R | F1 |
+|---|---|---|---|
+| Reglas F = F3 | 0,932 | 0,902 | 0,917 |
+| LLM, prompt de InfoLEG | 0,889 | 0,262 | 0,405 |
+| LLM, prompt «vocab» | 0,895 | 0,836 | 0,864 |
+| **Híbrido** | **0,983** | **0,934** | **0,958** |
+| Híbrido «vocab» | 0,967 | 0,967 | 0,967 |
+
+- El híbrido le gana a las reglas por +0,041, con un IC 95 % de −0,002 a +0,101: **ya no es significativo**.
+- El vocabulario del prompt sigue siendo la diferencia más grande: +0,459, con un IC de +0,303 a +0,617.
+- Detección de menciones: F1 0,986.
+- Solo MOD (20 pares): las reglas dan R 0,500 y el LLM «vocab», 0,650 con P 1,0.
+
+**Riesgo y cómo se acota.** La revisión se hizo después de ver los resultados, y los 16 cambios fueron hacia lo que los métodos predecían. Para acotarlo:
+- se aplicaron solo las definiciones previas;
+- cada cambio queda marcado en el TSV con su motivo;
+- `metricas.json` guarda también los números con la revisión 1. Con ella, el orden de los métodos es el mismo: el híbrido primero y el LLM con el prompt de InfoLEG último.
+
+**Pendiente.** Que un segundo anotador repita una parte, para el kappa.
+
 ## Cuestiones abiertas
 
 - Cargar los grafos de la v3, del LLM y del híbrido en Neo4j sin `--borrar` (B54, B55); actualizar la tabla final con el LLM y sus híbridos (B48, B49).
@@ -807,5 +853,5 @@ Detalle en `results/pi4_unnoba/RESULTADOS.md` y `docs/pi4_digesto_unnoba.md`. De
 - Validar las revisiones manuales de cobertura, de la Ley 14.250, de los 30 falsos positivos, de los 78 tipos y de las 60 menciones, y que un segundo anotador repita parte para el kappa (B12, B26, B30, B36, B45, B47).
 - Consultar con la cátedra la supervisión distante, la clasificación fina y si se evalúa también la modificación estricta (B02, B14, B27).
 - Armar la muestra independiente del gold (B15).
-- Validar el gold de la PI4 (70 documentos del digesto), sobre todo la clase de las remisiones, y un segundo anotador para el kappa (B57).
+- Segundo anotador sobre una parte del gold de la PI4, para el kappa (B57, B58).
 - Decidir si «ratificar» y el infinitivo de «dejar sin efecto» entran en una v4 de los verbos, diseñada sobre dev de InfoLEG (B57).

@@ -7,19 +7,23 @@ doc	destino	clase	nota
 00	RES-HCS-76-2008	APLICA	idem
 00	RES-HCS-77-2008	APLICA	idem
 01	ESTATUTO	CITA	art 70 inc 14, competencia
+2	RES-HCS-657-2013	CITA	plan estrategico, mencion incidental [revision: omision de anotacion]
 05	ESTATUTO	CITA	art 70 inc 25, competencia
 07	RES-HCS-531-2012	APLICA	otorga beneficio Tipo I B de la Res 531/2012
 07	ESTATUTO	CITA	competencia
 09	RES-REC-3565-2011	MOD	ratifica resolucion del Rector ad referendum
 09	ESTATUTO	CITA	competencia
-10	RES-DET-313-2016	CITA	resolucion ad referendum mencionada en considerando
+10	RES-DET-313-2016	MOD	ratificacion implicita: el Consejo aprueba lo actuado y otorga lo que la resolucion ad referendum ya habia otorgado [revision 2: antes CITA]
 11	RES-REC-3158-2010	APLICA	fija requisitos previstos en art 2 anexo I de esa res
-12	RES-CDET-278-2016	CITA	remision al formato aprobado (articulado, sin accion)
+12	RES-CDET-278-2016	APLICA	el art. 2 ordena presentar el programa en el formato aprobado por esa resolucion [revision 2: antes CITA]
+12	LEY-PROV-13016	CITA	bibliografia del programa [revision: omision de anotacion]
 15	RES-REC-3800-2011	MOD	ratifica
 15	ORD-HCS-14-2009	MOD	ratifica la modificatoria de la Ord 14/09
+15	ESTATUTO	CITA	competencia (art 70 inc 32) [revision 2: omision de anotacion]
 16	ORD-HCS-14-2009	MOD	modifica parcialmente
 17	ORD-HCS-12-2009	MOD	reemplaza el procedimiento aprobado por esa ordenanza
 17	ESTATUTO	CITA	competencia
+17	RES-HCS-1-2001	CITA	sello de copia fiel [revision: omision de anotacion]
 18	ORD-HCS-23-2009	MOD	modifica art 13 del Reglamento General de Alumnos
 19	ESTATUTO	MOD	reglamenta el art 35 del Estatuto
 20	RES-?-439-2006	MOD	modifica parcialmente el Reglamento General de Alumnos y Examenes
@@ -51,21 +55,27 @@ doc	destino	clase	nota
 30	ESTATUTO	CITA	competencia
 31	RES-CDET-64-2013	MOD	deja sin efecto
 33	ESTATUTO	CITA	competencia
+33	RES-MIN-1523-1990	APLICA	el articulado usa esa resolucion para definir a quien alcanza la presente (como 97/2008 en docs 25-26) [revision 2: antes CITA]
+33	LEY-NAC-25871-2004	APLICA	"la constancia que aprueba el articulado inscribe ""en el marco del art. 7"" de esa ley [revision 2: antes CITA]"
 34	ESTATUTO	CITA	competencia
+34	RES-MIN-1523-1990	APLICA	el articulado usa esa resolucion para definir a quien alcanza la presente (como 97/2008 en docs 25-26) [revision 2: antes CITA]
+34	LEY-NAC-25871-2004	APLICA	"la constancia que aprueba el articulado inscribe ""en el marco del art. 7"" de esa ley [revision 2: antes CITA]"
 35	ESTATUTO	CITA	competencia
-35	RES-MIN-1523-1990	CITA	remision en el articulado
-35	LEY-NAC-25871-2004	CITA	en el modelo de constancia
+35	RES-MIN-1523-1990	APLICA	el articulado usa esa resolucion para definir a quien alcanza la presente (como 97/2008 en docs 25-26) [revision 2: antes CITA]
+35	LEY-NAC-25871-2004	APLICA	"la constancia que aprueba el articulado inscribe ""en el marco del art. 7"" de esa ley [revision 2: antes CITA]"
+36	RES-MIN-1523-1990	APLICA	el articulado usa esa resolucion para definir a quien alcanza la presente (como 97/2008 en docs 25-26) [revision 2: antes CITA]
+36	LEY-NAC-25871-2004	APLICA	"la constancia que aprueba el articulado inscribe ""en el marco del art. 7"" de esa ley [revision 2: antes CITA]"
 37	ORD-HCS-16-2009	MOD	modifica arts 4, 14 y 18 del Reglamento de Pases y Equivalencias
 37	RES-HCS-970-2015	CITA	creacion del Instituto, antecedente
-38	RES-MIN-1523-1990	CITA	remision en el articulado
-38	LEY-NAC-25871-2004	CITA	en el modelo de constancia
-39	RES-MIN-1523-1990	CITA	remision en el articulado
-39	LEY-NAC-25871-2004	CITA	en el modelo de constancia
+38	RES-MIN-1523-1990	APLICA	el articulado usa esa resolucion para definir a quien alcanza la presente (como 97/2008 en docs 25-26) [revision 2: antes CITA]
+38	LEY-NAC-25871-2004	APLICA	"la constancia que aprueba el articulado inscribe ""en el marco del art. 7"" de esa ley [revision 2: antes CITA]"
+39	RES-MIN-1523-1990	APLICA	el articulado usa esa resolucion para definir a quien alcanza la presente (como 97/2008 en docs 25-26) [revision 2: antes CITA]
+39	LEY-NAC-25871-2004	APLICA	"la constancia que aprueba el articulado inscribe ""en el marco del art. 7"" de esa ley [revision 2: antes CITA]"
 40	RES-HCS-234-2009	MOD	modifica parcialmente el Calendario Academico 2010
 40	RES-REC-41-2007	CITA	delegacion de funciones
 40	ESTATUTO	CITA	competencia
-40	RES-MIN-1523-1990	CITA	remision en el articulado
-40	LEY-NAC-25871-2004	CITA	en el modelo de constancia
+40	RES-MIN-1523-1990	APLICA	el articulado usa esa resolucion para definir a quien alcanza la presente (como 97/2008 en docs 25-26) [revision 2: antes CITA]
+40	LEY-NAC-25871-2004	APLICA	"la constancia que aprueba el articulado inscribe ""en el marco del art. 7"" de esa ley [revision 2: antes CITA]"
 41	RES-REC-1953-2009	MOD	ratifica
 41	ESTATUTO	CITA	competencia
 42	ESTATUTO	CITA	competencia
@@ -98,12 +108,3 @@ doc	destino	clase	nota
 64	RES-HCS-368-2010	CITA	formulario del anexo de esa res (considerando)
 65	RES-HCS-368-2010	CITA	formulario del anexo de esa res (considerando)
 66	RES-HCS-368-2010	CITA	formulario del anexo de esa res (considerando)
-2	RES-HCS-657-2013	CITA	plan estrategico, mencion incidental [revision: omision de anotacion]
-12	LEY-PROV-13016	CITA	bibliografia del programa [revision: omision de anotacion]
-17	RES-HCS-1-2001	CITA	sello de copia fiel [revision: omision de anotacion]
-33	RES-MIN-1523-1990	CITA	remision en el articulado [revision: omision de anotacion]
-33	LEY-NAC-25871-2004	CITA	en el modelo de constancia [revision: omision de anotacion]
-34	RES-MIN-1523-1990	CITA	remision en el articulado [revision: omision de anotacion]
-34	LEY-NAC-25871-2004	CITA	en el modelo de constancia [revision: omision de anotacion]
-36	RES-MIN-1523-1990	CITA	remision en el articulado [revision: omision de anotacion]
-36	LEY-NAC-25871-2004	CITA	en el modelo de constancia [revision: omision de anotacion]

@@ -348,6 +348,16 @@ def main():
         difs.sort()
         met["bootstrap"][f"{a}_menos_{b}"] = {"dif": round(met["vinculo"][a]["F1"] - met["vinculo"][b]["F1"], 3),
                                                "ic95": [round(difs[49], 3), round(difs[1949], 3)]}
+    # sensibilidad (B58): (a) el gold de la revisión 1, con las remisiones como CITA;
+    # (b) la política "cascada" del híbrido (el LLM decide solo la zona gris, umbral 0,5)
+    antes = gold[gold.nota.astype(str).str.contains("antes CITA", regex=False)]
+    g_vinc_r1 = g_vinc - set(zip(antes.doc, antes.id_destino))
+    for k in ("hibrido", "hibrido_vocab"):
+        df = corridas[k][0]
+        c = df[(df.zona == "seguro") | ((df.zona == "gris") & df.verificada & (df.probabilidad >= UMBRAL))]
+        pred[k + "_cascada"] = set(zip(c.doc, c.id_destino))
+    met["vinculo"].update({k: prf(pred[k], g_vinc) for k in ("hibrido_cascada", "hibrido_vocab_cascada")})
+    met["sensibilidad_gold_revision_1"] = {k: prf(v, g_vinc_r1) for k, v in pred.items()}
     (SALIDA / "metricas.json").write_text(json.dumps(met, ensure_ascii=False, indent=1), encoding="utf-8")
 
     # errores por par, para el análisis
