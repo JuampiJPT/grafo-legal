@@ -14,3 +14,5 @@ Scripts que generan el video a partir de `docs/video/guion_video.md` y los audio
 **Fusi** es la mascota de FusionDevs. Su sprite se reconstruyó en píxeles a partir de la calcomanía «Fusi matero» del pack de FusionDevs. Los PNG de Fusi y los cuadros capturados no van al repo.
 
 **Requisitos:** Python con `playwright` (Chromium), `pygments`, `numpy` y `Pillow`, y `ffmpeg`.
+
+**Corrección (B67).** La voz había leído los encabezados («E05 · De dónde salen los datos»). Por eso los cortes válidos son los de `alinear2.py` y `cortar2.py`, que alinean con el encabezado incluido y lo quitan.

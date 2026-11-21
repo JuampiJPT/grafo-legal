@@ -80,6 +80,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B64 | 21/11 | Decisión | Informe de avance y bitácora de investigación para la entrega de la cursada | Abierta |
 | B65 | 21/11 | Decisión | Guion del video explicativo, para narrarlo con ElevenLabs | Cerrada |
 | B66 | 21/11 | Hallazgo | Video explicativo armado: Fusi presenta el TP, con animaciones, y la narración alineada sin reconocimiento de voz | Cerrada |
+| B67 | 21/11 | Dificultad | La voz leía el encabezado de cada escena; se quitó y el video pasa a 13:21 (corrige B66) | Cerrada |
 
 ## Entradas
 
@@ -1083,6 +1084,21 @@ El equipo eligió armar el informe como Google Doc en el Drive, completo (20 a 3
   - `choques.py` encontró contenido debajo de Fusi en E20 y E21, y se corrigió.
 
 **Límite.** Nadie escuchó el video completo de punta a punta. La elección de tomas es por criterios objetivos y no por escucha. Si una frase suena mal, se cambia de toma en esa escena con `cortar.py` y se rearma solo esa escena.
+
+### B67 · 21/11/2026 · Dificultad · La voz leía el encabezado de cada escena; se quitó y el video pasa a 13:21 (corrige B66)
+
+**Qué pasó.** Al ver el video, el equipo notó que al empezar cada escena la voz decía el encabezado del guion, por ejemplo «E veinticinco · Lo que sigue y cierre». El texto pegado en ElevenLabs incluía las líneas `===== E25 · … =====`.
+
+**Error de diagnóstico en B66.** B66 decía que «la voz no leyó los encabezados». Eso **era incorrecto**. Se dedujo de que la cantidad de tramos de voz (316 y 322) era parecida a la de trozos del guion (314), y ese indicio no alcanzaba. Además, la primera alineación dejaba el encabezado de cada escena pegado al final de la escena anterior.
+
+**Cómo se corrigió.**
+- **Alineación con los encabezados.** `alinear2.py` repite la alineación sumando el encabezado al guion, dicho como se lee («e cero cinco» y el título). También detecta pausas más finas (−35 dB, 0,12 s). El ajuste mejora: el costo baja de 165 a 131.
+- **Las dos tomas coinciden.** El encabezado de cada escena dura casi lo mismo en las dos, por ejemplo E07 4,1 y 4,2 s y E10 1,34 s en las dos. Eso confirma los cortes.
+- **Recorte sin el encabezado.** `cortar2.py` corta cada escena desde el primer tramo de voz después del encabezado, con la misma toma elegida en B66. El tramo quitado queda en `elegidas.json`.
+- **Verificación.** El ritmo por escena queda entre 5,7 y 6,3 sílabas por segundo, más parejo que en la versión anterior (5,1 a 6). El desfase entre audio y video es de 0,1 s al final.
+- **Duración.** El video pasa de 14:48 a 13:21.
+
+**Lección.** Para la próxima, pegar en ElevenLabs solo `narracion_elevenlabs.txt` sin los encabezados, o generar un audio por escena.
 
 ## Cuestiones abiertas
 
