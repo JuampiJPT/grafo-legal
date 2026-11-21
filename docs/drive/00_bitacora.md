@@ -81,6 +81,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B65 | 21/11 | Decisión | Guion del video explicativo, para narrarlo con ElevenLabs | Cerrada |
 | B66 | 21/11 | Hallazgo | Video explicativo armado: Fusi presenta el TP, con animaciones, y la narración alineada sin reconocimiento de voz | Cerrada |
 | B67 | 21/11 | Dificultad | La voz leía el encabezado de cada escena; se quitó y el video pasa a 13:21 (corrige B66) | Cerrada |
+| B68 | 21/11 | Hallazgo | Los modelos supervisados están limitados por la cantidad de datos: las curvas de aprendizaje siguen subiendo (revisa B37 y B46) | Abierta |
 
 ## Entradas
 
@@ -1100,8 +1101,46 @@ El equipo eligió armar el informe como Google Doc en el Drive, completo (20 a 3
 
 **Lección.** Para la próxima, pegar en ElevenLabs solo `narracion_elevenlabs.txt` sin los encabezados, o generar un audio por escena.
 
+### B68 · 21/11/2026 · Hallazgo · Los modelos supervisados están limitados por la cantidad de datos: las curvas de aprendizaje siguen subiendo (revisa B37 y B46)
+
+**Pregunta del equipo.** ¿Los modelos de B37 (random forest) y B46 (TF-IDF con regresión logística) no superaron a las reglas porque se entrenaron con pocos datos? Hasta ahora no se había medido.
+
+**Con cuántos datos se entrenaron.**
+- **Dev, para entrenar.** 801 pares candidatos de 230 normas de origen, con 472 positivos y 329 negativos. En cada partición de la validación cruzada se entrena con unos 640 pares.
+- **Test.** 290 pares de 43 normas.
+- **Corpus.** 340 normas del dominio laboral (D11), y el gold tiene 775 relaciones.
+- **Lo que hay disponible.** La base de InfoLEG que ya está en `data/raw` tiene 37.248 relaciones entre leyes y decretos con texto en los dos extremos, de 18.201 normas modificatorias. El dataset usa alrededor del 1,5 % de esas normas.
+- **Corpus más grande.** Los modelos nunca se entrenaron con un corpus más grande.
+
+**Qué se hizo.** `scripts/32_curva_aprendizaje.py` entrena los tres modelos con el 10, 20, 30, 50, 70 y 100 % de las normas de dev.
+- **Validación.** Es la misma validación cruzada agrupada por norma de origen, con 5 sorteos por fracción. Test no se toca.
+- **Hiperparámetros.** Son los que eligieron los scripts 08 y 13, fijos: RF con umbral 0,45; TF-IDF + atributos con C = 30 y umbral 0,20; TF-IDF solo con C = 10 y umbral 0,40.
+- **Métrica.** Se mide sobre los pares candidatos: F1 y precisión promedio.
+
+**Resultado** (`results/curva_aprendizaje/`, figura 8).
+
+| Modelo | 61 pares | 316 pares | 641 pares | F1 sobre el propio entrenamiento |
+|---|---|---|---|---|
+| Random forest | 0,727 | 0,774 | 0,814 | 0,936 |
+| TF-IDF + atributos | 0,735 | 0,809 | 0,831 | 0,986 |
+| TF-IDF solo | 0,731 | 0,782 | 0,800 | 0,992 |
+| Reglas F, sin entrenar | 0,812 | 0,812 | 0,812 | — |
+
+- **Las curvas no se aplanan.** Las tres siguen subiendo entre el 50 % y el 100 %. Una recta en log(n) da entre +2 y +2,6 puntos de F1 cada vez que se duplican los datos.
+- **Hay alta varianza.** La brecha entre entrenamiento y validación es de 0,12 a 0,19, y los modelos de texto casi memorizan el entrenamiento.
+- **El cruce con las reglas llega al final.** Recién con todo dev los modelos alcanzan a las reglas. El desvío entre particiones, de unos 0,04, no permite decir que las superen.
+- **Las etiquetas no son la causa principal.** El análisis de errores había encontrado solo 5 posibles omisiones del gold en dev.
+
+**Corrección.** B37 concluía que «con atributos de superficie no queda mucho por ganar», y eso era prematuro. Con 801 pares, la limitación medible es la cantidad de datos. No está probado que la representación alcance: con más datos las curvas podrían aplanarse antes de superar con claridad a las reglas. Se actualizaron `docs/conclusiones.md` (2.4 y 2.5) y la discusión de la PI1 en el informe.
+
+**Qué haría falta.**
+- **Ampliar el corpus.** Sumar normas de origen de la base de InfoLEG, bajar sus textos con el script 02, regenerar el dataset con los scripts 03 y 07, y repetir la curva con el doble y con 10 veces más datos.
+- **Bajar los textos desde la Mac.** InfoLEG devuelve 403 desde el contenedor y desde la VM de esta sesión.
+- **Si la curva se aplana por debajo del LLM,** pasar a un transformer en español con la mención marcada.
+
 ## Cuestiones abiertas
 
+- Ampliar el corpus de entrenamiento con más normas de InfoLEG y repetir la curva de aprendizaje con el doble y 10 veces más datos (B68).
 - Cargar los grafos de la v3, del LLM y del híbrido en Neo4j sin `--borrar` (B54, B55); actualizar la tabla final con el LLM y sus híbridos (B48, B49).
 - Probar las consultas de ejemplo de `docs/grafo.md` en el Neo4j Browser (la evaluación sobre Neo4j ya está, B60).
 - Revisar el texto consolidado de la LCT (`results/consolidado/lct_consolidada.md`), los 8 cambios no aplicados y los 6 errores (B61).

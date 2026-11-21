@@ -11,7 +11,7 @@ fuente (InfoLEG / digesto)  ──►  data/            corpus, gold, textos, da
                                    │
 código                         src/grafo_legal/   adaptadores, extractores, salida, grafo, evaluación
                                    │
-pasos numerados                scripts/01…30      cada paso lee de data/ o results/ y escribe ahí
+pasos numerados                scripts/01…32      cada paso lee de data/ o results/ y escribe ahí
                                    │
 resultados                     results/           métricas, errores, relaciones, consolidado
                                    │
@@ -73,6 +73,7 @@ Cada script es un paso. El número da el orden y, a la vez, la cronología del T
 | Parser LLM e híbrido | 14, 15, 20 | Corre y evalúa el parser LLM y el híbrido en cascada | `results/relaciones_llm/`, `evaluacion_llm/`, `hibrido/` |
 | PI4 · digesto | 26, 27, 28, 29, 21, 22 | Catálogo, copias, texto y OCR, muestra, evaluación y grafos del digesto | `data/corpus_unnoba/`, `data/textos/unnoba/`, `results/pi4_unnoba/`, `data/grafo_unnoba_*/` |
 | Neo4j y consolidado | 30, 23, 24, 25 | Carga todos los grafos sin borrar, consulta el manifiesto, consolida la LCT y la compara con InfoLEG | `results/evaluacion_grafo_neo4j/`, `results/consolidado/` |
+| Informe y diagnóstico | 31, 32 | Figuras del informe de avance y curva de aprendizaje de los modelos supervisados (B68) | `docs/informe_avance/figuras/`, `results/curva_aprendizaje/` |
 | Utilidades | `firma_texto.py`, `firma_texto_navegador.js` | Firmas de texto (hash y MinHash) para comparar sin el archivo completo | `results/consolidado/evaluacion/` |
 
 Los números 21 y 22 son anteriores a 26–29 porque la evaluación de la PI4 se escribió primero. Los pasos previos de preparación del digesto se pasaron a scripts después (B62). En `correr_pipeline.sh` corren en el orden correcto.
@@ -105,6 +106,7 @@ Cada carpeta tiene un `metricas.json`. Las principales tienen además un `RESULT
 | `errores_explicados/`, `errores_explicados_v3/` | Causa y evidencia de cada falso negativo y falso positivo |
 | `tipos/` | Matriz de confusión y macro-F1 del tipo de relación (78 casos) |
 | `comparacion/` | Todos los métodos en test, con intervalos de confianza por bootstrap |
+| `curva_aprendizaje/` | Curva de aprendizaje de los modelos supervisados (script 32, B68): F1 y precisión promedio según la cantidad de datos de dev |
 | `evaluacion_llm/` | Evaluación del parser LLM y sus híbridos |
 | `pi4_unnoba/` | Evaluación sobre el digesto. Sus cachés quedan fuera de git |
 | `consolidado/` | La LCT consolidada (`lct_consolidada.md` y `.json`), las operaciones aplicadas y no aplicadas, el ranking de profundidad, el manifiesto de Neo4j y la evaluación contra InfoLEG |

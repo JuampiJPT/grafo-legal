@@ -2,7 +2,7 @@
 
 ## 7.1 Interpretación de los resultados
 
-**PI1: efectividad de cada enfoque.** Reglas, modelos y LLM llegan a F1 de 0,76 a 0,84 en test. Las reglas a mano y un clasificador entrenado con los mismos atributos empatan (0,828 y 0,823): con atributos de superficie no queda mucho por ganar (B37). El LLM aporta en dos lugares:
+**PI1: efectividad de cada enfoque.** Reglas, modelos y LLM llegan a F1 de 0,76 a 0,84 en test. Las reglas a mano y un clasificador entrenado con los mismos atributos empatan (0,828 y 0,823): la curva de aprendizaje muestra que los dos modelos supervisados seguían mejorando con más datos y tienen alta varianza, así que el empate se explica sobre todo por el tamaño del dataset de entrenamiento (801 pares de dev) y no está probado que sea un techo de los atributos (B37, B68). El LLM aporta en dos lugares:
 
 - **el recall**, porque lee la oración y el CONSIDERANDO;
 - **el tipo de relación**, con macro-F1 de 0,672 a 0,883.

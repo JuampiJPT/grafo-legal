@@ -70,12 +70,14 @@ Las conclusiones dependen de cómo se midió. Se siguieron cinco reglas durante 
 - **Cómo se llegó.** Se entrenó un random forest sobre el dataset de pares candidatos de dev, con validación cruzada agrupada por norma de origen, y se evaluó una vez en test (B37, D14).
 - **Evidencia.** 0,823 en test contra 0,828 de las reglas (`results/clasificador/`).
 - **Límite.** Solo se probó con atributos de superficie.
+- **Revisión (B68).** La curva de aprendizaje muestra que el modelo seguía mejorando con más datos (de 0,774 a 0,814 de F1 en validación al pasar de la mitad a todo dev) y que tiene alta varianza (brecha de 0,12 entre entrenamiento y validación). El empate se explica sobre todo por la **cantidad de datos** (801 pares de dev, alrededor del 1,5 % de las normas modificatorias que ofrece InfoLEG), no está probado que sea un techo de los atributos (`results/curva_aprendizaje/`).
 
 ### 2.5 Leer el contexto, solo, no alcanza
 
 - **Conclusión.** Un modelo que lee la oración con TF-IDF es peor que las reglas. Combinado con ellas ayuda en la zona gris, pero no de forma significativa.
 - **Cómo se llegó.** Se entrenó un modelo TF-IDF con atributos de superficie. Se usó solo y también como desempate donde las reglas dudan (B46, D20).
 - **Evidencia.** Solo, da 0,761 a 0,783 en test, y la diferencia es significativa. En el híbrido sube el recall de 0,875 a 0,906 y el F1 a 0,839, pero el intervalo de la diferencia va de −2,2 a +4,0 puntos (`results/modelo_contextual/`, `results/comparacion/`).
+- **Revisión (B68).** Con la misma curva, el TF-IDF con atributos sube de 0,809 a 0,831 entre la mitad y todo dev, y casi memoriza el entrenamiento (F1 0,99). Con más datos podría mejorar; sin ampliar el corpus no se puede afirmar que leer el contexto con TF-IDF no alcance.
 
 ### 2.6 El parser LLM sube el recall y el tipado
 
