@@ -2,7 +2,7 @@
 
 # Bitácora del TP Integrador
 
-*Sistemas Inteligentes (UNNOBA). Problemática III: extracción de relaciones entre normas y grafo normativo trazable. Iniciada el 27/10/2026, última entrada el 16/11/2026.*
+*Sistemas Inteligentes (UNNOBA). Problemática III: extracción de relaciones entre normas y grafo normativo trazable. Iniciada el 27/10/2026, última entrada el 21/11/2026.*
 
 ## Cómo usar esta bitácora
 
@@ -76,6 +76,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B60 | 20/11 | Hallazgo | Evaluación de los grafos leyéndolos desde Neo4j: ida y vuelta idéntica en las cuatro fuentes | Cerrada |
 | B61 | 20/11 | Hallazgo | Texto consolidado de la LCT desde el grafo: coincide con InfoLEG en el 96 % de los artículos (91 % de los que cambian) | Abierta |
 | B62 | 20/11 | Decisión | Todo lo que se hizo a mano en la sesión queda como script en el repositorio | Cerrada |
+| B63 | 21/11 | Decisión | Tres documentos de cierre: reproducibilidad, estructura del repositorio y conclusiones | Cerrada |
 
 ## Entradas
 
@@ -969,6 +970,31 @@ Los pasos nuevos están en `correr_pipeline.sh`; el README y `docs/pi4_digesto_u
 **Lo que no se puede reproducir exacto.**
 - **El OCR:** cambia con la versión de tesseract y con los parámetros. Por eso `28` no rehace un `.txt` que ya existe, salvo con `--rehacer`, y los resultados de la PI4 corresponden a los textos guardados (`muestra_pi4_textos.jsonl`, fuera de git).
 - **La descarga de los PDF:** sigue siendo manual, porque el robots.txt del digesto prohíbe automatizarla (B56).
+
+### B63 · 21/11/2026 · Decisión · Tres documentos de cierre: reproducibilidad, estructura del repositorio y conclusiones
+
+**Contexto.** El equipo pidió tres cosas:
+- documentar las aclaraciones sobre lo que no se puede reproducir exacto (B62);
+- un documento que explique cómo está organizado el repositorio;
+- un documento que resuma todas las conclusiones y cómo se llegó a cada una.
+
+**Qué se hizo.** Tres documentos nuevos, en el repo y en el Drive:
+
+| Documento | Repo | Drive | Qué tiene |
+|---|---|---|---|
+| Reproducibilidad | `docs/reproducibilidad.md` | 13 - Reproducibilidad: qué se repite exacto y qué no | Paso por paso: si da lo mismo, qué hace falta y por qué no cuando no da. Junta lo que estaba en B17, B23, B53, B56, B57, B61 y B62 |
+| Estructura del repositorio | `docs/estructura_repositorio.md` | 14 - Estructura del repositorio | Qué hay en cada carpeta, qué script lo genera, qué va a git y qué no, y dónde está cada documento |
+| Conclusiones | `docs/conclusiones.md` | 15 - Conclusiones del TP y cómo se llegó a cada una | Las conclusiones ordenadas por PI1 a PI5, cada una con cómo se llegó, la evidencia y el límite, y una respuesta corta para cada PI |
+
+**Aclaraciones nuevas que quedaron escritas.**
+- **Qué depende de la Mac del equipo.** Los zips de `data/raw/`, los PDF, el texto y el OCR del digesto, y las cachés de la PI4 no van a git, por tamaño o por datos personales. Sin ellos, el corpus de InfoLEG no se puede verificar contra el portal y la PI4 no se repite sin volver a llamar a la API. Conviene una copia privada del equipo, fuera del Drive compartido.
+- **Versiones.** `pdftotext` 22.02.0 (poppler) y tesseract 4.1.1.
+- **El gold de la PI4 y las revisiones manuales son anotaciones de Claude**, no cálculos. No se «reproducen»: se validan, y para eso falta el equipo y un segundo anotador.
+- **`cargar_y_evaluar_grafo.sh` borra la base.** Es el script histórico de las reglas v2. Para cargar todo sin borrar está `scripts/30_cargar_y_evaluar_neo4j.sh`.
+
+**Otros cambios.**
+- `.gitignore` ahora excluye toda la carpeta `data/textos/unnoba/`. Quedaban sin excluir una copia del catálogo y el `LEEME.csv` de las copias apartadas.
+- Se actualizaron el README (estado del parser LLM y tabla de documentos) y `docs/ESTADO.md`.
 
 ## Cuestiones abiertas
 

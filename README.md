@@ -19,12 +19,15 @@ El TP extrae automáticamente las relaciones entre normas (modifica, sustituye, 
 | Explicación de cada error (causa y evidencia, caso por caso) | `results/errores_explicados/` |
 | Modelo con contexto textual (TF-IDF) e híbrido reglas + modelo | evaluado: híbrido F1 test 0,839 (`results/modelo_contextual/`) |
 | Tipo de relación: matriz de confusión y macro-F1 (78 casos) | macro-F1 0,672, exactitud 0,754 (`results/tipos/`) |
-| Parser 2: LLM | implementado con caché reproducible (`docs/parser_llm.md`); falta correrlo con la clave de la API |
+| Parser 2: LLM | corrido sobre todo el corpus, con caché reproducible: F1 test 0,841, macro-F1 del tipo 0,883 (`docs/parser_llm.md`) |
+| Parser 3: híbrido en cascada | F1 dev 0,758 (el mejor), test 0,829 (`docs/parser_hibrido.md`) |
+| PI4: transferencia al digesto UNNOBA | 70 documentos anotados; híbrido F1 0,958, reglas 0,917 (`docs/pi4_digesto_unnoba.md`) |
+| Texto consolidado de la LCT desde el grafo | coincide con InfoLEG en el 95,9 % de los artículos (`docs/consolidado_lct.md`) |
 | Text-to-Cypher | pendiente |
 
 El parser apunta a cualquier documento normativo: lo único que depende de la fuente es el adaptador que pasa el documento a texto.
 
-El estado completo está en [`docs/ESTADO.md`](docs/ESTADO.md). Cómo funciona el parser y cómo está armado el grafo, contado paso a paso, está en [`docs/arquitectura_parser_y_grafo.md`](docs/arquitectura_parser_y_grafo.md).
+El estado completo está en [`docs/ESTADO.md`](docs/ESTADO.md). Las conclusiones, con cómo se llegó a cada una, están en [`docs/conclusiones.md`](docs/conclusiones.md); cómo está organizado el repositorio, en [`docs/estructura_repositorio.md`](docs/estructura_repositorio.md), y qué se puede repetir exacto y qué no, en [`docs/reproducibilidad.md`](docs/reproducibilidad.md). Cómo funciona el parser y cómo está armado el grafo, contado paso a paso, está en [`docs/arquitectura_parser_y_grafo.md`](docs/arquitectura_parser_y_grafo.md).
 
 ## Resultados
 
@@ -89,7 +92,7 @@ results/hibrido/        parser híbrido en cascada
 results/pi4_unnoba/     PI4: evaluación sobre el digesto de la UNNOBA
 results/evaluacion_grafo_neo4j/ evaluación de los cuatro grafos leídos desde Neo4j
 results/consolidado/    texto consolidado de la LCT desde el grafo y su evaluación
-docs/                   estado, decisiones, ficha del dataset, revisión manual y copia de los documentos del Drive
+docs/                   estado, conclusiones, estructura, reproducibilidad, decisiones, ficha del dataset, revisión manual y copia de los documentos del Drive
 tools/                  utilidades: conversión Google Docs ↔ Markdown, descargadores del digesto, push desde la Mac
 tests/                  tests sin red (pytest)
 ```
@@ -140,6 +143,12 @@ Toda la documentación está en dos lugares: la carpeta de Google Drive del TP y
 | Parser y grafo: arquitectura y construcción paso a paso | este repo: [`docs/arquitectura_parser_y_grafo.md`](docs/arquitectura_parser_y_grafo.md) | Drive: «06 - Parser y grafo: arquitectura y construcción paso a paso» |
 | Evaluación completa, parser LLM y guía del código | este repo: `docs/comparacion_con_el_gold.md`, `docs/parser_llm.md`, `docs/guia_codigo.md` | Drive: «07 - Evaluación completa, parser LLM y guía del código» |
 | Análisis de fallos y cómo se detecta una relación | este repo: [`docs/analisis_de_fallos.md`](docs/analisis_de_fallos.md), [`docs/como_se_detecta_una_relacion.md`](docs/como_se_detecta_una_relacion.md) | Drive: «08 - Análisis de fallos y cómo se detecta una relación» |
+| Parser híbrido en cascada | este repo: [`docs/parser_hibrido.md`](docs/parser_hibrido.md) | Drive: «09 - Parser híbrido en cascada» |
+| PI4 · digesto UNNOBA | este repo: [`docs/pi4_digesto_unnoba.md`](docs/pi4_digesto_unnoba.md), [`docs/pi4_revision_gold.md`](docs/pi4_revision_gold.md) | Drive: «10 - PI4 digesto UNNOBA» |
+| Texto consolidado de la LCT | este repo: [`docs/consolidado_lct.md`](docs/consolidado_lct.md) | Drive: «11 - Texto consolidado LCT» y «12 - LCT consolidada desde el grafo» |
+| Reproducibilidad: qué se repite exacto y qué no | este repo: [`docs/reproducibilidad.md`](docs/reproducibilidad.md) | Drive: «13 - Reproducibilidad: qué se repite exacto y qué no» |
+| Estructura del repositorio | este repo: [`docs/estructura_repositorio.md`](docs/estructura_repositorio.md) | Drive: «14 - Estructura del repositorio» |
+| Conclusiones y cómo se llegó a cada una | este repo: [`docs/conclusiones.md`](docs/conclusiones.md) | Drive: «15 - Conclusiones del TP y cómo se llegó a cada una» |
 | Roadmap | [artefacto de Claude](https://claude.ai/artifact/Aai3uXH2hrR92fLDmYpvfM) | [`docs/drive/roadmap.md`](docs/drive/roadmap.md) y Drive: «05 - Roadmap del TP (copia)» |
 
 Las copias de los documentos del Drive se regeneran con `tools/gdoc_a_md.py` a partir del JSON de la API de Google Docs; `tools/md_a_gdoc.py` hace el camino inverso.

@@ -1,4 +1,4 @@
-# Estado del TP al 20/11/2026
+# Estado del TP al 21/11/2026
 
 TP Integrador de Sistemas Inteligentes (UNNOBA), Problemática III: extracción de relaciones entre normas de InfoLEG y grafo trazable en Neo4j.
 
@@ -14,6 +14,8 @@ Hay un solo corpus congelado (340 normas, 775 relaciones) con sus 306 textos y e
 - **Reglas v3** (experimento, B52). Corrigen la normalización: lee el año escrito como fecha y ya no se pierde ningún par del gold ahí. En test empatan con la v2 (0,826 contra 0,828). Todos los fallos están explicados en `docs/analisis_de_fallos.md`, y el pipeline en `docs/como_se_detecta_una_relacion.md`.
 
 El parser LLM está implementado, con verificación de la cita y caché reproducible, y va a un grafo aparte. Ya corrió sobre todo el corpus (USD 14). F1 0,841 en test; el híbrido por intersección da 0,838 y es la única mejora significativa sobre las reglas. Tipo de relación: macro-F1 0,883, contra 0,672 de las reglas (B54). Falta escribir el artículo.
+
+Las conclusiones, ordenadas por PI1 a PI5 y con cómo se llegó a cada una, están en `docs/conclusiones.md`. La organización del repositorio está en `docs/estructura_repositorio.md`, y qué se puede repetir exacto y qué no, en `docs/reproducibilidad.md` (B63).
 
 ## Avance por fase del roadmap
 
@@ -58,7 +60,7 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 **Del equipo:**
 
 - Validar las cuatro revisiones manuales que hizo Claude (`docs/revision_manual/`) y que un segundo anotador repita parte, para el kappa.
-- Subir los commits al repositorio (`git push`): desde la sesión de Claude no hay acceso de escritura a GitHub.
+- Guardar una copia privada de lo que no va a git: los zips de `data/raw/`, `data/textos/unnoba/` y las cachés de la PI4 (`docs/reproducibilidad.md`, sección 8).
 - Consultar con la cátedra: supervisión distante, si se evalúa también la modificación estricta y la clasificación fina (B02, B14, B27).
 - Segundo anotador sobre una parte del gold de la PI4, para el kappa (B58).
 - Decidir si el grafo lleva embeddings (B38).
@@ -86,6 +88,9 @@ El parser LLM está implementado, con verificación de la cita y caché reproduc
 | Parser híbrido en cascada | 09 - Parser híbrido en cascada | `docs/parser_hibrido.md`, `results/hibrido/` |
 | Texto consolidado (LCT) | 11 - Texto consolidado LCT | `docs/consolidado_lct.md`, `results/consolidado/` |
 | PI4 · Digesto UNNOBA | 10 - PI4 digesto UNNOBA | `docs/pi4_digesto_unnoba.md`, `results/pi4_unnoba/`, grafos en `data/grafo_unnoba_{reglas,llm,hibrido}/` |
+| Reproducibilidad | 13 - Reproducibilidad: qué se repite exacto y qué no | `docs/reproducibilidad.md` |
+| Estructura del repositorio | 14 - Estructura del repositorio | `docs/estructura_repositorio.md` |
+| Conclusiones | 15 - Conclusiones del TP y cómo se llegó a cada una | `docs/conclusiones.md` |
 | Roadmap | 05 - Roadmap del TP (copia; la versión editable es el artefacto de Claude) | `docs/drive/roadmap.md` |
 | Datos, textos, dataset, grafo y código | Solo los del corpus v1 histórico | Todo |
 

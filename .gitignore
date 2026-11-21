@@ -26,3 +26,5 @@ data/grafo_unnoba_*/relaciones.csv
 # lectura para anotar el gold de la PI4 (nombres y DNI) (B62)
 data/textos/unnoba/cuerpos_muestra.txt
 .push_log.txt
+# digesto UNNOBA: todo lo local del digesto (PDF, texto, OCR, copias del catálogo y de las copias apartadas) (B63)
+data/textos/unnoba/
