@@ -28,3 +28,6 @@ data/textos/unnoba/cuerpos_muestra.txt
 .push_log.txt
 # digesto UNNOBA: todo lo local del digesto (PDF, texto, OCR, copias del catálogo y de las copias apartadas) (B63)
 data/textos/unnoba/
+
+# video explicativo: 43 MB, se guarda en la carpeta pero no en git (B66)
+docs/video/*.mp4

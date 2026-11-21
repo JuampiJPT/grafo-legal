@@ -1,0 +1,177 @@
+{
+ "E01": {
+  "toma": "B",
+  "desde": 0,
+  "hasta": 20.01,
+  "lufs": -23.4,
+  "ganancia_db": 7.4
+ },
+ "E02": {
+  "toma": "B",
+  "desde": 20.43,
+  "hasta": 53.84,
+  "lufs": -23.6,
+  "ganancia_db": 7.6
+ },
+ "E03": {
+  "toma": "B",
+  "desde": 54.12,
+  "hasta": 80.57,
+  "lufs": -23.6,
+  "ganancia_db": 7.6
+ },
+ "E04": {
+  "toma": "B",
+  "desde": 80.83,
+  "hasta": 104.82,
+  "lufs": -23.6,
+  "ganancia_db": 7.6
+ },
+ "E05": {
+  "toma": "B",
+  "desde": 105.17,
+  "hasta": 133.49,
+  "lufs": -23.8,
+  "ganancia_db": 7.8
+ },
+ "E06": {
+  "toma": "B",
+  "desde": 133.93,
+  "hasta": 170.65,
+  "lufs": -23.6,
+  "ganancia_db": 7.6
+ },
+ "E07": {
+  "toma": "B",
+  "desde": 170.79,
+  "hasta": 200.27,
+  "lufs": -23.6,
+  "ganancia_db": 7.6
+ },
+ "E08": {
+  "toma": "B",
+  "desde": 200.63,
+  "hasta": 221.71,
+  "lufs": -23.6,
+  "ganancia_db": 7.6
+ },
+ "E09": {
+  "toma": "B",
+  "desde": 221.86,
+  "hasta": 266.18,
+  "lufs": -24.0,
+  "ganancia_db": 8.0
+ },
+ "E10": {
+  "toma": "B",
+  "desde": 266.55,
+  "hasta": 301.68,
+  "lufs": -24.1,
+  "ganancia_db": 8.1
+ },
+ "E11": {
+  "toma": "B",
+  "desde": 301.79,
+  "hasta": 339.47,
+  "lufs": -23.5,
+  "ganancia_db": 7.5
+ },
+ "E12": {
+  "toma": "B",
+  "desde": 339.69,
+  "hasta": 386.33,
+  "lufs": -23.7,
+  "ganancia_db": 7.7
+ },
+ "E13": {
+  "toma": "B",
+  "desde": 386.56,
+  "hasta": 425.31,
+  "lufs": -23.8,
+  "ganancia_db": 7.8
+ },
+ "E14": {
+  "toma": "B",
+  "desde": 425.51,
+  "hasta": 461.39,
+  "lufs": -23.8,
+  "ganancia_db": 7.8
+ },
+ "E15": {
+  "toma": "B",
+  "desde": 461.57,
+  "hasta": 489.84,
+  "lufs": -23.8,
+  "ganancia_db": 7.8
+ },
+ "E16": {
+  "toma": "B",
+  "desde": 490.32,
+  "hasta": 538.53,
+  "lufs": -23.7,
+  "ganancia_db": 7.7
+ },
+ "E17": {
+  "toma": "B",
+  "desde": 538.83,
+  "hasta": 578.14,
+  "lufs": -24.0,
+  "ganancia_db": 8.0
+ },
+ "E18": {
+  "toma": "B",
+  "desde": 578.47,
+  "hasta": 617.43,
+  "lufs": -24.2,
+  "ganancia_db": 8.2
+ },
+ "E19": {
+  "toma": "B",
+  "desde": 617.72,
+  "hasta": 644.39,
+  "lufs": -24.0,
+  "ganancia_db": 8.0
+ },
+ "E20": {
+  "toma": "B",
+  "desde": 644.52,
+  "hasta": 684.7,
+  "lufs": -23.7,
+  "ganancia_db": 7.7
+ },
+ "E21": {
+  "toma": "B",
+  "desde": 684.88,
+  "hasta": 719.37,
+  "lufs": -24.1,
+  "ganancia_db": 8.1
+ },
+ "E22": {
+  "toma": "B",
+  "desde": 719.47,
+  "hasta": 757.83,
+  "lufs": -24.4,
+  "ganancia_db": 8.4
+ },
+ "E23": {
+  "toma": "A",
+  "desde": 757.6,
+  "hasta": 800.22,
+  "lufs": -24.1,
+  "ganancia_db": 8.1
+ },
+ "E24": {
+  "toma": "A",
+  "desde": 800.5,
+  "hasta": 839.76,
+  "lufs": -23.2,
+  "ganancia_db": 7.2
+ },
+ "E25": {
+  "toma": "A",
+  "desde": 840.13,
+  "hasta": 863.55,
+  "lufs": -23.4,
+  "ganancia_db": 7.4
+ }
+}

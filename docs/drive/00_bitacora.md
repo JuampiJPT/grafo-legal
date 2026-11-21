@@ -78,7 +78,8 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B62 | 20/11 | Decisión | Todo lo que se hizo a mano en la sesión queda como script en el repositorio | Cerrada |
 | B63 | 21/11 | Decisión | Tres documentos de cierre: reproducibilidad, estructura del repositorio y conclusiones | Cerrada |
 | B64 | 21/11 | Decisión | Informe de avance y bitácora de investigación para la entrega de la cursada | Abierta |
-| B65 | 21/11 | Decisión | Guion del video explicativo, para narrarlo con ElevenLabs | Abierta |
+| B65 | 21/11 | Decisión | Guion del video explicativo, para narrarlo con ElevenLabs | Cerrada |
+| B66 | 21/11 | Hallazgo | Video explicativo armado: Fusi presenta el TP, con animaciones, y la narración alineada sin reconocimiento de voz | Cerrada |
 
 ## Entradas
 
@@ -1050,6 +1051,38 @@ El equipo eligió armar el informe como Google Doc en el Drive, completo (20 a 3
 - Duración estimada: unos 13 minutos (2.050 palabras).
 
 **Abierto.** El equipo genera un audio por escena (E01.mp3 a E25.mp3). Con esos audios, Claude arma el video con la duración exacta de cada escena.
+
+### B66 · 21/11/2026 · Hallazgo · Video explicativo armado: Fusi presenta el TP, con animaciones, y la narración alineada sin reconocimiento de voz
+
+**Qué se hizo.**
+- **Video:** `docs/video/video_tp_grafo_legal.mp4` dura 14:48, en 1080p a 30 fps, con el audio a −16 LUFS. No va a git por el tamaño (43 MB): queda en la carpeta del proyecto.
+- **Fusi, la mascota de FusionDevs, es el presentador.** Su sprite se reconstruyó en píxeles a partir de la calcomanía «Fusi matero».
+  - En la portada aparece grande y saluda.
+  - En el resto camina sobre la barra de progreso, rebota con el volumen de la voz, parpadea y dice una frase corta en un globito al empezar cada escena.
+- **Animaciones.** Cada elemento entra en su paso: tarjetas que se deslizan, números que cuentan, barras que crecen, resaltados y flechas. Se capturan con Chromium a 30 fps (`docs/video/build/`).
+- **Contenido real.** El código, los CSV, la respuesta del LLM de la caché y las figuras del informe salen del repo.
+  - Al revisar se encontró que una consulta Cypher de ejemplo tenía un resultado inventado. Se reemplazó por el real: en el art. 71 de la norma 395521, los tres parsers dan SUSTITUYE y CITA sobre el art. 80 de la LCT.
+
+**Dificultad: la narración vino en un solo archivo.** ElevenLabs devolvió la narración completa, en dos tomas distintas (más una copia de una de ellas a 128 kbps), y no un audio por escena. Para cortar por escena hacía falta saber dónde termina cada una. No se pudo bajar ningún modelo de reconocimiento de voz: Hugging Face y los otros servidores de modelos están bloqueados, desde el entorno de Claude y desde la VM de la Mac.
+
+**Cómo se resolvió.**
+- **Alineación sin reconocimiento de voz.** Las pausas del guion (comas, puntos y `<break>`, medidas en sílabas) se emparejaron con los silencios del audio por programación dinámica, exigiendo que cada fin de escena caiga en una pausa real.
+  - Los 314 trozos del guion calzan con 316 y 322 tramos de voz.
+  - El ritmo da parejo en todas las escenas (5,1 a 6 sílabas por segundo): los cortes caen donde corresponde.
+  - La voz no leyó los encabezados del tipo «E01 · Presentación».
+- **Mejor toma por escena,** con criterios medibles:
+  - el error del emparejamiento, que delata una toma que saltea o repite texto;
+  - el ritmo;
+  - las pausas internas;
+  - los picos de volumen.
+
+  Se agregó una penalidad por cambiar de toma, para que el sonido no salte. Quedaron 22 escenas de la toma de las 15:29 y 3 de la de las 15:27 (E23 a E25), con el volumen igualado (`elegidas.json`). Las dos tomas estaban limpias: no hubo errores de lectura detectables ni saturación.
+- **Verificación.**
+  - El desfase acumulado entre audio y video es de 0,03 s.
+  - Se revisaron cuadros de las 25 escenas.
+  - `choques.py` encontró contenido debajo de Fusi en E20 y E21, y se corrigió.
+
+**Límite.** Nadie escuchó el video completo de punta a punta. La elección de tomas es por criterios objetivos y no por escucha. Si una frase suena mal, se cambia de toma en esa escena con `cortar.py` y se rearma solo esa escena.
 
 ## Cuestiones abiertas
 
