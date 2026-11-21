@@ -78,6 +78,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B62 | 20/11 | Decisión | Todo lo que se hizo a mano en la sesión queda como script en el repositorio | Cerrada |
 | B63 | 21/11 | Decisión | Tres documentos de cierre: reproducibilidad, estructura del repositorio y conclusiones | Cerrada |
 | B64 | 21/11 | Decisión | Informe de avance y bitácora de investigación para la entrega de la cursada | Abierta |
+| B65 | 21/11 | Decisión | Guion del video explicativo, para narrarlo con ElevenLabs | Abierta |
 
 ## Entradas
 
@@ -1034,6 +1035,21 @@ El equipo eligió armar el informe como Google Doc en el Drive, completo (20 a 3
 - Revisar y validar el texto como equipo.
 - Exportar a PDF y subirlo a la tarea «Entrega del informe de avance y bitácora».
 - Faltan las otras dos entregas: el README completo, con instalación y credenciales, y la presentación.
+
+### B65 · 21/11/2026 · Decisión · Guion del video explicativo, para narrarlo con ElevenLabs
+
+**Contexto.** El equipo pidió un video didáctico que cuente todo el trabajo de punta a punta: cómo se cargó InfoLEG, cómo funciona el parser por dentro, cómo se armaron los datasets, las comparaciones y las conclusiones, mostrando código, capturas y gráficos. El entorno de Claude no tiene síntesis de voz, así que el equipo va a generar la narración con ElevenLabs.
+
+**Qué se hizo.**
+- `docs/video/guion_video.md`: 25 escenas. Cada una tiene la narración y lo que se ve en pantalla, con el archivo del repo del que sale cada código, captura o gráfico. Los ejemplos son reales:
+  - el artículo 25 de la Ley 24.013 pasado por el adaptador y el detector;
+  - la fila del par Ley 24.013 → Ley 20.744 en `pares_candidatos.csv`;
+  - una respuesta del LLM sacada de la caché;
+  - la historia del artículo 245 de la LCT.
+- `docs/video/narracion_elevenlabs.txt`: solo la narración, separada por escena, lista para pegar. Los números y las siglas están escritos como se dicen, y las pausas como `<break time="…s" />`.
+- Duración estimada: unos 13 minutos (2.050 palabras).
+
+**Abierto.** El equipo genera un audio por escena (E01.mp3 a E25.mp3). Con esos audios, Claude arma el video con la duración exacta de cada escena.
 
 ## Cuestiones abiertas
 
