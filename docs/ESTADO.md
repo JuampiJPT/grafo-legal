@@ -91,6 +91,7 @@ Las conclusiones, ordenadas por PI1 a PI5 y con cómo se llegó a cada una, est�
 | Reproducibilidad | 13 - Reproducibilidad: qué se repite exacto y qué no | `docs/reproducibilidad.md` |
 | Estructura del repositorio | 14 - Estructura del repositorio | `docs/estructura_repositorio.md` |
 | Conclusiones | 15 - Conclusiones del TP y cómo se llegó a cada una | `docs/conclusiones.md` |
+| Informe de avance (entrega de cursada) | 16 - Informe de avance y bitácora de investigación (entrega de cursada) | `docs/informe_avance/` |
 | Roadmap | 05 - Roadmap del TP (copia; la versión editable es el artefacto de Claude) | `docs/drive/roadmap.md` |
 | Datos, textos, dataset, grafo y código | Solo los del corpus v1 histórico | Todo |
 

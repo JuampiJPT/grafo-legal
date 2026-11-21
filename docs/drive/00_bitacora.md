@@ -77,6 +77,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B61 | 20/11 | Hallazgo | Texto consolidado de la LCT desde el grafo: coincide con InfoLEG en el 96 % de los artículos (91 % de los que cambian) | Abierta |
 | B62 | 20/11 | Decisión | Todo lo que se hizo a mano en la sesión queda como script en el repositorio | Cerrada |
 | B63 | 21/11 | Decisión | Tres documentos de cierre: reproducibilidad, estructura del repositorio y conclusiones | Cerrada |
+| B64 | 21/11 | Decisión | Informe de avance y bitácora de investigación para la entrega de la cursada | Abierta |
 
 ## Entradas
 
@@ -995,6 +996,44 @@ Los pasos nuevos están en `correr_pipeline.sh`; el README y `docs/pi4_digesto_u
 **Otros cambios.**
 - `.gitignore` ahora excluye toda la carpeta `data/textos/unnoba/`. Quedaban sin excluir una copia del catálogo y el `LEEME.csv` de las copias apartadas.
 - Se actualizaron el README (estado del parser LLM y tabla de documentos) y `docs/ESTADO.md`.
+
+### B64 · 21/11/2026 · Decisión · Informe de avance y bitácora de investigación para la entrega de la cursada
+
+**Contexto.** La cátedra pide tres entregas para el cierre de la cursada:
+- un informe de avance y bitácora de investigación en PDF, con nueve secciones fijas (introducción, antecedentes, datos y diseño experimental, diseño e implementación, verificación, resultados preliminares, discusión y amenazas a la validez, plan de maduración y referencias);
+- la implementación, con un README de instalación, ejecución, datos y credenciales;
+- una presentación en PowerPoint para el coloquio.
+
+El equipo eligió armar el informe como Google Doc en el Drive, completo (20 a 30 páginas) y con la bitácora como anexo.
+
+**Qué se hizo.**
+- **Antecedentes.** Se buscaron trabajos relacionados, porque era la sección más floja (F0 no tenía fichas de lectura):
+  - detección y resolución de referencias: de Maat et al. 2006; Martínez-González et al. 2005; Adedjouma et al. 2014; Sleimi et al. 2021; Coupette et al. 2021;
+  - trabajos argentinos sobre InfoLEG: Cardellino et al. 2018;
+  - comparación de reglas, encoders y LLM en citas: Sargeant et al., EMNLP 2025;
+  - grafos normativos: Colombo et al. 2024 y 2025, sobre Akoma Ntoso;
+  - datasets: EUR-Lex-Triples, TPDL 2025;
+  - consolidación: Silber 2023; Etcheverry et al. 2024; Prior et al. 2025.
+
+  La oportunidad que surge: los grafos más completos parten de fuentes ya marcadas (Akoma Ntoso), y acá hay que extraer las relaciones del texto libre, con un gold oficial.
+- **Figuras.** `scripts/31_figuras_informe.py` las genera desde `results/`, sin API ni Neo4j: el pipeline, el embudo de pérdidas, los métodos con sus IC, las matrices de confusión de tipos, las causas de error, la PI4 y el consolidado.
+- **Texto.** `docs/informe_avance/01…05_*.md`, una parte por grupo de secciones. `armar_informe.py` las une, agrega la bitácora como Anexo B y genera el `.docx` con pandoc. El `.docx` se subió al Drive como Google Doc: «16 - Informe de avance y bitácora de investigación (entrega de cursada)».
+- **Verificación**, rehecha el 21/11 para el informe:
+  - `pytest`: 19 de 19;
+  - el corpus regenerado es idéntico al congelado;
+  - `26 --verificar` y `29 --verificar` dan iguales.
+
+  Para correr los tests en la VM de la Mac hubo que instalar `requirements.txt`: faltaban networkx y scipy.
+
+**Dificultades.**
+- **Epígrafes de las figuras.** Al convertir el `.docx` a Google Doc se perdían, porque pandoc los pone como texto alternativo de la imagen. `armar_informe.py` los escribe como párrafo propio, en cursiva, debajo de cada figura.
+- **Primer borrador.** La primera subida tenía ese problema y un diagrama del pipeline demasiado ancho. Se subió de nuevo y el primer Doc quedó renombrado como «ZZ - Borrador descartado del informe 16 (se puede borrar)». No se borró, porque la regla es no borrar nada del Drive sin que el equipo lo pida.
+
+**Abierto.**
+- Completar los integrantes en la portada.
+- Revisar y validar el texto como equipo.
+- Exportar a PDF y subirlo a la tarea «Entrega del informe de avance y bitácora».
+- Faltan las otras dos entregas: el README completo, con instalación y credenciales, y la presentación.
 
 ## Cuestiones abiertas
 

@@ -76,6 +76,7 @@ scripts/                01 corpus · 02 textos · 03 extraer · 04 evaluar · 05
                         · 23 consultas Neo4j para el consolidado · 24 consolidar la LCT · 25 evaluar el consolidado
                         · 26-29 digesto: catálogo, copias repetidas, texto (pdftotext + OCR), muestra
                         · 30 cargar y evaluar todos los grafos en Neo4j (sin borrar)
+                        · 31 figuras del informe de avance
                         · firma_texto.py / firma_texto_navegador.js: comparación de textos por firmas
 results/reglas/         reglas v1: evidencias, métricas y errores
 results/reglas_v2/      reglas v2: evidencias, métricas y errores
@@ -149,6 +150,7 @@ Toda la documentación está en dos lugares: la carpeta de Google Drive del TP y
 | Reproducibilidad: qué se repite exacto y qué no | este repo: [`docs/reproducibilidad.md`](docs/reproducibilidad.md) | Drive: «13 - Reproducibilidad: qué se repite exacto y qué no» |
 | Estructura del repositorio | este repo: [`docs/estructura_repositorio.md`](docs/estructura_repositorio.md) | Drive: «14 - Estructura del repositorio» |
 | Conclusiones y cómo se llegó a cada una | este repo: [`docs/conclusiones.md`](docs/conclusiones.md) | Drive: «15 - Conclusiones del TP y cómo se llegó a cada una» |
+| Informe de avance y bitácora (entrega de cursada) | este repo: [`docs/informe_avance/`](docs/informe_avance/) (fuente en Markdown, figuras y `.docx`) | Drive: «16 - Informe de avance y bitácora de investigación (entrega de cursada)» |
 | Roadmap | [artefacto de Claude](https://claude.ai/artifact/Aai3uXH2hrR92fLDmYpvfM) | [`docs/drive/roadmap.md`](docs/drive/roadmap.md) y Drive: «05 - Roadmap del TP (copia)» |
 
 Las copias de los documentos del Drive se regeneran con `tools/gdoc_a_md.py` a partir del JSON de la API de Google Docs; `tools/md_a_gdoc.py` hace el camino inverso.
