@@ -133,12 +133,19 @@ El texto solo con la narración, listo para pegar en ElevenLabs, está en `narra
 **Narración:**
 > Con todo eso armamos dos datasets en formato tabla. <break time="0.5s" /> El primero tiene los ocho mil sesenta y seis segmentos de texto, cada uno con su zona y su posición. <break time="0.5s" /> El segundo tiene mil noventa y un pares candidatos: cada par de normas que el detector encontró, con veintidós atributos. <break time="0.5s" /> Por ejemplo, la Ley de Empleo y la Ley de Contrato de Trabajo: veintiocho menciones, todas en el articulado, con verbo modificatorio. <break time="0.5s" /> Y una etiqueta que dice si el par está en el gold. Con este dataset entrenamos los modelos.
 
-## E15 · Los modelos clásicos (≈ 40 s)
+## E15 a E15g · Los modelos supervisados (≈ 5 min, versión 3, B69)
 
-**En pantalla:** dos tarjetas. «Random forest con 22 atributos: F1 0,823». «TF-IDF del contexto: F1 0,783». Debajo, la palabra «empate» sobre la marca de las reglas (0,828).
+La escena E15 original (40 s) se reemplazó por siete escenas que explican qué son los modelos, cómo se entrenaron y qué resultados dieron. La narración, un bloque por escena, está en `narracion_modelos_elevenlabs.md`. Las escenas están en `build/escenas_modelos.py`, y todas usan el segmento 15 de la barra de progreso.
 
-**Narración:**
-> El primer intento con aprendizaje automático fue un random forest sobre esos atributos. <break time="0.5s" /> Llegó prácticamente al mismo resultado que las reglas: efe uno de cero coma ochenta y dos. <break time="0.5s" /> Un modelo que lee las palabras alrededor de cada mención, con te efe i de efe, solo fue peor. <break time="0.6s" /> La conclusión fue clara: con atributos de superficie no hay mucho más para ganar. Hacía falta algo que entienda la oración.
+| Escena | En pantalla |
+|---|---|
+| E15 · Aprender de ejemplos | Flujo par → atributos o texto → modelo → ¿relación? Ejemplo Ley 24.013 → LCT con `en_gold = 1`. Cuentas: 801 pares de dev, 230 normas, 472 sí y 329 no. Tarjeta «el LLM no se entrena». |
+| E15b · Random forest | Los tres primeros niveles del árbol 0 del bosque real (VISTO → tipo de origen o destino → menciones). 400 árboles. Ejemplo de test: Decreto 70/2023 → Ley 20.744, promedio 0,70 contra el umbral 0,45. |
+| E15c · TF-IDF + regresión logística | Texto real de la Ley 23.697, art. 48, y lo que lee el modelo (PARTE_, DESTINO, #). 10.804 columnas. Pesos reales: 5 positivos, 5 negativos y «bs as» como rasgo memorizado. |
+| E15d · Entrenar sin hacer trampa | Separación dev/test. Validación cruzada en 5 vueltas, agrupada por norma. Tabla de los 3 modelos con umbral y F1 en CV. Reentrenar → test una vez. |
+| E15e · Resultados | Barras de F1 en test: reglas 0,828, RF 0,823, TF-IDF 0,761 y 0,783, híbrido 0,839. Tarjeta de empate y la pregunta: ¿faltaba entender o faltaban datos? |
+| E15f · Curva de aprendizaje | Figura 8. «Si se aplana / si sigue subiendo». +2 puntos por duplicar los datos. 0,94 contra 0,81: memorizan. 1,5 % de lo disponible. |
+| E15g · Cómo podrían mejorar | 775 contra 37.248 relaciones. Ampliar → repetir la curva → más datos o un modelo de lenguaje en español. «El empate no prueba que aprender no sirva». |
 
 ## E16 · El parser con un modelo de lenguaje (≈ 65 s)
 

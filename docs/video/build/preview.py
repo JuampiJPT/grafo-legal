@@ -2,7 +2,9 @@
 import sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-import base, escenas
+import base, escenas, escenas_modelos
+for _n, _f in escenas_modelos.MODELOS:
+    setattr(escenas, _n.lower(), _f)
 OUT = Path("/home/claude/video/preview"); OUT.mkdir(exist_ok=True)
 with sync_playwright() as p:
     b = p.chromium.launch(); pg = b.new_page(viewport={"width": 1920, "height": 1080})

@@ -468,3 +468,10 @@ def e25():
 
 
 ESCENAS = [e01, e02, e03, e04, e05, e06, e07, e08, e09, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, e20, e21, e22, e23, e24, e25]
+
+# Versión 3 (B69): la escena E15 se reemplaza por siete escenas sobre los modelos (escenas_modelos.py).
+# NOMBRADAS es la lista que usan capturar_todo.py y armar_video.py; el orden alfabético de los nombres
+# (E14 < E15 < E15b < ... < E15g < E16) coincide con el orden del video.
+from escenas_modelos import MODELOS  # noqa: E402
+NOMBRADAS = ([(f"E{i:02d}", fn) for i, fn in enumerate(ESCENAS[:14], 1)] + MODELOS +
+             [(f"E{i:02d}", fn) for i, fn in enumerate(ESCENAS[15:], 16)])

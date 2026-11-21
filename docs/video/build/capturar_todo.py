@@ -1,4 +1,4 @@
-"""Captura los cuadros de transición de las 25 escenas y guarda cuántos pasos tiene cada una y la x de Fusi."""
+"""Captura los cuadros de transición de las escenas (escenas.NOMBRADAS) y guarda cuántos pasos tiene cada una y la x de Fusi."""
 import json, sys, time
 from playwright.sync_api import sync_playwright
 import base, escenas
@@ -7,8 +7,7 @@ meta_f = base.RAIZ / "meta.json"
 meta = json.loads(meta_f.read_text()) if meta_f.exists() else {}
 with sync_playwright() as p:
     b = p.chromium.launch()
-    for i, fn in enumerate(escenas.ESCENAS, 1):
-        nombre = f"E{i:02d}"
+    for nombre, fn in escenas.NOMBRADAS:
         if sel and nombre not in sel:
             continue
         t0 = time.time()

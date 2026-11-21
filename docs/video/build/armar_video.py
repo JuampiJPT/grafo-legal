@@ -118,7 +118,7 @@ def video_escena(nombre, dur, pasos, fusi_x, vol, salida):
            f'-c:v libx264 -crf 18 -preset veryfast -pix_fmt yuv420p -r {FPS} "{tmp}"')
     else:
         fdir = RAIZ / "tmp" / f"fusi_{nombre}"
-        cuadros_fusi(fdir, vol[:total], int(nombre[1:]))
+        cuadros_fusi(fdir, vol[:total], int(nombre[1:3]) if len(nombre) == 3 else int(nombre[1:3]) * 10 + ord(nombre[3]))
         x = int(fusi_x - 120)
         y = 1080 - 34 - 8 - 196
         sh(f'ffmpeg -y -v error -f concat -safe 0 -i "{txt}" -framerate {FPS} -i "{fdir}/f%05d.png" '
@@ -135,8 +135,11 @@ def main():
     a = ap.parse_args()
     meta = json.loads((RAIZ / "meta.json").read_text())
     fs = audios(a.audios)
-    assert len(fs) == 25, f"hay {len(fs)} audios, se esperan 25"
     escenas = sorted(meta)
+    assert len(fs) == len(escenas), f"hay {len(fs)} audios, se esperan {len(escenas)}"
+    # el nombre de cada audio tiene que coincidir con su escena (E15b.mp3 -> E15b)
+    for n, f in zip(escenas, fs):
+        assert f.stem.split("_")[0] == n, f"el audio {f.name} no corresponde a la escena {n}"
     out = RAIZ / "escenas"
     out.mkdir(exist_ok=True)
     wavs = []
