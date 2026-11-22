@@ -70,6 +70,7 @@ A diferencia del grafo italiano [2, 3], las modificaciones no vienen marcadas y 
 6. **Ampliar la PI4.** Más documentos del digesto y otro digesto (provincial o municipal), con anotación humana.
 7. **Text-to-Cypher (F7).** Un banco de preguntas en lenguaje natural con su consulta esperada, evaluado por *execution accuracy*.
 8. **Análisis temporal y consultas sobre el grafo.** Cadenas de modificación, normas más modificadas y vigencia.
+9. **Ampliar el corpus de entrenamiento y revisar las pruebas de los modelos supervisados** (B68). La curva de aprendizaje sigue subiendo con los 801 pares de dev. Queda abierta la posibilidad de sumar normas de InfoLEG, repetir la curva con el doble y con 10 veces más datos, y ver si los modelos superan a las reglas o si se aplanan antes.
 
 ## 8.2 Mejoras
 

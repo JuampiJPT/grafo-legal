@@ -44,6 +44,8 @@ Tan importante como el modelo es cómo se lo evalúa. <break time="0.5s" /> Prim
 Para responderlo, hicimos una curva de aprendizaje. <break time="0.5s" /> Entrenamos los modelos con el diez, el veinte, el treinta, el cincuenta, el setenta y el cien por ciento de los datos, y los medimos siempre sobre la misma validación. <break time="0.5s" /> Si la curva se aplana, al modelo le falta entender. Si sigue subiendo, le faltan datos. <break time="0.5s" /> Y sigue subiendo. Las tres curvas ganan unos dos puntos cada vez que se duplican los datos, y recién al final alcanzan a las reglas. <break time="0.5s" /> Además, sobre los datos que ya vieron aciertan casi todo, y sobre los nuevos, bastante menos: memorizan. <break time="0.5s" /> Y había mucho más disponible. Usamos solo el uno coma cinco por ciento de las normas que InfoLEG podía etiquetar.
 ```
 
-## E15g · Con más datos
+## E15g · Qué habría que hacer para que mejoren
 
-Este bloque se completa cuando termine el reentrenamiento con el corpus ampliado (B69), porque lleva los resultados nuevos.
+```
+¿Qué habría que hacer para que mejoren? <break time="0.5s" /> Lo primero es darles más datos. InfoLEG tiene más de treinta y siete mil relaciones entre leyes y decretos con texto. Nosotros usamos setecientas setenta y cinco. <break time="0.5s" /> Con más datos se repite la curva. Si sigue subiendo, el camino es ese. <break time="0.4s" /> Si se aplana por debajo del modelo de lenguaje, el límite es cómo representa el texto. Ahí conviene un modelo de lenguaje en español, entrenado con la mención marcada, que entienda a qué norma se aplica el verbo. <break time="0.6s" /> Así que la conclusión cambia. El empate con las reglas no prueba que aprender no sirva. Prueba que, con ochocientos ejemplos, todavía no alcanza.
+```

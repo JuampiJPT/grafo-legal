@@ -82,7 +82,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B66 | 21/11 | Hallazgo | Video explicativo armado: Fusi presenta el TP, con animaciones, y la narración alineada sin reconocimiento de voz | Cerrada |
 | B67 | 21/11 | Dificultad | La voz leía el encabezado de cada escena; se quitó y el video pasa a 13:21 (corrige B66) | Cerrada |
 | B68 | 21/11 | Hallazgo | Los modelos supervisados están limitados por la cantidad de datos: las curvas de aprendizaje siguen subiendo (revisa B37 y B46) | Abierta |
-| B69 | 21/11 | Decisión | El video explica los modelos supervisados en siete escenas; no se amplía el corpus | Abierta |
+| B69 | 21/11 | Decisión | El video explica los modelos supervisados en siete escenas | Abierta |
 
 ## Entradas
 
@@ -1139,7 +1139,7 @@ El equipo eligió armar el informe como Google Doc en el Drive, completo (20 a 3
 - **Bajar los textos desde la Mac.** InfoLEG devuelve 403 desde el contenedor y desde la VM de esta sesión.
 - **Si la curva se aplana por debajo del LLM,** pasar a un transformer en español con la mención marcada.
 
-### B69 · 21/11/2026 · Decisión · El video explica los modelos supervisados en siete escenas; no se amplía el corpus
+### B69 · 21/11/2026 · Decisión · El video explica los modelos supervisados en siete escenas
 
 **Pedido del equipo.** Darle más peso en el video a los modelos: cómo funcionan, cómo se entrenaron y qué resultados dieron, con la curva de B68. Dejar el guion para ElevenLabs.
 
@@ -1156,13 +1156,11 @@ El equipo eligió armar el informe como Google Doc en el Drive, completo (20 a 3
 - **Narración.** Está en `docs/video/narracion_modelos_elevenlabs.md`: un bloque por escena, sin encabezados, para no repetir B67. `armar_video.py` ahora verifica que cada audio tenga el nombre de su escena.
 - **Precisión en el guion.** En el random forest la probabilidad es el promedio de las probabilidades de los 400 árboles, no el porcentaje de árboles que votan que sí. El guion se corrigió antes de generar el audio.
 
-**Corpus ampliado: se descartó.** Se preparó una ampliación del dominio laboral un salto más: 1.558 normas de dev, con 4.397 relaciones del gold en dev contra 583. Quedaron `scripts/33_corpus_ampliado.py`, `data/corpus_ampliado/` y `tools/descargar_ampliado.command`. El equipo decidió no hacerla, y los textos no se bajaron. Esos archivos no se versionan. Queda como trabajo futuro, junto con repetir la curva de B68.
-
 **Pendiente.** Generar los siete audios en ElevenLabs y armar la versión 3 del video.
 
 ## Cuestiones abiertas
 
-- Ampliar el corpus de entrenamiento con más normas de InfoLEG y repetir la curva de aprendizaje con el doble y 10 veces más datos (B68).
+- **Queda abierta la posibilidad de ampliar el corpus** para entrenar los modelos supervisados con más normas de InfoLEG, y de revisar con eso las pruebas de B68: repetir la curva de aprendizaje con el doble y con 10 veces más datos, y ver si los modelos superan a las reglas. No se hizo en la cursada.
 - Cargar los grafos de la v3, del LLM y del híbrido en Neo4j sin `--borrar` (B54, B55); actualizar la tabla final con el LLM y sus híbridos (B48, B49).
 - Probar las consultas de ejemplo de `docs/grafo.md` en el Neo4j Browser (la evaluación sobre Neo4j ya está, B60).
 - Revisar el texto consolidado de la LCT (`results/consolidado/lct_consolidada.md`), los 8 cambios no aplicados y los 6 errores (B61).
