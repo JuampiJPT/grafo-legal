@@ -185,10 +185,16 @@ def e15g():
       {st(2, 'Ampliar el corpus', 'pop', 0, cls='node')}{flecha(2, .1)}{st(2, 'Repetir la curva', 'pop', .2, cls='node')}{flecha(2, .3)}
       {st(3, '¿Sigue subiendo? → más datos', 'pop', 0, cls='node v')}
       {st(4, '¿Se aplana? → modelo de lenguaje en español con la mención marcada', 'pop', 0, cls='node o')}</div>"""
-    concl = st(5, '<h3>La conclusión cambia</h3><p style="font-size:30px">El empate no prueba que aprender no sirva: '
+    concl = st(5, '<h3>La conclusión cambia</h3><p style="font-size:28px">El empate no prueba que aprender no sirva: '
                   'prueba que con 800 ejemplos todavía no alcanza.</p>', "pop", cls="card",
                style=f"border-left:10px solid {C['fusi']}")
-    return pagina(SEG, "Lo que habría que hacer", "Cómo podrían mejorar", f'<div class="col">{datos}{camino}{concl}</div>',
+    # B71: qué conclusiones dependen del tamaño del corpus y cuáles no
+    limite = st(6, f"""<h3>¿Y el resto de las conclusiones?</h3>
+      <p style="font-size:26px"><b style="color:{C['orange']}">Sí dependen del tamaño:</b> el empate de los modelos que aprenden y la poca potencia del test (±4,5 puntos).</p>
+      <p style="font-size:26px;margin-top:8px"><b style="color:{C['green']}">No dependen:</b> el techo de las reglas y del LLM, que no aprenden del corpus. Los frenan relaciones que el texto no nombra.</p>""",
+               "pop", cls="card")
+    return pagina(SEG, "Lo que habría que hacer", "Cómo podrían mejorar",
+                  f'<div class="col">{datos}{camino}</div><div class="col">{concl}{limite}</div>',
                   burbuja="¡Más ejemplos!")
 
 

@@ -14,9 +14,9 @@ PARTES = ["01_intro_antecedentes.md", "02_datos_diseno.md", "03_diseno_verificac
           "04_resultados.md", "05_discusion_plan_refs.md"]
 
 
-# Entradas que no van al anexo: el video explicativo y la revisión final del informe (B70). Están en la
+# Entradas que no van al anexo: el video explicativo y la preparación de la entrega (B70, B71). Están en la
 # bitácora completa del Drive y del repositorio.
-FUERA_DEL_ANEXO = {"B65", "B66", "B67", "B69", "B70"}
+FUERA_DEL_ANEXO = {"B65", "B66", "B67", "B69", "B70", "B71"}
 
 
 def bitacora() -> str:

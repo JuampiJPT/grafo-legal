@@ -1,5 +1,7 @@
 # Guion del video explicativo del TP
 
+*Video de uso interno del equipo, para repasar las explicaciones (B71). Para el coloquio se usa la presentación de `docs/presentacion/`.*
+
 Guion del video que cuenta el trabajo de punta a punta. Cada escena tiene dos partes:
 
 - **Narración:** el texto para ElevenLabs, escrito para leerse en voz alta. Los números y las siglas van como se dicen.
@@ -145,7 +147,7 @@ La escena E15 original (40 s) se reemplazó por siete escenas que explican qué 
 | E15d · Entrenar sin hacer trampa | Separación dev/test. Validación cruzada en 5 vueltas, agrupada por norma. Tabla de los 3 modelos con umbral y F1 en CV. Reentrenar → test una vez. |
 | E15e · Resultados | Barras de F1 en test: reglas 0,828, RF 0,823, TF-IDF 0,761 y 0,783, híbrido 0,839. Tarjeta de empate y la pregunta: ¿faltaba entender o faltaban datos? |
 | E15f · Curva de aprendizaje | Figura 8. «Si se aplana / si sigue subiendo». +2 puntos por duplicar los datos. 0,94 contra 0,81: memorizan. 1,5 % de lo disponible. |
-| E15g · Cómo podrían mejorar | 775 contra 37.248 relaciones. Ampliar → repetir la curva → más datos o un modelo de lenguaje en español. «El empate no prueba que aprender no sirva». |
+| E15g · Cómo podrían mejorar | 775 contra 37.248 relaciones. Ampliar → repetir la curva → más datos o un modelo de lenguaje en español. «El empate no prueba que aprender no sirva». Tarjeta: qué depende del tamaño del corpus (el empate de los modelos y la potencia del test) y qué no (el techo de las reglas y del LLM). |
 
 ## E16 · El parser con un modelo de lenguaje (≈ 65 s)
 

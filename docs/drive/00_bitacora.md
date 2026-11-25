@@ -84,6 +84,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B68 | 21/11 | Hallazgo | Los modelos supervisados están limitados por la cantidad de datos: las curvas de aprendizaje siguen subiendo (revisa B37 y B46) | Abierta |
 | B69 | 21/11 | Decisión | El video explica los modelos supervisados en siete escenas | Abierta |
 | B70 | 25/11 | Decisión | Revisión del informe para la entrega: anexo sin tareas internas y curva de aprendizaje en los resultados | Abierta |
+| B71 | 25/11 | Decisión | Presentación para el coloquio; el video queda para uso interno; qué conclusiones dependen del tamaño del corpus | Abierta |
 
 ## Entradas
 
@@ -1189,6 +1190,34 @@ El equipo eligió armar el informe como Google Doc en el Drive, completo (20 a 3
 **Google Doc.** El Drive no permite reemplazar el contenido de un Doc desde un `.docx`, así que se subió uno nuevo: «16 - Informe de avance y bitácora de investigación (entrega de cursada)». Esto cambia el link. La versión anterior y cinco borradores intermedios de esta revisión quedaron renombrados con el prefijo «ZZ», sin borrar. Se verificó el PDF que exporta Google: 65 páginas, las 8 figuras, todas las tablas con bordes y ninguna «Cuestión abierta».
 
 **Falta.** Completar los integrantes en la portada.
+
+### B71 · 25/11/2026 · Decisión · Presentación para el coloquio; el video queda para uso interno; qué conclusiones dependen del tamaño del corpus
+
+**Pedido del equipo.**
+- Revisar si el tema de los modelos estaba bien contado y documentado.
+- Aclarar si las conclusiones se explican por usar un corpus chico.
+- Ajustar el video.
+- Armar aparte la presentación en PowerPoint para el examen final oral. El video queda para uso interno.
+
+**Tamaño del corpus.** Las conclusiones no dependen todas por igual del tamaño. Se agregó un párrafo en la discusión del informe (7.1, «¿Cuánto explica el tamaño del corpus?»):
+- **Sí dependen.** El empate de los modelos supervisados con las reglas (B68) y la baja potencia estadística del test: 43 normas, intervalos de unos ±4,5 puntos.
+- **No dependen.** El techo de las reglas y del LLM, que no aprenden del corpus. Los limitan propiedades de la tarea: el 19 % de los pares de dev no nombra a su destino, y el criterio de InfoLEG para el VISTO no se puede leer en el texto. Tampoco depende el diagnóstico de que se pierde al decidir y no al detectar.
+
+El Google Doc del informe se editó en el lugar, así que el link no cambió.
+
+**Presentación.** `docs/presentacion/presentacion_coloquio.pptx` tiene 21 diapositivas con notas del orador. La genera `armar_presentacion.js` (pptxgenjs).
+- Sigue el recorrido del video, sin Fusi y con las figuras del informe.
+- Agrega una diapositiva con la tabla de qué depende del tamaño del corpus y cuál no.
+- Se revisó renderizada diapositiva por diapositiva. Apareció un problema: pptxgenjs escribe un segundo `<a:pPr>` sin viñeta dentro de los ítems que mezclan negrita y texto normal, y la viñeta desaparecía. El script lo quita después de generar el archivo.
+
+**Video.** Queda como material interno del equipo para repasar las explicaciones; para el coloquio se usa la presentación.
+- La escena E15g suma una tarjeta con la misma distinción sobre el tamaño del corpus, y su narración, dos oraciones.
+- Se actualizó `narracion_modelos_elevenlabs.md` en el repo y en el Drive (documento 18).
+- Siguen faltando los audios de ElevenLabs de la parte de modelos.
+
+**GitHub.** Desde el entorno de Claude, la conexión SSH a GitHub sigue bloqueada. El push lo hace el equipo con `tools/push_github.command`.
+
+**Falta.** Completar los integrantes en la portada del informe y de la presentación.
 
 ## Cuestiones abiertas
 

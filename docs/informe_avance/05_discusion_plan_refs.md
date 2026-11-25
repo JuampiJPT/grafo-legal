@@ -12,6 +12,13 @@ El parecido entre métodos tan distintos sugiere que **el techo no está en el m
 - una parte del gold no se puede encontrar leyendo el texto de la modificatoria;
 - InfoLEG registra algunas citas del VISTO y otras no, sin un criterio que se lea en el texto.
 
+**¿Cuánto explica el tamaño del corpus?** El corpus es chico: 340 normas, 801 pares para entrenar y 192 de test. Pero el tamaño no afecta a todas las conclusiones por igual:
+
+- **A los modelos supervisados, sí.** Es la causa medible de su empate con las reglas (sección 6.7).
+- **A la potencia estadística, sí.** Con 43 normas de test, los intervalos son de unos ±4,5 puntos, y diferencias de 1 o 2 puntos no se pueden afirmar ni descartar (sección 7.2).
+- **Al techo de las reglas y del LLM, no.** Ninguno de los dos aprende del corpus. Los limitan propiedades de la tarea: en el 19 % de los pares de dev el destino no aparece nombrado en el texto, y el criterio de InfoLEG para las citas del VISTO no se puede leer en el texto. Un corpus más grande daría intervalos más angostos, pero no movería ese techo.
+- **A dónde se pierden los pares, no.** La detección y la normalización casi no pierden pares en dev ni en test, y eso se verificó caso por caso.
+
 **PI2: el híbrido.** El híbrido mejora, pero poco. La intersección de reglas y LLM es la única mejora significativa (+1 punto, por precisión). El híbrido en cascada logra el mismo F1 a un cuarto del costo, y en el digesto es el mejor de todos. Coincide con lo que pide la consigna: las reglas detectan candidatos de forma barata y casi sin errores, y el modelo decide donde las reglas dudan.
 
 **PI3: formulaciones problemáticas.** El análisis caso por caso cambió dónde se puso el esfuerzo. La detección y la normalización casi no pierden pares. Los errores se concentran en:
@@ -130,5 +137,5 @@ También hace falta tiempo del equipo para las anotaciones humanas.
 
 # Anexo B. Bitácora de investigación
 
-La bitácora registra, con fecha, cada decisión, dificultad, hallazgo y cuestionamiento del trabajo, con su contexto, las alternativas y cómo quedó. Las entradas no se borran: si una decisión cambia, se agrega otra que la reemplaza. A continuación se transcriben las entradas de la investigación, de B01 a B64 y B68. Cuando un punto que había quedado abierto se resolvió después, la entrada lo indica con una nota de *Seguimiento*. Lo que sigue pendiente está resumido en el plan de maduración (sección 8). En esta transcripción se omiten tres cosas: el estado de cada entrada, la lista interna de tareas y las entradas sobre el video explicativo y la revisión final de este informe. La versión completa es «00 - Bitácora del TP», en la carpeta del Drive, y la copia está en `docs/drive/00_bitacora.md`.
+La bitácora registra, con fecha, cada decisión, dificultad, hallazgo y cuestionamiento del trabajo, con su contexto, las alternativas y cómo quedó. Las entradas no se borran: si una decisión cambia, se agrega otra que la reemplaza. A continuación se transcriben las entradas de la investigación, de B01 a B64 y B68. Cuando un punto que había quedado abierto se resolvió después, la entrada lo indica con una nota de *Seguimiento*. Lo que sigue pendiente está resumido en el plan de maduración (sección 8). En esta transcripción se omiten tres cosas: el estado de cada entrada, la lista interna de tareas y las entradas sobre el video explicativo y la preparación de la entrega (presentación y revisión final de este informe). La versión completa es «00 - Bitácora del TP», en la carpeta del Drive, y la copia está en `docs/drive/00_bitacora.md`.
 

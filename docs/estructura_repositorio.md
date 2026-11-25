@@ -120,7 +120,7 @@ Cada carpeta tiene un `metricas.json`. Las principales tienen además un `RESULT
 | `estructura_repositorio.md` | Este documento |
 | `reproducibilidad.md` | Qué se repite exacto y qué no |
 | `decisiones.md` | Las decisiones D1 a D28, con su motivo |
-| `drive/00_bitacora.md` | La bitácora completa (B01 a B63): decisiones, dificultades, cuestionamientos y hallazgos con fecha |
+| `drive/00_bitacora.md` | La bitácora completa (B01 a B71): decisiones, dificultades, cuestionamientos y hallazgos con fecha |
 | `drive/01_…`, `02_…`, `07_…`, `roadmap.md` | Copias de los documentos del Drive |
 | `arquitectura_parser_y_grafo.md`, `como_se_detecta_una_relacion.md`, `guia_codigo.md` | Cómo funciona el código, paso a paso |
 | `dataset.md`, `salida_estandar.md`, `grafo.md` | Fichas del dataset, de la salida de los parsers y del modelo del grafo (con consultas Cypher) |
@@ -129,6 +129,9 @@ Cada carpeta tiene un `metricas.json`. Las principales tienen además un `RESULT
 | `pi4_digesto_unnoba.md`, `pi4_revision_gold.md` | La transferencia al digesto y la revisión de su gold |
 | `consolidado_lct.md` | El texto consolidado de la LCT desde el grafo y su evaluación |
 | `revision_manual/` | Las revisiones manuales en CSV: cobertura, Ley 14.250, falsos positivos, tipos y menciones |
+| `informe_avance/` | El informe de avance para la entrega de la cursada: fuentes por sección, `armar_informe.py` y el `.docx` (B64, B70) |
+| `presentacion/` | La presentación en PowerPoint para el coloquio, con notas del orador, y el script que la genera (B71) |
+| `video/` | El video explicativo con Fusi, su guion y la narración: material interno del equipo (B65 a B69, B71) |
 
 ## 7. `tools/` y `tests/`
 

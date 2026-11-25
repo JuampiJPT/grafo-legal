@@ -18,3 +18,5 @@ Scripts que generan el video a partir de `docs/video/guion_video.md` y los audio
 **Corrección (B67).** La voz había leído los encabezados («E05 · De dónde salen los datos»). Por eso los cortes válidos son los de `alinear2.py` y `cortar2.py`, que alinean con el encabezado incluido y lo quitan.
 
 **Versión 3 (B69).** La escena E15 se reemplazó por siete escenas sobre los modelos (`escenas_modelos.py`: E15, E15b … E15g). `escenas.NOMBRADAS` da el nombre y la función de cada escena. `capturar_todo.py` y `armar_video.py` usan esos nombres, y el orden alfabético (E15 < E15b < … < E15g < E16) es el orden del video. Los audios se nombran igual que la escena (`E15b.mp3`), y `armar_video.py` verifica que coincidan. La narración nueva está en `narracion_modelos_elevenlabs.md`, con un audio por escena y sin encabezados.
+
+**Uso interno (B71).** El video queda para que el equipo repase las explicaciones; para el coloquio se usa `docs/presentacion/presentacion_coloquio.pptx`. La escena E15g suma una tarjeta sobre qué conclusiones dependen del tamaño del corpus.

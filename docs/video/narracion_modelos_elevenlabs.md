@@ -1,5 +1,7 @@
 # Narración nueva de la parte de modelos (E15 a E15g), para ElevenLabs
 
+*Video de uso interno del equipo, para repasar las explicaciones (B71). Para el coloquio se usa la presentación de `docs/presentacion/`.*
+
 Reemplaza la escena E15 del video por siete escenas (bitácora B69). Usá la misma voz y la misma configuración que en el resto del video.
 
 **Cómo generarla** (para no repetir el problema de B67):
@@ -47,5 +49,5 @@ Para responderlo, hicimos una curva de aprendizaje. <break time="0.5s" /> Entren
 ## E15g · Qué habría que hacer para que mejoren
 
 ```
-¿Qué habría que hacer para que mejoren? <break time="0.5s" /> Lo primero es darles más datos. InfoLEG tiene más de treinta y siete mil relaciones entre leyes y decretos con texto. Nosotros usamos setecientas setenta y cinco. <break time="0.5s" /> Con más datos se repite la curva. Si sigue subiendo, el camino es ese. <break time="0.4s" /> Si se aplana por debajo del modelo de lenguaje, el límite es cómo representa el texto. Ahí conviene un modelo de lenguaje en español, entrenado con la mención marcada, que entienda a qué norma se aplica el verbo. <break time="0.6s" /> Así que la conclusión cambia. El empate con las reglas no prueba que aprender no sirva. Prueba que, con ochocientos ejemplos, todavía no alcanza.
+¿Qué habría que hacer para que mejoren? <break time="0.5s" /> Lo primero es darles más datos. InfoLEG tiene más de treinta y siete mil relaciones entre leyes y decretos con texto. Nosotros usamos setecientas setenta y cinco. <break time="0.5s" /> Con más datos se repite la curva. Si sigue subiendo, el camino es ese. <break time="0.4s" /> Si se aplana por debajo del modelo de lenguaje, el límite es cómo representa el texto. Ahí conviene un modelo de lenguaje en español, entrenado con la mención marcada, que entienda a qué norma se aplica el verbo. <break time="0.6s" /> Así que la conclusión cambia. El empate con las reglas no prueba que aprender no sirva. Prueba que, con ochocientos ejemplos, todavía no alcanza. <break time="0.6s" /> Ojo, que el tamaño del corpus no explica todo. Explica el empate de los modelos que aprenden, y que en el test casi ninguna diferencia sea significativa. Pero no explica el techo de las reglas ni del modelo de lenguaje: ninguno de los dos aprende del corpus. Los frenan las relaciones que el texto no nombra.
 ```
