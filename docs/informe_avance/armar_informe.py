@@ -85,12 +85,70 @@ def anchos_de_tablas(md: str) -> str:
             textos = [c[k] for c in celdas if k < len(c)]
             medio = sum(len(x) for x in textos) / len(textos)
             palabra = max((len(w) for x in textos for w in x.replace("*", "").split()), default=3)
-            return max(medio, palabra * 2.2, 7)
+            maximo = max(len(x) for x in textos)
+            return max(medio, palabra * 2.2, maximo * 0.6, 7)
         largo = [peso(k) for k in range(n)]
+        total = sum(largo)
+        # ninguna columna por debajo del 9 % del ancho, para que códigos como «B37, D14» no se partan
+        largo = [max(l, 0.09 * total) for l in largo]
         total = sum(largo)
         guiones = [max(6, round(100 * l / total)) for l in largo]
         lineas[i] = "|" + "|".join("-" * g for g in guiones) + "|"
     return "\n".join(lineas)
+
+
+def dar_formato_a_tablas(docx_path: Path) -> None:
+    """Bordes, encabezado sombreado, filas alternadas y letra más chica en todas las tablas (B71).
+
+    Pandoc deja las tablas sin bordes ni encabezado marcado, y al pasar a Google Doc no se distinguían las
+    filas. Se aplica formato directo a cada celda, que Google Docs sí respeta al convertir.
+    """
+    from docx import Document
+    from docx.oxml import OxmlElement
+    from docx.oxml.ns import qn
+    from docx.shared import Pt
+
+    def sub(padre, tag, **attrs):
+        el = padre.find(qn(tag))
+        if el is None:
+            el = OxmlElement(tag)
+            padre.append(el)
+        for k, v in attrs.items():
+            el.set(qn(k), v)
+        return el
+
+    doc = Document(str(docx_path))
+    for tabla in doc.tables:
+        tblPr = tabla._tbl.tblPr
+        bordes = sub(tblPr, "w:tblBorders")
+        for lado in ("top", "left", "bottom", "right", "insideH", "insideV"):
+            sub(bordes, f"w:{lado}", **{"w:val": "single", "w:sz": "4", "w:space": "0", "w:color": "A6A6A6"})
+        margen = sub(tblPr, "w:tblCellMar")
+        for lado, v in (("top", "50"), ("bottom", "50"), ("left", "90"), ("right", "90")):
+            sub(margen, f"w:{lado}", **{"w:w": v, "w:type": "dxa"})
+        anchos = [int(g.get(qn("w:w"))) for g in tabla._tbl.tblGrid.findall(qn("w:gridCol"))]
+        # Google Docs toma el ancho de cada celda: se escala para que la tabla ocupe todo el ancho de texto
+        # (6,5 pulgadas = 9360 dxa) y no dos tercios de la página
+        if sum(anchos):
+            anchos = [round(w * 9360 / sum(anchos)) for w in anchos]
+            for g, w in zip(tabla._tbl.tblGrid.findall(qn("w:gridCol")), anchos):
+                g.set(qn("w:w"), str(w))
+        for i, fila in enumerate(tabla.rows):
+            for j, celda in enumerate(fila.cells):
+                tcPr = celda._tc.get_or_add_tcPr()
+                if j < len(anchos):
+                    sub(tcPr, "w:tcW", **{"w:w": str(anchos[j]), "w:type": "dxa"})
+                color = "DCE6F2" if i == 0 else ("F3F3F3" if i % 2 == 0 else None)
+                if color:
+                    sub(tcPr, "w:shd", **{"w:val": "clear", "w:color": "auto", "w:fill": color})
+                for p in celda.paragraphs:
+                    p.paragraph_format.space_before = Pt(1)
+                    p.paragraph_format.space_after = Pt(1)
+                    for r in p.runs:
+                        r.font.size = Pt(9.5)
+                        if i == 0:
+                            r.font.bold = True
+    doc.save(str(docx_path))
 
 
 def main():
@@ -103,6 +161,7 @@ def main():
     (AQUI / "informe_avance.md").write_text(md, encoding="utf-8")
     subprocess.run(["pandoc", "informe_avance.md", "-o", "informe_avance.docx", "--resource-path=.", "-f", "markdown"],
                    cwd=AQUI, check=True)
+    dar_formato_a_tablas(AQUI / "informe_avance.docx")
     print("escrito informe_avance.md e informe_avance.docx")
 
 

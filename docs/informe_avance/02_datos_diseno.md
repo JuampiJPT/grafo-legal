@@ -89,7 +89,7 @@ Hay tres versiones de la regla:
 
 ## 3.4 Soluciones evaluadas
 
-| Enfoque | Descripción | Bitácora |
+| Enfoque | Descripción | Ref. |
 |---|---|---|
 | Clasificador de superficie | Random forest sobre 22 atributos de cada par candidato: menciones por zona, verbo en el artículo o en la oración, tipos de norma, diferencia de años, mención solo por nombre propio, entre otros. Validación cruzada agrupada por norma de origen en dev | B37, D14 |
 | Modelo contextual | TF-IDF de la ventana de texto de cada mención, solo y con los atributos de superficie | B46, D20 |

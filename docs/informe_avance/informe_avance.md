@@ -81,7 +81,7 @@ En Argentina, **Cardellino et al.** [10] trabajaron sobre InfoLEG. Detectaron en
 La comparación más reciente entre paradigmas es la de **Sargeant, Östling y Magnusson** [11], sobre citas en sentencias del Reino Unido, con 190 sentencias anotadas:
 
 | Paradigma | Macro-F1 |
-|------------------------------------------------------------|----------------------------------------|
+|-------------------------------------------------------------|---------------------------------------|
 | Encoders afinados (ModernBERT) | 93,3 % |
 | GPT-4.1 | 76,6 % |
 | Mejor línea de base con expresiones regulares | 35,4 % |
@@ -105,7 +105,7 @@ Aplicar las modificaciones para obtener el texto vigente es una tarea vecina, qu
 ## 2.4 Métodos, datos y métricas de la literatura
 
 | Trabajo | Datos | Método | Métrica |
-|--------------------|--------------------------------|------------------------|------------------------|
+|-------------------|------------------------------|--------------------------|------------------------|
 | de Maat et al. [5] | Leyes neerlandesas | Patrones | Precisión y recall de detección |
 | Sleimi et al. [8] | Legislación de Luxemburgo (metadatos semánticos) | Reglas + análisis sintáctico | P = 82–97 %, R = 92–95 % |
 | Cardellino et al. [10] | InfoLEG (11 documentos anotados) | Regex + clasificador NER | P, cobertura, F |
@@ -221,8 +221,8 @@ Hay tres versiones de la regla:
 
 ## 3.4 Soluciones evaluadas
 
-| Enfoque | Descripción | Bitácora |
-|---------------|----------------------------------------------------------------------------|----------|
+| Enfoque | Descripción | Ref. |
+|------------|--------------------------------------------------------------------------------|---------|
 | Clasificador de superficie | Random forest sobre 22 atributos de cada par candidato: menciones por zona, verbo en el artículo o en la oración, tipos de norma, diferencia de años, mención solo por nombre propio, entre otros. Validación cruzada agrupada por norma de origen en dev | B37, D14 |
 | Modelo contextual | TF-IDF de la ventana de texto de cada mención, solo y con los atributos de superficie | B46, D20 |
 | Parser LLM | `claude-sonnet-5-5` lee los artículos que nombran normas y devuelve, en JSON, la cita textual, la norma destino, el artículo destino, el tipo y el verbo. Si la cita no está literal en el texto, la relación se descarta (anti-alucinación). Las respuestas se guardan en una caché por huella del pedido | B48, D22 |
@@ -287,7 +287,7 @@ La base de Neo4j del equipo tiene cargadas las cuatro fuentes de InfoLEG (reglas
 ## 4.3 Métodos y tecnologías
 
 | Componente | Tecnología |
-|--------------------------------|--------------------------------------------------------------------|
+|---------------------------|-------------------------------------------------------------------------|
 | Lenguaje | Python 3.10 o superior |
 | Datos y dataset | pandas, CSV (D12) |
 | Modelos supervisados | scikit-learn: random forest, regresión logística, TF-IDF |
@@ -320,7 +320,7 @@ Todas las decisiones están en la bitácora (Anexo B) y en `docs/decisiones.md` 
 ## 4.5 Implementación alcanzada
 
 | Fase | Estado | Qué hay |
-|-----------------------------|---------------------|---------------------------------------------------|
+|----------------------------|--------------------|----------------------------------------------------|
 | F1 · Corpus y gold | Cerrada | 340 normas, 775 pares, 306 textos, scripts que lo reproducen byte a byte |
 | F2 · Segmentación, detección y normalización | Cerrada | Zonas, detector con listas y nombres propios, catálogo cerrado |
 | F3 · Parser de reglas | Cerrada | v1, v2 (referencia) y v3 (experimento) |
@@ -380,7 +380,7 @@ El código tiene comentarios, y el recorrido para la presentación está en `doc
 ## 5.2 Resultados de las pruebas
 
 | Prueba | Resultado |
-|------------------------------------------|----------------------------------------------------------|
+|-----------------------------------------|-----------------------------------------------------------|
 | `pytest -q` (21/11/2026) | **19 de 19 aprobadas** |
 | Corpus regenerado contra congelado (21/11/2026) | `corpus_normas.csv` y `gold_relaciones.csv` **idénticos** |
 | Catálogo y muestra del digesto (`--verificar`, 21/11/2026) | Iguales a los del repositorio. Los textos del JSONL coinciden con `txt/` |
@@ -497,7 +497,7 @@ Cada falso positivo y cada falso negativo de test se explicó caso por caso, con
 **Tabla 3.** Errores de test agrupados en las categorías de la consigna (reglas v2).
 
 | Categoría de la consigna | Causas concretas | FP | FN |
-|-----------------------|----------------------------------------------------------------|------|------|
+|-----------------|------------------------------------------------------------------|--------|--------|
 | Relación inexistente | Cita en el VISTO (24), remisión desde una ley (14), verbo que no actúa (3), procedencia no filtrada (1), error en el texto fuente (1) | 43 | — |
 | Referencia mal normalizada o ambigua | Otro decreto con el mismo número (1), decreto sin año resuelto por mundo cerrado (2) | 3 | — |
 | Norma no detectada como vínculo | CONSIDERANDO + decreto sin verbo (6), decreto sin verbo en el articulado (4), solo en el CONSIDERANDO (3), solo por nombre propio (2), solo cita de procedencia (1) | — | 16 |
@@ -585,7 +585,7 @@ Las F1 de esta sección se miden sobre los pares candidatos, no sobre el gold co
 **Tabla 5.** F1 en validación según la cantidad de pares de entrenamiento, y F1 sobre los propios datos de entrenamiento.
 
 | Modelo | 61 pares | 316 pares | 641 pares (todo dev) | F1 en entrenamiento |
-|------------------------|--------------|--------------|--------------|-----------------------------------|
+|------------------------|-------------|-------------|---------------|-----------------------------------|
 | Random forest | 0,727 | 0,774 | 0,814 | 0,936 |
 | TF-IDF + atributos | 0,735 | 0,809 | 0,831 | 0,986 |
 | TF-IDF solo | 0,731 | 0,782 | 0,800 | 0,992 |
@@ -1231,7 +1231,7 @@ El grafo se carga en un contenedor Docker propio (neo4j-grafo-legal), con los pu
 **Resultados en test.**
 
 | Método | F1 |
-|--------------------------------------------------------------|--------------------------------------|
+|----------------------------------------------------------------|------------------------------------|
 | Solo texto | 0,761 |
 | Texto + superficie | 0,783 |
 | Reglas v2 | 0,828 |
