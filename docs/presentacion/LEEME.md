@@ -5,7 +5,7 @@
 - **Contenido.** Es el mismo recorrido del video explicativo, condensado para exponer: problema, datos, pipeline, reglas, modelos supervisados, LLM, resultados, efecto del tamaño del corpus, grafo, PI4, PI5, conclusiones y plan.
 - **Origen de las cifras y figuras.** Todas salen de `results/` y del informe de avance. Las figuras son las de `docs/informe_avance/figuras/`, y el grafo del corpus está en `img/`.
 - **Video.** El video (`docs/video/`) queda para uso interno del equipo, para repasar las explicaciones. No se usa en el coloquio.
-- **Pendiente.** Completar los integrantes en la portada.
+- **Integrantes** (en la portada, por orden alfabético): Cidoni, Valentino; Lodeiro, Bruno; Martino, Lucas; Tagliaferro, Juan Pedro.
 
 **Regenerarla.** Desde la raíz del repo, con `pptxgenjs` instalado (`npm install pptxgenjs`):
 

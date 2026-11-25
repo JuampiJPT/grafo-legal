@@ -1218,7 +1218,7 @@ El Google Doc del informe se editó en el lugar, así que el link no cambió.
 
 **GitHub.** Desde el entorno de Claude, la conexión SSH a GitHub sigue bloqueada. El push lo hace el equipo con `tools/push_github.command`.
 
-**Falta.** Completar los integrantes en la portada del informe y de la presentación.
+**Falta.** Completar los integrantes en la portada del informe y de la presentación. *Seguimiento:* completados por orden alfabético: Cidoni, Valentino; Lodeiro, Bruno; Martino, Lucas; Tagliaferro, Juan Pedro. Se regeneraron el informe (también el Google Doc, editado en el lugar, y su PDF) y la presentación.
 
 ### B72 · 25/11/2026 · Avance · Audios de la parte de modelos y video v3 (uso interno)
 

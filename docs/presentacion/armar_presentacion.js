@@ -96,7 +96,7 @@ function nueva(seccion, master) { return pres.addSlide({ masterName: master || "
 pres.addSection({ title: "Apertura" });
 let s = nueva("Apertura", "PORTADA");
 s.addText("Extracción de relaciones entre normas y grafo normativo trazable", { placeholder: "title" });
-s.addText("TP Integrador · Problemática III\nSistemas Inteligentes · Ingeniería en Informática · UNNOBA\nIntegrantes: [completar]", { placeholder: "body" });
+s.addText("TP Integrador · Problemática III\nSistemas Inteligentes · Ingeniería en Informática · UNNOBA\nIntegrantes: Cidoni, Valentino · Lodeiro, Bruno · Martino, Lucas · Tagliaferro, Juan Pedro", { placeholder: "body" });
 s.addNotes("Presentamos el TP Integrador de la Problemática III: reconstruir, a partir del texto de las normas, qué norma modifica a cuál, y guardarlo en un grafo donde cada vínculo conserva la evidencia textual que lo justifica.");
 
 s = nueva("Apertura");

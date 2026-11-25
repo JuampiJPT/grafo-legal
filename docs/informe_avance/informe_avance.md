@@ -1,7 +1,9 @@
 ---
 title: "Extracción de relaciones entre normas y construcción de un grafo normativo trazable"
 subtitle: "Informe de avance y bitácora de investigación — TP Integrador, Problemática III"
-author: "Sistemas Inteligentes · Ingeniería en Informática · UNNOBA · Integrantes: [completar]"
+author:
+  - "Sistemas Inteligentes · Ingeniería en Informática · UNNOBA"
+  - "Integrantes: Cidoni, Valentino · Lodeiro, Bruno · Martino, Lucas · Tagliaferro, Juan Pedro"
 date: "Noviembre de 2026"
 lang: es
 ---
