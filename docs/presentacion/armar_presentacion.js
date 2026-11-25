@@ -16,15 +16,23 @@ const FIG = process.env.FIG || path.join(__dirname, "../informe_avance/figuras")
 const ASSETS = process.env.ASSETS || path.join(__dirname, "img");
 const SALIDA = process.env.SALIDA || path.join(__dirname, "presentacion_coloquio.pptx");
 
-// Paleta: azul tinta institucional que domina, naranja «sello» como acento (el mismo del video y las figuras).
+// Identidad UNNOBA (Manual de identidad institucional, Res. CS 731/2014; B74):
+//  - colores institucionales: celeste Pantone 7688 C (#4698CB) y gris Cool Gray 8 (#888B8D / k65 #7C7C7B),
+//    con el amarillo institucional (Pantone 136 C, #FFBF3F) como acento;
+//  - tipografía principal: familia Century (Century 725 BT; la alternativa oficial es Century Schoolbook,
+//    que viene con Office); secundaria: TheSans / Trade Gothic, reemplazadas por Arial porque no vienen
+//    instaladas en las computadoras donde se va a proyectar;
+//  - el cuadrado del isotipo como motivo, portadas grises con filetes blancos y encabezado con filete.
+const GRIS_PORTADA = "7C7C7B";      // Cool Gray 8 C en k65: fondo de portadas y separadores
+const GRIS_CLARO = "C6C7C8";        // Cool Gray 4 C: filetes finos y bordes de tablas
 const THEME = {
-  name: "Grafo normativo",
-  headFontFace: "Cambria",
-  bodyFontFace: "Calibri",
+  name: "UNNOBA",
+  headFontFace: "Century Schoolbook",
+  bodyFontFace: "Arial",
   colors: {
-    dk1: "1B2333", lt1: "FFFFFF", dk2: "1F3A5F", lt2: "EEF2F7",
-    accent1: "E8643A", accent2: "2A78D6", accent3: "1BAF7A", accent4: "E34948",
-    accent5: "EDA100", accent6: "6B7280", hlink: "2A78D6", folHlink: "6B7280",
+    dk1: "3C3C3B", lt1: "FFFFFF", dk2: "58595B", lt2: "EEEFF0",
+    accent1: "4698CB", accent2: "2F6F9F", accent3: "C98A12", accent4: "B5383B",
+    accent5: "FFBF3F", accent6: "6D6E71", hlink: "4698CB", folHlink: "6D6E71",
   },
 };
 
@@ -37,37 +45,51 @@ const C = pres.SchemeColor;
 const W = 13.333;
 
 // ---------------------------------------------------------------- layouts
+const LOGO_POS = path.join(ASSETS, "unnoba_positivo.png");   // isologotipo (extraído del manual), 1371 x 874
+const LOGO_NEG = path.join(ASSETS, "unnoba_negativo.png");   // versión negativa, para fondos de menos del 50 % de luz
+const RAZON_LOGO = 1371 / 874;
+const filete = (y, grosor, color) => ({ line: { x: 0.6, y, w: W - 1.2, h: 0, line: { color, width: grosor } } });
 pres.defineSlideMaster({
   title: "PORTADA",
-  background: { color: C.text2 },
+  background: { color: GRIS_PORTADA },
   objects: [
-    { placeholder: { options: { name: "title", type: "title", x: 0.8, y: 2.0, w: 11.7, h: 1.9, fontSize: 40, bold: true, color: C.background1, valign: "bottom", align: "left", fontFace: THEME.headFontFace }, text: "" } },
-    { placeholder: { options: { name: "body", type: "body", x: 0.8, y: 4.1, w: 11.7, h: 1.6, fontSize: 18, color: "CADCFC", valign: "top" }, text: "" } },
+    filete(1.05, 1, "FFFFFF"), filete(6.15, 1, "FFFFFF"),
+    { image: { path: LOGO_NEG, x: W - 0.6 - 0.62 * RAZON_LOGO, y: 6.4, w: 0.62 * RAZON_LOGO, h: 0.62 } },
+    { placeholder: { options: { name: "title", type: "title", x: 0.6, y: 1.5, w: 12.1, h: 2.4, fontSize: 40, bold: false, color: C.background1, valign: "bottom", align: "left", fontFace: THEME.headFontFace, margin: 0 }, text: "" } },
+    { placeholder: { options: { name: "body", type: "body", x: 0.6, y: 4.2, w: 12.1, h: 1.7, fontSize: 17, color: "F2F2F2", valign: "top", margin: 0 }, text: "" } },
   ],
 });
 pres.defineSlideMaster({
   title: "SECCION",
-  background: { color: C.text2 },
+  background: { color: GRIS_PORTADA },
   objects: [
-    { placeholder: { options: { name: "title", type: "title", x: 0.8, y: 2.6, w: 11.7, h: 1.2, fontSize: 40, bold: true, color: C.background1, fontFace: THEME.headFontFace }, text: "" } },
-    { placeholder: { options: { name: "body", type: "body", x: 0.8, y: 3.9, w: 11.7, h: 1.0, fontSize: 18, color: "CADCFC" }, text: "" } },
+    filete(1.05, 1, "FFFFFF"), filete(6.15, 1, "FFFFFF"),
+    { image: { path: LOGO_NEG, x: W - 0.6 - 0.5 * RAZON_LOGO, y: 6.5, w: 0.5 * RAZON_LOGO, h: 0.5 } },
+    { placeholder: { options: { name: "title", type: "title", x: 0.6, y: 2.75, w: 12.1, h: 1.1, fontSize: 38, bold: false, color: C.background1, align: "center", valign: "middle", fontFace: THEME.headFontFace, margin: 0 }, text: "" } },
+    { placeholder: { options: { name: "body", type: "body", x: 0.6, y: 3.9, w: 12.1, h: 0.9, fontSize: 17, color: "F2F2F2", align: "center", margin: 0 }, text: "" } },
   ],
-  slideNumber: { x: 12.3, y: 7.0, w: 0.6, h: 0.3, fontSize: 10, color: "CADCFC", align: "right" },
+  slideNumber: { x: 0.6, y: 6.55, w: 0.6, h: 0.3, fontSize: 10, color: "F2F2F2", align: "left" },
 });
 pres.defineSlideMaster({
   title: "CONTENIDO",
   background: { color: C.background1 },
   objects: [
-    { placeholder: { options: { name: "title", type: "title", x: 0.6, y: 0.35, w: 12.1, h: 0.85, fontSize: 30, bold: true, color: C.text2, valign: "middle", align: "left", fontFace: THEME.headFontFace, margin: 0 }, text: "" } },
-    { text: { text: "Grafo normativo trazable · TP Integrador · Sistemas Inteligentes · UNNOBA", options: { x: 0.6, y: 7.0, w: 9, h: 0.3, fontSize: 10, color: C.accent6, margin: 0 } } },
+    // encabezado como en las páginas del manual: filete grueso, rótulo de sección y filete fino
+    filete(0.3, 2.25, C.text2), filete(0.64, 0.75, GRIS_CLARO),
+    { placeholder: { options: { name: "seccion", type: "body", x: 0.6, y: 0.33, w: 9, h: 0.3, fontSize: 11, bold: true, color: C.accent1, valign: "middle", margin: 0 }, text: "" } },
+    { placeholder: { options: { name: "title", type: "title", x: 0.6, y: 0.72, w: 12.1, h: 0.72, fontSize: 28, bold: false, color: C.text2, valign: "middle", align: "left", fontFace: THEME.headFontFace, margin: 0 }, text: "" } },
+    filete(6.95, 0.75, GRIS_CLARO),
+    { text: { text: "Grafo normativo trazable · TP Integrador · Sistemas Inteligentes", options: { x: 0.6, y: 7.02, w: 9, h: 0.3, fontSize: 9, color: C.accent6, margin: 0 } } },
+    { image: { path: LOGO_POS, x: W - 0.6 - 0.36 * RAZON_LOGO, y: 7.0, w: 0.36 * RAZON_LOGO, h: 0.36 } },
   ],
-  slideNumber: { x: 12.3, y: 7.0, w: 0.6, h: 0.3, fontSize: 10, color: C.accent6, align: "right" },
+  slideNumber: { x: 11.9, y: 0.33, w: 0.8, h: 0.3, fontSize: 11, bold: true, color: C.text2, align: "right" },
 });
 
 // ---------------------------------------------------------------- ayudas
 function tit(s, t) { s.addText(t, { placeholder: "title" }); }
 function card(s, x, y, w, h, nombre, fill) {
-  s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y, w, h, rectRadius: 0.12, fill: { color: fill || C.background2 }, line: { color: fill || C.background2 }, objectName: nombre });
+  // tarjetas rectas, como los recuadros del manual
+  s.addShape(pres.shapes.RECTANGLE, { x, y, w, h, fill: { color: fill || C.background2 }, line: { color: fill || C.background2 }, objectName: nombre });
 }
 function texto(s, t, o) { s.addText(t, Object.assign({ isTextBox: true, fontSize: 16, color: C.text1, valign: "top", margin: 0.05 }, o)); }
 function stat(s, x, y, w, numero, etiqueta, color, nombre) {
@@ -84,13 +106,18 @@ function img(s, archivo, x, y, w, ratio, nombre) {
   s.addImage({ path: archivo, x, y, w, h: w / ratio, objectName: nombre, altText: nombre });
 }
 function nodo(s, t, x, y, w, h, fill, colorTexto) {
-  s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y, w, h, rectRadius: 0.1, fill: { color: fill }, line: { color: fill } });
+  s.addShape(pres.shapes.RECTANGLE, { x, y, w, h, fill: { color: fill }, line: { color: fill } });
   texto(s, t, { x, y, w, h, fontSize: 14, bold: true, align: "center", valign: "middle", color: colorTexto || C.background1 });
 }
 function flecha(s, x, y, w) {
   s.addShape(pres.shapes.LINE, { x, y, w, h: 0, line: { color: C.accent6, width: 2, endArrowType: "triangle" } });
 }
-function nueva(seccion, master) { return pres.addSlide({ masterName: master || "CONTENIDO", sectionTitle: seccion }); }
+function nueva(seccion, master) {
+  const sl = pres.addSlide({ masterName: master || "CONTENIDO", sectionTitle: seccion });
+  // rótulo del encabezado: la sección, como «Isologotipo / Color» en el manual
+  if (!master || master === "CONTENIDO") sl.addText(seccion + "  /  Grafo normativo trazable", { placeholder: "seccion" });
+  return sl;
+}
 
 // =================================================================== 1. Apertura
 pres.addSection({ title: "Apertura" });
@@ -108,7 +135,7 @@ texto(s, [
   { text: " el " }, { text: "artículo 198", options: { bold: true, color: C.accent2 } },
   { text: " de la " }, { text: "Ley de Contrato de Trabajo", options: { bold: true, color: C.accent3 } },
   { text: " (t.o. 1976), por lo siguiente: «Artículo 198.- Jornada reducida. La reducción de la jornada máxima legal solamente procederá cuando lo establezcan…»" },
-], { x: 0.85, y: 1.65, w: 11.6, h: 1.3, fontSize: 17, fontFace: "Cambria" });
+], { x: 0.85, y: 1.65, w: 11.6, h: 1.3, fontSize: 17, fontFace: THEME.headFontFace });
 texto(s, "Ley 24.013 (Ley de Empleo), artículo 25, tal como lo publica InfoLEG", { x: 0.6, y: 3.15, w: 12, h: 0.35, fontSize: 12, color: C.accent6 });
 nodo(s, "Ley 24.013\nart. 25", 2.4, 4.2, 2.4, 1.1, C.accent6);
 flecha(s, 5.0, 4.75, 3.2);
@@ -125,7 +152,7 @@ const pasos = [["1", "Ocultar", "Las relaciones estructuradas de InfoLEG quedan 
 pasos.forEach(([n, t, d], i) => {
   const x = 0.6 + i * 4.1;
   card(s, x, 1.6, 3.8, 3.6, "Paso " + n);
-  s.addShape(pres.shapes.OVAL, { x: x + 0.3, y: 1.85, w: 0.8, h: 0.8, fill: { color: C.accent1 }, line: { color: C.accent1 } });
+  s.addShape(pres.shapes.RECTANGLE, { x: x + 0.3, y: 1.85, w: 0.8, h: 0.8, fill: { color: C.accent1 }, line: { color: C.accent1 } });
   texto(s, n, { x: x + 0.3, y: 1.85, w: 0.8, h: 0.8, fontSize: 28, bold: true, color: C.background1, align: "center", valign: "middle", margin: 0 });
   texto(s, t, { x: x + 0.3, y: 2.85, w: 3.3, h: 0.5, fontSize: 22, bold: true, color: C.text2 });
   texto(s, d, { x: x + 0.3, y: 3.45, w: 3.3, h: 1.6, fontSize: 16 });
@@ -142,7 +169,7 @@ const pis = [["PI1", "¿Qué efectividad alcanzan reglas, modelos e híbridos pa
   ["PI5", "¿Qué aporta un grafo que conserva la evidencia de cada vínculo?"]];
 pis.forEach(([p, t], i) => {
   const y = 1.5 + i * 1.0;
-  s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 0.6, y, w: 1.1, h: 0.75, rectRadius: 0.1, fill: { color: i < 3 ? C.text2 : C.accent1 }, line: { color: i < 3 ? C.text2 : C.accent1 } });
+  s.addShape(pres.shapes.RECTANGLE, { x: 0.6, y, w: 1.1, h: 0.75, rectRadius: 0.1, fill: { color: i < 3 ? C.text2 : C.accent1 }, line: { color: i < 3 ? C.text2 : C.accent1 } });
   texto(s, p, { x: 0.6, y, w: 1.1, h: 0.75, fontSize: 20, bold: true, color: C.background1, align: "center", valign: "middle", margin: 0 });
   texto(s, t, { x: 1.95, y, w: 10.7, h: 0.75, fontSize: 18, valign: "middle" });
 });
@@ -221,7 +248,7 @@ const prot = [["Test aparte", "Normas posteriores a 2019. Se usan una sola vez, 
   ["Reentrenar y medir", "Con todo desarrollo; después, test una vez. Intervalos por bootstrap de normas."]];
 prot.forEach(([t, d], i) => {
   const y = 1.5 + i * 1.25;
-  s.addShape(pres.shapes.OVAL, { x: 0.6, y: y + 0.1, w: 0.75, h: 0.75, fill: { color: C.text2 }, line: { color: C.text2 } });
+  s.addShape(pres.shapes.RECTANGLE, { x: 0.6, y: y + 0.1, w: 0.75, h: 0.75, fill: { color: C.text2 }, line: { color: C.text2 } });
   texto(s, String(i + 1), { x: 0.6, y: y + 0.1, w: 0.75, h: 0.75, fontSize: 22, bold: true, color: C.background1, align: "center", valign: "middle", margin: 0 });
   texto(s, t, { x: 1.6, y, w: 4.6, h: 0.45, fontSize: 18, bold: true, color: C.text2 });
   texto(s, d, { x: 1.6, y: y + 0.45, w: 4.6, h: 0.75, fontSize: 14 });
@@ -231,7 +258,7 @@ s.addTable([
   ["Regresión logística", "0,35", "0,718"],
   [{ text: "Random forest (elegido)", options: { bold: true } }, { text: "0,45", options: { bold: true } }, { text: "0,728", options: { bold: true } }],
   ["Gradient boosting", "0,20", "0,709"],
-], { x: 6.7, y: 1.6, w: 6.0, colW: [3.4, 1.3, 1.3], fontSize: 15, color: C.text1, border: { type: "solid", pt: 0.75, color: "C9D1DD" }, rowH: 0.5, objectName: "Elección del modelo" });
+], { x: 6.7, y: 1.6, w: 6.0, colW: [3.4, 1.3, 1.3], fontSize: 15, color: C.text1, border: { type: "solid", pt: 0.75, color: GRIS_CLARO }, rowH: 0.5, objectName: "Elección del modelo" });
 texto(s, "El F1 de validación es contra el gold completo de dev, que incluye pares que el detector no propone: por eso es más bajo que el de test.", { x: 6.7, y: 3.9, w: 6.0, h: 1.0, fontSize: 13, color: C.accent6 });
 s.addNotes("Tan importante como el modelo es cómo se evalúa. El test queda aparte y se usa una vez. Para elegir el modelo, el umbral y la regularización usamos validación cruzada en cinco partes, agrupada por norma de origen: si los pares de una misma norma quedaran repartidos, el modelo reconocería la norma y el resultado saldría inflado. Ganó el random forest; recién ahí se reentrena con todo desarrollo y se mide en test.");
 
@@ -270,7 +297,7 @@ tit(s, "Todos los métodos sobre las mismas 192 relaciones de test");
 const met = ["TF-IDF (contexto)", "TF-IDF + atributos", "Clasificador (random forest)", "Reglas v3", "Reglas v2 (referencia)", "Híbrido en cascada", "Reglas ∪ LLM", "Reglas ∩ LLM", "Híbrido reglas + TF-IDF", "Parser LLM"];
 const f1 = [0.761, 0.783, 0.823, 0.826, 0.828, 0.829, 0.831, 0.838, 0.839, 0.841];
 s.addChart(pres.charts.BAR, [{ name: "F1 en test", labels: met, values: f1 }], {
-  x: 0.6, y: 1.4, w: 7.6, h: 5.4, barDir: "bar", chartColors: [THEME.colors.dk2], showValue: true, dataLabelPosition: "outEnd", dataLabelFormatCode: "0.000",
+  x: 0.6, y: 1.4, w: 7.6, h: 5.4, barDir: "bar", chartColors: [THEME.colors.accent1], showValue: true, dataLabelPosition: "outEnd", dataLabelFormatCode: "0.000",
   dataLabelFontFace: "+mn-lt", dataLabelFontSize: 12, dataLabelColor: THEME.colors.dk1, catAxisLabelFontFace: "+mn-lt", catAxisLabelFontSize: 12, catAxisLabelColor: THEME.colors.dk1,
   valAxisMinVal: 0.7, valAxisMaxVal: 0.86, valAxisHidden: true, valGridLine: { style: "none" }, catGridLine: { style: "none" }, showLegend: false, barGapWidthPct: 60,
   showTitle: true, title: "F1 en test (el eje empieza en 0,70)", titleFontFace: "+mn-lt", titleFontSize: 13, titleColor: THEME.colors.accent6, objectName: "F1 por método" });
@@ -313,7 +340,7 @@ s.addTable([[
   { text: "¿Pesa el tamaño?", options: { bold: true, fill: { color: C.text2 }, color: C.background1 } },
   { text: "Por qué", options: { bold: true, fill: { color: C.text2 }, color: C.background1 } }],
   ...filas.map(([a, b, c, col]) => [a, { text: b, options: { bold: true, color: col } }, c])],
-  { x: 0.6, y: 1.55, w: 12.1, colW: [4.0, 2.1, 6.0], fontSize: 15, color: C.text1, border: { type: "solid", pt: 0.75, color: "C9D1DD" }, rowH: 0.85, valign: "middle", objectName: "Efecto del tamaño" });
+  { x: 0.6, y: 1.55, w: 12.1, colW: [4.0, 2.1, 6.0], fontSize: 15, color: C.text1, border: { type: "solid", pt: 0.75, color: GRIS_CLARO }, rowH: 0.85, valign: "middle", objectName: "Efecto del tamaño" });
 texto(s, "El tamaño limita a los modelos que aprenden y a la potencia estadística; no explica el techo de las reglas ni del LLM. Ampliar el corpus queda en el plan de maduración.", { x: 0.6, y: 6.0, w: 12.1, h: 0.8, fontSize: 16, italic: true, color: C.text2 });
 s.addNotes("Una pregunta esperable: ¿las conclusiones no son por usar un corpus chico? Depende de cuál. A los modelos supervisados sí los limita, lo mostró la curva. Y el test chico hace que casi ninguna diferencia sea significativa. Pero el techo de reglas y LLM no viene del tamaño: ninguno de los dos aprende del corpus, y lo que los limita son propiedades de la tarea, como vínculos que el texto no nombra. Con más datos tendríamos intervalos más angostos, no un techo más alto.");
 
@@ -327,7 +354,7 @@ texto(s, bullets(["El origen es siempre un artículo; el destino, un artículo c
 stat(s, 7.3, 1.5, 2.6, "3.277", "relaciones cargadas = leídas de vuelta", C.accent2, "Ida y vuelta");
 stat(s, 10.1, 1.5, 2.6, "0,828", "F1 leyendo desde Neo4j, igual al de los CSV", C.accent3, "F1 Neo4j");
 card(s, 7.3, 3.75, 5.4, 2.6, "Números");
-texto(s, bullets(["340 normas, 8.129 artículos y 3.277 relaciones tipadas (reglas v2)", "Cuatro fuentes de InfoLEG y tres del digesto en la misma base: 444 normas", "InfoLEG no está en el grafo: se usa solo para medirlo"]), { x: 7.5, y: 3.9, w: 5.0, h: 2.4, fontSize: 15 });
+texto(s, bullets(["340 normas, 8.129 artículos y 3.277 relaciones tipadas (reglas v2)", "Siete fuentes de InfoLEG (cuatro extractores y tres clasificadores, B73) y tres del digesto: 444 normas", "InfoLEG no está en el grafo: se usa solo para medirlo"]), { x: 7.5, y: 3.9, w: 5.0, h: 2.4, fontSize: 15 });
 s.addNotes("El grafo se arma solo desde la salida estándar. Normas y artículos son nodos; la relación es una arista tipada que guarda el fragmento, la posición, el verbo y qué parser la produjo. Verificamos la ida y vuelta: lo que se lee de Neo4j es exactamente lo que se cargó, y el F1 calculado desde el grafo da igual que desde los archivos.");
 
 s = nueva("Grafo y extensiones");
@@ -359,7 +386,7 @@ const conc = [["PI1", "Reglas bien diseñadas ya llegan a 0,83; el LLM, a 0,84. 
   ["+", "Los modelos supervisados empatan por falta de datos, no está probado que por representación."]];
 conc.forEach(([p, t], i) => {
   const y = 1.45 + i * 0.88;
-  s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 0.6, y, w: 1.0, h: 0.68, rectRadius: 0.1, fill: { color: i === 5 ? C.accent1 : C.text2 }, line: { color: i === 5 ? C.accent1 : C.text2 } });
+  s.addShape(pres.shapes.RECTANGLE, { x: 0.6, y, w: 1.0, h: 0.68, rectRadius: 0.1, fill: { color: i === 5 ? C.accent1 : C.text2 }, line: { color: i === 5 ? C.accent1 : C.text2 } });
   texto(s, p, { x: 0.6, y, w: 1.0, h: 0.68, fontSize: 18, bold: true, color: C.background1, align: "center", valign: "middle", margin: 0 });
   texto(s, t, { x: 1.85, y, w: 10.85, h: 0.68, fontSize: 17, valign: "middle" });
 });

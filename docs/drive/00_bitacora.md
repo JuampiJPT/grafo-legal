@@ -87,6 +87,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B71 | 25/11 | Decisión | Presentación para el coloquio; el video queda para uso interno; qué conclusiones dependen del tamaño del corpus | Abierta |
 | B72 | 25/11 | Avance | Audios de la parte de modelos y video v3 (uso interno) | Abierta |
 | B73 | 25/11 | Avance | Los clasificadores también tienen su grafo en Neo4j; explicación simple de qué probamos | Cerrada |
+| B74 | 25/11 | Decisión | La presentación del coloquio sigue el manual de identidad de la UNNOBA | Cerrada |
 
 ## Entradas
 
@@ -1271,6 +1272,22 @@ En estos grafos un par es vínculo si tiene alguna arista distinta de CITA. Para
 **Explicación simple.** `docs/explicaciones/que_probamos_simple.md` explica en lenguaje llano qué probamos y dónde se aplica cada método. Se generó su audio en ElevenLabs (voz Roger, 3 minutos, normalizado a −16 LUFS), que quedó en Descargas y no va al repo.
 
 **Corrección.** Se sacó de «Cuestiones abiertas» el punto de cargar la v3, el LLM y el híbrido en Neo4j: ya estaba hecho en B60.
+
+### B74 · 25/11/2026 · Decisión · La presentación del coloquio sigue el manual de identidad de la UNNOBA
+
+**Pedido del equipo.** Acomodar las diapositivas al Manual de identidad institucional de la UNNOBA (Res. CS 731/2014) antes de enviarlas.
+
+**Qué toma del manual.**
+- **Colores:** celeste Pantone 7688 C (#4698CB) y gris Cool Gray 8 (#888B8D; #7C7C7B en las portadas), con el amarillo institucional (Pantone 136 C) como acento.
+- **Tipografía:** familia Century para títulos; se usa Century Schoolbook, la alternativa oficial del manual, que viene con Office. La secundaria del manual (TheSans / Trade Gothic) no está instalada en las computadoras donde se proyecta, así que se reemplaza por Arial.
+- **Composición:** portada y cierre en gris con filetes blancos y el isologotipo en negativo; diapositivas de contenido con el encabezado de las páginas del manual (filete grueso, rótulo de sección, número y filete fino) y el isologotipo positivo en el pie. El cuadrado del isotipo reemplaza a los círculos y las tarjetas redondeadas.
+- **Isologotipo:** extraído de la página 6 del manual, sin modificar proporciones ni colores (celeste ajustado al valor institucional).
+
+**Además.** La diapositiva del grafo en Neo4j ahora dice siete fuentes de InfoLEG (cuatro extractores y tres clasificadores, B73).
+
+**Verificación.** El archivo pasa la validación de formato y se revisó renderizado diapositiva por diapositiva.
+
+**Límite.** Las figuras que vienen del informe conservan su paleta (naranja y azul); cambiarlas implica regenerarlas también en el informe.
 
 ## Cuestiones abiertas
 
