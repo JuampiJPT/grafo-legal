@@ -1,4 +1,4 @@
-# Estado del TP al 21/11/2026
+# Estado del TP al 25/11/2026
 
 TP Integrador de Sistemas Inteligentes (UNNOBA), Problemática III: extracción de relaciones entre normas de InfoLEG y grafo trazable en Neo4j.
 
@@ -27,9 +27,9 @@ Las conclusiones, ordenadas por PI1 a PI5 y con cómo se llegó a cada una, est�
 | F3 · Parser de reglas y evaluación | **Cerrada** | Reglas v2 diseñadas sobre dev y congeladas: F1 0,733 en dev y 0,828 en test (B36). Revisión de 30 falsos positivos. Clasificador de referencia: F1 0,823 en test (B37). Reglas v3 como experimento: dev 0,750, test 0,826 (B52). |
 | F4 · Parser LLM puro | **Cerrada** | `extractores/llm.py` y scripts 14 y 15 (`docs/parser_llm.md`). `claude-sonnet-5-5`, USD 14. F1 0,841 en test, R 0,938, alucinación del 0,1 %, tipo con macro-F1 0,883. Grafo en `data/grafo_llm/` (B54). |
 | F5 · Parser híbrido | **En curso** | Híbrido reglas + modelo contextual: F1 0,839 en test (B46). Híbrido reglas ∩ LLM: F1 0,838, la única mejora significativa sobre las reglas (B54). **Parser híbrido en cascada** (`docs/parser_hibrido.md`): F1 0,758 en dev y 0,829 en test (B55). |
-| F6 · Grafo en Neo4j | **Cerrada** | Modelo genérico con relaciones tipadas, armado desde la salida estándar (B41, B42). Evaluación leyendo el grafo: ida y vuelta idéntica y F1 0,828 contra InfoLEG en test (B43). Evaluada también sobre el Neo4j del equipo, con las cuatro fuentes: ida y vuelta idéntica (B60). Texto consolidado de la LCT armado desde el grafo: coincide con InfoLEG en el 96 % de los artículos y en el 91 % de los que cambian (B61). |
+| F6 · Grafo en Neo4j | **Cerrada** | Modelo genérico con relaciones tipadas, armado desde la salida estándar (B41, B42). Evaluación leyendo el grafo: ida y vuelta idéntica y F1 0,828 contra InfoLEG en test (B43). Evaluada también sobre el Neo4j del equipo, con las cuatro fuentes: ida y vuelta idéntica (B60). Desde B73 el Neo4j tiene también los grafos de los tres clasificadores (random forest, TF-IDF e híbrido reglas + TF-IDF): siete fuentes de InfoLEG, cada una con ida y vuelta idéntica. Texto consolidado de la LCT armado desde el grafo: coincide con InfoLEG en el 96 % de los artículos y en el 91 % de los que cambian (B61). |
 | F7 · Text-to-Cypher | No empezada | Hay cinco consultas de ejemplo con su pregunta en lenguaje natural (`docs/grafo.md`). |
-| F8 · Errores, informe y defensa | **En curso** | Evaluación por subtareas y taxonomía de errores (B45), tipos sobre 78 casos (B47), tabla final con intervalos de confianza (B49), comparación con el gold (`docs/comparacion_con_el_gold.md`) y guía del código para la presentación (`docs/guia_codigo.md`, B50). Análisis de fallos y explicación del pipeline (B52). La bitácora (B01 a B53) y los documentos 01 a 03 y 06 a 08 alimentan el artículo. Falta escribir el artículo LNCS. |
+| F8 · Errores, informe y defensa | **En curso** | Evaluación por subtareas y taxonomía de errores (B45), tipos sobre 78 casos (B47), tabla final con intervalos de confianza (B49), comparación con el gold (`docs/comparacion_con_el_gold.md`) y guía del código para la presentación (`docs/guia_codigo.md`, B50). Análisis de fallos y explicación del pipeline (B52). La bitácora (B01 a B53) y los documentos 01 a 03 y 06 a 08 alimentan el artículo. Informe de avance de la cursada entregable, en PDF (`docs/informe_avance/`, B64, B70). Presentación del coloquio con la identidad UNNOBA (`docs/presentacion/`, B71, B74). Video explicativo de uso interno (`docs/video/`, B66 a B72). Falta escribir el artículo LNCS. |
 
 ## Hallazgos que van al informe
 
@@ -55,6 +55,8 @@ Las conclusiones, ordenadas por PI1 a PI5 y con cómo se llegó a cada una, est�
 19. **PI4: el pipeline se transfiere al digesto de la UNNOBA si el adaptador lleva el vocabulario.** Se probó con 70 documentos anotados, cambiando solo el adaptador. El híbrido en cascada da F1 0,958 y las reglas 0,917; la diferencia no es significativa. Con el prompt de InfoLEG, el LLM ignora las resoluciones y cae a 0,405; con tres frases nuevas en el prompt sube a 0,864. El léxico de verbos de InfoLEG no tiene «Ratificar» ni «Dejar sin efecto». El gold es de Claude y está revisado (revisión 2): las remisiones que definen a quién alcanza la resolución son APLICA. Falta un segundo anotador (B57, B58).
 
 20. **El grafo alcanza para reconstruir el texto vigente.** La LCT consolidada desde Neo4j coincide con el texto actualizado de InfoLEG en 281 de 293 artículos (95,9 %). Sobre los 103 artículos que cambian en alguno de los dos lados, coincide en el 91 %. Hay 6 errores reales, que vienen del recall del grafo (Ley 24.522), de la verificación literal y de la derogación de normas modificatorias (B61).
+21. **Los modelos supervisados empatan por falta de datos.** La curva de aprendizaje (B68) muestra que el random forest y el TF-IDF ganan unos 2 puntos de F1 cada vez que se duplican los datos y memorizan (F1 0,94 en entrenamiento contra 0,81 en validación). El tamaño del corpus explica el empate de los modelos que aprenden y la baja potencia del test, pero no el techo de las reglas ni del LLM (B71).
+
 ## Pendientes
 
 **Del equipo:**
@@ -67,7 +69,7 @@ Las conclusiones, ordenadas por PI1 a PI5 y con cómo se llegó a cada una, est�
 
 **Técnicos, en este orden:**
 
-1. Cargar los grafos de la v3 y del LLM en Neo4j sin `--borrar` y comparar las fuentes con consultas (B54).
+1. Comparar las fuentes del grafo con consultas: ya están todas cargadas en Neo4j sin `--borrar` (B60, B73).
 2. Probar las consultas de `docs/grafo.md` en el Neo4j Browser (la evaluación sobre Neo4j ya está, B60).
 3. Figuras del artículo: embudo de pérdidas, matriz de confusión de tipos, tabla de métodos con intervalos y diagrama del pipeline.
 4. Artículo LNCS y guion de la defensa.

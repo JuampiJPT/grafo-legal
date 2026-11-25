@@ -23,6 +23,9 @@ El TP extrae automáticamente las relaciones entre normas (modifica, sustituye, 
 | Parser 3: híbrido en cascada | F1 dev 0,758 (el mejor), test 0,829 (`docs/parser_hibrido.md`) |
 | PI4: transferencia al digesto UNNOBA | 70 documentos anotados; híbrido F1 0,958, reglas 0,917 (`docs/pi4_digesto_unnoba.md`) |
 | Texto consolidado de la LCT desde el grafo | coincide con InfoLEG en el 95,9 % de los artículos (`docs/consolidado_lct.md`) |
+| Grafos de los clasificadores (random forest, TF-IDF, híbrido reglas + TF-IDF) | cargados en Neo4j junto a los demás: siete fuentes de InfoLEG (`results/relaciones_modelos/`, B73) |
+| Curva de aprendizaje de los modelos supervisados | ganan ~2 puntos de F1 cada vez que se duplican los datos (`results/curva_aprendizaje/`, B68) |
+| Informe, presentación y video | informe de avance (`docs/informe_avance/`), presentación del coloquio (`docs/presentacion/`), video interno (`docs/video/`) |
 | Text-to-Cypher | pendiente |
 
 El parser apunta a cualquier documento normativo: lo único que depende de la fuente es el adaptador que pasa el documento a texto.
@@ -76,7 +79,8 @@ scripts/                01 corpus · 02 textos · 03 extraer · 04 evaluar · 05
                         · 23 consultas Neo4j para el consolidado · 24 consolidar la LCT · 25 evaluar el consolidado
                         · 26-29 digesto: catálogo, copias repetidas, texto (pdftotext + OCR), muestra
                         · 30 cargar y evaluar todos los grafos en Neo4j (sin borrar)
-                        · 31 figuras del informe de avance
+                        · 31 figuras del informe de avance · 32 curva de aprendizaje
+                        · 33 grafos de los clasificadores · 34 cargarlos en Neo4j (sin borrar)
                         · firma_texto.py / firma_texto_navegador.js: comparación de textos por firmas
 results/reglas/         reglas v1: evidencias, métricas y errores
 results/reglas_v2/      reglas v2: evidencias, métricas y errores
@@ -91,10 +95,13 @@ results/comparacion/    todos los métodos en test, con intervalos de confianza
 results/relaciones_llm/ salida del parser LLM y caché de sus respuestas (cuando se corre)
 results/hibrido/        parser híbrido en cascada
 results/pi4_unnoba/     PI4: evaluación sobre el digesto de la UNNOBA
-results/evaluacion_grafo_neo4j/ evaluación de los cuatro grafos leídos desde Neo4j
+results/evaluacion_grafo_neo4j/ evaluación de los siete grafos de InfoLEG leídos desde Neo4j
+results/relaciones_modelos/ salida estándar de los clasificadores (random forest, TF-IDF, híbrido reglas + TF-IDF)
+results/curva_aprendizaje/ curva de aprendizaje de los modelos supervisados
 results/consolidado/    texto consolidado de la LCT desde el grafo y su evaluación
-docs/                   estado, conclusiones, estructura, reproducibilidad, decisiones, ficha del dataset, revisión manual y copia de los documentos del Drive
-tools/                  utilidades: conversión Google Docs ↔ Markdown, descargadores del digesto, push desde la Mac
+docs/                   informe_avance/ (entrega), presentacion/ (coloquio), video/ (uso interno), explicaciones/ (texto simple para escuchar),
+                        estado, conclusiones, estructura, reproducibilidad, decisiones, ficha del dataset, revisión manual y copia de los documentos del Drive
+tools/                  utilidades: conversión Google Docs ↔ Markdown, descargadores del digesto, push desde la Mac, carga de los clasificadores en Neo4j
 tests/                  tests sin red (pytest)
 ```
 
@@ -121,7 +128,9 @@ dev = pares[pares.split == "dev"]   # se entrena y ajusta solo con dev
 Para cargar el grafo en el Neo4j del TP y evaluarlo (contenedor y clave en `docs/grafo.md`):
 
 ```bash
-bash cargar_y_evaluar_grafo.sh
+bash cargar_y_evaluar_grafo.sh                 # histórico: solo reglas v2, con --borrar
+bash scripts/30_cargar_y_evaluar_neo4j.sh      # todos los extractores y el digesto, sin borrar
+bash scripts/34_cargar_modelos_neo4j.sh        # los tres clasificadores, sin borrar
 ```
 
 ## Reglas del protocolo
@@ -151,6 +160,9 @@ Toda la documentación está en dos lugares: la carpeta de Google Drive del TP y
 | Estructura del repositorio | este repo: [`docs/estructura_repositorio.md`](docs/estructura_repositorio.md) | Drive: «14 - Estructura del repositorio» |
 | Conclusiones y cómo se llegó a cada una | este repo: [`docs/conclusiones.md`](docs/conclusiones.md) | Drive: «15 - Conclusiones del TP y cómo se llegó a cada una» |
 | Informe de avance y bitácora (entrega de cursada) | este repo: [`docs/informe_avance/`](docs/informe_avance/) (fuente en Markdown, figuras y `.docx`) | Drive: «16 - Informe de avance y bitácora de investigación (entrega de cursada)» |
+| Guion del video y narración de la parte de modelos | este repo: [`docs/video/`](docs/video/) | Drive: «17 - Guion del video explicativo (ElevenLabs)» y «18 - Guion de la parte de modelos del video (ElevenLabs)» |
+| Qué probamos, explicado simple (para escuchar) | este repo: [`docs/explicaciones/que_probamos_simple.md`](docs/explicaciones/que_probamos_simple.md) | Drive: «19 - Qué probamos, explicado simple» |
+| Presentación del coloquio | este repo: [`docs/presentacion/`](docs/presentacion/) | — |
 | Roadmap | [artefacto de Claude](https://claude.ai/artifact/Aai3uXH2hrR92fLDmYpvfM) | [`docs/drive/roadmap.md`](docs/drive/roadmap.md) y Drive: «05 - Roadmap del TP (copia)» |
 
 Las copias de los documentos del Drive se regeneran con `tools/gdoc_a_md.py` a partir del JSON de la API de Google Docs; `tools/md_a_gdoc.py` hace el camino inverso.
