@@ -154,3 +154,31 @@ Para medir si el grafo tiene información suficiente, se reconstruyó el texto v
 - **Derogación de una norma modificatoria:** el método no la modela (art. 147).
 
 Costo: USD 2,4 de LLM, guardado en la caché.
+
+## 6.7 Curva de aprendizaje de los modelos supervisados
+
+El clasificador de superficie empata con las reglas y el modelo TF-IDF queda por debajo (Tabla 1). Para saber si eso se debe a la representación o a la cantidad de datos, se entrenaron los dos con el 10, 20, 30, 50, 70 y 100 % de las normas de origen de dev (B68, `scripts/32_curva_aprendizaje.py`):
+
+- **Validación.** Misma validación cruzada agrupada por norma de origen, con cinco sorteos por fracción.
+- **Hiperparámetros.** Fijos, los que eligieron los scripts 08 y 13.
+- **Test.** No se usó.
+
+Las F1 de esta sección se miden sobre los pares candidatos, no sobre el gold completo: por eso son más altas que las de la Tabla 1.
+
+![Figura 8. Curva de aprendizaje: F1 y precisión promedio en validación según la cantidad de pares de entrenamiento, con el desvío entre particiones. La línea punteada es la regla F, que no se entrena.](figuras/fig8_curva_aprendizaje.png)
+
+**Tabla 5.** F1 en validación según la cantidad de pares de entrenamiento, y F1 sobre los propios datos de entrenamiento.
+
+| Modelo | 61 pares | 316 pares | 641 pares (todo dev) | F1 en entrenamiento |
+|---|---|---|---|---|
+| Random forest | 0,727 | 0,774 | 0,814 | 0,936 |
+| TF-IDF + atributos | 0,735 | 0,809 | 0,831 | 0,986 |
+| TF-IDF solo | 0,731 | 0,782 | 0,800 | 0,992 |
+| Reglas F (sin entrenar) | 0,812 | 0,812 | 0,812 | — |
+
+**Lectura.**
+
+- **Las curvas no se aplanan.** Ganan unos 2 puntos de F1 cada vez que se duplican los datos, y recién con todo dev alcanzan a las reglas.
+- **Alta varianza.** La brecha entre entrenamiento y validación es de 0,12 a 0,19, y los modelos de texto casi memorizan el entrenamiento. Un ejemplo: la regresión logística le da peso a «bs as», que sale de la línea de la fecha («Bs. As.»).
+- **Las etiquetas no explican el empate.** El análisis de errores encontró solo 5 posibles omisiones del gold en dev (B51).
+- **Conclusión.** Con 801 pares, la limitación medible de los modelos supervisados es la cantidad de datos. No está probado que la representación alcance: con más datos, las curvas podrían aplanarse antes de superar con claridad a las reglas. El corpus usa alrededor del 1,5 % de las normas modificatorias que InfoLEG permite etiquetar (sección 8.1).

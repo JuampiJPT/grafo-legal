@@ -81,7 +81,7 @@ En Argentina, **Cardellino et al.** [10] trabajaron sobre InfoLEG. Detectaron en
 La comparación más reciente entre paradigmas es la de **Sargeant, Östling y Magnusson** [11], sobre citas en sentencias del Reino Unido, con 190 sentencias anotadas:
 
 | Paradigma | Macro-F1 |
-|---|---|
+|------------------------------------------------------------|----------------------------------------|
 | Encoders afinados (ModernBERT) | 93,3 % |
 | GPT-4.1 | 76,6 % |
 | Mejor línea de base con expresiones regulares | 35,4 % |
@@ -105,7 +105,7 @@ Aplicar las modificaciones para obtener el texto vigente es una tarea vecina, qu
 ## 2.4 Métodos, datos y métricas de la literatura
 
 | Trabajo | Datos | Método | Métrica |
-|---|---|---|---|
+|--------------------|--------------------------------|------------------------|------------------------|
 | de Maat et al. [5] | Leyes neerlandesas | Patrones | Precisión y recall de detección |
 | Sleimi et al. [8] | Legislación de Luxemburgo (metadatos semánticos) | Reglas + análisis sintáctico | P = 82–97 %, R = 92–95 % |
 | Cardellino et al. [10] | InfoLEG (11 documentos anotados) | Regex + clasificador NER | P, cobertura, F |
@@ -137,7 +137,7 @@ La **oportunidad** del trabajo combina:
 **Fuente.** La Base InfoLEG de Normativa Nacional y sus dos bases complementarias, de normas modificadas y de normas modificatorias. Las publica el Portal de Datos Abiertos de la Justicia Argentina con licencia CC BY 4.0 [1]. Se descargaron el 06/11/2026:
 
 | Base | Filas |
-|---|---|
+|-------------------------------------------------------------------|---------------------------------|
 | Normativa nacional | 430.834 |
 | Normas modificatorias | 380.481 |
 | Normas modificadas | 385.118 |
@@ -154,7 +154,7 @@ Los SHA-256 de los tres CSV están en `data/corpus/SNAPSHOT.md`. Los textos de l
 **Qué mide el gold.** InfoLEG registra un vínculo amplio. En una muestra de 21 pares con mención explícita en el texto (B27):
 
 | Clase de vínculo | Pares |
-|---|---|
+|----------------------------------------------------------------------------|------------------------|
 | Modificaciones | 7 |
 | Remisiones | 9 |
 | Reglamentaciones | 4 |
@@ -165,7 +165,7 @@ Por eso se evalúa la relación general «modifica o complementa» (D6).
 **Partición temporal.** El corte es el 31/12/2019, según la fecha de la norma modificatoria (B09):
 
 | Conjunto | Pares | Modificatorias |
-|---|---|---|
+|----------------------------------|-----------------|------------------------------------------------|
 | Desarrollo (dev) | 583 | hasta 2019 |
 | Prueba (test) | 192 | desde 2020 (43 normas de origen) |
 
@@ -222,7 +222,7 @@ Hay tres versiones de la regla:
 ## 3.4 Soluciones evaluadas
 
 | Enfoque | Descripción | Bitácora |
-|---|---|---|
+|---------------|----------------------------------------------------------------------------|----------|
 | Clasificador de superficie | Random forest sobre 22 atributos de cada par candidato: menciones por zona, verbo en el artículo o en la oración, tipos de norma, diferencia de años, mención solo por nombre propio, entre otros. Validación cruzada agrupada por norma de origen en dev | B37, D14 |
 | Modelo contextual | TF-IDF de la ventana de texto de cada mención, solo y con los atributos de superficie | B46, D20 |
 | Parser LLM | `claude-sonnet-5-5` lee los artículos que nombran normas y devuelve, en JSON, la cita textual, la norma destino, el artículo destino, el tipo y el verbo. Si la cita no está literal en el texto, la relación se descarta (anti-alucinación). Las respuestas se guardan en una caché por huella del pedido | B48, D22 |
@@ -287,7 +287,7 @@ La base de Neo4j del equipo tiene cargadas las cuatro fuentes de InfoLEG (reglas
 ## 4.3 Métodos y tecnologías
 
 | Componente | Tecnología |
-|---|---|
+|--------------------------------|--------------------------------------------------------------------|
 | Lenguaje | Python 3.10 o superior |
 | Datos y dataset | pandas, CSV (D12) |
 | Modelos supervisados | scikit-learn: random forest, regresión logística, TF-IDF |
@@ -304,7 +304,7 @@ La base de Neo4j del equipo tiene cargadas las cuatro fuentes de InfoLEG (reglas
 Todas las decisiones están en la bitácora (Anexo B) y en `docs/decisiones.md` (D1 a D28). Las que más condicionan los resultados son estas:
 
 | Decisión | Por qué | Ref. |
-|---|---|---|
+|--------------------------------------|-----------------------------------------------------|---------|
 | Evaluar «modifica o complementa» y no la modificación estricta | Es lo que mide el gold de InfoLEG. Los tipos específicos se evalúan aparte, con revisión manual | B02, B27, D6 |
 | Dominio laboral con cinco anclas, expandido un salto | Profundidad del grafo, con cadenas de modificación largas, sin que una sola ley domine las métricas | B04, B18, B24 |
 | Corpus congelado y un solo corpus | El portal cambia cada mes. Dos corpus confundían las comparaciones | B17, B23, B33 |
@@ -320,7 +320,7 @@ Todas las decisiones están en la bitácora (Anexo B) y en `docs/decisiones.md` 
 ## 4.5 Implementación alcanzada
 
 | Fase | Estado | Qué hay |
-|---|---|---|
+|-----------------------------|---------------------|---------------------------------------------------|
 | F1 · Corpus y gold | Cerrada | 340 normas, 775 pares, 306 textos, scripts que lo reproducen byte a byte |
 | F2 · Segmentación, detección y normalización | Cerrada | Zonas, detector con listas y nombres propios, catálogo cerrado |
 | F3 · Parser de reglas | Cerrada | v1, v2 (referencia) y v3 (experimento) |
@@ -380,7 +380,7 @@ El código tiene comentarios, y el recorrido para la presentación está en `doc
 ## 5.2 Resultados de las pruebas
 
 | Prueba | Resultado |
-|---|---|
+|------------------------------------------|----------------------------------------------------------|
 | `pytest -q` (21/11/2026) | **19 de 19 aprobadas** |
 | Corpus regenerado contra congelado (21/11/2026) | `corpus_normas.csv` y `gold_relaciones.csv` **idénticos** |
 | Catálogo y muestra del digesto (`--verificar`, 21/11/2026) | Iguales a los del repositorio. Los textos del JSONL coinciden con `txt/` |
@@ -408,7 +408,7 @@ Todos los métodos se miden sobre los mismos 192 pares de test (Tabla 1 y Figura
 **Tabla 1.** Extracción de la relación «modifica o complementa». F1 en test con su intervalo de confianza del 95 % (bootstrap pareado por norma de origen, 2.000 réplicas), y diferencia con las reglas v2.
 
 | Método | P | R | F1 dev | F1 test [IC 95 %] | Δ con reglas v2 [IC 95 %] |
-|---|---|---|---|---|---|
+|------------------------------|-----------|-----------|-----------|--------------------|-----------------|
 | Reglas v1 (config. C) | 0,732 | 0,854 | 0,652 | 0,788 | — |
 | **Reglas v2 (config. F, referencia)** | 0,785 | 0,875 | 0,733 | **0,828** [0,783; 0,875] | — |
 | Reglas v3 (experimento) | 0,779 | 0,880 | 0,750 | 0,826 [0,781; 0,871] | −0,1 [−1,9; +1,3] |
@@ -454,7 +454,7 @@ La v3 lo corrige: las vinculaciones erróneas verificables pasan a 0 (B51, B52).
 **Extracción.** Condicionado a que el par sea candidato, el recall de la regla es 0,908 en test y la precisión 0,785. En test se pierden 24 pares del gold:
 
 | Causa | Pares |
-|---|---|
+|----------------------------------------------------------------|------------------------------------|
 | Los descarta la regla | 16 |
 | No nombran a su destino | 7 |
 | No se normaliza | 1 |
@@ -468,7 +468,7 @@ Se revisaron a mano 78 casos, 13 por tipo, estratificados (Figura 4).
 **Tabla 2.** Clasificación del tipo de relación. La macro-F1 ponderada pondera cada tipo por su frecuencia en la población.
 
 | Método | Macro-F1 (muestra) | Exactitud (muestra) | Macro-F1 ponderada | Exactitud ponderada |
-|---|---|---|---|---|
+|----------------|---------------------|---------------------|---------------------|---------------------|
 | Reglas v2 (tipo por verbo) | 0,700 | 0,679 | 0,672 | 0,754 |
 | Reglas v3 | 0,729 | 0,679 | 0,703 | 0,755 |
 | **LLM** | **0,881** | **0,846** | **0,883** | **0,849** |
@@ -497,7 +497,7 @@ Cada falso positivo y cada falso negativo de test se explicó caso por caso, con
 **Tabla 3.** Errores de test agrupados en las categorías de la consigna (reglas v2).
 
 | Categoría de la consigna | Causas concretas | FP | FN |
-|---|---|---|---|
+|-----------------------|----------------------------------------------------------------|------|------|
 | Relación inexistente | Cita en el VISTO (24), remisión desde una ley (14), verbo que no actúa (3), procedencia no filtrada (1), error en el texto fuente (1) | 43 | — |
 | Referencia mal normalizada o ambigua | Otro decreto con el mismo número (1), decreto sin año resuelto por mundo cerrado (2) | 3 | — |
 | Norma no detectada como vínculo | CONSIDERANDO + decreto sin verbo (6), decreto sin verbo en el articulado (4), solo en el CONSIDERANDO (3), solo por nombre propio (2), solo cita de procedencia (1) | — | 16 |
@@ -526,7 +526,7 @@ Se cambió solo el adaptador y no se ajustó ninguna regla, umbral ni código de
 **Tabla 4.** Vínculo MOD ∪ APLICA (61 pares) en 70 documentos.
 
 | Método | P | R | F1 |
-|---|---|---|---|
+|--------------------------------------------|-------------------|-------------------|-------------------|
 | Reglas F (v2) = F3 (v3) | 0,932 | 0,902 | 0,917 |
 | LLM, prompt de InfoLEG | 0,889 | 0,262 | 0,405 |
 | LLM, prompt con el vocabulario del digesto | 0,895 | 0,836 | 0,864 |
@@ -568,11 +568,41 @@ Para medir si el grafo tiene información suficiente, se reconstruyó el texto v
 
 Costo: USD 2,4 de LLM, guardado en la caché.
 
+## 6.7 Curva de aprendizaje de los modelos supervisados
+
+El clasificador de superficie empata con las reglas y el modelo TF-IDF queda por debajo (Tabla 1). Para saber si eso se debe a la representación o a la cantidad de datos, se entrenaron los dos con el 10, 20, 30, 50, 70 y 100 % de las normas de origen de dev (B68, `scripts/32_curva_aprendizaje.py`):
+
+- **Validación.** Misma validación cruzada agrupada por norma de origen, con cinco sorteos por fracción.
+- **Hiperparámetros.** Fijos, los que eligieron los scripts 08 y 13.
+- **Test.** No se usó.
+
+Las F1 de esta sección se miden sobre los pares candidatos, no sobre el gold completo: por eso son más altas que las de la Tabla 1.
+
+![](figuras/fig8_curva_aprendizaje.png){width=100%}
+
+*Figura 8. Curva de aprendizaje: F1 y precisión promedio en validación según la cantidad de pares de entrenamiento, con el desvío entre particiones. La línea punteada es la regla F, que no se entrena.*
+
+**Tabla 5.** F1 en validación según la cantidad de pares de entrenamiento, y F1 sobre los propios datos de entrenamiento.
+
+| Modelo | 61 pares | 316 pares | 641 pares (todo dev) | F1 en entrenamiento |
+|------------------------|--------------|--------------|--------------|-----------------------------------|
+| Random forest | 0,727 | 0,774 | 0,814 | 0,936 |
+| TF-IDF + atributos | 0,735 | 0,809 | 0,831 | 0,986 |
+| TF-IDF solo | 0,731 | 0,782 | 0,800 | 0,992 |
+| Reglas F (sin entrenar) | 0,812 | 0,812 | 0,812 | — |
+
+**Lectura.**
+
+- **Las curvas no se aplanan.** Ganan unos 2 puntos de F1 cada vez que se duplican los datos, y recién con todo dev alcanzan a las reglas.
+- **Alta varianza.** La brecha entre entrenamiento y validación es de 0,12 a 0,19, y los modelos de texto casi memorizan el entrenamiento. Un ejemplo: la regresión logística le da peso a «bs as», que sale de la línea de la fecha («Bs. As.»).
+- **Las etiquetas no explican el empate.** El análisis de errores encontró solo 5 posibles omisiones del gold en dev (B51).
+- **Conclusión.** Con 801 pares, la limitación medible de los modelos supervisados es la cantidad de datos. No está probado que la representación alcance: con más datos, las curvas podrían aplanarse antes de superar con claridad a las reglas. El corpus usa alrededor del 1,5 % de las normas modificatorias que InfoLEG permite etiquetar (sección 8.1).
+
 # 7. Discusión, limitaciones y amenazas a la validez
 
 ## 7.1 Interpretación de los resultados
 
-**PI1: efectividad de cada enfoque.** Reglas, modelos y LLM llegan a F1 de 0,76 a 0,84 en test. Las reglas a mano y un clasificador entrenado con los mismos atributos empatan (0,828 y 0,823): con atributos de superficie no queda mucho por ganar (B37). El LLM aporta en dos lugares:
+**PI1: efectividad de cada enfoque.** Reglas, modelos y LLM llegan a F1 de 0,76 a 0,84 en test. Las reglas a mano y un clasificador entrenado con los mismos atributos empatan (0,828 y 0,823): la curva de aprendizaje muestra que los dos modelos supervisados seguían mejorando con más datos y tienen alta varianza, así que el empate se explica sobre todo por el tamaño del dataset de entrenamiento (801 pares de dev) y no está probado que sea un techo de los atributos (B37, B68). El LLM aporta en dos lugares:
 
 - **el recall**, porque lee la oración y el CONSIDERANDO;
 - **el tipo de relación**, con macro-F1 de 0,672 a 0,883.
@@ -662,7 +692,7 @@ También hace falta tiempo del equipo para las anotaciones humanas.
 ## 8.4 Actividades previstas antes del examen final
 
 | Actividad | Producto |
-|---|---|
+|---------------------------------------|-------------------------------------------------------------|
 | Validación humana y segundo anotador | Kappa de Cohen para tipos, cobertura y gold de la PI4 |
 | Muestra independiente y reglas v4 | Precisión sin sesgo de selección. Nueva tabla de métodos |
 | Comparación de modelos de lenguaje | Costo y desempeño por modelo |
@@ -700,87 +730,86 @@ También hace falta tiempo del equipo para las anotaciones humanas.
 
 # Anexo B. Bitácora de investigación
 
-La bitácora registra, con fecha, cada decisión, dificultad, hallazgo y cuestionamiento del trabajo, con su contexto, las alternativas y cómo quedó. Las entradas no se borran: si una decisión cambia, se agrega otra que la reemplaza. Se transcribe completa a continuación. La versión editable es «00 - Bitácora del TP», en la carpeta del Drive, y la copia está en `docs/drive/00_bitacora.md`.
+La bitácora registra, con fecha, cada decisión, dificultad, hallazgo y cuestionamiento del trabajo, con su contexto, las alternativas y cómo quedó. Las entradas no se borran: si una decisión cambia, se agrega otra que la reemplaza. A continuación se transcriben las entradas de la investigación, de B01 a B64 y B68. Cuando un punto que había quedado abierto se resolvió después, la entrada lo indica con una nota de *Seguimiento*. Lo que sigue pendiente está resumido en el plan de maduración (sección 8). En esta transcripción se omiten tres cosas: el estado de cada entrada, la lista interna de tareas y las entradas sobre el video explicativo y la revisión final de este informe. La versión completa es «00 - Bitácora del TP», en la carpeta del Drive, y la copia está en `docs/drive/00_bitacora.md`.
 
 
 ## Bitácora del TP Integrador
 
-*Sistemas Inteligentes (UNNOBA). Problemática III: extracción de relaciones entre normas y grafo normativo trazable. Iniciada el 27/10/2026, última entrada el 21/11/2026.*
+*Sistemas Inteligentes (UNNOBA). Problemática III: extracción de relaciones entre normas y grafo normativo trazable. Iniciada el 27/10/2026, última entrada el 25/11/2026.*
 
 ### Cómo usar esta bitácora
 
 Cada entrada registra una decisión, una dificultad, un hallazgo o un cuestionamiento, con su contexto, las alternativas consideradas y cómo quedó. Las entradas no se borran: si una decisión cambia, se agrega una entrada nueva que la reemplaza y se cita la anterior. Así el informe final puede reconstruir por qué el sistema quedó como quedó, y las secciones de Metodología, Limitaciones y Amenazas a la validez salen de acá.
 
-Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo trabó el trabajo), **Hallazgo** (algo que aprendimos de los datos) y **Cuestionamiento** (una pregunta metodológica que alguien puede hacernos en la defensa). Estado: abierta o cerrada.
+Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo trabó el trabajo), **Hallazgo** (algo que aprendimos de los datos) y **Cuestionamiento** (una pregunta metodológica que alguien puede hacernos en la defensa).
 
 ### Índice de entradas
 
-| ID | Fecha | Tipo | Tema | Estado |
-|---|---|---|---|---|
-| B01 | 27/10 | Decisión | El grafo y el text-to-Cypher se subordinan al núcleo evaluable | Cerrada |
-| B02 | 27/10 | Decisión | Relación general "modifica o complementa" | Abierta |
-| B03 | 27/10 | Cuestionamiento | Qué tomar del artículo de Neo4j y LlamaIndex | Cerrada |
-| B04 | 27/10 | Decisión | Dominio laboral en lugar de solo dos leyes | Cerrada |
-| B05 | 27/10 | Dificultad | Portal bloqueado desde el entorno de trabajo | Cerrada |
-| B06 | 27/10 | Hallazgo | Estructura real de las bases complementarias | Cerrada |
-| B07 | 27/10 | Decisión | No expandir la Ley 14.250 | Cerrada |
-| B08 | 27/10 | Decisión | Solo leyes y decretos, un salto de expansión | Cerrada |
-| B09 | 27/10 | Decisión | Split temporal con corte en 2019 | Cerrada |
-| B10 | 27/10 | Hallazgo | Normas sin texto y techo de recall | Cerrada |
-| B11 | 28/10 | Cuestionamiento | ¿Hace falta Cloudflare para obtener los textos? | Cerrada |
-| B12 | 28/10 | Hallazgo | Cobertura textual del gold | Abierta |
-| B13 | 28/10 | Dificultad | Guardar los textos fuera del navegador | Cerrada |
-| B14 | 28/10 | Cuestionamiento | ¿Esto ya es un dataset? ¿Con qué librerías? | Abierta |
-| B15 | 28/10 | Cuestionamiento | Sesgo de selección del corpus | Abierta |
-| B16 | 28/10 | Decisión | El test no se usa para diseñar reglas ni prompts | Cerrada |
-| B17 | 02/11 | Hallazgo | El portal se actualizó y los hashes cambiaron | Cerrada |
-| B18 | 02/11 | Hallazgo | Profundidad del grafo laboral frente a otros dominios | Cerrada |
-| B19 | 02/11 | Dificultad | El digesto de la UNNOBA bloquea el acceso automático | Abierta |
-| B20 | 02/11 | Decisión | Tres parsers: regex/AST, LLM puro e híbrido | Cerrada |
-| B21 | 02/11 | Cuestionamiento | Qué significa profundidad del grafo | Abierta |
-| B22 | 02/11 | Hallazgo | Acceso al digesto y formato de los documentos | Cerrada |
-| B23 | 06/11 | Decisión | Se congela el snapshot del 30/09 y el pipeline oficial pasa a los scripts | Cerrada |
-| B24 | 06/11 | Decisión | Corpus v2 laboral ampliado | Cerrada |
-| B25 | 06/11 | Decisión | Repositorio git del TP | Cerrada |
-| B26 | 06/11 | Hallazgo | La cobertura textual, reproducida con el detector de menciones | Abierta |
-| B27 | 06/11 | Hallazgo | El gold mezcla modificaciones con remisiones | Abierta |
-| B28 | 06/11 | Hallazgo | Primer resultado del parser de reglas | Abierta |
-| B29 | 06/11 | Hallazgo | Primera corrida del pipeline oficial | Cerrada |
-| B30 | 06/11 | Hallazgo | La muestra de la Ley 14.250 confirma la exclusión | Abierta |
-| B31 | 06/11 | Dificultad | Permisos y límite de pedidos al correr el pipeline | Cerrada |
-| B32 | 06/11 | Decisión | La documentación se mantiene en el Drive y en el repositorio | Cerrada |
-| B33 | 09/11 | Decisión | Un solo corpus | Cerrada |
-| B34 | 09/11 | Decisión | Dataset en CSV con pandas | Cerrada |
-| B35 | 09/11 | Hallazgo | Las reglas v1 no generalizan bien a los pares nuevos | Abierta |
-| B36 | 09/11 | Decisión | Reglas v2: el VISTO cuenta, las citas de procedencia no | Cerrada |
-| B37 | 09/11 | Hallazgo | Un clasificador entrenado empata con las reglas | Cerrada |
-| B38 | 09/11 | Decisión | Modelo del grafo: InfoLEG y lo extraído por separado | Abierta |
-| B39 | 09/11 | Dificultad | Sin acceso de escritura a GitHub desde la sesión de Claude | Cerrada |
-| B40 | 09/11 | Decisión | Contenedor Neo4j propio del TP | Cerrada |
-| B41 | 09/11 | Decisión | Una salida estándar para cualquier parser y cualquier documento normativo | Cerrada |
-| B42 | 09/11 | Decisión | El grafo representa lo que hace cada norma; InfoLEG queda afuera | Cerrada |
-| B43 | 09/11 | Hallazgo | El grafo devuelve lo que se le cargó; contra InfoLEG, las citas son el problema | Abierta |
-| B44 | 09/11 | Decisión | Documento del parser y del grafo, contado paso a paso | Cerrada |
-| B45 | 16/11 | Hallazgo | Evaluación por subtareas: la detección y la normalización no pierden pares | Abierta |
-| B46 | 16/11 | Hallazgo | El modelo con contexto textual, solo, no supera a las reglas; en un híbrido, ayuda en la zona gris | Cerrada |
-| B47 | 16/11 | Hallazgo | Tipo de relación sobre 78 casos: macro-F1 0,672; el error dominante es una cita tomada como acción | Abierta |
-| B48 | 16/11 | Decisión | Parser LLM con verificación de la cita, caché reproducible y grafo aparte | Abierta |
-| B49 | 16/11 | Decisión | Tabla final con intervalos de confianza por bootstrap | Cerrada |
-| B50 | 16/11 | Decisión | Código comentado y guía de lectura para la presentación | Cerrada |
-| B51 | 16/11 | Hallazgo | Cada error explicado; corrige la clasificación de B45 | Cerrada |
-| B52 | 16/11 | Hallazgo | Reglas v3: corrigen la normalización, empatan en test | Abierta |
-| B53 | 16/11 | Dificultad | La API no respondía desde el entorno de la Mac; se saca la temperatura | Cerrada |
-| B54 | 16/11 | Hallazgo | El parser LLM sube el recall y el tipado; la intersección con las reglas es la única mejora significativa | Abierta |
-| B55 | 18/11 | Decisión | Parser híbrido en cascada: las reglas filtran y el LLM decide la zona gris | Cerrada |
-| B56 | 20/11 | Dificultad | Descarga del digesto de la UNNOBA para la PI4 | Cerrada |
-| B57 | 20/11 | Hallazgo | PI4: el pipeline se transfiere al digesto de la UNNOBA si el adaptador lleva el vocabulario de la fuente | Cerrada |
-| B58 | 20/11 | Decisión | Revisión del gold de la PI4: las remisiones que definen a quién alcanza la resolución son APLICA | Abierta |
-| B59 | 20/11 | Decisión | Grafos del digesto de la UNNOBA, con el mismo modelo y código que los de InfoLEG | Cerrada |
-| B60 | 20/11 | Hallazgo | Evaluación de los grafos leyéndolos desde Neo4j: ida y vuelta idéntica en las cuatro fuentes | Cerrada |
-| B61 | 20/11 | Hallazgo | Texto consolidado de la LCT desde el grafo: coincide con InfoLEG en el 96 % de los artículos (91 % de los que cambian) | Abierta |
-| B62 | 20/11 | Decisión | Todo lo que se hizo a mano en la sesión queda como script en el repositorio | Cerrada |
-| B63 | 21/11 | Decisión | Tres documentos de cierre: reproducibilidad, estructura del repositorio y conclusiones | Cerrada |
-| B64 | 21/11 | Decisión | Informe de avance y bitácora de investigación para la entrega de la cursada | Abierta |
+- **B01** · 27/10 · Decisión · El grafo y el text-to-Cypher se subordinan al núcleo evaluable
+- **B02** · 27/10 · Decisión · Relación general "modifica o complementa"
+- **B03** · 27/10 · Cuestionamiento · Qué tomar del artículo de Neo4j y LlamaIndex
+- **B04** · 27/10 · Decisión · Dominio laboral en lugar de solo dos leyes
+- **B05** · 27/10 · Dificultad · Portal bloqueado desde el entorno de trabajo
+- **B06** · 27/10 · Hallazgo · Estructura real de las bases complementarias
+- **B07** · 27/10 · Decisión · No expandir la Ley 14.250
+- **B08** · 27/10 · Decisión · Solo leyes y decretos, un salto de expansión
+- **B09** · 27/10 · Decisión · Split temporal con corte en 2019
+- **B10** · 27/10 · Hallazgo · Normas sin texto y techo de recall
+- **B11** · 28/10 · Cuestionamiento · ¿Hace falta Cloudflare para obtener los textos?
+- **B12** · 28/10 · Hallazgo · Cobertura textual del gold
+- **B13** · 28/10 · Dificultad · Guardar los textos fuera del navegador
+- **B14** · 28/10 · Cuestionamiento · ¿Esto ya es un dataset? ¿Con qué librerías?
+- **B15** · 28/10 · Cuestionamiento · Sesgo de selección del corpus
+- **B16** · 28/10 · Decisión · El test no se usa para diseñar reglas ni prompts
+- **B17** · 02/11 · Hallazgo · El portal se actualizó y los hashes cambiaron
+- **B18** · 02/11 · Hallazgo · Profundidad del grafo laboral frente a otros dominios
+- **B19** · 02/11 · Dificultad · El digesto de la UNNOBA bloquea el acceso automático
+- **B20** · 02/11 · Decisión · Tres parsers: regex/AST, LLM puro e híbrido
+- **B21** · 02/11 · Cuestionamiento · Qué significa profundidad del grafo
+- **B22** · 02/11 · Hallazgo · Acceso al digesto y formato de los documentos
+- **B23** · 06/11 · Decisión · Se congela el snapshot del 30/09 y el pipeline oficial pasa a los scripts
+- **B24** · 06/11 · Decisión · Corpus v2 laboral ampliado
+- **B25** · 06/11 · Decisión · Repositorio git del TP
+- **B26** · 06/11 · Hallazgo · La cobertura textual, reproducida con el detector de menciones
+- **B27** · 06/11 · Hallazgo · El gold mezcla modificaciones con remisiones
+- **B28** · 06/11 · Hallazgo · Primer resultado del parser de reglas
+- **B29** · 06/11 · Hallazgo · Primera corrida del pipeline oficial
+- **B30** · 06/11 · Hallazgo · La muestra de la Ley 14.250 confirma la exclusión
+- **B31** · 06/11 · Dificultad · Permisos y límite de pedidos al correr el pipeline
+- **B32** · 06/11 · Decisión · La documentación se mantiene en el Drive y en el repositorio
+- **B33** · 09/11 · Decisión · Un solo corpus
+- **B34** · 09/11 · Decisión · Dataset en CSV con pandas
+- **B35** · 09/11 · Hallazgo · Las reglas v1 no generalizan bien a los pares nuevos
+- **B36** · 09/11 · Decisión · Reglas v2: el VISTO cuenta, las citas de procedencia no
+- **B37** · 09/11 · Hallazgo · Un clasificador entrenado empata con las reglas
+- **B38** · 09/11 · Decisión · Modelo del grafo: InfoLEG y lo extraído por separado
+- **B39** · 09/11 · Dificultad · Sin acceso de escritura a GitHub desde la sesión de Claude
+- **B40** · 09/11 · Decisión · Contenedor Neo4j propio del TP
+- **B41** · 09/11 · Decisión · Una salida estándar para cualquier parser y cualquier documento normativo
+- **B42** · 09/11 · Decisión · El grafo representa lo que hace cada norma; InfoLEG queda afuera
+- **B43** · 09/11 · Hallazgo · El grafo devuelve lo que se le cargó; contra InfoLEG, las citas son el problema
+- **B44** · 09/11 · Decisión · Documento del parser y del grafo, contado paso a paso
+- **B45** · 16/11 · Hallazgo · Evaluación por subtareas: la detección y la normalización no pierden pares
+- **B46** · 16/11 · Hallazgo · El modelo con contexto textual, solo, no supera a las reglas; en un híbrido, ayuda en la zona gris
+- **B47** · 16/11 · Hallazgo · Tipo de relación sobre 78 casos: macro-F1 0,672; el error dominante es una cita tomada como acción
+- **B48** · 16/11 · Decisión · Parser LLM con verificación de la cita, caché reproducible y grafo aparte
+- **B49** · 16/11 · Decisión · Tabla final con intervalos de confianza por bootstrap
+- **B50** · 16/11 · Decisión · Código comentado y guía de lectura para la presentación
+- **B51** · 16/11 · Hallazgo · Cada error explicado; corrige la clasificación de B45
+- **B52** · 16/11 · Hallazgo · Reglas v3: corrigen la normalización, empatan en test
+- **B53** · 16/11 · Dificultad · La API no respondía desde el entorno de la Mac; se saca la temperatura
+- **B54** · 16/11 · Hallazgo · El parser LLM sube el recall y el tipado; la intersección con las reglas es la única mejora significativa
+- **B55** · 18/11 · Decisión · Parser híbrido en cascada: las reglas filtran y el LLM decide la zona gris
+- **B56** · 20/11 · Dificultad · Descarga del digesto de la UNNOBA para la PI4
+- **B57** · 20/11 · Hallazgo · PI4: el pipeline se transfiere al digesto de la UNNOBA si el adaptador lleva el vocabulario de la fuente
+- **B58** · 20/11 · Decisión · Revisión del gold de la PI4: las remisiones que definen a quién alcanza la resolución son APLICA
+- **B59** · 20/11 · Decisión · Grafos del digesto de la UNNOBA, con el mismo modelo y código que los de InfoLEG
+- **B60** · 20/11 · Hallazgo · Evaluación de los grafos leyéndolos desde Neo4j: ida y vuelta idéntica en las cuatro fuentes
+- **B61** · 20/11 · Hallazgo · Texto consolidado de la LCT desde el grafo: coincide con InfoLEG en el 96 % de los artículos (91 % de los que cambian)
+- **B62** · 20/11 · Decisión · Todo lo que se hizo a mano en la sesión queda como script en el repositorio
+- **B63** · 21/11 · Decisión · Tres documentos de cierre: reproducibilidad, estructura del repositorio y conclusiones
+- **B64** · 21/11 · Decisión · Informe de avance y bitácora de investigación para la entrega de la cursada
+- **B68** · 21/11 · Hallazgo · Los modelos supervisados están limitados por la cantidad de datos: las curvas de aprendizaje siguen subiendo (revisa B37 y B46)
 
 ### Entradas
 
@@ -799,6 +828,8 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 **Decisión.** En la cursada se extrae solo la relación general, como permite el enunciado. Los tipos finos quedan para la etapa de maduración, porque requieren anotación manual.
 
 **Abierto.** Hay que confirmar con el equipo y la cátedra si se intenta igual una clasificación fina como resultado exploratorio. El verbo de la oración (sustitúyese, derógase, reglaméntase) ya da una primera aproximación gratis.
+
+*Seguimiento:* los tipos se extrajeron igual y se evaluaron sobre 78 casos revisados a mano (B47). La consulta a la cátedra quedó en el plan de maduración del informe.
 
 #### B03 · 27/10/2026 · Cuestionamiento · Qué tomar del artículo de Neo4j y LlamaIndex
 
@@ -873,6 +904,8 @@ Quince normas del corpus no tienen link al texto en InfoLEG, todas anteriores a 
 
 **Abierto.** La clasificación salió de una búsqueda automática sin revisar. Hay que verificar a mano unos 30 casos antes de citar los porcentajes en el informe.
 
+*Seguimiento:* se rehízo con el detector de menciones y se revisaron 30 casos, todos correctos (B26).
+
 #### B13 · 28/10/2026 · Dificultad · Guardar los textos fuera del navegador
 
 **Qué pasó.** Los 168 HTML descargados quedaron en la memoria del navegador integrado. Eran demasiado grandes para subirlos al Drive por las herramientas disponibles, y el navegador solo podía guardar en la carpeta Descargas.
@@ -909,6 +942,8 @@ Los patrones de regex, los ejemplos few-shot y los umbrales del híbrido se saca
 
 **Abierto.** Decidir si se congela o se actualiza a la versión del 31/10. Congelar es más simple y defendible.
 
+*Seguimiento:* se congeló (B23), y después quedó un único corpus congelado (B33).
+
 #### B18 · 02/11/2026 · Hallazgo · Profundidad del grafo laboral frente a otros dominios
 
 **Pregunta.** ¿El dominio laboral da un grafo con suficiente profundidad o conviene buscar otro?
@@ -917,6 +952,8 @@ Los patrones de regex, los ejemplos few-shot y los umbrales del híbrido se saca
 
 **Abierto.** Decidir si se adopta el corpus laboral ampliado. Si se adopta, entra como una nueva versión del corpus y se rehacen el split y la cobertura.
 
+*Seguimiento:* se adoptó (B24) y pasó a ser el único corpus del TP (B33).
+
 #### B19 · 02/11/2026 · Dificultad · El digesto de la UNNOBA bloquea el acceso automático
 
 **Qué se encontró.** digesto.unnoba.edu.ar está detrás de Cloudflare, muestra un captcha ("Verifique que es un ser humano") al navegar sus listados y su robots.txt prohíbe todo rastreo automático (Disallow: /). Los documentos se publican en PDF.
@@ -924,6 +961,8 @@ Los patrones de regex, los ejemplos few-shot y los umbrales del híbrido se saca
 **Decisión.** No se scrapea el digesto ni se intenta saltear el captcha. La API de Cloudflare tampoco sirve, porque respeta robots.txt. Las vías válidas son dos: pedir a la UNNOBA una copia de un conjunto de resoluciones para uso académico, o descargar a mano una muestra chica como cualquier usuario. El enunciado pide justamente un corpus pequeño anotado manualmente.
 
 **Abierto.** Elegir la vía y el tamaño de la muestra. Ver B22: con la sesión de un integrante del equipo se accede sin captcha, y los PDF recientes tienen texto.
+
+*Seguimiento:* los PDF se bajaron a mano (B56) y se anotó una muestra de 70 documentos (B57).
 
 #### B20 · 02/11/2026 · Decisión · Tres parsers: regex/AST, LLM puro e híbrido
 
@@ -966,6 +1005,8 @@ Los patrones de regex, los ejemplos few-shot y los umbrales del híbrido se saca
 **Por qué.** El test de v1 tiene 127 pares y el 54 % sale de tres normas: la Ley 27.802 (38), el DNU 70/2023 (17) y la Ley 27.742 (13). Se descartó sumar un segundo nodo grande fuera del laboral, como el SIPA o el empleo público (B21). La prueba en otro dominio queda para el corpus tributario y para el digesto.
 
 **Pendiente.** Los números definitivos de v2 salen de la corrida con red. Las cifras de B18 (340 normas y 775 pares) son del análisis hecho en el navegador.
+
+*Seguimiento:* la corrida con red confirmó 340 normas y 775 pares (B29).
 
 #### B25 · 06/11/2026 · Decisión · Repositorio git del TP
 
@@ -1190,7 +1231,7 @@ El grafo se carga en un contenedor Docker propio (neo4j-grafo-legal), con los pu
 **Resultados en test.**
 
 | Método | F1 |
-|---|---|
+|--------------------------------------------------------------|--------------------------------------|
 | Solo texto | 0,761 |
 | Texto + superficie | 0,783 |
 | Reglas v2 | 0,828 |
@@ -1474,7 +1515,7 @@ El LLM nunca inventa destinos: solo juzga lo que el catálogo resolvió.
 **Resultados** (vínculo = MOD ∪ APLICA, 45 pares; gold de la revisión 1, reemplazado en B58):
 
 | Método | P | R | F1 |
-|---|---|---|---|
+|--------------------------------|-----------------------|-----------------------|-----------------------|
 | Reglas F = F3 | 0,695 | 0,911 | 0,788 |
 | LLM, prompt de InfoLEG | 0,500 | 0,200 | 0,286 |
 | LLM, prompt «vocab» | 0,632 | 0,800 | 0,706 |
@@ -1533,7 +1574,7 @@ Se mantuvieron como CITA los formularios de la Res. 368/2010, el Estatuto como c
 **Resultados con la revisión 2** (vínculo, 61 pares):
 
 | Método | P | R | F1 |
-|---|---|---|---|
+|--------------------------------|-----------------------|-----------------------|-----------------------|
 | Reglas F = F3 | 0,932 | 0,902 | 0,917 |
 | LLM, prompt de InfoLEG | 0,889 | 0,262 | 0,405 |
 | LLM, prompt «vocab» | 0,895 | 0,836 | 0,864 |
@@ -1587,7 +1628,7 @@ Ejemplo de consulta en `docs/pi4_digesto_unnoba.md`.
 **Resultados.**
 
 | Fuente | Ida y vuelta | Test P | Test R | Test F1 |
-|---|---|---|---|---|
+|---------------------------|-----------------------------|---------------|---------------|---------------|
 | reglas_v2 | 3.277 = 3.277, idénticas | 0,785 | 0,875 | 0,828 |
 | reglas_v3 | 3.149 = 3.149, idénticas | 0,788 | 0,870 | 0,827 |
 | llm | 3.247 = 3.247, idénticas | 0,756 | 0,938 | 0,837 |
@@ -1660,7 +1701,7 @@ Sirve para mostrar que el grafo alcanza para reconstruir el texto vigente y para
 **Qué se hizo.**
 
 | Script | Qué hace | Verificación |
-|---|---|---|
+|---------------------------------|-----------------------------------------------|--------------------|
 | `scripts/26_digesto_catalogo.py` | Saca el catálogo de 898 documentos que trae embebido el `.command` (base85 + zlib) y suma los 14 PDF bajados a mano | `--verificar`: sale igual al `catalogo.csv` del repositorio |
 | `scripts/27_digesto_duplicados.py` | Agrupa los PDF por SHA-256 y aparta copias en `pdf/_duplicados/` con su motivo (`--mover`) | 912 contenidos distintos en `pdf/`; las 29 copias apartadas tienen su original |
 | `scripts/28_digesto_textos.py` | Corre pdftotext (`-layout`) en todo y hace OCR (pdftoppm a 200 dpi en gris + tesseract spa) de los escaneados, solo de la muestra o de todos. Escribe `data/corpus_unnoba/textos.csv` | Mismo pdftotext que el usado. 336 escaneados, 38 con OCR (los de la muestra) |
@@ -1685,7 +1726,7 @@ Los pasos nuevos están en `correr_pipeline.sh`; el README y `docs/pi4_digesto_u
 **Qué se hizo.** Tres documentos nuevos, en el repo y en el Drive:
 
 | Documento | Repo | Drive | Qué tiene |
-|---|---|---|---|
+|---------------|------------------------------|----------------|---------------------------------------|
 | Reproducibilidad | `docs/reproducibilidad.md` | 13 - Reproducibilidad: qué se repite exacto y qué no | Paso por paso: si da lo mismo, qué hace falta y por qué no cuando no da. Junta lo que estaba en B17, B23, B53, B56, B57, B61 y B62 |
 | Estructura del repositorio | `docs/estructura_repositorio.md` | 14 - Estructura del repositorio | Qué hay en cada carpeta, qué script lo genera, qué va a git y qué no, y dónde está cada documento |
 | Conclusiones | `docs/conclusiones.md` | 15 - Conclusiones del TP y cómo se llegó a cada una | Las conclusiones ordenadas por PI1 a PI5, cada una con cómo se llegó, la evidencia y el límite, y una respuesta corta para cada PI |
@@ -1732,22 +1773,41 @@ El equipo eligió armar el informe como Google Doc en el Drive, completo (20 a 3
 - **Epígrafes de las figuras.** Al convertir el `.docx` a Google Doc se perdían, porque pandoc los pone como texto alternativo de la imagen. `armar_informe.py` los escribe como párrafo propio, en cursiva, debajo de cada figura.
 - **Primer borrador.** La primera subida tenía ese problema y un diagrama del pipeline demasiado ancho. Se subió de nuevo y el primer Doc quedó renombrado como «ZZ - Borrador descartado del informe 16 (se puede borrar)». No se borró, porque la regla es no borrar nada del Drive sin que el equipo lo pida.
 
-**Abierto.**
-- Completar los integrantes en la portada.
-- Revisar y validar el texto como equipo.
-- Exportar a PDF y subirlo a la tarea «Entrega del informe de avance y bitácora».
-- Faltan las otras dos entregas: el README completo, con instalación y credenciales, y la presentación.
 
-### Cuestiones abiertas
+#### B68 · 21/11/2026 · Hallazgo · Los modelos supervisados están limitados por la cantidad de datos: las curvas de aprendizaje siguen subiendo (revisa B37 y B46)
 
-- Cargar los grafos de la v3, del LLM y del híbrido en Neo4j sin `--borrar` (B54, B55); actualizar la tabla final con el LLM y sus híbridos (B48, B49).
-- Probar las consultas de ejemplo de `docs/grafo.md` en el Neo4j Browser (la evaluación sobre Neo4j ya está, B60).
-- Revisar el texto consolidado de la LCT (`results/consolidado/lct_consolidada.md`), los 8 cambios no aplicados y los 6 errores (B61).
-- Mejorar el tipado de las reglas sobre otra muestra de dev, sin tocar los 78 casos de medición (B43, B47).
-- Reglas v4, diseñadas sobre dev: sacar «texto sustituido por» del filtro de procedencia, escribir «l.c.t» sin punto, agregar «creado por» e «inclúyense», y exigir el verbo antes de la mención en F3 (B52).
-- Decidir si el grafo lleva embeddings (B38).
-- Validar las revisiones manuales de cobertura, de la Ley 14.250, de los 30 falsos positivos, de los 78 tipos y de las 60 menciones, y que un segundo anotador repita parte para el kappa (B12, B26, B30, B36, B45, B47).
-- Consultar con la cátedra la supervisión distante, la clasificación fina y si se evalúa también la modificación estricta (B02, B14, B27).
-- Armar la muestra independiente del gold (B15).
-- Segundo anotador sobre una parte del gold de la PI4, para el kappa (B57, B58).
-- Decidir si «ratificar» y el infinitivo de «dejar sin efecto» entran en una v4 de los verbos, diseñada sobre dev de InfoLEG (B57).
+**Pregunta del equipo.** ¿Los modelos de B37 (random forest) y B46 (TF-IDF con regresión logística) no superaron a las reglas porque se entrenaron con pocos datos? Hasta ahora no se había medido.
+
+**Con cuántos datos se entrenaron.**
+- **Dev, para entrenar.** 801 pares candidatos de 230 normas de origen, con 472 positivos y 329 negativos. En cada partición de la validación cruzada se entrena con unos 640 pares.
+- **Test.** 290 pares de 43 normas.
+- **Corpus.** 340 normas del dominio laboral (D11), y el gold tiene 775 relaciones.
+- **Lo que hay disponible.** La base de InfoLEG que ya está en `data/raw` tiene 37.248 relaciones entre leyes y decretos con texto en los dos extremos, de 18.201 normas modificatorias. El dataset usa alrededor del 1,5 % de esas normas.
+- **Corpus más grande.** Los modelos nunca se entrenaron con un corpus más grande.
+
+**Qué se hizo.** `scripts/32_curva_aprendizaje.py` entrena los tres modelos con el 10, 20, 30, 50, 70 y 100 % de las normas de dev.
+- **Validación.** Es la misma validación cruzada agrupada por norma de origen, con 5 sorteos por fracción. Test no se toca.
+- **Hiperparámetros.** Son los que eligieron los scripts 08 y 13, fijos: RF con umbral 0,45; TF-IDF + atributos con C = 30 y umbral 0,20; TF-IDF solo con C = 10 y umbral 0,40.
+- **Métrica.** Se mide sobre los pares candidatos: F1 y precisión promedio.
+
+**Resultado** (`results/curva_aprendizaje/`, figura 8).
+
+| Modelo | 61 pares | 316 pares | 641 pares | F1 sobre el propio entrenamiento |
+|------------------------|--------------|--------------|--------------|-----------------------------------|
+| Random forest | 0,727 | 0,774 | 0,814 | 0,936 |
+| TF-IDF + atributos | 0,735 | 0,809 | 0,831 | 0,986 |
+| TF-IDF solo | 0,731 | 0,782 | 0,800 | 0,992 |
+| Reglas F, sin entrenar | 0,812 | 0,812 | 0,812 | — |
+
+- **Las curvas no se aplanan.** Las tres siguen subiendo entre el 50 % y el 100 %. Una recta en log(n) da entre +2 y +2,6 puntos de F1 cada vez que se duplican los datos.
+- **Hay alta varianza.** La brecha entre entrenamiento y validación es de 0,12 a 0,19, y los modelos de texto casi memorizan el entrenamiento.
+- **El cruce con las reglas llega al final.** Recién con todo dev los modelos alcanzan a las reglas. El desvío entre particiones, de unos 0,04, no permite decir que las superen.
+- **Las etiquetas no son la causa principal.** El análisis de errores había encontrado solo 5 posibles omisiones del gold en dev.
+
+**Corrección.** B37 concluía que «con atributos de superficie no queda mucho por ganar», y eso era prematuro. Con 801 pares, la limitación medible es la cantidad de datos. No está probado que la representación alcance: con más datos las curvas podrían aplanarse antes de superar con claridad a las reglas. Se actualizaron `docs/conclusiones.md` (2.4 y 2.5) y la discusión de la PI1 en el informe.
+
+**Qué haría falta.**
+- **Ampliar el corpus.** Sumar normas de origen de la base de InfoLEG, bajar sus textos con el script 02, regenerar el dataset con los scripts 03 y 07, y repetir la curva con el doble y con 10 veces más datos.
+- **Bajar los textos desde la Mac.** InfoLEG devuelve 403 desde el contenedor y desde la VM de esta sesión.
+- **Si la curva se aplana por debajo del LLM,** pasar a un transformer en español con la mención marcada.
+

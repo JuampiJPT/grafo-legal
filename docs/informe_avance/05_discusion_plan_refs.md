@@ -130,5 +130,5 @@ También hace falta tiempo del equipo para las anotaciones humanas.
 
 # Anexo B. Bitácora de investigación
 
-La bitácora registra, con fecha, cada decisión, dificultad, hallazgo y cuestionamiento del trabajo, con su contexto, las alternativas y cómo quedó. Las entradas no se borran: si una decisión cambia, se agrega otra que la reemplaza. Se transcribe completa a continuación. La versión editable es «00 - Bitácora del TP», en la carpeta del Drive, y la copia está en `docs/drive/00_bitacora.md`.
+La bitácora registra, con fecha, cada decisión, dificultad, hallazgo y cuestionamiento del trabajo, con su contexto, las alternativas y cómo quedó. Las entradas no se borran: si una decisión cambia, se agrega otra que la reemplaza. A continuación se transcriben las entradas de la investigación, de B01 a B64 y B68. Cuando un punto que había quedado abierto se resolvió después, la entrada lo indica con una nota de *Seguimiento*. Lo que sigue pendiente está resumido en el plan de maduración (sección 8). En esta transcripción se omiten tres cosas: el estado de cada entrada, la lista interna de tareas y las entradas sobre el video explicativo y la revisión final de este informe. La versión completa es «00 - Bitácora del TP», en la carpeta del Drive, y la copia está en `docs/drive/00_bitacora.md`.
 

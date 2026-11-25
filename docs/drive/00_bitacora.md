@@ -2,7 +2,7 @@
 
 # Bitácora del TP Integrador
 
-*Sistemas Inteligentes (UNNOBA). Problemática III: extracción de relaciones entre normas y grafo normativo trazable. Iniciada el 27/10/2026, última entrada el 21/11/2026.*
+*Sistemas Inteligentes (UNNOBA). Problemática III: extracción de relaciones entre normas y grafo normativo trazable. Iniciada el 27/10/2026, última entrada el 25/11/2026.*
 
 ## Cómo usar esta bitácora
 
@@ -83,6 +83,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B67 | 21/11 | Dificultad | La voz leía el encabezado de cada escena; se quitó y el video pasa a 13:21 (corrige B66) | Cerrada |
 | B68 | 21/11 | Hallazgo | Los modelos supervisados están limitados por la cantidad de datos: las curvas de aprendizaje siguen subiendo (revisa B37 y B46) | Abierta |
 | B69 | 21/11 | Decisión | El video explica los modelos supervisados en siete escenas | Abierta |
+| B70 | 25/11 | Decisión | Revisión del informe para la entrega: anexo sin tareas internas y curva de aprendizaje en los resultados | Abierta |
 
 ## Entradas
 
@@ -101,6 +102,8 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 **Decisión.** En la cursada se extrae solo la relación general, como permite el enunciado. Los tipos finos quedan para la etapa de maduración, porque requieren anotación manual.
 
 **Abierto.** Hay que confirmar con el equipo y la cátedra si se intenta igual una clasificación fina como resultado exploratorio. El verbo de la oración (sustitúyese, derógase, reglaméntase) ya da una primera aproximación gratis.
+
+*Seguimiento:* los tipos se extrajeron igual y se evaluaron sobre 78 casos revisados a mano (B47). La consulta a la cátedra quedó en el plan de maduración del informe.
 
 ### B03 · 27/10/2026 · Cuestionamiento · Qué tomar del artículo de Neo4j y LlamaIndex
 
@@ -175,6 +178,8 @@ Quince normas del corpus no tienen link al texto en InfoLEG, todas anteriores a 
 
 **Abierto.** La clasificación salió de una búsqueda automática sin revisar. Hay que verificar a mano unos 30 casos antes de citar los porcentajes en el informe.
 
+*Seguimiento:* se rehízo con el detector de menciones y se revisaron 30 casos, todos correctos (B26).
+
 ### B13 · 28/10/2026 · Dificultad · Guardar los textos fuera del navegador
 
 **Qué pasó.** Los 168 HTML descargados quedaron en la memoria del navegador integrado. Eran demasiado grandes para subirlos al Drive por las herramientas disponibles, y el navegador solo podía guardar en la carpeta Descargas.
@@ -211,6 +216,8 @@ Los patrones de regex, los ejemplos few-shot y los umbrales del híbrido se saca
 
 **Abierto.** Decidir si se congela o se actualiza a la versión del 31/10. Congelar es más simple y defendible.
 
+*Seguimiento:* se congeló (B23), y después quedó un único corpus congelado (B33).
+
 ### B18 · 02/11/2026 · Hallazgo · Profundidad del grafo laboral frente a otros dominios
 
 **Pregunta.** ¿El dominio laboral da un grafo con suficiente profundidad o conviene buscar otro?
@@ -219,6 +226,8 @@ Los patrones de regex, los ejemplos few-shot y los umbrales del híbrido se saca
 
 **Abierto.** Decidir si se adopta el corpus laboral ampliado. Si se adopta, entra como una nueva versión del corpus y se rehacen el split y la cobertura.
 
+*Seguimiento:* se adoptó (B24) y pasó a ser el único corpus del TP (B33).
+
 ### B19 · 02/11/2026 · Dificultad · El digesto de la UNNOBA bloquea el acceso automático
 
 **Qué se encontró.** digesto.unnoba.edu.ar está detrás de Cloudflare, muestra un captcha ("Verifique que es un ser humano") al navegar sus listados y su robots.txt prohíbe todo rastreo automático (Disallow: /). Los documentos se publican en PDF.
@@ -226,6 +235,8 @@ Los patrones de regex, los ejemplos few-shot y los umbrales del híbrido se saca
 **Decisión.** No se scrapea el digesto ni se intenta saltear el captcha. La API de Cloudflare tampoco sirve, porque respeta robots.txt. Las vías válidas son dos: pedir a la UNNOBA una copia de un conjunto de resoluciones para uso académico, o descargar a mano una muestra chica como cualquier usuario. El enunciado pide justamente un corpus pequeño anotado manualmente.
 
 **Abierto.** Elegir la vía y el tamaño de la muestra. Ver B22: con la sesión de un integrante del equipo se accede sin captcha, y los PDF recientes tienen texto.
+
+*Seguimiento:* los PDF se bajaron a mano (B56) y se anotó una muestra de 70 documentos (B57).
 
 ### B20 · 02/11/2026 · Decisión · Tres parsers: regex/AST, LLM puro e híbrido
 
@@ -268,6 +279,8 @@ Los patrones de regex, los ejemplos few-shot y los umbrales del híbrido se saca
 **Por qué.** El test de v1 tiene 127 pares y el 54 % sale de tres normas: la Ley 27.802 (38), el DNU 70/2023 (17) y la Ley 27.742 (13). Se descartó sumar un segundo nodo grande fuera del laboral, como el SIPA o el empleo público (B21). La prueba en otro dominio queda para el corpus tributario y para el digesto.
 
 **Pendiente.** Los números definitivos de v2 salen de la corrida con red. Las cifras de B18 (340 normas y 775 pares) son del análisis hecho en el navegador.
+
+*Seguimiento:* la corrida con red confirmó 340 normas y 775 pares (B29).
 
 ### B25 · 06/11/2026 · Decisión · Repositorio git del TP
 
@@ -1157,6 +1170,25 @@ El equipo eligió armar el informe como Google Doc en el Drive, completo (20 a 3
 - **Precisión en el guion.** En el random forest la probabilidad es el promedio de las probabilidades de los 400 árboles, no el porcentaje de árboles que votan que sí. El guion se corrigió antes de generar el audio.
 
 **Pendiente.** Generar los siete audios en ElevenLabs y armar la versión 3 del video.
+
+### B70 · 25/11/2026 · Decisión · Revisión del informe para la entrega: anexo sin tareas internas y curva de aprendizaje en los resultados
+
+**Pedido del equipo.** Revisar el informe para que sea coherente de punta a punta antes de entregarlo. En particular, sacar las «Cuestiones abiertas» del anexo.
+
+**Qué se corrigió.**
+- **Anexo B.** `armar_informe.py` arma la bitácora para la entrega con cuatro omisiones, que el propio anexo declara:
+  - la columna Estado del índice, que es de uso interno, y el índice pasa a ser una lista;
+  - la sección final «Cuestiones abiertas», porque lo pendiente ya está en el plan de maduración (sección 8);
+  - las entradas del video explicativo (B65 a B67 y B69) y esta misma;
+  - el bloque «Abierto» de B64, que eran las tareas de la entrega.
+- **Seguimientos.** Seis puntos que habían quedado abiertos y después se resolvieron llevan ahora una nota de *Seguimiento* con la entrada que los resolvió: B02, B12, B17, B18, B19 y B24. La nota se agregó en la bitácora completa, no solo en el anexo. Así las dos versiones dicen lo mismo y no se borra nada.
+- **Curva de aprendizaje.** El informe citaba B68 en la discusión y en el plan, pero no la mostraba, y la bitácora del anexo terminaba en B64. Ahora hay una sección 6.7 con la figura 8 y la tabla 5, y el anexo incluye B68.
+- **PI1.** La fuente del repositorio tenía el texto viejo de la PI1 («con atributos de superficie no queda mucho por ganar»), aunque el Google Doc ya estaba corregido. Se regeneró todo desde las fuentes.
+- **Tablas.** Pandoc les daba el mismo ancho a todas las columnas, y las de texto largo quedaban muy angostas. `armar_informe.py` ahora reparte el ancho según el contenido.
+
+**Google Doc.** El Drive no permite reemplazar el contenido de un Doc desde un `.docx`, así que se subió uno nuevo: «16 - Informe de avance y bitácora de investigación (entrega de cursada)». Esto cambia el link. La versión anterior y dos borradores intermedios de esta revisión quedaron renombrados con el prefijo «ZZ», sin borrar. Se verificó el PDF que exporta Google: 67 páginas, las 8 figuras y ninguna «Cuestión abierta».
+
+**Falta.** Completar los integrantes en la portada.
 
 ## Cuestiones abiertas
 
