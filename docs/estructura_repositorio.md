@@ -74,6 +74,7 @@ Cada script es un paso. El número da el orden y, a la vez, la cronología del T
 | PI4 · digesto | 26, 27, 28, 29, 21, 22 | Catálogo, copias, texto y OCR, muestra, evaluación y grafos del digesto | `data/corpus_unnoba/`, `data/textos/unnoba/`, `results/pi4_unnoba/`, `data/grafo_unnoba_*/` |
 | Neo4j y consolidado | 30, 23, 24, 25 | Carga todos los grafos sin borrar, consulta el manifiesto, consolida la LCT y la compara con InfoLEG | `results/evaluacion_grafo_neo4j/`, `results/consolidado/` |
 | Informe y diagnóstico | 31, 32 | Figuras del informe de avance y curva de aprendizaje de los modelos supervisados (B68) | `docs/informe_avance/figuras/`, `results/curva_aprendizaje/` |
+| Demo del grafo | 35 | Corre las consultas de la demo sobre Neo4j y guarda los resultados (B76) | `results/demo/` |
 | Grafo de los clasificadores | 33, 34 | Arma y carga en Neo4j los grafos del random forest, del TF-IDF y del híbrido reglas + TF-IDF (B73) | `results/relaciones_modelos/`, `data/grafo_random_forest/`, `data/grafo_tfidf/`, `data/grafo_hibrido_tfidf/` |
 | Utilidades | `firma_texto.py`, `firma_texto_navegador.js` | Firmas de texto (hash y MinHash) para comparar sin el archivo completo | `results/consolidado/evaluacion/` |
 

@@ -1,0 +1,1064 @@
+{
+  "fecha": "2026-11-25T22:40:27.093149+00:00",
+  "uri": "bolt://localhost:7688",
+  "consultas": {
+    "panorama_nodos": {
+      "pregunta": "¿Qué hay en la base?",
+      "cypher": "MATCH (n) WHERE n:Norma OR n:Articulo RETURN labels(n)[0] AS etiqueta, count(*) AS cantidad",
+      "filas": [
+        {
+          "etiqueta": "Articulo",
+          "cantidad": 8545
+        },
+        {
+          "etiqueta": "Norma",
+          "cantidad": 444
+        }
+      ],
+      "error": null
+    },
+    "panorama_fuentes": {
+      "pregunta": "¿Cuántas aristas aportó cada parser?",
+      "cypher": "MATCH (:Articulo)-[r]->() WHERE type(r) <> 'CONTIENE'\nRETURN r.fuente AS fuente, count(*) AS aristas,\n       sum(CASE WHEN type(r) <> 'CITA' THEN 1 ELSE 0 END) AS no_cita\nORDER BY fuente",
+      "filas": [
+        {
+          "fuente": "hibrido",
+          "aristas": 3147,
+          "no_cita": 1356
+        },
+        {
+          "fuente": "hibrido_tfidf",
+          "aristas": 3273,
+          "no_cita": 1427
+        },
+        {
+          "fuente": "llm",
+          "aristas": 3247,
+          "no_cita": 1022
+        },
+        {
+          "fuente": "random_forest",
+          "aristas": 3283,
+          "no_cita": 1327
+        },
+        {
+          "fuente": "reglas_v2",
+          "aristas": 3277,
+          "no_cita": 945
+        },
+        {
+          "fuente": "reglas_v3",
+          "aristas": 3149,
+          "no_cita": 848
+        },
+        {
+          "fuente": "tfidf",
+          "aristas": 3280,
+          "no_cita": 1384
+        },
+        {
+          "fuente": "unnoba_hibrido",
+          "aristas": 150,
+          "no_cita": 62
+        },
+        {
+          "fuente": "unnoba_llm",
+          "aristas": 156,
+          "no_cita": 23
+        },
+        {
+          "fuente": "unnoba_reglas_v3",
+          "aristas": 150,
+          "no_cita": 13
+        }
+      ],
+      "error": null
+    },
+    "ley27802_resumen": {
+      "pregunta": "¿Qué le hizo la Ley 27.802 a la LCT? (fuente llm)",
+      "cypher": "MATCH (:Norma {nombre: 'Ley 27802'})-[:CONTIENE]->(a)-[r]->(d:Articulo {id_norma: 25552})\nWHERE r.fuente = 'llm' AND type(r) <> 'CITA'\nRETURN type(r) AS que_hizo, count(DISTINCT d) AS articulos_de_la_lct\nORDER BY articulos_de_la_lct DESC",
+      "filas": [
+        {
+          "que_hizo": "SUSTITUYE",
+          "articulos_de_la_lct": 52
+        },
+        {
+          "que_hizo": "DEROGA",
+          "articulos_de_la_lct": 9
+        },
+        {
+          "que_hizo": "INCORPORA",
+          "articulos_de_la_lct": 3
+        }
+      ],
+      "error": null
+    },
+    "ley27802_detalle": {
+      "pregunta": "¿Qué artículos de la LCT sustituyó la Ley 27.802, y con qué texto?",
+      "cypher": "MATCH (:Norma {nombre: 'Ley 27802'})-[:CONTIENE]->(a)-[r:SUSTITUYE]->(d:Articulo {id_norma: 25552})\nWHERE r.fuente = 'llm'\nRETURN a.numero AS art_27802, d.numero AS art_lct, left(r.fragmento, 160) AS evidencia\nORDER BY toInteger(split(d.numero, ' ')[0]) LIMIT 12",
+      "filas": [
+        {
+          "art_27802": "1",
+          "art_lct": "2",
+          "evidencia": "Artículo 1°- Sustitúyese el artículo 2° de la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificaciones, por el siguiente:"
+        },
+        {
+          "art_27802": "2",
+          "art_lct": "4",
+          "evidencia": "Artículo 2°- Sustitúyese el artículo 4° de la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificaciones, por el siguiente:"
+        },
+        {
+          "art_27802": "3",
+          "art_lct": "9",
+          "evidencia": "Artículo 3°- Sustitúyese el artículo 9° de la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificaciones, por el siguiente:"
+        },
+        {
+          "art_27802": "4",
+          "art_lct": "11",
+          "evidencia": "Artículo 4°- Sustitúyese el artículo 11 de la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificaciones, por el siguiente:"
+        },
+        {
+          "art_27802": "6",
+          "art_lct": "12",
+          "evidencia": "Artículo 6°- Sustitúyese el artículo 12 de la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificaciones, por el siguiente:"
+        },
+        {
+          "art_27802": "7",
+          "art_lct": "15",
+          "evidencia": "Artículo 7°- Sustitúyese el artículo 15 de la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificaciones, por el siguiente:"
+        },
+        {
+          "art_27802": "8",
+          "art_lct": "16",
+          "evidencia": "Artículo 8°- Sustitúyese el artículo 16 de la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificaciones, por el siguiente:"
+        },
+        {
+          "art_27802": "9",
+          "art_lct": "18",
+          "evidencia": "Artículo 9°- Sustitúyese el artículo 18 de la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificaciones, por el siguiente:"
+        },
+        {
+          "art_27802": "10",
+          "art_lct": "20",
+          "evidencia": "Artículo 10.- Sustitúyese el artículo 20 de la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificaciones, por el siguiente:"
+        },
+        {
+          "art_27802": "11",
+          "art_lct": "21",
+          "evidencia": "Artículo 11.- Sustitúyese el artículo 21 de la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificaciones, por el siguiente:"
+        },
+        {
+          "art_27802": "12",
+          "art_lct": "22",
+          "evidencia": "Artículo 12.- Sustitúyese el artículo 22 de la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificaciones, por el siguiente:"
+        },
+        {
+          "art_27802": "13",
+          "art_lct": "23",
+          "evidencia": "Artículo 13.- Sustitúyese el artículo 23 de la Ley de Contrato de Trabajo N° 20.744 (t.o. 1976) y sus modificaciones, por el siguiente:"
+        }
+      ],
+      "error": null
+    },
+    "historia_245": {
+      "pregunta": "Historia del artículo 245 de la LCT (indemnización por despido)",
+      "cypher": "MATCH (n:Norma)-[:CONTIENE]->(o)-[r]->(:Articulo {id_norma: 25552, numero: '245'})\nWHERE type(r) <> 'CITA'\nRETURN n.nombre AS norma, n.fecha AS fecha, type(r) AS que_hizo, collect(DISTINCT r.fuente) AS fuentes\nORDER BY fecha",
+      "filas": [
+        {
+          "norma": "Ley 23697",
+          "fecha": "1989-09-25",
+          "que_hizo": "SUSTITUYE",
+          "fuentes": [
+            "hibrido_tfidf",
+            "tfidf",
+            "random_forest",
+            "hibrido",
+            "reglas_v2",
+            "reglas_v3",
+            "llm"
+          ]
+        },
+        {
+          "norma": "Ley 24013",
+          "fecha": "1991-12-17",
+          "que_hizo": "SUSTITUYE",
+          "fuentes": [
+            "reglas_v2",
+            "hibrido_tfidf",
+            "tfidf",
+            "random_forest",
+            "hibrido",
+            "reglas_v3",
+            "llm"
+          ]
+        },
+        {
+          "norma": "Ley 25323",
+          "fecha": "2000-10-11",
+          "que_hizo": "MODIFICA",
+          "fuentes": [
+            "reglas_v2",
+            "hibrido_tfidf",
+            "tfidf",
+            "random_forest",
+            "hibrido",
+            "reglas_v3"
+          ]
+        },
+        {
+          "norma": "Ley 25877",
+          "fecha": "2004-03-19",
+          "que_hizo": "SUSTITUYE",
+          "fuentes": [
+            "hibrido_tfidf",
+            "tfidf",
+            "random_forest",
+            "hibrido",
+            "reglas_v2",
+            "reglas_v3",
+            "llm"
+          ]
+        },
+        {
+          "norma": "Decreto 70",
+          "fecha": "2023-12-21",
+          "que_hizo": "SUSTITUYE",
+          "fuentes": [
+            "hibrido_tfidf",
+            "tfidf",
+            "random_forest",
+            "hibrido",
+            "reglas_v2",
+            "reglas_v3",
+            "llm"
+          ]
+        },
+        {
+          "norma": "Ley 27742",
+          "fecha": "2024-07-08",
+          "que_hizo": "SUSTITUYE",
+          "fuentes": [
+            "hibrido_tfidf",
+            "tfidf",
+            "random_forest",
+            "hibrido",
+            "reglas_v2",
+            "reglas_v3"
+          ]
+        },
+        {
+          "norma": "Ley 27802",
+          "fecha": "2026-03-06",
+          "que_hizo": "SUSTITUYE",
+          "fuentes": [
+            "hibrido_tfidf",
+            "tfidf",
+            "random_forest",
+            "hibrido",
+            "reglas_v2",
+            "reglas_v3",
+            "llm"
+          ]
+        }
+      ],
+      "error": null
+    },
+    "lct_por_decada": {
+      "pregunta": "¿En qué décadas se reformó más la LCT? (fuente llm)",
+      "cypher": "MATCH (n:Norma)-[:CONTIENE]->(:Articulo)-[r]->(d)\nWHERE r.fuente = 'llm' AND type(r) IN ['SUSTITUYE','INCORPORA','DEROGA','MODIFICA'] AND d.id_norma = 25552\nRETURN (n.anio / 10) * 10 AS decada, count(DISTINCT n) AS normas, count(*) AS cambios\nORDER BY decada",
+      "filas": [
+        {
+          "decada": 1970,
+          "normas": 4,
+          "cambios": 5
+        },
+        {
+          "decada": 1980,
+          "normas": 5,
+          "cambios": 7
+        },
+        {
+          "decada": 1990,
+          "normas": 10,
+          "cambios": 26
+        },
+        {
+          "decada": 2000,
+          "normas": 9,
+          "cambios": 29
+        },
+        {
+          "decada": 2010,
+          "normas": 15,
+          "cambios": 21
+        },
+        {
+          "decada": 2020,
+          "normas": 8,
+          "cambios": 106
+        }
+      ],
+      "error": null
+    },
+    "deroga_24013": {
+      "pregunta": "¿Qué normas derogaron algo de la Ley de Empleo 24.013? (fuente llm)",
+      "cypher": "MATCH (n:Norma)-[:CONTIENE]->(:Articulo)-[r:DEROGA]->(d)\nWHERE r.fuente = 'llm' AND d.id_norma = 412\nRETURN DISTINCT n.nombre AS norma, n.fecha AS fecha, coalesce(d.numero, 'toda la ley') AS que_derogo\nORDER BY fecha",
+      "filas": [
+        {
+          "norma": "Ley 25013",
+          "fecha": "1998-09-24",
+          "que_derogo": "18"
+        },
+        {
+          "norma": "Ley 25013",
+          "fecha": "1998-09-24",
+          "que_derogo": "31"
+        },
+        {
+          "norma": "Ley 25013",
+          "fecha": "1998-09-24",
+          "que_derogo": "28 a 40"
+        },
+        {
+          "norma": "Ley 25013",
+          "fecha": "1998-09-24",
+          "que_derogo": "43 a 65"
+        },
+        {
+          "norma": "Ley 26598",
+          "fecha": "2010-07-06",
+          "que_derogo": "141"
+        },
+        {
+          "norma": "Decreto 70",
+          "fecha": "2023-12-21",
+          "que_derogo": "8 a 17"
+        },
+        {
+          "norma": "Decreto 70",
+          "fecha": "2023-12-21",
+          "que_derogo": "120"
+        },
+        {
+          "norma": "Ley 27742",
+          "fecha": "2024-07-08",
+          "que_derogo": "8 a 17"
+        },
+        {
+          "norma": "Ley 27742",
+          "fecha": "2024-07-08",
+          "que_derogo": "120"
+        }
+      ],
+      "error": null
+    },
+    "reglamenta_lrt": {
+      "pregunta": "¿Qué decretos reglamentan la Ley de Riesgos del Trabajo 24.557? (fuente llm)",
+      "cypher": "MATCH (n:Norma {tipo: 'Decreto'})-[:CONTIENE]->(:Articulo)-[r:REGLAMENTA]->(d)\nWHERE r.fuente = 'llm' AND d.id_norma = 27971\nRETURN n.nombre AS decreto, n.fecha AS fecha, count(*) AS articulos\nORDER BY fecha",
+      "filas": [
+        {
+          "decreto": "Decreto 170",
+          "fecha": "1996-02-26",
+          "articulos": 23
+        },
+        {
+          "decreto": "Decreto 334",
+          "fecha": "1996-04-08",
+          "articulos": 24
+        },
+        {
+          "decreto": "Decreto 333",
+          "fecha": "1996-04-09",
+          "articulos": 2
+        },
+        {
+          "decreto": "Decreto 719",
+          "fecha": "1996-07-29",
+          "articulos": 1
+        },
+        {
+          "decreto": "Decreto 491",
+          "fecha": "1997-06-04",
+          "articulos": 3
+        },
+        {
+          "decreto": "Decreto 559",
+          "fecha": "1997-06-24",
+          "articulos": 2
+        },
+        {
+          "decreto": "Decreto 962",
+          "fecha": "1997-09-24",
+          "articulos": 1
+        },
+        {
+          "decreto": "Decreto 410",
+          "fecha": "2001-04-17",
+          "articulos": 8
+        }
+      ],
+      "error": null
+    },
+    "ranking": {
+      "pregunta": "¿Cuáles son las normas más modificadas? (fuente hibrido)",
+      "cypher": "MATCH (m:Norma)-[:CONTIENE]->(:Articulo)-[r]->(d)\nWHERE r.fuente = 'hibrido' AND type(r) IN ['SUSTITUYE','INCORPORA','DEROGA','MODIFICA','REGLAMENTA'] AND m.id_norma < 9000000\nMATCH (n:Norma {id_norma: d.id_norma}) WHERE n <> m\nRETURN n.nombre AS norma, left(n.titulo, 60) AS titulo, count(DISTINCT m) AS normas_que_la_modifican\nORDER BY normas_que_la_modifican DESC LIMIT 10",
+      "filas": [
+        {
+          "norma": "Ley 20744",
+          "titulo": "REGIMEN",
+          "normas_que_la_modifican": 105
+        },
+        {
+          "norma": "Ley 24013",
+          "titulo": "PROTECCION DEL TRABAJO",
+          "normas_que_la_modifican": 81
+        },
+        {
+          "norma": "Ley 24241",
+          "titulo": "CREACION",
+          "normas_que_la_modifican": 62
+        },
+        {
+          "norma": "Ley 24557",
+          "titulo": "REGIMEN LEGAL",
+          "normas_que_la_modifican": 61
+        },
+        {
+          "norma": "Ley 23551",
+          "titulo": "REGIMEN",
+          "normas_que_la_modifican": 20
+        },
+        {
+          "norma": "Ley 14250",
+          "titulo": "TRABAJO",
+          "normas_que_la_modifican": 20
+        },
+        {
+          "norma": "Ley 23660",
+          "titulo": "NUEVO REGIMEN - APROBACION",
+          "normas_que_la_modifican": 19
+        },
+        {
+          "norma": "Ley 26727",
+          "titulo": "REGIMEN DE TRABAJO AGRARIO - APROBACION",
+          "normas_que_la_modifican": 13
+        },
+        {
+          "norma": "Ley 20628",
+          "titulo": "REGIMEN LEGAL",
+          "normas_que_la_modifican": 13
+        },
+        {
+          "norma": "Ley 24467",
+          "titulo": "MARCO REGULATORIO",
+          "normas_que_la_modifican": 12
+        }
+      ],
+      "error": null
+    },
+    "dos_saltos": {
+      "pregunta": "Reforma sobre reforma: normas que modifican a una modificatoria de la LCT (fuente hibrido)",
+      "cypher": "MATCH (m1:Norma)-[:CONTIENE]->(:Articulo)-[r1]->(d1)\nWHERE r1.fuente = 'hibrido' AND type(r1) IN ['SUSTITUYE','INCORPORA','DEROGA','MODIFICA'] AND d1.id_norma = 25552\nWITH DISTINCT m1\nMATCH (m2:Norma)-[:CONTIENE]->(:Articulo)-[r2]->(d2)\nWHERE r2.fuente = 'hibrido' AND type(r2) IN ['SUSTITUYE','INCORPORA','DEROGA','MODIFICA']\n  AND d2.id_norma = m1.id_norma AND m2 <> m1\nRETURN DISTINCT m2.nombre AS norma, m2.fecha AS fecha, type(r2) AS que_hizo, m1.nombre AS a_la_modificatoria\nORDER BY fecha DESC LIMIT 12",
+      "filas": [
+        {
+          "norma": "Decreto 1228",
+          "fecha": "2026-10-20",
+          "que_hizo": "MODIFICA",
+          "a_la_modificatoria": "Ley 27802"
+        },
+        {
+          "norma": "Decreto 1203",
+          "fecha": "2026-10-19",
+          "que_hizo": "MODIFICA",
+          "a_la_modificatoria": "Decreto 214"
+        },
+        {
+          "norma": "Decreto 612",
+          "fecha": "2026-07-20",
+          "que_hizo": "MODIFICA",
+          "a_la_modificatoria": "Ley 27802"
+        },
+        {
+          "norma": "Decreto 408",
+          "fecha": "2026-06-01",
+          "que_hizo": "MODIFICA",
+          "a_la_modificatoria": "Ley 27802"
+        },
+        {
+          "norma": "Decreto 409",
+          "fecha": "2026-06-01",
+          "que_hizo": "MODIFICA",
+          "a_la_modificatoria": "Ley 24013"
+        },
+        {
+          "norma": "Decreto 407",
+          "fecha": "2026-06-01",
+          "que_hizo": "MODIFICA",
+          "a_la_modificatoria": "Ley 27802"
+        },
+        {
+          "norma": "Decreto 409",
+          "fecha": "2026-06-01",
+          "que_hizo": "MODIFICA",
+          "a_la_modificatoria": "Ley 24557"
+        },
+        {
+          "norma": "Decreto 407",
+          "fecha": "2026-06-01",
+          "que_hizo": "SUSTITUYE",
+          "a_la_modificatoria": "Ley 26727"
+        },
+        {
+          "norma": "Decreto 407",
+          "fecha": "2026-06-01",
+          "que_hizo": "MODIFICA",
+          "a_la_modificatoria": "Ley 26727"
+        },
+        {
+          "norma": "Decreto 407",
+          "fecha": "2026-06-01",
+          "que_hizo": "DEROGA",
+          "a_la_modificatoria": "Ley 26727"
+        },
+        {
+          "norma": "Decreto 242",
+          "fecha": "2026-04-13",
+          "que_hizo": "INCORPORA",
+          "a_la_modificatoria": "Ley 27802"
+        },
+        {
+          "norma": "Decreto 242",
+          "fecha": "2026-04-13",
+          "que_hizo": "MODIFICA",
+          "a_la_modificatoria": "Ley 27802"
+        }
+      ],
+      "error": null
+    },
+    "consenso": {
+      "pregunta": "¿Cuántos de los 7 parsers de InfoLEG encuentran cada vínculo?",
+      "cypher": "MATCH (m:Norma)-[:CONTIENE]->(:Articulo)-[r]->(d)\nWHERE type(r) <> 'CITA' AND m.id_norma < 9000000 AND NOT r.fuente STARTS WITH 'unnoba'\nWITH m, d.id_norma AS destino, collect(DISTINCT r.fuente) AS fuentes\nWHERE destino <> m.id_norma\nRETURN size(fuentes) AS cuantos_parsers, count(*) AS pares\nORDER BY cuantos_parsers DESC",
+      "filas": [
+        {
+          "cuantos_parsers": 7,
+          "pares": 202
+        },
+        {
+          "cuantos_parsers": 6,
+          "pares": 67
+        },
+        {
+          "cuantos_parsers": 5,
+          "pares": 68
+        },
+        {
+          "cuantos_parsers": 4,
+          "pares": 322
+        },
+        {
+          "cuantos_parsers": 3,
+          "pares": 126
+        },
+        {
+          "cuantos_parsers": 2,
+          "pares": 87
+        },
+        {
+          "cuantos_parsers": 1,
+          "pares": 70
+        }
+      ],
+      "error": null
+    },
+    "dos_lecturas_conteo": {
+      "pregunta": "¿En cuántos artículos las reglas ven una cita y el LLM una acción?",
+      "cypher": "MATCH (n:Norma)-[:CONTIENE]->(o:Articulo)-[r1]->(d1), (o)-[r2]->(d2)\nWHERE r1.fuente = 'reglas_v2' AND r2.fuente = 'llm' AND type(r1) = 'CITA' AND type(r2) <> 'CITA'\n  AND d1.id_norma = d2.id_norma\nRETURN type(r2) AS segun_el_llm, count(DISTINCT o) AS articulos ORDER BY articulos DESC",
+      "filas": [
+        {
+          "segun_el_llm": "REGLAMENTA",
+          "articulos": 124
+        },
+        {
+          "segun_el_llm": "MODIFICA",
+          "articulos": 61
+        },
+        {
+          "segun_el_llm": "SUSTITUYE",
+          "articulos": 34
+        },
+        {
+          "segun_el_llm": "DEROGA",
+          "articulos": 25
+        },
+        {
+          "segun_el_llm": "INCORPORA",
+          "articulos": 10
+        }
+      ],
+      "error": null
+    },
+    "dos_lecturas": {
+      "pregunta": "Ejemplos: mismo artículo, dos lecturas",
+      "cypher": "MATCH (n:Norma)-[:CONTIENE]->(o:Articulo)-[r1]->(d1), (o)-[r2]->(d2)\nWHERE r1.fuente = 'reglas_v2' AND r2.fuente = 'llm' AND type(r1) = 'CITA' AND type(r2) = 'SUSTITUYE'\n  AND d1.id_norma = d2.id_norma\nMATCH (dn:Norma {id_norma: d2.id_norma})\nRETURN n.nombre AS norma, o.numero AS articulo, dn.nombre AS destino, type(r1) AS reglas, type(r2) AS llm,\n       r2.verbo AS verbo_llm, left(r2.fragmento, 170) AS evidencia\nLIMIT 6",
+      "filas": [
+        {
+          "norma": "Ley 21824",
+          "articulo": "0",
+          "destino": "Ley 20744",
+          "reglas": "CITA",
+          "llm": "SUSTITUYE",
+          "verbo_llm": "Sustitúyese",
+          "evidencia": "CONTRATO DE TRABAJO LEY N° 21.824 Sustitúyese el artículo 177 del régimen de contrato de trabajo, según texto ordenado por el Decreto N° 390/76, relativo a la licencia po"
+        },
+        {
+          "norma": "Ley 22276",
+          "articulo": "0",
+          "destino": "Ley 20744",
+          "reglas": "CITA",
+          "llm": "SUSTITUYE",
+          "verbo_llm": "Sustitúyese",
+          "evidencia": "CONTRATOS DE TRABAJO LEY N° 22.276 Sustitúyese un artículo del Régimen de Contrato de Trabajo. Ley N° 20.744 (t.o. 1976) Buenos Aires, 25 de agosto de 1980 En uso de las "
+        },
+        {
+          "norma": "Ley 24241",
+          "articulo": "155",
+          "destino": "Ley 20091",
+          "reglas": "CITA",
+          "llm": "SUSTITUYE",
+          "verbo_llm": "Sustitúyese",
+          "evidencia": "ejercicio económico anterior, que no podrá ser inferior al 0,5 por ciento del capital mínimo requerido. Sustitúyese el segundo y tercer párrafo del art. 86 de la ley 20.0"
+        },
+        {
+          "norma": "Ley 24241",
+          "articulo": "155",
+          "destino": "Ley 20091",
+          "reglas": "CITA",
+          "llm": "SUSTITUYE",
+          "verbo_llm": "Sustitúyese",
+          "evidencia": "saneamiento, la autoridad de control establecerá sobre las inversiones, las medidas previstas en el art. 86 de esta ley. Sustitúyese el inc. c) del art. 58 de la ley 20.0"
+        },
+        {
+          "norma": "Ley 24241",
+          "articulo": "155",
+          "destino": "Ley 20091",
+          "reglas": "CITA",
+          "llm": "SUSTITUYE",
+          "verbo_llm": "Sustituyese",
+          "evidencia": "mentarias, las sanciones previstas en la ley 20.091 con los procedimientos que ella establece. Sustituyese el primer párrafo de la segunda parte del art. 31 (indisponibil"
+        },
+        {
+          "norma": "Ley 24347",
+          "articulo": "1",
+          "destino": "Ley 24241",
+          "reglas": "CITA",
+          "llm": "SUSTITUYE",
+          "verbo_llm": "Modifícanse",
+          "evidencia": "ARTICULO 1º — Modifícanse los artículos 3º, inciso 5; 21, 24, 34, 40 y 97 de la ley 24.241, los que quedarán redactados de la siguiente forma: Artículo 3º, Inciso 5: Las "
+        }
+      ],
+      "error": null
+    },
+    "evidencia_dnu70": {
+      "pregunta": "La evidencia completa de una arista: DNU 70/2023 sobre la LCT (fuente llm)",
+      "cypher": "MATCH (n:Norma {tipo: 'Decreto', numero: '70', anio: 2023})-[:CONTIENE]->(o)-[r]->(d:Articulo {id_norma: 25552})\nWHERE r.fuente = 'llm'\nRETURN o.numero AS art_dnu, type(r) AS que_hizo, d.numero AS art_lct, r.verbo AS verbo, r.metodo AS metodo,\n       r.inicio AS desde, r.fin AS hasta, left(r.fragmento, 150) AS evidencia\nORDER BY toInteger(split(d.numero, ' ')[0]) LIMIT 8",
+      "filas": [
+        {
+          "art_dnu": "65",
+          "que_hizo": "SUSTITUYE",
+          "art_lct": "2",
+          "verbo": "Sustitúyese",
+          "metodo": "llm",
+          "desde": 55935,
+          "hasta": 55960,
+          "evidencia": "ARTÍCULO 65.- Sustitúyese el artículo 2° de la Ley N° 20.744 (t.o. 1976) y sus modificatorias por el siguiente: “ARTÍCULO 2°.- Ámbito de Aplicación. L"
+        },
+        {
+          "art_dnu": "66",
+          "que_hizo": "SUSTITUYE",
+          "art_lct": "9",
+          "verbo": "Sustitúyese",
+          "metodo": "llm",
+          "desde": 57230,
+          "hasta": 57255,
+          "evidencia": "ARTÍCULO 66.- Sustitúyese el artículo 9° de la Ley N° 20.744 (t.o. 1976) y sus modificatorias por el siguiente: “ARTÍCULO 9°.- El principio de la norm"
+        },
+        {
+          "art_dnu": "67",
+          "que_hizo": "SUSTITUYE",
+          "art_lct": "12",
+          "verbo": "Sustitúyese",
+          "metodo": "llm",
+          "desde": 58291,
+          "hasta": 58316,
+          "evidencia": "ARTÍCULO 67.- Sustitúyese el artículo 12 de la Ley N° 20.744 (t.o. 1976) y sus modificatorias por el siguiente: “ARTÍCULO 12 - Protección de los traba"
+        },
+        {
+          "art_dnu": "68",
+          "que_hizo": "SUSTITUYE",
+          "art_lct": "23",
+          "verbo": "Sustitúyese",
+          "metodo": "llm",
+          "desde": 59055,
+          "hasta": 59080,
+          "evidencia": "ARTÍCULO 68.- Sustitúyese el artículo 23 de la Ley N° 20.744 (t.o. 1976) y sus modificatorias por el siguiente: “ARTÍCULO 23.- Presunción de la existe"
+        },
+        {
+          "art_dnu": "69",
+          "que_hizo": "SUSTITUYE",
+          "art_lct": "29",
+          "verbo": "Sustitúyese",
+          "metodo": "llm",
+          "desde": 59887,
+          "hasta": 59912,
+          "evidencia": "ARTÍCULO 69.- Sustitúyese el artículo 29 de la Ley N° 20.744 (t.o. 1976) y sus modificatorias por el siguiente: “ARTÍCULO 29.- Mediación. Intermediaci"
+        },
+        {
+          "art_dnu": "60",
+          "que_hizo": "CITA",
+          "art_lct": "29",
+          "verbo": "",
+          "metodo": "llm",
+          "desde": 53624,
+          "hasta": 53637,
+          "evidencia": ".- Incorpórase como artículo 7° bis de la Ley N° 24.013, el siguiente: “ARTÍCULO 7° bis - En virtud de lo establecido en los artículos 29 y 30 de la L"
+        },
+        {
+          "art_dnu": "60",
+          "que_hizo": "CITA",
+          "art_lct": "30",
+          "verbo": "",
+          "metodo": "llm",
+          "desde": 53624,
+          "hasta": 53637,
+          "evidencia": ".- Incorpórase como artículo 7° bis de la Ley N° 24.013, el siguiente: “ARTÍCULO 7° bis - En virtud de lo establecido en los artículos 29 y 30 de la L"
+        },
+        {
+          "art_dnu": "74",
+          "que_hizo": "CITA",
+          "art_lct": "30",
+          "verbo": "",
+          "metodo": "llm",
+          "desde": 65047,
+          "hasta": 65078,
+          "evidencia": "concepto de remuneraciones, indemnizaciones u otros derechos apreciables en dinero provenientes de la relación laboral. Conforme lo dispuesto en el ar"
+        }
+      ],
+      "error": null
+    },
+    "clasificador_dudoso": {
+      "pregunta": "Los pares en que el random forest dudó (probabilidad cerca del umbral 0,45)",
+      "cypher": "MATCH (m:Norma)-[:CONTIENE]->(:Articulo)-[r]->(d)\nWHERE r.fuente = 'random_forest' AND r.confianza <> ''\nWITH m, d.id_norma AS destino, max(toFloat(r.confianza)) AS prob,\n     max(CASE WHEN type(r) <> 'CITA' THEN 1 ELSE 0 END) AS acepta\nMATCH (dn:Norma {id_norma: destino})\nRETURN m.nombre AS origen, dn.nombre AS destino, prob, CASE acepta WHEN 1 THEN 'sí' ELSE 'no' END AS acepta\nORDER BY abs(prob - 0.45) LIMIT 8",
+      "filas": [
+        {
+          "origen": "Ley 24901",
+          "destino": "Ley 24241",
+          "prob": 0.45,
+          "acepta": "no"
+        },
+        {
+          "origen": "Decreto 551",
+          "destino": "Ley 27541",
+          "prob": 0.45,
+          "acepta": "sí"
+        },
+        {
+          "origen": "Decreto 737",
+          "destino": "Ley 12713",
+          "prob": 0.45,
+          "acepta": "no"
+        },
+        {
+          "origen": "Decreto 724",
+          "destino": "Ley 11672",
+          "prob": 0.45,
+          "acepta": "sí"
+        },
+        {
+          "origen": "Decreto 847",
+          "destino": "Ley 24557",
+          "prob": 0.45,
+          "acepta": "sí"
+        },
+        {
+          "origen": "Decreto 1048",
+          "destino": "Decreto 84",
+          "prob": 0.45,
+          "acepta": "sí"
+        },
+        {
+          "origen": "Ley 23769",
+          "destino": "Ley 20744",
+          "prob": 0.45,
+          "acepta": "sí"
+        },
+        {
+          "origen": "Decreto 70",
+          "destino": "Ley 26844",
+          "prob": 0.45,
+          "acepta": "no"
+        }
+      ],
+      "error": null
+    },
+    "texto_completo": {
+      "pregunta": "Búsqueda por texto: artículos que hablan de indemnización por despido",
+      "cypher": "CALL db.index.fulltext.queryNodes('articulo_texto', 'indemnización despido') YIELD node, score\nMATCH (n:Norma)-[:CONTIENE]->(node)\nRETURN n.nombre AS norma, node.numero AS articulo, round(score, 2) AS puntaje, left(node.texto, 120) AS texto\nORDER BY puntaje DESC LIMIT 8",
+      "filas": [
+        {
+          "norma": "Ley 26844",
+          "articulo": "41",
+          "puntaje": 6.09,
+          "texto": "ARTICULO 41. — Indemnización especial. Maternidad. Matrimonio. Cuando el despido obedeciera a razones de maternidad o em"
+        },
+        {
+          "norma": "Ley 26727",
+          "articulo": "22",
+          "puntaje": 5.99,
+          "texto": "ARTICULO 22. — Trabajador permanente. Indemnización mínima por antigüedad o despido . El trabajador permanente en ningún"
+        },
+        {
+          "norma": "Ley 25013",
+          "articulo": "9",
+          "puntaje": 5.99,
+          "texto": "ARTICULO 9º- (Falta de pago en término de la indemnización por despido incausado). En caso de falta de pago en término y"
+        },
+        {
+          "norma": "Ley 27742",
+          "articulo": "245 bis",
+          "puntaje": 5.9,
+          "texto": "Artículo 245 bis: Agravamiento indemnizatorio por despido motivado por un acto discriminatorio. Será considerado despido"
+        },
+        {
+          "norma": "Decreto 70",
+          "articulo": "82",
+          "puntaje": 5.9,
+          "texto": "ARTÍCULO 82.- Incorpórase como artículo 245 bis a la Ley N° 20.744 (t.o. 1976) y sus modificatorias, el siguiente:\n\n“ART"
+        },
+        {
+          "norma": "Ley 26844",
+          "articulo": "48",
+          "puntaje": 5.85,
+          "texto": "ARTICULO 48. — Indemnización por antigüedad o despido. En los casos de despido dispuesto por el empleador sin causa, hab"
+        },
+        {
+          "norma": "Ley 27802",
+          "articulo": "95",
+          "puntaje": 5.64,
+          "texto": "Artículo 95: Despido antes del vencimiento del plazo. Indemnización. El despido injustificado dispuesto con antelación a"
+        },
+        {
+          "norma": "Ley 25877",
+          "articulo": "4",
+          "puntaje": 5.55,
+          "texto": "ARTICULO 4º — Sustitúyese el artículo 233 de la Ley de Contrato de Trabajo, Nº 20.744 (t.o. 1976) y sus modificatorias, "
+        }
+      ],
+      "error": null
+    },
+    "unnoba_fuentes": {
+      "pregunta": "Digesto UNNOBA: aristas por parser",
+      "cypher": "MATCH (:Articulo)-[r]->() WHERE r.fuente STARTS WITH 'unnoba'\nRETURN r.fuente AS fuente, type(r) AS tipo, count(*) AS aristas ORDER BY fuente, aristas DESC",
+      "filas": [
+        {
+          "fuente": "unnoba_hibrido",
+          "tipo": "CITA",
+          "aristas": 88
+        },
+        {
+          "fuente": "unnoba_hibrido",
+          "tipo": "MODIFICA",
+          "aristas": 56
+        },
+        {
+          "fuente": "unnoba_hibrido",
+          "tipo": "REGLAMENTA",
+          "aristas": 5
+        },
+        {
+          "fuente": "unnoba_hibrido",
+          "tipo": "INCORPORA",
+          "aristas": 1
+        },
+        {
+          "fuente": "unnoba_llm",
+          "tipo": "CITA",
+          "aristas": 133
+        },
+        {
+          "fuente": "unnoba_llm",
+          "tipo": "MODIFICA",
+          "aristas": 12
+        },
+        {
+          "fuente": "unnoba_llm",
+          "tipo": "SUSTITUYE",
+          "aristas": 6
+        },
+        {
+          "fuente": "unnoba_llm",
+          "tipo": "INCORPORA",
+          "aristas": 3
+        },
+        {
+          "fuente": "unnoba_llm",
+          "tipo": "REGLAMENTA",
+          "aristas": 1
+        },
+        {
+          "fuente": "unnoba_llm",
+          "tipo": "DEROGA",
+          "aristas": 1
+        },
+        {
+          "fuente": "unnoba_reglas_v3",
+          "tipo": "CITA",
+          "aristas": 137
+        },
+        {
+          "fuente": "unnoba_reglas_v3",
+          "tipo": "MODIFICA",
+          "aristas": 11
+        },
+        {
+          "fuente": "unnoba_reglas_v3",
+          "tipo": "REGLAMENTA",
+          "aristas": 1
+        },
+        {
+          "fuente": "unnoba_reglas_v3",
+          "tipo": "INCORPORA",
+          "aristas": 1
+        }
+      ],
+      "error": null
+    },
+    "unnoba_mas_modificadas": {
+      "pregunta": "Digesto UNNOBA: las normas más modificadas (fuente unnoba_hibrido)",
+      "cypher": "MATCH (m:Norma)-[:CONTIENE]->(:Articulo)-[r]->(d)\nWHERE r.fuente = 'unnoba_hibrido' AND type(r) <> 'CITA'\nMATCH (n:Norma {id_norma: d.id_norma}) WHERE n <> m\nRETURN n.nombre AS norma, left(n.titulo, 60) AS titulo, count(DISTINCT m) AS documentos_que_la_cambian\nORDER BY documentos_que_la_cambian DESC LIMIT 6",
+      "filas": [
+        {
+          "norma": "Ley 25871",
+          "titulo": "Ley 25871",
+          "documentos_que_la_cambian": 7
+        },
+        {
+          "norma": "Resolución MIN 1523/1990",
+          "titulo": "Resolución MIN 1523/1990",
+          "documentos_que_la_cambian": 5
+        },
+        {
+          "norma": "Resolución HCS 531/2012",
+          "titulo": "Resolución HCS 531/2012",
+          "documentos_que_la_cambian": 5
+        },
+        {
+          "norma": "Resolución REC 1122/2008",
+          "titulo": "Resolución REC 1122/2008",
+          "documentos_que_la_cambian": 4
+        },
+        {
+          "norma": "Resolución HCS 97/2008",
+          "titulo": "Resolución HCS Nº 097/08",
+          "documentos_que_la_cambian": 3
+        },
+        {
+          "norma": "Ordenanza HCS 14/2009",
+          "titulo": "Ordenanza HCS 14/2009",
+          "documentos_que_la_cambian": 3
+        }
+      ],
+      "error": null
+    },
+    "visual_27802": {
+      "pregunta": "Para la vista de grafo: Ley 27.802 → artículos de la LCT (filas que dibuja)",
+      "cypher": "MATCH p = (:Norma {nombre: 'Ley 27802'})-[:CONTIENE]->(:Articulo)-[r:SUSTITUYE {fuente: 'llm'}]->(:Articulo)<-[:CONTIENE]-(:Norma {id_norma: 25552})\nRETURN count(p) AS caminos",
+      "filas": [
+        {
+          "caminos": 52
+        }
+      ],
+      "error": null
+    }
+  },
+  "cadena_lct": [
+    {
+      "id_norma": 370565,
+      "norma": "Decreto 551",
+      "fecha": "2022-08-30"
+    },
+    {
+      "id_norma": 355459,
+      "norma": "Decreto 711",
+      "fecha": "2021-10-19"
+    },
+    {
+      "id_norma": 352666,
+      "norma": "Decreto 493",
+      "fecha": "2021-08-06"
+    },
+    {
+      "id_norma": 348194,
+      "norma": "Decreto 191",
+      "fecha": "2021-03-24"
+    },
+    {
+      "id_norma": 333564,
+      "norma": "Ley 27541",
+      "fecha": "2019-12-23"
+    },
+    {
+      "id_norma": 263691,
+      "norma": "Ley 27260",
+      "fecha": "2016-07-22"
+    },
+    {
+      "id_norma": 230592,
+      "norma": "Ley 26940",
+      "fecha": "2014-06-02"
+    },
+    {
+      "id_norma": 148719,
+      "norma": "Ley 26476",
+      "fecha": "2008-12-24"
+    },
+    {
+      "id_norma": 93595,
+      "norma": "Ley 25877",
+      "fecha": "2004-03-19"
+    },
+    {
+      "id_norma": 63208,
+      "norma": "Ley 25250",
+      "fecha": "2000-06-02"
+    },
+    {
+      "id_norma": 53159,
+      "norma": "Ley 25013",
+      "fecha": "1998-09-24"
+    },
+    {
+      "id_norma": 15931,
+      "norma": "Ley 24465",
+      "fecha": "1995-03-28"
+    },
+    {
+      "id_norma": 412,
+      "norma": "Ley 24013",
+      "fecha": "1991-12-17"
+    },
+    {
+      "id_norma": 15,
+      "norma": "Ley 23697",
+      "fecha": "1989-09-25"
+    },
+    {
+      "id_norma": 25552,
+      "norma": "Ley 20744",
+      "fecha": "1974-09-27"
+    }
+  ],
+  "cadena_lct_visual": {
+    "cypher": "WITH [370565, 355459, 352666, 348194, 333564, 263691, 230592, 148719, 93595, 63208, 53159, 15931, 412, 15, 25552] AS ids\nMATCH p = (m:Norma)-[:CONTIENE]->(:Articulo)-[r]->(d)\nWHERE m.id_norma IN ids AND d.id_norma IN ids AND d.id_norma <> m.id_norma\n  AND r.fuente = 'hibrido' AND type(r) IN ['SUSTITUYE','INCORPORA','DEROGA','MODIFICA']\nOPTIONAL MATCH (n:Norma)-[:CONTIENE]->(d)\nRETURN p, n",
+    "filas": 89
+  }
+}

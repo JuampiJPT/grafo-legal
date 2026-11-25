@@ -35,3 +35,4 @@ docs/video/*.mp4
 
 # ayudas para la Mac (push y carga con doble clic): quedan locales, fuera del repo (B75)
 *.command
+.demo_log.txt

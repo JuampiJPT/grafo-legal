@@ -89,6 +89,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B73 | 25/11 | Avance | Los clasificadores también tienen su grafo en Neo4j; explicación simple de qué probamos | Cerrada |
 | B74 | 25/11 | Decisión | La presentación del coloquio sigue el manual de identidad de la UNNOBA | Cerrada |
 | B75 | 25/11 | Decisión | Sin archivos .command en el repositorio | Cerrada |
+| B76 | 25/11 | Avance | Guía de estudio para el coloquio y guía de la demo del grafo, con las consultas probadas en Neo4j | Cerrada |
 
 ## Entradas
 
@@ -1300,6 +1301,25 @@ En estos grafos un par es vínculo si tiene alguna arista distinta de CITA. Para
 - Se actualizaron las referencias en el README, `docs/reproducibilidad.md`, `docs/estructura_repositorio.md`, `docs/grafo.md`, `docs/pi4_digesto_unnoba.md` y `tools/digesto_unnoba/README.md`. Las entradas anteriores de la bitácora se dejan como están, porque cuentan lo que se usó en su momento.
 
 **Historia.** Ese mismo día se reescribieron los mensajes de los 45 commits para sacar las líneas `Co-Authored-By` y `Claude-Session`, con push forzado. Los archivos de cada commit quedaron idénticos. Los `.command` viejos siguen en la historia anterior a este commit.
+
+### B76 · 25/11/2026 · Avance · Guía de estudio para el coloquio y guía de la demo del grafo, con las consultas probadas en Neo4j
+
+**Pedido del equipo.** Preparar el examen oral (exposición y 10 minutos de preguntas): un documento para estudiar el trabajo de punta a punta y otro para mostrar el grafo con consultas, como una demo, y explicar sus resultados.
+
+**Guía de estudio** (`docs/estudio/guia_de_estudio.md`; Drive: «20 - Guía de estudio para el coloquio»). Cuenta, en el orden en que se hizo: el problema y la consigna, el corpus y por qué es así, el pipeline y dónde está cada cosa en el código, los métodos y por qué se eligieron (reglas, random forest, TF-IDF, LLM y por qué Claude Sonnet, híbridos), cómo se evaluó, los resultados, por qué se dieron, el grafo, la PI4 y la reconstrucción de la LCT. Cierra con las cifras para memorizar, 30 preguntas probables con su respuesta, las limitaciones y un glosario. Las cifras salen del informe, de `results/` y de la bitácora; se verificaron contra las fuentes (por ejemplo, las 8 citas no encontradas del LLM son de 7.688 entradas).
+
+**Guía de la demo** (`docs/estudio/demo_grafo.md`; Drive: «21 - Guía de la demo del grafo en Neo4j»). Preparación del Neo4j Browser, un guion corto de seis consultas, consultas extra y cómo explicar lo que muestra el grafo.
+
+**Las consultas se probaron en la base del equipo.** `scripts/35_demo_consultas.py` corre las 19 consultas de la demo sobre el Neo4j local y guarda lo que devuelven en `results/demo/consultas.md` y `consultas.json`. No hubo errores. Algunos resultados:
+- La Ley 27.802 sustituye 52 artículos de la LCT, deroga 9 e incorpora 3 (fuente llm).
+- El art. 245 de la LCT tiene siete normas que lo tocan; los siete parsers coinciden en cinco.
+- La LCT se reformó con más cambios en la década de 2020 (106 cambios en 8 normas).
+- 202 vínculos los encuentran los siete parsers de InfoLEG y 70 uno solo.
+- En 254 artículos las reglas ven una cita y el LLM una acción.
+
+**Cadena más larga hasta la LCT.** El script también calcula la cadena de reformas más larga que llega a la LCT: 14 saltos, del Decreto 551/2022 a la Ley 20.744. Sigue solo cambios reales (sin REGLAMENTA) y exige que cada modificatoria sea posterior a la modificada. El ranking de B61 daba 16 porque contaba cualquier relación que no fuera CITA y no exigía orden de fechas. Las dos medidas son correctas, con criterios distintos; la guía lo explica.
+
+**Hallazgo al verificar.** Dos de las siete normas que tocan el art. 245 no las ve el LLM, y ahí el LLM tiene razón. La Ley 25.323 duplica la indemnización remitiendo al 245 sin tocar su texto: las reglas la marcaron MODIFICA porque tomaron «texto ordenado» como verbo. El art. 96 de la Ley 27.742 dice que un fondo de cese puede «sustituir» la indemnización: las reglas lo tomaron como SUSTITUYE. Son dos ejemplos reales del error de tipo dominante de las reglas, una cita tomada como acción (B47).
 
 ## Cuestiones abiertas
 
