@@ -1,0 +1,234 @@
+{
+  "fecha": "2026-11-25T21:48:29.298602+00:00",
+  "backend": "neo4j bolt://localhost:7688",
+  "fuente": "hibrido_tfidf",
+  "ida_y_vuelta": {
+    "cargadas": 3273,
+    "devueltas": 3273,
+    "faltan_en_el_grafo": 0,
+    "sobran_en_el_grafo": 0,
+    "identicas": true
+  },
+  "nodos_y_aristas": {
+    "relaciones_por_tipo": {
+      "CITA": 1846,
+      "MODIFICA": 693,
+      "SUSTITUYE": 374,
+      "INCORPORA": 157,
+      "DEROGA": 147,
+      "REGLAMENTA": 56
+    }
+  },
+  "infoleg": {
+    "dev": {
+      "vinculos_del_grafo": {
+        "pred": 605,
+        "gold": 583,
+        "tp": 445,
+        "fp": 160,
+        "fn": 138,
+        "precision": 0.7355,
+        "recall": 0.7633,
+        "f1": 0.7492
+      },
+      "cualquier_relacion": {
+        "pred": 762,
+        "gold": 583,
+        "tp": 469,
+        "fp": 293,
+        "fn": 114,
+        "precision": 0.6155,
+        "recall": 0.8045,
+        "f1": 0.6974
+      },
+      "sin_pares_de_v1": {
+        "pred": 401,
+        "gold": 308,
+        "tp": 241,
+        "fp": 160,
+        "fn": 67,
+        "precision": 0.601,
+        "recall": 0.7825,
+        "f1": 0.6798
+      }
+    },
+    "test": {
+      "vinculos_del_grafo": {
+        "pred": 223,
+        "gold": 192,
+        "tp": 174,
+        "fp": 49,
+        "fn": 18,
+        "precision": 0.7803,
+        "recall": 0.9062,
+        "f1": 0.8386
+      },
+      "cualquier_relacion": {
+        "pred": 275,
+        "gold": 192,
+        "tp": 184,
+        "fp": 91,
+        "fn": 8,
+        "precision": 0.6691,
+        "recall": 0.9583,
+        "f1": 0.788
+      },
+      "sin_pares_de_v1": {
+        "pred": 109,
+        "gold": 65,
+        "tp": 60,
+        "fp": 49,
+        "fn": 5,
+        "precision": 0.5505,
+        "recall": 0.9231,
+        "f1": 0.6897
+      }
+    }
+  },
+  "por_tipo": {
+    "SUSTITUYE": {
+      "dev": {
+        "pares": 72,
+        "en_infoleg": 69,
+        "proporcion_en_infoleg": 0.9583
+      },
+      "test": {
+        "pares": 41,
+        "en_infoleg": 41,
+        "proporcion_en_infoleg": 1.0
+      }
+    },
+    "INCORPORA": {
+      "dev": {
+        "pares": 66,
+        "en_infoleg": 56,
+        "proporcion_en_infoleg": 0.8485
+      },
+      "test": {
+        "pares": 23,
+        "en_infoleg": 23,
+        "proporcion_en_infoleg": 1.0
+      }
+    },
+    "DEROGA": {
+      "dev": {
+        "pares": 36,
+        "en_infoleg": 33,
+        "proporcion_en_infoleg": 0.9167
+      },
+      "test": {
+        "pares": 37,
+        "en_infoleg": 37,
+        "proporcion_en_infoleg": 1.0
+      }
+    },
+    "REGLAMENTA": {
+      "dev": {
+        "pares": 24,
+        "en_infoleg": 21,
+        "proporcion_en_infoleg": 0.875
+      },
+      "test": {
+        "pares": 12,
+        "en_infoleg": 8,
+        "proporcion_en_infoleg": 0.6667
+      }
+    },
+    "MODIFICA": {
+      "dev": {
+        "pares": 475,
+        "en_infoleg": 332,
+        "proporcion_en_infoleg": 0.6989
+      },
+      "test": {
+        "pares": 150,
+        "en_infoleg": 104,
+        "proporcion_en_infoleg": 0.6933
+      }
+    },
+    "CITA": {
+      "dev": {
+        "pares": 510,
+        "en_infoleg": 310,
+        "proporcion_en_infoleg": 0.6078
+      },
+      "test": {
+        "pares": 207,
+        "en_infoleg": 136,
+        "proporcion_en_infoleg": 0.657
+      }
+    }
+  },
+  "por_semilla": {
+    "Ley 20.744 (LCT)": {
+      "pred": 126,
+      "gold": 130,
+      "tp": 106,
+      "fp": 20,
+      "fn": 24,
+      "precision": 0.8413,
+      "recall": 0.8154,
+      "f1": 0.8281
+    },
+    "Ley 27.802": {
+      "pred": 8,
+      "gold": 7,
+      "tp": 7,
+      "fp": 1,
+      "fn": 0,
+      "precision": 0.875,
+      "recall": 1.0,
+      "f1": 0.9333
+    },
+    "Ley 24.013": {
+      "pred": 87,
+      "gold": 105,
+      "tp": 73,
+      "fp": 14,
+      "fn": 32,
+      "precision": 0.8391,
+      "recall": 0.6952,
+      "f1": 0.7604
+    },
+    "Ley 24.557": {
+      "pred": 68,
+      "gold": 67,
+      "tp": 61,
+      "fp": 7,
+      "fn": 6,
+      "precision": 0.8971,
+      "recall": 0.9104,
+      "f1": 0.9037
+    },
+    "Ley 23.551": {
+      "pred": 23,
+      "gold": 24,
+      "tp": 19,
+      "fp": 4,
+      "fn": 5,
+      "precision": 0.8261,
+      "recall": 0.7917,
+      "f1": 0.8085
+    },
+    "Ley 14.250": {
+      "pred": 23,
+      "gold": 12,
+      "tp": 10,
+      "fp": 13,
+      "fn": 2,
+      "precision": 0.4348,
+      "recall": 0.8333,
+      "f1": 0.5714
+    },
+    "Ley 27.742": {
+      "pred": 4,
+      "gold": 1,
+      "tp": 1,
+      "fp": 3,
+      "fn": 0,
+      "precision": 0.25,
+      "recall": 1.0,
+      "f1": 0.4
+    }
+  }
+}

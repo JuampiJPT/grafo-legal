@@ -1,0 +1,21 @@
+{
+  "nodos": {
+    "Norma": 340,
+    "Articulo": 8129,
+    "Articulo_sin_texto": 63
+  },
+  "aristas": {
+    "CONTIENE": 8129,
+    "CITA": 1846,
+    "MODIFICA": 693,
+    "SUSTITUYE": 374,
+    "INCORPORA": 157,
+    "DEROGA": 147,
+    "REGLAMENTA": 56
+  },
+  "relaciones_a_articulo": 1684,
+  "relaciones_a_norma": 1589,
+  "fuentes": {
+    "hibrido_tfidf": 3273
+  }
+}

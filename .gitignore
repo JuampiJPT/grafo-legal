@@ -31,3 +31,4 @@ data/textos/unnoba/
 
 # video explicativo: 43 MB, se guarda en la carpeta pero no en git (B66)
 docs/video/*.mp4
+.carga_modelos_log.txt

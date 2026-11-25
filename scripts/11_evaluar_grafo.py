@@ -68,6 +68,9 @@ def main() -> None:
     ap.add_argument("--out", type=Path, default=Path("results/evaluacion_grafo"))
     ap.add_argument("--uri", help="bolt://localhost:7688; sin --uri evalua una copia en memoria")
     ap.add_argument("--user", default="neo4j")
+    # reglas_f: la proyección de las reglas (abajo). no_cita: un par es vínculo si tiene alguna arista
+    # distinta de CITA; es la de los grafos de los clasificadores (scripts/33, B73)
+    ap.add_argument("--proyeccion", choices=["reglas_f", "no_cita"], default="reglas_f")
     a = ap.parse_args()
 
     normas = pd.read_csv(a.corpus / "corpus_normas.csv", dtype=str, keep_default_na=False)
@@ -98,7 +101,7 @@ def main() -> None:
     # 2. comparacion con InfoLEG, por split
     split = normas.set_index(normas.id_norma.astype(int)).split
     g["split"] = g.id_norma_origen.astype(int).map(split)
-    g["vinculo"] = proyectar(g)
+    g["vinculo"] = proyectar(g) if a.proyeccion == "reglas_f" else (g.tipo != "CITA")
     v = pd.read_csv(a.corpus / "pares_evaluados_en_v1.csv")
     vistos = set(zip(v.id_norma_modificatoria, v.id_norma_modificada))
     metricas = {"fecha": datetime.now(timezone.utc).isoformat(), "backend": backend, "fuente": a.fuente,

@@ -86,6 +86,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B70 | 25/11 | Decisión | Revisión del informe para la entrega: anexo sin tareas internas y curva de aprendizaje en los resultados | Abierta |
 | B71 | 25/11 | Decisión | Presentación para el coloquio; el video queda para uso interno; qué conclusiones dependen del tamaño del corpus | Abierta |
 | B72 | 25/11 | Avance | Audios de la parte de modelos y video v3 (uso interno) | Abierta |
+| B73 | 25/11 | Avance | Los clasificadores también tienen su grafo en Neo4j; explicación simple de qué probamos | Cerrada |
 
 ## Entradas
 
@@ -1239,10 +1240,42 @@ El Google Doc del informe se editó en el lugar, así que el link no cambió.
 
 **Falta.** Subir el video v3 al Drive: el conector no sube archivos de ese tamaño, así que lo sube el equipo.
 
+### B73 · 25/11/2026 · Avance · Los clasificadores también tienen su grafo en Neo4j; explicación simple de qué probamos
+
+**Pregunta del equipo.** ¿El random forest y el TF-IDF están en el grafo? ¿Para qué se hicieron, si lo que pide la consigna es un grafo?
+
+**Qué había.** En Neo4j estaban los cuatro extractores de InfoLEG (reglas v2, reglas v3, LLM e híbrido reglas + LLM, B60) y el digesto UNNOBA. Los clasificadores habían estado en el primer modelo del grafo (B38, 733 aristas del clasificador), pero salieron cuando el grafo pasó a aristas por artículo y con tipo: desde entonces solo se usaban para medir.
+
+**Qué son.** El random forest y el TF-IDF son clasificadores de relaciones. Trabajan en el tercer paso del pipeline de la consigna («extracción o clasificación de la relación»): para cada par de normas que propone el detector de menciones, deciden si es una relación «modifica o complementa» o una cita al pasar. No buscan las menciones ni dicen el tipo ni el artículo. Por qué esos dos:
+- **Random forest:** con 800 ejemplos y unos 20 atributos numéricos es el modelo estándar más fuerte; se eligió frente a regresión logística y gradient boosting con validación cruzada (B37).
+- **TF-IDF + regresión logística:** la consigna pide un modelo que clasifique «a partir del contexto textual»; es el más simple que lee el texto, es interpretable y funciona con pocos datos (B46).
+
+**Qué se hizo.** `scripts/33_grafo_modelos.py` arma el grafo de tres clasificadores, igual que el híbrido con LLM arma el suyo (scripts/20):
+- la evidencia (artículo, fragmento, offsets) es la de las menciones del detector, tomada de la salida de las reglas v2;
+- par aceptado: sus aristas conservan el tipo de la regla; si todas eran CITA, la mejor evidencia pasa a MODIFICA, la relación general de la consigna;
+- par rechazado: todas sus aristas quedan como CITA;
+- la columna confianza lleva la probabilidad del modelo.
+
+**Cobertura.** Los 1.091 pares candidatos son todos los pares que el detector encuentra en las 306 normas con texto (dev y test son un corte por fecha del mismo corpus), así que los grafos cubren el corpus entero, igual que el de las reglas. En dev se usa la probabilidad de la validación cruzada (fuera de la partición).
+
+**Resultado.** Se cargaron en el Neo4j local sin `--borrar` (`scripts/34_cargar_modelos_neo4j.sh`, corrido con doble clic en `tools/cargar_modelos_neo4j.command`). La ida y vuelta es idéntica en los tres, y el F1 leído desde Neo4j coincide con el del modelo:
+
+| Fuente | Aristas | Pares aceptados | F1 dev | F1 test |
+|---|---|---|---|---|
+| `random_forest` | 3.283 | 733 | 0,728 | 0,823 |
+| `tfidf` (TF-IDF + atributos) | 3.280 | 795 | 0,751 | 0,783 |
+| `hibrido_tfidf` (reglas + TF-IDF en la zona gris) | 3.273 | 828 | 0,749 | 0,839 |
+
+En estos grafos un par es vínculo si tiene alguna arista distinta de CITA. Para evaluarlos así, `11_evaluar_grafo.py` suma la opción `--proyeccion no_cita`; los otros grafos siguen con la proyección de la regla F.
+
+**Explicación simple.** `docs/explicaciones/que_probamos_simple.md` explica en lenguaje llano qué probamos y dónde se aplica cada método. Se generó su audio en ElevenLabs (voz Roger, 3 minutos, normalizado a −16 LUFS), que quedó en Descargas y no va al repo.
+
+**Corrección.** Se sacó de «Cuestiones abiertas» el punto de cargar la v3, el LLM y el híbrido en Neo4j: ya estaba hecho en B60.
+
 ## Cuestiones abiertas
 
 - **Queda abierta la posibilidad de ampliar el corpus** para entrenar los modelos supervisados con más normas de InfoLEG, y de revisar con eso las pruebas de B68: repetir la curva de aprendizaje con el doble y con 10 veces más datos, y ver si los modelos superan a las reglas. No se hizo en la cursada.
-- Cargar los grafos de la v3, del LLM y del híbrido en Neo4j sin `--borrar` (B54, B55); actualizar la tabla final con el LLM y sus híbridos (B48, B49).
+- Actualizar la tabla final con el LLM y sus híbridos (B48, B49). (La carga en Neo4j de la v3, el LLM y el híbrido ya se hizo en B60.)
 - Probar las consultas de ejemplo de `docs/grafo.md` en el Neo4j Browser (la evaluación sobre Neo4j ya está, B60).
 - Revisar el texto consolidado de la LCT (`results/consolidado/lct_consolidada.md`), los 8 cambios no aplicados y los 6 errores (B61).
 - Mejorar el tipado de las reglas sobre otra muestra de dev, sin tocar los 78 casos de medición (B43, B47).

@@ -1,0 +1,21 @@
+{
+  "nodos": {
+    "Norma": 340,
+    "Articulo": 8129,
+    "Articulo_sin_texto": 63
+  },
+  "aristas": {
+    "CONTIENE": 8129,
+    "CITA": 1956,
+    "MODIFICA": 610,
+    "SUSTITUYE": 369,
+    "INCORPORA": 154,
+    "DEROGA": 141,
+    "REGLAMENTA": 53
+  },
+  "relaciones_a_articulo": 1684,
+  "relaciones_a_norma": 1599,
+  "fuentes": {
+    "random_forest": 3283
+  }
+}
