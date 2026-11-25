@@ -1315,7 +1315,7 @@ En estos grafos un par es vínculo si tiene alguna arista distinta de CITA. Para
 - El art. 245 de la LCT tiene siete normas que lo tocan; los siete parsers coinciden en cinco.
 - La LCT se reformó con más cambios en la década de 2020 (106 cambios en 8 normas).
 - 202 vínculos los encuentran los siete parsers de InfoLEG y 70 uno solo.
-- En 254 artículos las reglas ven una cita y el LLM una acción.
+- Hay artículos en que las reglas ven una cita y el LLM una acción: 124 con REGLAMENTA, 61 con MODIFICA, 34 con SUSTITUYE, 25 con DEROGA y 10 con INCORPORA.
 
 **Cadena más larga hasta la LCT.** El script también calcula la cadena de reformas más larga que llega a la LCT: 14 saltos, del Decreto 551/2022 a la Ley 20.744. Sigue solo cambios reales (sin REGLAMENTA) y exige que cada modificatoria sea posterior a la modificada. El ranking de B61 daba 16 porque contaba cualquier relación que no fuera CITA y no exigía orden de fechas. Las dos medidas son correctas, con criterios distintos; la guía lo explica.
 
