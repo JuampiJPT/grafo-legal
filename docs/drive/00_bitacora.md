@@ -85,6 +85,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B69 | 21/11 | Decisión | El video explica los modelos supervisados en siete escenas | Abierta |
 | B70 | 25/11 | Decisión | Revisión del informe para la entrega: anexo sin tareas internas y curva de aprendizaje en los resultados | Abierta |
 | B71 | 25/11 | Decisión | Presentación para el coloquio; el video queda para uso interno; qué conclusiones dependen del tamaño del corpus | Abierta |
+| B72 | 25/11 | Avance | Audios de la parte de modelos y video v3 (uso interno) | Abierta |
 
 ## Entradas
 
@@ -1213,11 +1214,30 @@ El Google Doc del informe se editó en el lugar, así que el link no cambió.
 **Video.** Queda como material interno del equipo para repasar las explicaciones; para el coloquio se usa la presentación.
 - La escena E15g suma una tarjeta con la misma distinción sobre el tamaño del corpus, y su narración, dos oraciones.
 - Se actualizó `narracion_modelos_elevenlabs.md` en el repo y en el Drive (documento 18).
-- Siguen faltando los audios de ElevenLabs de la parte de modelos.
+- Siguen faltando los audios de ElevenLabs de la parte de modelos. *Seguimiento:* se generaron y el video v3 quedó armado (B72).
 
 **GitHub.** Desde el entorno de Claude, la conexión SSH a GitHub sigue bloqueada. El push lo hace el equipo con `tools/push_github.command`.
 
 **Falta.** Completar los integrantes en la portada del informe y de la presentación.
+
+### B72 · 25/11/2026 · Avance · Audios de la parte de modelos y video v3 (uso interno)
+
+**Pedido del equipo.** Terminar el video con las siete escenas de modelos (B69, B71) y ajustar el audio.
+
+**Audios.** Se generaron en ElevenLabs, desde la cuenta del equipo, con la misma voz y los mismos ajustes que el resto del video: Roger, modelo Eleven v4, estabilidad 50 y similitud 75. Un audio por escena (E15, E15b … E15g), con el texto de `docs/video/narracion_modelos_elevenlabs.md`. Se usaron unos 5.800 caracteres de los créditos del plan.
+- ElevenLabs da dos tomas por generación; se usó la primera de cada una.
+- Los originales quedaron en `Descargas/elevenlabs_modelos/` y no van al repo.
+
+**Ajuste del audio.** Los audios nuevos venían unos 6 dB más bajos que los de la versión 2 (−22 LUFS contra −16 LUFS). `docs/video/build/ajustar_audios.sh` recorta el silencio de los extremos y los normaliza a −16 LUFS con pico de −1 dBTP. Después del ajuste quedan entre −16,3 y −16,6 LUFS, el mismo nivel que el resto.
+
+**Video v3.** Tiene 31 escenas y dura 18:37 (la versión 2 duraba 13:21). Se renderizaron solo las siete escenas nuevas; las otras 24 ya estaban hechas con el mismo audio.
+- Se verificó la sincronía escena por escena: la diferencia entre imagen y audio es de menos de medio cuadro en todas, y no se acumula.
+- Se revisaron cuadros de cada escena nueva.
+- Quedó en Descargas en dos versiones: completa (1080p, 55 MB) y 720p (29 MB). El mp4 no va al repo.
+
+**Uso.** Sigue siendo material interno para repasar las explicaciones (B71). Para el coloquio se usa la presentación.
+
+**Falta.** Subir el video v3 al Drive: el conector no sube archivos de ese tamaño, así que lo sube el equipo.
 
 ## Cuestiones abiertas
 
