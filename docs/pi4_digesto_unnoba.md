@@ -92,7 +92,7 @@ RETURN o.nombre, type(r), r.parte_origen, r.fragmento
 
 ## Cómo se repite
 
-Todo está en scripts. Lo único manual es bajar los PDF, porque el robots.txt del digesto prohíbe automatizarlo: lo hace el equipo con `tools/digesto_unnoba/Descargar_PDFs_UNNOBA.command`.
+Todo está en scripts. Lo único manual es bajar los PDF, porque el robots.txt del digesto prohíbe automatizarlo: lo hace el equipo con `tools/digesto_unnoba/descargar_pdfs_unnoba.py`.
 
 ```bash
 python scripts/26_digesto_catalogo.py            # catálogo de 912 documentos (898 del descargador + 14 a mano)

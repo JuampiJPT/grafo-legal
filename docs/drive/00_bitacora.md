@@ -88,6 +88,7 @@ Tipos de entrada: **Decisión** (se eligió un camino), **Dificultad** (algo tra
 | B72 | 25/11 | Avance | Audios de la parte de modelos y video v3 (uso interno) | Abierta |
 | B73 | 25/11 | Avance | Los clasificadores también tienen su grafo en Neo4j; explicación simple de qué probamos | Cerrada |
 | B74 | 25/11 | Decisión | La presentación del coloquio sigue el manual de identidad de la UNNOBA | Cerrada |
+| B75 | 25/11 | Decisión | Sin archivos .command en el repositorio | Cerrada |
 
 ## Entradas
 
@@ -1288,6 +1289,17 @@ En estos grafos un par es vínculo si tiene alguna arista distinta de CITA. Para
 **Verificación.** El archivo pasa la validación de formato y se revisó renderizado diapositiva por diapositiva.
 
 **Límite.** Las figuras que vienen del informe conservan su paleta (naranja y azul); cambiarlas implica regenerarlas también en el informe.
+
+### B75 · 25/11/2026 · Decisión · Sin archivos .command en el repositorio
+
+**Pedido del equipo.** Sacar del repositorio los archivos `.command`.
+
+**Qué se hizo.**
+- **Los que hacen falta pasaron a `.py`.** El descargador del digesto (`Descargar_PDFs_UNNOBA.command`) era un envoltorio de bash con un programa de Python adentro; ahora es `tools/digesto_unnoba/descargar_pdfs_unnoba.py`, con el mismo código. `scripts/26_digesto_catalogo.py` lee el catálogo desde ahí y sigue dando el mismo `catalogo.csv` (`--verificar`: igual). El del kit histórico solo llamaba a `descargar_unnoba.py`, que ya está en el repositorio, así que se sacó.
+- **Las ayudas para la Mac salieron del repositorio.** `push_github.command` y `cargar_modelos_neo4j.command` quedan solo en la Mac del equipo, ignoradas por git (`*.command` en `.gitignore`). La carga de los clasificadores sigue en `scripts/34_cargar_modelos_neo4j.sh`.
+- Se actualizaron las referencias en el README, `docs/reproducibilidad.md`, `docs/estructura_repositorio.md`, `docs/grafo.md`, `docs/pi4_digesto_unnoba.md` y `tools/digesto_unnoba/README.md`. Las entradas anteriores de la bitácora se dejan como están, porque cuentan lo que se usó en su momento.
+
+**Historia.** Ese mismo día se reescribieron los mensajes de los 45 commits para sacar las líneas `Co-Authored-By` y `Claude-Session`, con push forzado. Los archivos de cada commit quedaron idénticos. Los `.command` viejos siguen en la historia anterior a este commit.
 
 ## Cuestiones abiertas
 

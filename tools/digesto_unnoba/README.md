@@ -4,10 +4,10 @@ El digesto (https://digesto.unnoba.edu.ar) **prohíbe el acceso automático** en
 
 | Archivo | Qué hace |
 |---|---|
-| `Descargar_PDFs_UNNOBA.command` | **Versión usada.** Tiene adentro el catálogo de 898 documentos únicos, que salen de 11 secciones guardadas como HTML. Baja la versión **con firmas** de cada PDF con su nombre original (por ejemplo `RESOLUCIONHCS20181462.pdf`). Omite los que ya están, reintenta tres veces y registra los fallos en `errores_descarga.csv`. Uso: `bash Descargar_PDFs_UNNOBA.command [--tipo firmas\|normal\|ambos] [--limite N]`. Guarda en `~/Downloads/PDF_UNNOBA`. |
+| `descargar_pdfs_unnoba.py` | **Versión usada** (antes `Descargar_PDFs_UNNOBA.command`, B75). Tiene adentro el catálogo de 898 documentos únicos, que salen de 11 secciones guardadas como HTML. Baja la versión **con firmas** de cada PDF con su nombre original (por ejemplo `RESOLUCIONHCS20181462.pdf`). Omite los que ya están, reintenta tres veces y registra los fallos en `errores_descarga.csv`. Uso: `python3 tools/digesto_unnoba/descargar_pdfs_unnoba.py [--tipo firmas\|normal\|ambos] [--limite N]`. Guarda en `~/Downloads/PDF_UNNOBA`. |
 | `descargar_tema_digesto.js` | Alternativa para una sola sección: se pega en la consola del navegador, en la página de la sección, y arma un ZIP con los PDF con firmas. |
 | `ejemplo_documento.frameim.html` | Ejemplo de la página del visor con firmas (`documento.frameim.php?cod=N&arch=ARCHIVO.pdf`), que embebe el PDF. |
-| `historico_kit_237/` | Primera versión, solo para la sección Posgrado (237 documentos). Generaba un ZIP. Quedó reemplazada por el `.command`. |
+| `historico_kit_237/` | Primera versión, solo para la sección Posgrado (237 documentos). Generaba un ZIP (`python3 descargar_unnoba.py`). Quedó reemplazada por `descargar_pdfs_unnoba.py`. |
 
 ## Resultado
 
@@ -21,7 +21,7 @@ Los PDF están en `data/textos/unnoba/pdf/` y no se suben a git (`*.pdf` está e
 ## Después de la descarga (todo en scripts, B62)
 
 ```bash
-python scripts/26_digesto_catalogo.py            # catálogo (el que está embebido en el .command + descargas a mano)
+python scripts/26_digesto_catalogo.py            # catálogo (el que está embebido en descargar_pdfs_unnoba.py + descargas a mano)
 python scripts/27_digesto_duplicados.py --mover  # aparta copias repetidas en pdf/_duplicados/
 python scripts/28_digesto_textos.py --ocr muestra   # pdftotext y OCR de los escaneados de la muestra
 python scripts/29_digesto_muestra.py             # muestra de la PI4

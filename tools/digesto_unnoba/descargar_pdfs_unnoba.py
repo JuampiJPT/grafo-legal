@@ -1,5 +1,3 @@
-#!/bin/bash
-python3 - "$@" <<'PYTHON_SCRIPT_UNNOBA'
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """Descarga PDFs INDIVIDUALES desde el Digesto de la UNNOBA.
@@ -7,10 +5,14 @@ python3 - "$@" <<'PYTHON_SCRIPT_UNNOBA'
 No crea archivos ZIP. Requiere Python 3 y conexión con digesto.unnoba.edu.ar.
 Predeterminado: versión CON FIRMAS.
 
-Ejemplos (en macOS):
-    python3 ~/Downloads/descargar_pdfs_unnoba.py
-    python3 ~/Downloads/descargar_pdfs_unnoba.py --tipo normal
-    python3 ~/Downloads/descargar_pdfs_unnoba.py --tipo ambos
+Lo corre a mano un integrante del equipo, desde su computadora: el robots.txt del digesto prohíbe el
+acceso automático desde otros entornos (bitácora B56). Antes era Descargar_PDFs_UNNOBA.command, un
+envoltorio de bash con este mismo programa adentro; se pasó a .py sin cambiar el código (B75).
+
+Ejemplos (desde la raíz del repo):
+    python3 tools/digesto_unnoba/descargar_pdfs_unnoba.py
+    python3 tools/digesto_unnoba/descargar_pdfs_unnoba.py --tipo normal
+    python3 tools/digesto_unnoba/descargar_pdfs_unnoba.py --tipo ambos
 """
 import argparse
 import base64
@@ -354,9 +356,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-PYTHON_SCRIPT_UNNOBA
-estado=$?
-if [ -t 0 ]; then
-    read -r -p "Presioná Enter para cerrar..." _
-fi
-exit "$estado"

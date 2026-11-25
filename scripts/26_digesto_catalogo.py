@@ -1,12 +1,12 @@
 """Digesto UNNOBA, paso 1: catálogo de documentos (B56, B62).
 
 El catálogo de 898 documentos únicos está incorporado dentro del descargador
-tools/digesto_unnoba/Descargar_PDFs_UNNOBA.command (base85 + zlib, armado en una sesión de
+tools/digesto_unnoba/descargar_pdfs_unnoba.py (base85 + zlib, armado en una sesión de
 ChatGPT a partir de 11 secciones del digesto guardadas como HTML). Este script lo extrae y le
 suma los PDF que se bajaron a mano antes y no están en el catálogo (origen = descarga_manual).
 
 El digesto prohíbe el acceso automático (robots.txt), así que el script no se conecta a nada:
-solo lee el .command y la carpeta de PDF que bajó el equipo.
+solo lee el descargador y la carpeta de PDF que bajó el equipo.
 
 Salida: data/corpus_unnoba/catalogo.csv
     cod, titulo, archivo, normal, firmas, secciones (separadas por " | "), origen
@@ -26,7 +26,7 @@ from pathlib import Path
 import pandas as pd
 
 RAIZ = Path(__file__).resolve().parents[1]
-COMMAND = RAIZ / "tools/digesto_unnoba/Descargar_PDFs_UNNOBA.command"
+COMMAND = RAIZ / "tools/digesto_unnoba/descargar_pdfs_unnoba.py"   # antes .command (B75)
 PDF = RAIZ / "data/textos/unnoba/pdf"
 SALIDA = RAIZ / "data/corpus_unnoba/catalogo.csv"
 

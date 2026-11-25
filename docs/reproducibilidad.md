@@ -27,7 +27,7 @@ La regla general: todo lo que está en el repositorio se vuelve a generar igual 
 | Evaluación PI4 (LLM e híbrido) | **Sí**, en la Mac del equipo | La caché local `results/pi4_unnoba/cache_*` (fuera de git) | La caché no va a git porque tiene nombres y DNI; en otra máquina hay que volver a llamar a la API |
 | Gold de la PI4 | **Es una anotación**, no un cálculo | `data/corpus_unnoba/gold_pi4.tsv` | Lo anotó Claude, no una persona del equipo; falta un segundo anotador (B58) |
 | Revisiones manuales | **Son anotaciones** | `docs/revision_manual/` | Las hizo Claude y el equipo las tiene que validar |
-| `git push` | — | `tools/push_github.command`, abierto en la Mac | El entorno de Claude no llega a GitHub por SSH (B39) |
+| `git push` | — | desde la Mac, con la clave del equipo | El entorno de Claude no llega a GitHub por SSH (B39) |
 
 ## 1. Corpus de InfoLEG
 
@@ -67,7 +67,7 @@ La única diferencia entre corridas es el campo `fecha` de algunos `metricas.jso
 ### 5.1 La descarga de los PDF es manual
 
 El robots.txt del digesto (`digesto.unnoba.edu.ar`) prohíbe el acceso automático, así que el TP no lo automatiza (B19, B56). El equipo bajó los PDF con la sesión abierta en su navegador, usando `tools/digesto_unnoba/` (detalle en su `README.md`):
-- `Descargar_PDFs_UNNOBA.command` baja los 898 documentos del catálogo que lleva adentro;
+- `descargar_pdfs_unnoba.py` baja los 898 documentos del catálogo que lleva adentro;
 - 14 documentos más se bajaron a mano y figuran en el catálogo como `descarga_manual`.
 
 `26_digesto_catalogo.py` reconstruye el catálogo de 912 documentos desde ese descargador, y `--verificar` confirma que sale igual al del repo. Lo que no se puede garantizar es que el digesto siga publicando los mismos archivos: si cambia un PDF, cambia su SHA-256 y `27_digesto_duplicados.py` lo muestra.
@@ -96,7 +96,7 @@ De los 70 documentos de la muestra, 38 son escaneos, y su texto sale de OCR: `pd
 
 ## 7. Lo que se hace desde la Mac
 
-El entorno de Claude no llega a GitHub por SSH (B39). Los commits se hacen en el repo de la Mac, y el push lo hace `tools/push_github.command`, abierto con doble clic desde el Finder, con la clave del equipo. No cambia ningún resultado: es solo cómo se suben los commits.
+El entorno de Claude no llega a GitHub por SSH (B39). Los commits se hacen en el repo de la Mac, y el push se hace desde la Mac, con la clave del equipo (los ayudantes `.command` que se usaban para eso quedan fuera del repo, B75). No cambia ningún resultado: es solo cómo se suben los commits.
 
 ## 8. Qué guardar para que siga siendo reproducible
 

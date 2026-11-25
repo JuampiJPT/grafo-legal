@@ -101,7 +101,7 @@ results/curva_aprendizaje/ curva de aprendizaje de los modelos supervisados
 results/consolidado/    texto consolidado de la LCT desde el grafo y su evaluación
 docs/                   informe_avance/ (entrega), presentacion/ (coloquio), video/ (uso interno), explicaciones/ (texto simple para escuchar),
                         estado, conclusiones, estructura, reproducibilidad, decisiones, ficha del dataset, revisión manual y copia de los documentos del Drive
-tools/                  utilidades: conversión Google Docs ↔ Markdown, descargadores del digesto, push desde la Mac, carga de los clasificadores en Neo4j
+tools/                  utilidades: conversión Google Docs ↔ Markdown, descargador del digesto
 tests/                  tests sin red (pytest)
 ```
 

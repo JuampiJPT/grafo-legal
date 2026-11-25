@@ -138,7 +138,6 @@ Cada carpeta tiene un `metricas.json`. Las principales tienen además un `RESULT
 ## 7. `tools/` y `tests/`
 
 - `tools/gdoc_a_md.py` y `tools/md_a_gdoc.py`: pasan los documentos entre Google Docs y Markdown, para mantener el Drive y el repo iguales.
-- `tools/push_github.command`: hace `git push` desde la Mac (sección 8).
 - `tools/digesto_unnoba/`: los descargadores del digesto, que corren en la computadora del equipo. Tiene su propio `README.md`.
 - `tests/test_pipeline.py` y `tests/test_unnoba.py`: tests sin red (`pytest -q`).
 
@@ -158,4 +157,4 @@ Cada carpeta tiene un `metricas.json`. Las principales tienen además un `RESULT
 
 Toda la documentación está en los dos lugares (B32). Los documentos de razonamiento, como la bitácora, se escriben primero en el Drive y se copian a `docs/drive/`. Los técnicos, como `ESTADO.md` o los RESULTADOS, se escriben en el repo y se copian al Drive. La correspondencia completa está en la tabla «Dónde está cada cosa» de `docs/ESTADO.md`.
 
-El repositorio se trabaja en la Mac del equipo (`~/Documents/grafo legal`). El entorno de Claude lo edita a través de la carpeta conectada, y no llega a GitHub por SSH. Los commits se hacen en la Mac, y el push con `tools/push_github.command`.
+El repositorio se trabaja en la Mac del equipo (`~/Documents/grafo legal`). El entorno de Claude lo edita a través de la carpeta conectada, y no llega a GitHub por SSH. Los commits se hacen en la Mac, y el push desde la Mac, con la clave del equipo.
